@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shopping.dao.ShoppingMapper">
+	<select id="getProductList" resultType="product">
+		select product_id, product_name, price, stock
+		from product
+	</select>
+	
+	<select id="makeOrderNo" resultType="int">
+		select seq_order.nextval from dual
+	</select>
+	
+	<insert id="insertOrderInfo" parameterType="order">
+		insert into order_info values (#{order_no}, #{user_id}, sysdate)
+	</insert>
+	
+	<select id="countProductStock" parameterType="int" resultType="int">
+		select stock from product where product_id = #{product_id}
+	</select>
+
+	<update id="updateProductStock" parameterType="order">
+		update product set stock = stock - #{order_cnt} where product_id = #{product_id}
+	</update>
+	
+	<insert id="insertOrderDetail" parameterType="order">
+		insert into order_detail values (#{order_no}, #{product_id}, #{order_cnt})
+	</insert>
+	
+	<select id="selectOrderList" resultType="order">
+		select o1.order_no, o1.user_id, o1.order_date, o2.product_id, p.product_name, o2.order_cnt, p.price * o2.order_cnt as price
+		from order_info o1, order_detail o2, product p
+		where o1.order_no = o2.order_no and o2.product_id = p.product_id
+		order by o1.order_date desc, o1.order_no desc
+	</select>
+	
+	<select id="selectOrderListById" parameterType="string" resultType="order">
+		select o1.order_no, o1.user_id, o1.order_date, o2.product_id, p.product_name, o2.order_cnt, p.price * o2.order_cnt as price
+		from order_info o1, order_detail o2, product p
+		where o1.order_no = o2.order_no and o2.product_id = p.product_id
+		and o1.user_id = #{user_id}
+		order by o1.order_date desc, o1.order_no desc
+	</select>
+	
+	<select id="selectOrderListByOrderNo" parameterType="int" resultType="order">
+		select o1.order_no, o1.user_id, o1.order_date, o2.product_id, p.product_name, o2.order_cnt, p.price * o2.order_cnt as price
+		from order_info o1, order_detail o2, product p
+		where o1.order_no = o2.order_no and o2.product_id = p.product_id
+		and o1.order_no = #{order_no}
+	</select>
+	
+	<delete id="delete_order_detail" parameterType="order">
+		delete from order_detail where order_no = #{order_no}
+	</delete>
+	
+	<delete id="delete_order_info">
+		delete from order_info where order_no = #{order_no}
+	</delete>
+	
+	
+</mapper>
