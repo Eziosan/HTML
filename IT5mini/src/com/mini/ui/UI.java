@@ -66,6 +66,7 @@ public class UI {
 	public void amugona() {
 		System.out.println("아무거나 쓰라고해서 씀");
 		System.out.println("2번째로 씀");
+		System.out.println("3번째로 씀");
 	}
 	
 	//1. 회원가입, 로그인 메뉴를 표시하는 함수
