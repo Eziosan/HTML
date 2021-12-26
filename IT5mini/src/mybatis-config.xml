@@ -9,6 +9,7 @@
  <typeAliases>
   	<typeAlias type="com.mini.vo.UserInfo" alias="userinfo"/>
   	<typeAlias type="com.mini.vo.Song" alias="song"/>
+  	<typeAlias type="com.mini.vo.Concert" alias="concert"/>
   	
   </typeAliases> 
   
@@ -26,5 +27,7 @@
   <mappers>
     <mapper resource="./mapper/userMapper.xml"/>
     <mapper resource="./mapper/musicMapper.xml"/>
+     <mapper resource="./mapper/topSongMapper.xml"/>
+    <mapper resource="./mapper/concertMapper.xml"/>
   </mappers>
 </configuration>

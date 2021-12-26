@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mini.dao.TopSongList">
+	
+	<!-- 노래 탑 10 곡 전체 출력
+		id: topSong
+		resultType : song
+		parameterType : 없음
+		
+		 = song_id 1번부터 10번까지 전체 데이터를 출력한다.
+	 -->
+	<select id="topSong" resultType="song">
+		select * from song where song_id between 1 and 10
+	</select>
+
+</mapper>
