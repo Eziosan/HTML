@@ -63,6 +63,12 @@ public class UI {
 		}
 	}
 	
+	public void masterTest() {
+		System.out.println("진짜 올라가면 대박");
+		System.out.println("진짜 올라가면 대박");
+		System.out.println("진짜 올라가면 대박");
+	}
+	
 	public void amugona() {
 		System.out.println("아무거나 쓰라고해서 씀");
 		System.out.println("2번째로 씀");
