@@ -38,6 +38,8 @@ public class UI {
 	UserManager um = new UserManager();
 	MusicManager mm = new MusicManager();
 	TopSongManager tm = new TopSongManager();
+	//콘서트 매니저(추가)
+	ConcertManager cm = new ConcertManager();
 	
 	public UI() {
 		boolean flag = true;
