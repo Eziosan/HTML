@@ -67,9 +67,9 @@ public class Concert {
 	
 	@Override
 	public String toString() {
-		return "Concert [concert_id=" + concert_id + ", concert_name=" + concert_name + ", main_sid=" + main_sid
-				+ ", place=" + place + ", concert_date=" + concert_date + ", running_time=" + running_time + ", price="
-				+ price + "]";
+		return "Concert \n "+ "콘서트 이름 : " + concert_name +"\n" + "장소 : " + place +"\n"+ "콘서트 일정 : " + concert_date+"\n" 
+				+ "시간 : " + running_time +"\n"+ "가격 : "
+				+ price + "\n";
 	}
 	
 	

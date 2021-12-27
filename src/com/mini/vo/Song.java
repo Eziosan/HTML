@@ -131,11 +131,16 @@ public class Song {
 
 	@Override
 	public String toString() {
-		return "Song [song_id=" + song_id + ", song_name=" + song_name + ", main_sid=" + main_sid + ", sub_sid="
-				+ sub_sid + ", release_date=" + release_date + ", writer=" + writer + ", composer=" + composer
-				+ ", counting_star=" + counting_star + ", star_counter=" + star_counter + ", lyrics=" + lyrics
-				+ ", hits=" + hits + "]";
+		return "제목 : " + song_name + "\t" + "조회수 : " + hits + "\n" + "발매일 : " + release_date + "\n" + "작사 : " + writer + "\n" +"작곡 : " + composer
+				+ "\n" +"별점 : " + counting_star + "\n" +"별점 (?) : " + star_counter + "\n\n" +
+				
+				"=======================================================" + "\n\n"+
+				"가사 " +"\n\n"  + 
+				lyrics + "\n" +
+				"======================================================="
+				;
 	}
+	
 	
 	
 }

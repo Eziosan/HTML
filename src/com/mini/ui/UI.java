@@ -4,9 +4,12 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
 
+import com.mini.control.ConcertManager;
 import com.mini.control.MusicManager;
+import com.mini.control.TopSongManager;
 import com.mini.control.UserManager;
 import com.mini.dao.UserDAO;
+import com.mini.vo.Concert;
 import com.mini.vo.Singer;
 import com.mini.vo.Song;
 import com.mini.vo.UserInfo;
@@ -18,12 +21,13 @@ import com.mini.vo.UserInfo;
  * AdminManager : 관리자모드(전체 곡 검색, 곡/콘서트 등록, 곡/콘서트 수정, 곡/ 콘서트 삭제, 리스트 검색)
  * MusicManager : 나머지 모두
  * UserManager : 로그인/회원가입만
+ * TopSongManager : TOP10의 노래들을 가져온다.
  * 
  * MusicDAO : Admin, MusicManager에서 할일 다 처리
  * UserDAO : 로그인 / 회원가입
  * 
  * 항상 염두에 둘 것 : 예외처리 /		//가져온 객체 or 리스트가 null일 때 처리
-// 수정 아무거나
+
  */
 
 // try - catch???
@@ -33,6 +37,7 @@ public class UI {
 	// 유저 / 곡 / 관리자 매니저 객체 각각 설정
 	UserManager um = new UserManager();
 	MusicManager mm = new MusicManager();
+	TopSongManager tm = new TopSongManager();
 	
 	public UI() {
 		boolean flag = true;
@@ -57,16 +62,9 @@ public class UI {
 				case 4: top10(); break;
 				case 5: concertInfo(); break;
 				case 6: listCheck(); break;
-				case 7: adminMode(); break;
 				default : System.out.println("잘못 입력했습니다");
 			}
 		}
-	}
-	
-	public void masterTest() {
-		System.out.println("진짜 올라가면 대박");
-		System.out.println("진짜 올라가면 대박");
-		System.out.println("진짜 올라가면 대박");
 	}
 	
 	public void amugona() {
@@ -167,6 +165,7 @@ public class UI {
 		System.out.println("1. 가수명으로 검색");
 		System.out.println("2. 곡명으로 검색");
 		System.out.println("3. 가사로 검색");
+		System.out.println("4. 메인화면으로 돌아가기");
 		System.out.println("===================");
 
 		System.out.print("번호 입력 : ");
@@ -176,6 +175,7 @@ public class UI {
 			case 1: searchMusicBySinger(); break;
 			case 2: break;
 			case 3: searchMusicByLyric(); break;
+			case 4: break;
 			default : System.out.println("잘못 입력하셨습니다!!");
 		}
 	}
@@ -367,19 +367,34 @@ public class UI {
 	
 	//4. top 10, 조회수나 별점 기반으로 지정
 	public void top10() {
-		System.out.println("============================================");
-		System.out.println("1	리무진");
-		System.out.println("2	회전목마");
-		System.out.println("3	만남은 쉽고 이별은 어려워");
-		System.out.println("4	쉬어");
-		System.out.println("5	Wake Up");
-		System.out.println("6	MBTI");
-		System.out.println("7	strawberry moon");
-		System.out.println("8	불협화음");
-		System.out.println("9	Savage");
-		System.out.println("10	다정히 내 이름을 부르면");
-		System.out.println("아니면 조회수나 별점 순으로 해서 top10 매겨도 되고");
-		System.out.println("============================================");
+		
+		ArrayList<Song> topSong = tm.topSong();
+		int cnt =1;
+		System.out.println("=======================================================");
+		for(Song song : topSong) {
+			System.out.println("TOP"+cnt);
+			System.out.println("\n");
+			System.out.println(song);
+			System.out.println("\n");
+			cnt++;
+		}
+		boolean flag=true;
+		
+			while(flag) {
+				
+				System.out.println("메인화면으로 돌아가시겠습니까? Y");
+				System.out.println("문자를 입력하세요 : ");
+				String result = sc.next();
+				
+				switch(result) {
+				case "Y" : flag=false; break;
+				case "y" : flag=false; break;
+				default : System.out.println("잘못 입력하셨습니다. \nY만 입력해주세요.\n");
+			}
+		}
+			
+		
+		
 	}
 	
 	// 콘서트 정보 확인
@@ -393,17 +408,28 @@ public class UI {
 			System.out.println("1. 가수명으로 콘서트를 검색합니다.");
 			System.out.println("2. 콘서트의 모든 정보를 출력합니다.");
 			System.out.println("3. 메인 화면으로 돌아가기");
-				
+			
 			int select = sc.nextInt();
 				
 				
 			switch(select) {
 				case 1 : break; // 가수명으로 콘서트 검색
-				case 2 : break; // 콘서트의 모든 정보를 출력
+				case 2 : AllConcert(); // 콘서트의 모든 정보를 출력
 				case 3 : flag=false; break; // 메인화면으로 돌아가기 인데, flag를 안쓰면 while로 돌아가니까 flag를 false로 하고 브레이크를 해서 완전히 메인메뉴로 빠져나감.
 				default : System.out.println("잘못 입력하셨습니다. 다시 입력해 주세요");
 			}
 		}
+	}
+	
+	public void AllConcert() {
+		System.out.println("=======================================================");
+		ConcertManager cm = new ConcertManager();
+		ArrayList<Concert> concertlist = cm.concertList();
+		
+		for(Concert concert : concertlist) {
+			System.out.println(concert);
+		}
+	
 	}
 	
 	public void listCheck() {
@@ -415,41 +441,7 @@ public class UI {
 		}
 	}
 	
-	public void adminMode() {
-		
-		System.out.println("관리자 모드입니다.");
-		System.out.print("ID : ");
-		String admin_id = sc.next();
-		System.out.print("Password :");
-		String admin_pwd = sc.next();
-		
-		// 매니저로 던져줘서 값을 리턴받고
-		
-		boolean flag = true;
-		
-		while(flag) {
-			System.out.println("1. 곡 검색"); // 일반 곡검색이랑 같음
-			System.out.println("2. 곡 등록");
-			System.out.println("3. 곡 수정");
-			System.out.println("4. 곡 삭제");
-			
-			
-			System.out.print("번호 입력 : ");
-			int num=sc.nextInt();
-			
-			// if 문 써서 로그인 됬을 때 만 실행하도록
-			switch(num) {
-				case 1 : break;
-				case 2 : break;
-				case 3 : break;
-				case 4 : break;
-				
-				
-				default : System.out.println("잘못 입력하셨습니다.");
-			
-			}
-		}
-	}
+	
 	// 안 만들어져있는 부분 추가해주세요!
 	//메인화면
 	public void mainUI() {
@@ -470,7 +462,6 @@ public class UI {
 		//본인 리스트 확인 가능 . 하위 메뉴 추가 해야 함
 		// 1. 본인 전체리스트 보기 2. 리스트 삭제. 
 		System.out.println("6. 리스트 확인");
-		System.out.println("7. 관리자 모드(등록, 검색, 수정, 삭제)");
 		System.out.println("===========================");
 		System.out.print("번호 입력 : ");
 
@@ -483,3 +474,4 @@ public class UI {
 	}
 
 }
+

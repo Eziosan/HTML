@@ -8,7 +8,7 @@ import org.apache.ibatis.session.SqlSessionFactory;
 import com.mini.vo.Concert;
 
 public class ConcertDAO {
-	SqlSessionFactory factroy = MybatisConfig.getSqlSessionFactory();
+	SqlSessionFactory factory = MybatisConfig.getSqlSessionFactory();
 	
 	/* 콘서트 리스트 전체 출력
 	 * 
@@ -21,11 +21,13 @@ public class ConcertDAO {
 		//ArrayList<Concert> 객체
 		ArrayList<Concert> clist = new ArrayList<Concert>();
 		
-		try(SqlSession session = factroy.openSession()) {
+		try(SqlSession session = factory.openSession()) {
 			ConcertMapper mapper = session.getMapper(ConcertMapper.class);
 			
 			//list에 콘서트 리스트 데이터 담기
-			clist.addAll(mapper.concertList());
+			clist = mapper.concertList();
+			
+			return clist;
 			
 		} catch (Exception e) {
 			e.printStackTrace();
