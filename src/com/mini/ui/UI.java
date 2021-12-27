@@ -247,6 +247,7 @@ public class UI {
 	}
 	
 	//곡 정보 표시하는 함수. 곡 객체를 받아서 곡 정보 표시
+	// TOP10에서 노래 상세보기 누르면 이 함수를 재활용하게끔 함수를 수정한다. (TOP10 함수)
 	public void songPage(Song song) {
 		System.out.println("가수명 입력받으면 아래 화면이 뜸");
 		System.out.println("===================");
@@ -267,6 +268,7 @@ public class UI {
 				+ "글자수채우기 ㅁㅈㄱㅈㄱㅂㅈㄱㅂㅈㄱㅂㅈㄱㅂㅈㄱㅈㄷㄱㅈㄷ \n"
 				+ "잘래라아아아아아아아아ㅏ아아아아아아아ㅏ아아아아아아아아아\n"
 				+ "자고싶다아아아아아아ㅏ앙아아아아아아아앙아아앙아아앙앙아ㅏ\n");
+		
 		
 		System.out.println("===================");
 		//로그인 안되어있으면 번호를 선택해도 못하도록
@@ -387,8 +389,8 @@ public class UI {
 				String result = sc.next();
 				
 				switch(result) {
-				case "Y" : flag=false; break;
-				case "y" : flag=false; break;
+					case "Y" : flag=false; break;
+					case "y" : flag=false; break;
 				default : System.out.println("잘못 입력하셨습니다. \nY만 입력해주세요.\n");
 			}
 		}
