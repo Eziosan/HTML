@@ -23,7 +23,7 @@ import com.mini.vo.UserInfo;
  * UserDAO : 로그인 / 회원가입
  * 
  * 항상 염두에 둘 것 : 예외처리 /		//가져온 객체 or 리스트가 null일 때 처리
-
+// 수정 아무거나
  */
 
 // try - catch???
