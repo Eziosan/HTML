@@ -183,12 +183,97 @@ public class UI {
 	//가수명으로 곡 검색
 	//조회수 : 검색될 때마다 증가
 	public void searchMusicBySinger() {
-		
-		//✪
+		//song_id를 사용자에게 보여주지 않기 위해 HashMap<가져온 곡 리스트 번호(1번부터 시작), 실제 song_id>사용
+				/*
+				 *  1,  18
+				 *  2,  20
+				 *  3,  30
+				 *  
+				 *  1번  -> 18번 노래
+				 */
+				HashMap<Integer, Integer> songMap = new HashMap<>();
+				//가져온 곡 리스트에 번호를 매기는데 song_id 대신 사용자에게 보여줄 번호 
+				int lyricNum = 1;
+				
+				//1. 가수를 입력받아 해당 가수가 포함된 모든 곡을 가져옴
+				System.out.print("가사입력 : ");
+				String lyrics = sc.next();
+				//가수가 포함되어 있는 곡 가져옴
+				//null일 경우
+				ArrayList<Song> songList = mm.musicByLyric(lyrics);
+				
+				//가져온 객체 or 리스트가 없을 때 메인화면으로 이동
+				if(songList.size() < 1) {
+					System.out.println("검색 결과가 없습니다!");
+					return;
+				}
+				
+				
+				//2. 가사로 찾은 곡 리스트 출력
+				System.out.println("===============================");
+				System.out.println("곡 ID\t곡 이름\t가수 이름");
+
+				for(Song song : songList) {
+					System.out.print(lyricNum +"\t"+ song.getSong_name()+"\n");
+					songMap.put(lyricNum++, song.getSong_id());
+				}
+				
+				System.out.println("===============================");
+				System.out.print("찾고 싶은 곡 ID 입력 : ");
+				int num = sc.nextInt();
+				
+				//사용자가 입력한 song_id로 곡을 가져옴
+				Song song = mm.showSong(songMap.get(num));
+				//곡 정보 표시
+				songPage(song);
+				
 	}
 	//가수명으로 검색
 	public void searchMusicByName() {
+		//song_id를 사용자에게 보여주지 않기 위해 HashMap<가져온 곡 리스트 번호(1번부터 시작), 실제 song_id>사용
+				/*
+				 *  1,  18
+				 *  2,  20
+				 *  3,  30
+				 *  
+				 *  1번  -> 18번 노래
+				 */
+				HashMap<Integer, Integer> songMap = new HashMap<>();
+				//가져온 곡 리스트에 번호를 매기는데 song_id 대신 사용자에게 보여줄 번호 
+				int lyricNum = 1;
+				
+				//1. 가사를 입력받아 해당 가사가 포함된 모든 곡을 가져옴
+				System.out.print("가사입력 : ");
+				String lyrics = sc.next();
+				//가사가 포함되어 있는 곡 가져옴
+				//null일 경우
+				ArrayList<Song> songList = mm.musicByLyric(lyrics);
+				
+				//가져온 객체 or 리스트가 없을 때 메인화면으로 이동
+				if(songList.size() < 1) {
+					System.out.println("검색 결과가 없습니다!");
+					return;
+				}
+				
+				
+				//2. 가사로 찾은 곡 리스트 출력
+				System.out.println("===============================");
+				System.out.println("곡 ID\t곡 이름\t가수 이름");
 
+				for(Song song : songList) {
+					System.out.print(lyricNum +"\t"+ song.getSong_name()+"\n");
+					songMap.put(lyricNum++, song.getSong_id());
+				}
+				
+				System.out.println("===============================");
+				System.out.print("찾고 싶은 곡 ID 입력 : ");
+				int num = sc.nextInt();
+				
+				//사용자가 입력한 song_id로 곡을 가져옴
+				Song song = mm.showSong(songMap.get(num));
+				//곡 정보 표시
+				songPage(song);
+				
 	}
 	
 	/*
