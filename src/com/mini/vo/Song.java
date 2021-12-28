@@ -16,8 +16,9 @@ public class Song {
 	
 	public Song() {}
 	
-	public Song(String song_name, String release_date, String writer, String composer, String lyrics) {
+	public Song(String song_name, int main_sid, String release_date, String writer, String composer, String lyrics) {
 		this.song_name = song_name;
+		this.main_sid = main_sid;
 		this.release_date = release_date;
 		this.writer = writer;
 		this.composer = composer;

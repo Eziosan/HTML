@@ -229,7 +229,7 @@ public class UI {
 		
 		//2. 가사로 찾은 곡 리스트 출력
 		System.out.println("===============================");
-		System.out.println("곡 ID\t곡 이름\t가수 이름");
+		System.out.println("번호\t곡 이름\t가수 이름");
 
 		for(Song song : songList) {
 			System.out.print(lyricNum +"\t"+ song.getSong_name()+"\n");
@@ -296,51 +296,78 @@ public class UI {
 		
 	}
 	
-	//로그인 체크
-	//입력 받을 거 더 추가
-	//가수도 추가(가수가 이미 존재하는지 검색해서 확인 하고 있으면 곡 테이블에 가수 이름 바로 넣으면 되고 없으면 가수/곡 테이블 둘 다 추가하도록)
-	//3. 곡 등록
-	public void enroll() {
+	//가수 이름을 입력받아 해당 이름이 포함된 모든 가수 리스트를 출력하고 사용자가 선택한 가수의 sid를 리턴함
+	public int return_sid(String singer_name) {
+		//가수 번호대신 표시할 메뉴 번호
+		int singer_num = 1;
+		//곡에 지정할 가수 id
+		int main_sid = 0;
 		
-		// 가수가 있는지 확인할 필요가 있다.
+		//이름으로 가수 검색해서 리스트로 받아옴
+		ArrayList<Singer> singerList = mm.getSingersByName(singer_name);
+		//메뉴번호(key), 가수 id(value)방식으로 저장해서 사용자가 메뉴번호를 누르면 해당 가수 id를 꺼내서 main_sid에 저장
+		HashMap<Integer, Integer> singerMap = new HashMap<>();
 		
-		
-		if(um.isLogin()) {
-			System.out.print("곡명 : ");
-			String name = sc.next();
-//			System.out.print("가수 : ");
-//			String singer = sc.next();
-			//여기서 확인
-			/*
-			 * 가수이름 : 리스트 
-			 * 
-			 * 
-			 * 아이 검색
-			 *  
-			 *  유아이
-			 *  아이유
-			 *  아이유다
-			 *  
-			 * 
-			 * 1. 가수 이름으로 검색 -> 함수 가져오고
-			 * 2. 가수 리스트 불러옴 / 불러온 가수가 없음 -> 가수 등록 부터
-			 * 3. 가수 선택 -> 그 가수의 id를 넣는걸로
-			 * 
+		//가져온  가수가 없다면 입력받고 singer테이블에 추가
+		if(singerList.size() < 1) {
+			System.out.println("===================");
+			System.out.println("가수가 없습니다! 새로 등록하겠습니다!!");
+
 			System.out.print("가수명 : ");
-			String singer_name = sc.next();
+			String name = sc.next();
 			System.out.print("성별 : ");
 			String sex = sc.next();
-			System.out.print("솔로/그룹 여부 : ");
+			System.out.print("솔로/그룹 : ");
 			String isGrouped = sc.next();
 			System.out.print("가수소개 : ");
 			String introduce = sc.next();
 			System.out.print("데뷔일 : ");
 			String debut_date = sc.next();
 			
-			Singer singer = new Singer(singer_name, sex, isGrouped, introduce, debut_date);
+			Singer singer = new Singer(name, sex, isGrouped, introduce, debut_date);
+			main_sid = mm.addSinger(singer);
+
+			System.out.println("===================");
 			
-			 */
+		}else {
+			System.out.println("===============================");
+			System.out.println("번호\t가수 이름");
+
+			for(Singer ser : singerList) {
+				//메뉴 번호 	가수 이름 	출력
+				System.out.println(singer_num + "\t" + ser.getSinger_name());
+				singerMap.put(singer_num++, ser.getMain_sid());
+			}
 			
+			System.out.println("===============================");
+			System.out.print("가수선택 : ");
+			int num = sc.nextInt();
+			main_sid = singerMap.get(num);
+			
+		}
+		
+		return main_sid;
+	}
+	
+	//3. 곡 등록
+	/*
+	 * 1. 가수 이름으로 검색 
+	 * 2. 가수 리스트 불러옴 / 불러온 가수가 없음 -> 가수 등록 부터
+	 * 3. 가수 선택 -> 그 가수의 id를 넣는걸로
+	 */
+	public void enroll() {
+		
+		// 가수가 있는지 확인할 필요가 있다.
+		int main_sid = 0;
+		
+		
+		if(um.isLogin()) {
+			System.out.print("곡명 : ");
+			String name = sc.next();
+			System.out.print("가수 : ");
+			String singer_name = sc.next();
+			//가수이름을 매개변수로 줘서 main_sid반환
+			main_sid = return_sid(singer_name);
 			
 			System.out.print("발매일 : ");
 			String date = sc.next();
@@ -353,14 +380,16 @@ public class UI {
 			
 			// Song객체 보내서 insert 하면 되는데
 			// Song 생성문
-			Song song = new Song(name, date, writer, composer, lyrics);
+			Song song = new Song(name, main_sid, date, writer, composer, lyrics);
 			
+			//곡 등록
 			if(mm.enroll(song)) {
 				System.out.println("곡 등록 성공!!");
 			}else {
 				System.out.println("곡 등록 실패!!");
 			}
 			
+			//버퍼 비워줘야 함
 			sc.nextLine();
 			
 		}else {

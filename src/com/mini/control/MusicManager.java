@@ -3,6 +3,7 @@ package com.mini.control;
 import java.util.ArrayList;
 
 import com.mini.dao.MusicDAO;
+import com.mini.vo.Singer;
 import com.mini.vo.Song;
 
 public class MusicManager {
@@ -27,6 +28,19 @@ public class MusicManager {
 		return song;
 	}
 	
+	//가수 이름으로 가수 리스트 불러오기
+	public ArrayList<Singer> getSingersByName(String singer){
+			
+		return md.getSingersByName(singer);
+	}
+	
+	//가수 등록
+	public int addSinger(Singer singer) {
+		
+		return md.addSinger(singer);
+	}
+	
+	// 곡 등록
 	public boolean enroll(Song song) {
 		
 		return md.enroll(song);

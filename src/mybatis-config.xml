@@ -10,6 +10,9 @@
   	<typeAlias type="com.mini.vo.UserInfo" alias="userinfo"/>
   	<typeAlias type="com.mini.vo.Song" alias="song"/>
   	<typeAlias type="com.mini.vo.Concert" alias="concert"/>
+  	<typeAlias type="com.mini.vo.Singer" alias="singer"/>
+  	<typeAlias type="com.mini.vo.PlayList" alias="playlist"/>
+  	<typeAlias type="com.mini.vo.SongComment" alias="song_comment"/>
   	
   </typeAliases> 
   
