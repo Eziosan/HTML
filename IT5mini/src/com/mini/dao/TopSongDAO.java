@@ -8,7 +8,7 @@ import org.apache.ibatis.session.SqlSessionFactory;
 import com.mini.vo.Song;
 
 public class TopSongDAO {
-	SqlSessionFactory factroy = MybatisConfig.getSqlSessionFactory();
+	SqlSessionFactory factory = MybatisConfig.getSqlSessionFactory();
 	
 		/* 탑 10 노래 리스트 불러오기
 		 * 
@@ -21,11 +21,12 @@ public class TopSongDAO {
 		//ArrayList<Song> 객체
 		ArrayList<Song> tlist = new ArrayList<Song>();
 		
-		try(SqlSession session = factroy.openSession()) {
+		try(SqlSession session = factory.openSession()) {
 			TopSongMapper mapper = session.getMapper(TopSongMapper.class);
 			
 			//list에 탑 10 노래 리스트 데이터 담기
-			tlist.addAll(mapper.topSong());
+			//tlist.addAll(mapper.topSong());
+			tlist = mapper.topSong();
 			
 			
 			} catch (Exception e) {
