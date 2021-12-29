@@ -44,4 +44,25 @@ public class MusicManager {
 		
 		return md.enroll(song);
 	}
+	
+	//현재 로그인한 유저의 전체 리스트 출력
+	public ArrayList<PlayList> getUserList(String loginId){
+		
+		return md.getUserList(loginId);
+	}
+	
+	//유저가 리스트를 선택하면 해당 리스트의 곡 목록 표시
+	public ArrayList<PlayList> getUserListSongs(int listId){
+		
+		return md.getUserListSongs(listId);
+	}
+	
+	//list_id로 리스트 삭제
+	public boolean deleteList(int list_id) {
+		if(md.deleteList(list_id) > 0) {
+			return true;
+			
+		}else { return false;}
+			
+	}
 }

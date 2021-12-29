@@ -11,6 +11,7 @@ import com.mini.control.TopSongManager;
 import com.mini.control.UserManager;
 import com.mini.dao.UserDAO;
 import com.mini.vo.Concert;
+import com.mini.vo.PlayList;
 import com.mini.vo.Singer;
 import com.mini.vo.Song;
 import com.mini.vo.UserInfo;
@@ -67,7 +68,7 @@ public class UI {
 				case 3: enroll(); break;
 				case 4: top10(); break;
 				case 5: concertInfo(); break;
-				case 6: listCheck(); break;
+				case 6: showList(); break;
 				default : System.out.println("잘못 입력했습니다");
 			}
 		}
@@ -553,14 +554,113 @@ public class UI {
 	
 	}
 	
-	public void listCheck() {
-		if(um.isLogin()) {
-			System.out.println("유저 **가 가지고 있는 리스트를 표시합니다.");
-		
-		}else {
-			System.out.println("로그인이 필요한 서비스 입니다.");
+	/*
+	 * 리스트 ]
+	 * 1. 현재 유저의 전체 리스트 출력
+	 * 		- 전체 리스트 목록 출력(list_id는 숨김)
+	 * 			해쉬맵에 (번호, 리스트Id) 형태로 저장
+	 * 
+	 * 		- 메뉴 2개( 리스트 선택 / 리스트 삭제)
+	 * 			- 리스트 선택
+	 * 				해당 리스트의 곡 목록 표시
+	 * 				곡 선택 -> 곡 정보 띄움(songPage 함수 사용)
+	 * 			- 리스트 삭제 
+	 * 				- 사용자가 선택한 번호로 해쉬맵에서 listId를 찾아 이걸 이용해서 삭제
+	 * 		- 곡 선택 -> 곡 정보 띄움(송페이지)
+	 */
+		//6. 리스트 확인
+		//현재 로그인한 사용자의 전체리스트 출력 후 번호 입력 받음
+		public void showList() {
+			if(um.isLogin()) {
+				System.out.println("===========================");
+				System.out.println("1. 전체 리스트 보기 ");
+				System.out.println("===========================");
+				
+				System.out.println("유저 "+ um.getLoginId() + "가 가지고 있는 리스트를 표시합니다.");
+				
+				String loginId = um.getLoginId();
+				//현재 유저의 리스트 가져옴
+				ArrayList<PlayList> playList =  mm.getUserList(loginId);
+				//리스트 ID 대신 표시할 리스트 목록 번호
+				int listNum = 1;
+				//(listNum, 해당 리스트의 id)   ex) 1. A    -> (1, A의 listId) 저장
+				HashMap<Integer, Integer> playMap = new HashMap<>();
+				
+				System.out.println("===============================");
+				System.out.println("번호\t리스트 이름");
+
+				for(PlayList play : playList) {
+					//메뉴 번호 	리스트 이름 	출력
+					System.out.println(listNum + "\t" + play.getList_name());
+					playMap.put(listNum++, play.getList_id());
+				}
+				
+				System.out.println("===============================");
+				System.out.println("1. 리스트 선택(번호입력)");
+				System.out.println("2. 리스트 삭제");
+				System.out.println("===============================");
+				System.out.print("번호입력 : ");
+				int num = sc.nextInt();
+				
+				switch(num) {
+					//리스트 선택 -> 곡 목록 표시
+					case 1: 
+						System.out.print("리스트 번호 선택 : ");
+						int num2 = sc.nextInt();
+						//리스트의 id로 해당 리스트의 곡 목록 들고옴
+						showSongList(playMap.get(num2));
+						break;
+					case 2: 
+						System.out.print("삭제할 리스트 번호 : ");
+						int num3 = sc.nextInt();
+						//리스트 id로 삭제
+						deleteList(playMap.get(num3));
+						break;
+					default : System.out.println("잘못입력하셨습니다");
+				}
+				
+				
+				
+			}else {
+				System.out.println("로그인이 필요한 서비스 입니다.");
+			}
 		}
-	}
+		
+		//리스트의 id로 해당 리스트의 곡 목록 들고옴 -> 사용자가 선택한 곡의 정보 출력
+		public void showSongList(int list_id) {
+			//list_id로 해당 리스트의 곡 목록 가져옴
+			ArrayList<PlayList> playListD = mm.getUserListSongs(list_id);
+			HashMap<Integer, Integer> playMap = new HashMap<>();
+			int listNum = 1;
+			
+			System.out.println("===============================");
+			System.out.println("번호\t곡 이름");
+
+			for(PlayList play : playListD) {
+				//n번째 곡을 가져옴 songid를 써서
+				Song song = mm.showSong(play.getSong_id());
+				//메뉴 번호 	곡 이름 	출력
+				System.out.println(listNum + "\t" + song.getSong_name());
+				//곡 목록 번호, 해당 곡의 song_id 
+				playMap.put(listNum++, song.getSong_id());
+			}
+			
+			System.out.println("===============================");
+			System.out.print("번호입력 : ");
+			int num2 = sc.nextInt();
+			
+			//사용자가 선택한 곡의 id로 곡을 찾아서 -> 곡 정보 표시
+			songPage( mm.showSong(playMap.get(num2)) );
+		}
+		
+		//리스트 id로 삭제( playlist, detail 값 다 삭제)
+		public void deleteList(int list_id) {
+			if(mm.deleteList(list_id)) {
+				System.out.println("삭제 성공!");
+			}else {
+				System.out.println("삭제 실패!!");
+			}
+		}
 	
 	
 	// 안 만들어져있는 부분 추가해주세요!

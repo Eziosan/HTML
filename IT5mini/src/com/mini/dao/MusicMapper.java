@@ -2,6 +2,7 @@ package com.mini.dao;
 
 import java.util.ArrayList;
 
+import com.mini.vo.PlayList;
 import com.mini.vo.Singer;
 import com.mini.vo.Song;
 
@@ -30,4 +31,13 @@ public interface MusicMapper {
 	
 	//곡 등록
 	public int enroll(Song song);
+	
+	//현재 로그인한 유저의 전체 리스트 출력
+	public ArrayList<PlayList> getUserList(String loginId);
+	//유저가 리스트를 선택하면 해당 리스트의 곡 목록 표시
+	public ArrayList<PlayList> getUserListSongs(int listId);
+	//list_id로 리스트 삭제
+	public int deleteList(int list_id);
+	//list_id로 리스트 삭제
+	public int deleteListDetail(int list_id);
 }

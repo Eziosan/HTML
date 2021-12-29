@@ -140,4 +140,53 @@ SqlSessionFactory factory = MybatisConfig.getSqlSessionFactory();
 		return false;
 	}
 	
+	//현재 로그인한 유저의 전체 리스트 출력
+		public ArrayList<PlayList> getUserList(String loginId){
+			
+			try (SqlSession session = factory.openSession()) {
+				MusicMapper mapper = session.getMapper(MusicMapper.class);
+				
+				return mapper.getUserList(loginId);
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			
+			
+			return null;
+		}
+		
+		//유저가 리스트를 선택하면 해당 리스트의 곡 목록 표시
+		public ArrayList<PlayList> getUserListSongs(int listId){
+			try (SqlSession session = factory.openSession()) {
+				MusicMapper mapper = session.getMapper(MusicMapper.class);
+				
+				return mapper.getUserListSongs(listId);
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			
+			return null;
+		}
+		
+		//list_id로 리스트 삭제
+		public int  deleteList(int list_id) {
+			int result = 0;
+			
+			try (SqlSession session = factory.openSession()) {
+				MusicMapper mapper = session.getMapper(MusicMapper.class);
+				
+				result = mapper.deleteListDetail(list_id);
+				result = mapper.deleteList(list_id);
+				
+				session.commit();
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+			}	
+			
+			return result;
+		}
+	
 }

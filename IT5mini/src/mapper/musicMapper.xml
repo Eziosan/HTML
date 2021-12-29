@@ -55,6 +55,29 @@
 		values (song_seq.nextval , #{song_name}, #{main_sid}, #{release_date}, #{writer}, #{composer}, #{lyrics} )
 	</insert>
 
+		<!-- 현재 로그인한 유저의 전체 리스트 출력 -->
+	<select id="getUserList" parameterType="string" resultType="playlist">
+		select * from playlist
+		where user_id = #{loginId}
+	</select>
+	
+	<!-- 유저가 리스트를 선택하면 해당 리스트의 곡 목록 표시 -->
+	<select id="getUserListSongs" parameterType="int" resultType="playlist">
+		select * from playlist_detail
+		where list_id = #{listId}
+	</select>
+	
+	<!-- list_id로 리스트 삭제 -->
+	<delete id="deleteList" parameterType="int" >
+		delete from playlist
+		where list_id = #{list_id}
+	</delete>
+	
+	<!-- list_id로 리스트 삭제 -->
+	<delete id="deleteListDetail" parameterType="int" >
+		delete from playlist_detail
+		where list_id = #{list_id}
+	</delete>
 	
 	<!-- 
 	<select id="selectStaff" parameterType="string" resultType="staff">
