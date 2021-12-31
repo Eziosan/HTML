@@ -4,13 +4,8 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.mini.dao.MusicMapper">
 
-	<!-- 가수로 노래 검색. like쓸 때 밑에 처럼 써야함  -->
-	<select id="searchMusicBySinger" parameterType="string" resultType="song">
-		select * from song
-		where lyrics like '%' || #{singer_name} || '%'
-	</select>
 	
-	<!-- 노래로 노래 검색. like쓸 때 밑에 처럼 써야함  -->
+	<!-- 1. 노래로 노래 검색. like쓸 때 밑에 처럼 써야함  -->
 	<select id="searchMusicByName" parameterType="string" resultType="song">
 		select * from song
 		where lyrics like '%' || #{song_name} || '%'
@@ -32,6 +27,20 @@
 	<select id="getSingersByName" parameterType="string" resultType="singer">
 		select * from singer
 		where singer_name like '%' || #{singer_name} || '%' 
+	</select>
+	
+	<!-- 가수로 노래 찾기  -->
+	<select id="selectMusicsBySinger" parameterType="singer" resultType="song">
+		select * from song
+		where main_sid = #{main_sid} 
+  		or sub_sid like  #{main_sid}||', %' 
+ 		or sub_sid like '%, ' || #{main_sid} || ',%'  
+		or sub_sid like '%, ' ||  #{main_sid}
+	</select>
+	
+	<!-- 가수id로 가수 찾기 -->
+	<select id="selectSingerBySid" parameterType="int" resultType="singer">
+		select * from where main_sid = #{sid}
 	</select>
 	
 	<!-- singer테이블에서 현재 시퀀스 값 가져오기 -->
@@ -79,27 +88,13 @@
 		where list_id = #{list_id}
 	</delete>
 	
-	<!-- 
-	<select id="selectStaff" parameterType="string" resultType="staff">
-		select p.ssn, p.name, p.age, s.dept 
-		from person p, staff s
-		where p.ssn = s.ssn
-		and p.ssn = #{ssn}
-	</select>
+	<!-- 별점 입력 -->
+	<update id="insertStar" parameterType="song">
+		update song set counting_star = #{counting_star} , star_counter = #{star_counter}
+		where song_id = #{song_id}
 
-	<insert id="insertPerson" parameterType="person">
-		insert into person values(#{ssn}, #{name}, #{age}, #{type})
-	</insert>
-	
-	
-	<update id="updatePerson" parameterType="person">
-		update person set name = #{name}, age = #{age} where ssn = #{ssn} 
 	</update>
 	
-	
-	
-	<delete id="deletePerson" parameterType="string">
-		delete from person where ssn = #{ssn}
-	</delete> -->
+
 
 </mapper>

@@ -10,24 +10,20 @@ public class MusicDAO {
 	
 SqlSessionFactory factory = MybatisConfig.getSqlSessionFactory();
 	
-	//만약에 hashmap으로 <int, Song>???
-	//사용자가 입력한 가수가 포함된 노래 리스트 가져오기
-	public ArrayList<Song> searchMusicBySinger(String singer) {
+	
+	//가수로 노래 찾기
+	public ArrayList<Song> selectMusicsBySinger(Singer singer) {
 		try (SqlSession session = factory.openSession()) {
 			MusicMapper mapper = session.getMapper(MusicMapper.class);
 			
-			//가수로 노래 리스트 가져오기
-			ArrayList<Song> songList = mapper.musicByLyric(singer);
-			
-			return songList;
+			//노래로 노래 리스트 가져오기
+			return mapper.selectMusicsBySinger(singer);
 			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
-		//사용자 선택
-		//해당 곡 가져오기(곡 id로)
 		return null;
+		
 	}
 
 	//만약에 hashmap으로 <int, Song>???
@@ -37,9 +33,9 @@ SqlSessionFactory factory = MybatisConfig.getSqlSessionFactory();
 			MusicMapper mapper = session.getMapper(MusicMapper.class);
 			
 			//노래로 노래 리스트 가져오기
-			ArrayList<Song> songList = mapper.musicByLyric(song);
 			
-			return songList;
+			
+			return mapper.musicByLyric(song);
 			
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -188,5 +184,20 @@ SqlSessionFactory factory = MybatisConfig.getSqlSessionFactory();
 			
 			return result;
 		}
-	
+		
+		public void insertStar(Song song) {
+			try (SqlSession session = factory.openSession()) {
+				MusicMapper mapper = session.getMapper(MusicMapper.class);
+				
+				mapper.insertStar(song);
+				session.commit();
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			
+			
+		}
+		
+
 }

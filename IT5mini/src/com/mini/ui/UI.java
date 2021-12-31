@@ -1,20 +1,10 @@
 package com.mini.ui;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Scanner;
+import java.util.*;
 
-import com.mini.control.ConcertManager;
-import com.mini.control.MusicController;
-import com.mini.control.MusicManager;
-import com.mini.control.TopSongManager;
-import com.mini.control.UserManager;
-import com.mini.dao.UserDAO;
-import com.mini.vo.Concert;
-import com.mini.vo.PlayList;
-import com.mini.vo.Singer;
-import com.mini.vo.Song;
-import com.mini.vo.UserInfo;
+import com.mini.control.*;
+import com.mini.dao.*;
+import com.mini.vo.*;
 
 /*
  * UserMapper : 로그인/ 회원가입
@@ -179,7 +169,7 @@ public class UI {
 		int num = sc.nextInt();
 		
 		switch(num) {
-			case 1: searchMusicBySinger(); break;
+			case 1: searchSongBySinger(); break;
 			case 2: break;
 			case 3: searchMusicByLyric(); break;
 			case 4: break;
@@ -189,9 +179,9 @@ public class UI {
 	
 	//가수명으로 곡 검색
 	//조회수 : 검색될 때마다 증가
-	public void searchMusicBySinger() {
+	public void searchSongBySinger() {
 		
-		//song_id를 사용자에게 보여주지 않기 위해 HashMap<가져온 곡 리스트 번호(1번부터 시작), 실제 song_id>사용
+		//singer_id를 사용자에게 보여주지 않기 위해 HashMap<가져온 곡 리스트 번호(1번부터 시작), 실제 song_id>사용
 				/*
 				 *  1,  18
 				 *  2,  20
@@ -199,19 +189,19 @@ public class UI {
 				 *  
 				 *  1번  -> 18번 노래
 				 */
-				HashMap<Integer, Integer> songMap = new HashMap<>();
+				HashMap<Integer, Singer> singerMap = new HashMap<>();
 				//가져온 곡 리스트에 번호를 매기는데 song_id 대신 사용자에게 보여줄 번호 
-				int lyricNum = 1;
+				int singerNum = 1;
 				
-				//1. 가사를 입력받아 해당 가사가 포함된 모든 곡을 가져옴
-				System.out.print("가사입력 : ");
+				//1. 검색어를 입력받아 해당 가수가 포함된 모든 곡을 가져옴
+				System.out.print("가수입력 : ");
 				String singer = sc.next();
-				//가사가 포함되어 있는 곡 가져옴
+				//검색어가 포함되어 있는 가수 가져옴
 				//null일 경우
-				ArrayList<Song> songList = mc.searchMusicBySinger(singer);
+				ArrayList<Singer> singerList = mm.getSingersByName(singer);
 				
 				//가져온 객체 or 리스트가 없을 때 메인화면으로 이동
-				if(songList.size() < 1) {
+				if(singerList.size() < 1) {
 					System.out.println("검색 결과가 없습니다!");
 					return;
 				}
@@ -221,20 +211,50 @@ public class UI {
 				System.out.println("===============================");
 				System.out.println("번호\t곡 이름\t가수 이름");
 
-				for(Song song : songList) {
-					System.out.print(lyricNum +"\t"+ song.getSong_name()+"\n");
-					songMap.put(lyricNum++, song.getSong_id());
+				for(Singer singer2 : singerList) {
+					System.out.print(singerNum +"\t"+ singer2.getSinger_name()+"\n");
+					singerMap.put(singerNum++, singer2);
 				}
 				
 				System.out.println("===============================");
-				System.out.print("찾고 싶은 곡 ID 입력 : ");
+				System.out.println("찾고 싶은 가수 번호 입력 : ");
 				int num = sc.nextInt();
 				
-				//사용자가 입력한 song_id로 곡을 가져옴
-				Song song = mm.showSong(songMap.get(num));
-				//곡 정보 표시
-				songPage(song);	
+				
+				// 가수객체로 노래리스트를 가져옴
+				ArrayList<Song> songs = mc.selectMusicsBySinger(singerMap.get(num));
+				
+				
+				
+
+				songPage(printSong(songs));	
 	}
+	
+	// 가수 검색으로 가져온 송리스트를 출력하는 페이지
+	public Song printSong(ArrayList<Song> songs) {
+		HashMap<Integer, Integer> songMap = new HashMap<>();
+		//가져온 곡 리스트에 번호를 매기는데 song_id 대신 사용자에게 보여줄 번호 
+		int songNum = 1;
+		
+		//가수의 리스트 출력
+		System.out.println("===============================");
+		System.out.println("번호\t곡 이름\t가수 이름");
+
+		for(Song song : songs) {
+			System.out.print(songNum +"\t"+ song.getSong_name()+"\n");
+			songMap.put(songNum++, song.getSong_id());
+		}
+		
+		System.out.println("===============================");
+		System.out.print("찾고 싶은 곡 번호 입력 : ");
+		int num = sc.nextInt();
+		
+		
+		return mm.showSong(songMap.get(num));
+		
+	}
+	
+	
 	//노래명으로 검색
 	public void searchMusicByName() {
 		//song_id를 사용자에게 보여주지 않기 위해 HashMap<가져온 곡 리스트 번호(1번부터 시작), 실제 song_id>사용
@@ -352,10 +372,10 @@ public class UI {
 		System.out.println("===================");
 		System.out.println("조회수 : " + song.getHits());
 		//ex) 4점대는 별 4개로 표시
-		System.out.println("★★★★☆ " + song.getCounting_star());
+		showStar(song);
 		//?????? 이것도 함수 하나 만들어서 코멘트 가져와야
-		System.out.println("[코멘트] : 3개 정도 출력");
-		System.out.println("코멘트 옛시(200자)ㄴㅇㅁㄴㅇㄴㅁㅇㅁ\n"
+//		System.out.println("[코멘트] : 3개 정도 출력");
+		System.out.println("코멘트 옛시(200자)ㄴㅇㅁㄴㅇㄴㅁㅇㅁ\n"	
 				+ "글자수채우기 ㅁㅈㄱㅈㄱㅂㅈㄱㅂㅈㄱㅂㅈㄱㅂㅈㄱㅈㄷㄱㅈㄷ \n"
 				+ "잘래라아아아아아아아아ㅏ아아아아아아아ㅏ아아아아아아아아아\n"
 				+ "자고싶다아아아아아아ㅏ앙아아아아아아아앙아아앙아아앙앙아ㅏ\n");
@@ -378,12 +398,87 @@ public class UI {
 		int num = sc.nextInt();
 		
 		switch(num) {
-			case 1: break;
-			case 2: return ;
-		}
+			case 1: showLyric(song);
+			case 2: insertStar(song);
+			case 3: return ;		}
 		
 		
 	}
+	
+	// 노래 받아서 노래 가사 출력
+	public void showLyric(Song song) {
+		System.out.println("가수 : " + song.getMain_sid());
+		System.out.println("노래 : " + song.getSong_name());
+		System.out.println("==============<가사>==============");
+		System.out.println("==================================");
+		System.out.println(song.getLyrics());
+		System.out.println();
+		
+		System.out.println("1. 곡으로 돌아가기");
+		System.out.println("1. 메인메뉴로 돌아가기");
+		int num = sc.nextInt();
+		
+		switch(num) {
+			case 1: songPage(song);
+			//일엽이 형이 만져주기
+			case 2: return;
+			}
+	}
+	
+	// 별점 계산 및 출력
+	public void showStar(Song song) {
+		double star = song.getCounting_star();
+		double counter = song.getStar_counter();
+		// System.out.println("별점 : " + star + "숫자 : " + counter);
+		// 평균 계산 후 소수점 셋째 자리에서 반올림
+		if (star != 0) {
+			double avr1 = star / counter;
+			double avr2 = (Math.round(avr1 * 100) / 100.0);
+			int avr3 = (int)avr2;
+			
+			// 팀장님 아이디어(뽐내고 싶어하셨던거 아님)
+			System.out.print("별점 ");
+			for (int i=0; i<5; i++) {
+				if(i < avr3) {
+					System.out.print("★");	
+				}else {
+					System.out.print("☆");
+				}
+			}
+			System.out.println(" " + avr2);
+				
+		}else {
+			System.out.println("별점 : ☆☆☆☆☆☆ 0.0");
+		}
+		
+	}
+	
+	//2. 점수를 입력받아 song 에 입력함.
+	public void insertStar(Song song) {
+		
+
+			// 입력 받을 별점
+			System.out.println("별점을 입력해 주세요 : ");
+			int insertStar = sc.nextInt();
+			int origin = song.getCounting_star();
+			song.setCounting_star(insertStar + origin);
+			
+			// System.out.println("입력할 별점 : " + song.getCounting_star());
+			
+			// 별점을 입력하기
+			if ( insertStar <= 5 && insertStar >= 0) {
+				mc.insertStar(song);	
+				System.out.println("입력이 완료됐습니다.");
+				System.out.print("별점 ");
+				showStar(song);
+			}else {
+			// 0~5이 아니면 다시 입력
+				System.out.println("잘못 입력했습니다.");
+				return;
+			}
+	}
+	
+	
 	
 	//가수 이름을 입력받아 해당 이름이 포함된 모든 가수 리스트를 출력하고 사용자가 선택한 가수의 sid를 리턴함
 	public int return_sid(String singer_name) {
@@ -650,7 +745,7 @@ public class UI {
 			int num2 = sc.nextInt();
 			
 			//사용자가 선택한 곡의 id로 곡을 찾아서 -> 곡 정보 표시
-			songPage( mm.showSong(playMap.get(num2)) );
+			songPage( mm.showSong(playMap.get(num2)));
 		}
 		
 		//리스트 id로 삭제( playlist, detail 값 다 삭제)
