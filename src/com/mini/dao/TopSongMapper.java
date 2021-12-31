@@ -13,4 +13,16 @@ public interface TopSongMapper {
 	 * 	리턴타입 : ArrayList<Song>
 	*/
 	public ArrayList<Song> topSong();
+	
+	
+	/* 탑 10 곡 상세 정보 출력
+	 * 
+	 *  메소드 이름 : topSongDetail
+	 *  
+	 *  파라미터 타입 : Song
+	 *     변수이름 : song
+	 *  리턴타입 : Song
+	 * 
+	*/
+	public Song topSongDetail(Song song);
 }

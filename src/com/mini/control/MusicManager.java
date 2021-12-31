@@ -2,9 +2,8 @@ package com.mini.control;
 
 import java.util.ArrayList;
 
-import com.mini.dao.MusicDAO;
-import com.mini.vo.Singer;
-import com.mini.vo.Song;
+import com.mini.dao.*;
+import com.mini.vo.*;
 
 public class MusicManager {
 	
@@ -19,6 +18,8 @@ public class MusicManager {
 		//해당 곡 가져오기(곡 id로)
 		return songList;
 	}
+	
+	
 
 	//곡 id로 해당 곡 정보 표시
 	public Song showSong(int song_id) {
@@ -44,5 +45,26 @@ public class MusicManager {
 	public boolean enroll(Song song) {
 		
 		return md.enroll(song);
+	}
+	
+	//현재 로그인한 유저의 전체 리스트 출력
+	public ArrayList<PlayList> getUserList(String loginId){
+		
+		return md.getUserList(loginId);
+	}
+	
+	//유저가 리스트를 선택하면 해당 리스트의 곡 목록 표시
+	public ArrayList<PlayList> getUserListSongs(int listId){
+		
+		return md.getUserListSongs(listId);
+	}
+	
+	//list_id로 리스트 삭제
+	public boolean deleteList(int list_id) {
+		if(md.deleteList(list_id) > 0) {
+			return true;
+			
+		}else { return false;}
+			
 	}
 }
