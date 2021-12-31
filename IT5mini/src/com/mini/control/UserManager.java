@@ -1,6 +1,7 @@
 package com.mini.control;
 
 import com.mini.dao.UserDAO;
+import com.mini.vo.SongComment;
 import com.mini.vo.UserInfo;
 
 public class UserManager {
@@ -35,7 +36,9 @@ public class UserManager {
 	
 	//로그아웃
 	public void logout() {
-		isLogin = false;
+		SongComment SC = new SongComment();
+		String Uid = um.getLoginId();
+		SC.setUser_id(um.getLoginId());
 	}
 	
 	//현재 로그인 id 가져옴

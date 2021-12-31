@@ -20,6 +20,7 @@ public class MusicController {
 		return Song;
 		}
 		
+		// 노래 제목으로 노래리스트 출력
 		public ArrayList<Song> searchMusicByName(String song) {
 			
 		//노래 가져오기
@@ -29,10 +30,24 @@ public class MusicController {
 		return songList;
 		}
 	
-		
+		// 별점 입력
 		public void insertStar(Song song) {
 			song.setStar_counter(song.getStar_counter() + 1);
 //			System.out.println("입력한 수 : " + song.getStar_counter());
 			md.insertStar(song);
 		}
+		
+		// 코멘트 입력
+		public void insertComment(SongComment SC) {
+			md.insertComment(SC);
+			
+		}
+		
+		// 코멘트 출력
+		public ArrayList<SongComment> selectCommentBySongId(int sid) {
+
+			
+			return md.selectCommentBySongId(sid);
+		}
+		
 }

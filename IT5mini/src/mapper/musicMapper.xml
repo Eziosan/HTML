@@ -95,6 +95,13 @@
 
 	</update>
 	
+	<!-- 코멘트 입력 -->
+	<insert id="insertComment" parameterType="song_comment">
+		insert into song_comment (comment_id, song_id, user_id, user_comment)
+		values (comment_seq.nextval, #{song_id}, #{user_id}, #{user_comment})
+	</insert>
 
-
+	<select id="selectCommentBySongId" parameterType="int" resultType="song_comment" >
+		select * from song_comment where song_id = #{song_id}
+	</select>
 </mapper>

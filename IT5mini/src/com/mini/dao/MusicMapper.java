@@ -48,5 +48,11 @@ public interface MusicMapper {
 	
 	//별점 입력
 	public void insertStar(Song song);
+	
+	//코멘트 입력
+	public void insertComment(SongComment SC);
+	
+	//코멘트 출력
+	public ArrayList<SongComment> selectCommentBySongId(int sid);
 
 }

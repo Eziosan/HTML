@@ -373,12 +373,13 @@ public class UI {
 		System.out.println("조회수 : " + song.getHits());
 		//ex) 4점대는 별 4개로 표시
 		showStar(song);
+		showComment(song);
 		//?????? 이것도 함수 하나 만들어서 코멘트 가져와야
 //		System.out.println("[코멘트] : 3개 정도 출력");
-		System.out.println("코멘트 옛시(200자)ㄴㅇㅁㄴㅇㄴㅁㅇㅁ\n"	
-				+ "글자수채우기 ㅁㅈㄱㅈㄱㅂㅈㄱㅂㅈㄱㅂㅈㄱㅂㅈㄱㅈㄷㄱㅈㄷ \n"
-				+ "잘래라아아아아아아아아ㅏ아아아아아아아ㅏ아아아아아아아아아\n"
-				+ "자고싶다아아아아아아ㅏ앙아아아아아아아앙아아앙아아앙앙아ㅏ\n");
+//		System.out.println("코멘트 옛시(200자)ㄴㅇㅁㄴㅇㄴㅁㅇㅁ\n"	
+//				+ "글자수채우기 ㅁㅈㄱㅈㄱㅂㅈㄱㅂㅈㄱㅂㅈㄱㅂㅈㄱㅈㄷㄱㅈㄷ \n"
+//				+ "잘래라아아아아아아아아ㅏ아아아아아아아ㅏ아아아아아아아아아\n"
+//				+ "자고싶다아아아아아아ㅏ앙아아아아아아아앙아아앙아아앙앙아ㅏ\n");
 		
 		
 		System.out.println("===================");
@@ -400,7 +401,9 @@ public class UI {
 		switch(num) {
 			case 1: showLyric(song);
 			case 2: insertStar(song);
-			case 3: return ;		}
+			case 3: insertSongToList(song); ; // 리스트에 추가(윤영이가 한다고 함)
+			case 4: insertComment(song);
+			case 5: return ;		}
 		
 		
 	}
@@ -415,7 +418,7 @@ public class UI {
 		System.out.println();
 		
 		System.out.println("1. 곡으로 돌아가기");
-		System.out.println("1. 메인메뉴로 돌아가기");
+		System.out.println("2. 메인메뉴로 돌아가기");
 		int num = sc.nextInt();
 		
 		switch(num) {
@@ -476,6 +479,64 @@ public class UI {
 				System.out.println("잘못 입력했습니다.");
 				return;
 			}
+	}
+	
+	
+	//리스트에 집어 넣기 (윤영이가 할거임)
+	public void insertSongToList(Song song) {
+		System.out.println("");
+		String dd = sc.next();
+		
+	}
+	
+	public void insertComment(Song song) {
+		SongComment SC = new SongComment();
+		SC.setUser_id(um.getLoginId());
+		SC.setSong_id(song.getSong_id());
+		
+		//코멘트 입력 받기
+		System.out.println("코멘트를 입력해 주세요 : ");
+		String comment = sc.next();
+		
+		// 코멘트 길이 확인
+		if (comment.length() <  90) {
+			SC.setUser_comment(comment);
+//			System.out.println(SC);
+			mc.insertComment(SC);
+			
+		}else {
+			System.out.println("너무 길다고");
+			
+		}
+		
+		return;
+		
+	}
+	
+	public void showComment(Song song) {
+		
+		ArrayList<SongComment> sc = mc.selectCommentBySongId(song.getSong_id());
+		System.out.println("유저 아이디\t코멘트\t입력 시간");
+		
+		//코멘트가 null이 아니고 3개보다 적을때
+		if(sc.size() < 3 && sc != null) {
+			for (int i = 0; i < sc.size(); i++) {
+
+				System.out.println("유저 아이디 : " + sc.get(i).getUser_id() + 
+					"\t코멘트 : " + sc.get(i).getUser_comment() + 
+					"\t입력 시간 :  " + sc.get(i).getComment_date());
+			}
+			
+		}else{
+		//코멘트가 3개 이상일때
+			for (int i = 0; i < 3; i++) {
+	
+				System.out.println("유저 아이디 : " + sc.get(i).getUser_id() + 
+					"\t코멘트 : " + sc.get(i).getUser_comment() + 
+					"\t입력 시간 :  " + sc.get(i).getComment_date());
+			}
+			
+		}
 	}
 	
 	

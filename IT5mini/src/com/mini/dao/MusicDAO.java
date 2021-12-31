@@ -199,5 +199,30 @@ SqlSessionFactory factory = MybatisConfig.getSqlSessionFactory();
 			
 		}
 		
+		public void insertComment(SongComment SC) {
+			try (SqlSession session = factory.openSession()) {
+				MusicMapper mapper = session.getMapper(MusicMapper.class);
+				
+				mapper.insertComment(SC);
+				session.commit();
+				System.out.println("입력 완료");
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		
+		public ArrayList<SongComment> selectCommentBySongId(int sid) {
+			try (SqlSession session = factory.openSession()) {
+				MusicMapper mapper = session.getMapper(MusicMapper.class);
+				
+				return mapper.selectCommentBySongId(sid);
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			return null;
+		}
+		
 
 }
