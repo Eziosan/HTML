@@ -36,9 +36,7 @@ public class UserManager {
 	
 	//로그아웃
 	public void logout() {
-		SongComment SC = new SongComment();
-		String Uid = um.getLoginId();
-		SC.setUser_id(um.getLoginId());
+		isLogin = false;
 	}
 	
 	//현재 로그인 id 가져옴

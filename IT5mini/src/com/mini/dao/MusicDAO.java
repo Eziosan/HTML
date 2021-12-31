@@ -35,7 +35,7 @@ SqlSessionFactory factory = MybatisConfig.getSqlSessionFactory();
 			//노래로 노래 리스트 가져오기
 			
 			
-			return mapper.musicByLyric(song);
+			return mapper.selectMusicByName(song);
 			
 		} catch (Exception e) {
 			e.printStackTrace();

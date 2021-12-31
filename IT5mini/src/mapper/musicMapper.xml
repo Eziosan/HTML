@@ -6,9 +6,9 @@
 
 	
 	<!-- 1. 노래로 노래 검색. like쓸 때 밑에 처럼 써야함  -->
-	<select id="searchMusicByName" parameterType="string" resultType="song">
+	<select id="selectMusicByName" parameterType="string" resultType="song">
 		select * from song
-		where lyrics like '%' || #{song_name} || '%'
+		where song_name like '%' || #{song_name} || '%'
 	</select>
 
 	<!-- 가사로 노래 검색. like쓸 때 밑에 처럼 써야함  -->
@@ -100,7 +100,8 @@
 		insert into song_comment (comment_id, song_id, user_id, user_comment)
 		values (comment_seq.nextval, #{song_id}, #{user_id}, #{user_comment})
 	</insert>
-
+	
+	<!-- 노래id로 코멘트 출력 -->
 	<select id="selectCommentBySongId" parameterType="int" resultType="song_comment" >
 		select * from song_comment where song_id = #{song_id}
 	</select>

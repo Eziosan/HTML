@@ -170,7 +170,7 @@ public class UI {
 		
 		switch(num) {
 			case 1: searchSongBySinger(); break;
-			case 2: break;
+			case 2: searchMusicByName(); break;
 			case 3: searchMusicByLyric(); break;
 			case 4: break;
 			default : System.out.println("잘못 입력하셨습니다!!");
@@ -270,9 +270,9 @@ public class UI {
 				int lyricNum = 1;
 				
 				//1. 가사를 입력받아 해당 가사가 포함된 모든 곡을 가져옴
-				System.out.print("가사입력 : ");
+				System.out.print("곡입력 : ");
 				String songN = sc.next();
-				//가사가 포함되어 있는 곡 가져옴
+				//곡이 포함되어 있는 곡 가져옴
 				//null일 경우
 				ArrayList<Song> songList = mc.searchMusicByName(songN);
 				
@@ -283,7 +283,7 @@ public class UI {
 				}
 				
 				
-				//2. 가사로 찾은 곡 리스트 출력
+				//2. 노래로 찾은 곡 리스트 출력
 				System.out.println("===============================");
 				System.out.println("번호\t곡 이름\t가수 이름");
 
