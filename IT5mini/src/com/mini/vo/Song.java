@@ -14,32 +14,21 @@ public class Song {
 	private String lyrics;
 	private int hits;
 	
+	//singer_name 변수 추가(12/30)
+	private String singer_name;
+	
 	public Song() {}
-	
-	public Song(String song_name, int main_sid, String release_date, String writer, String composer, String lyrics) {
-		this.song_name = song_name;
-		this.main_sid = main_sid;
-		this.release_date = release_date;
-		this.writer = writer;
-		this.composer = composer;
-		this.lyrics = lyrics;
-	}
-	
 
-	public Song(int song_id, String song_name, int main_sid, String sub_sid, String release_date, String writer,
-			String composer, int counting_star, int star_counter, String lyrics, int hits) {
+	
+	public Song(String song_name, int main_sid, String release_date, String writer,
+			String composer, String lyrics) {
 		super();
-		this.song_id = song_id;
 		this.song_name = song_name;
 		this.main_sid = main_sid;
-		this.sub_sid = sub_sid;
 		this.release_date = release_date;
 		this.writer = writer;
 		this.composer = composer;
-		this.counting_star = counting_star;
-		this.star_counter = star_counter;
 		this.lyrics = lyrics;
-		this.hits = hits;
 	}
 
 	public int getSong_id() {
@@ -130,17 +119,20 @@ public class Song {
 		this.hits = hits;
 	}
 
+	public String getSinger_name() {
+		return singer_name;
+	}
+
+	public void setSinger_name(String singer_name) {
+		this.singer_name = singer_name;
+	}
+
+
 	@Override
 	public String toString() {
-		return "제목 : " + song_name + "\t" + "조회수 : " + hits + "\n" + "발매일 : " + release_date + "\n" + "작사 : " + writer + "\n" +"작곡 : " + composer
-				+ "\n" +"별점 : " + counting_star + "\n" +"별점 (?) : " + star_counter + "\n\n" +
-				
-				"=======================================================" + "\n\n"+
-				"가사 " +"\n\n"  + 
-				lyrics + "\n" +
-				"======================================================="
-				;
+		return "노래 : " + song_name + "\n가수 : " + singer_name;
 	}
+	
 	
 	
 	

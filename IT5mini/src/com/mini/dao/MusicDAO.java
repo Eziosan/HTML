@@ -11,7 +11,7 @@ public class MusicDAO {
 SqlSessionFactory factory = MybatisConfig.getSqlSessionFactory();
 	
 	
-	//가수로 노래 찾기
+	//가수로 노래목록 찾기(sub_sid포함)
 	public ArrayList<Song> selectMusicsBySinger(Singer singer) {
 		try (SqlSession session = factory.openSession()) {
 			MusicMapper mapper = session.getMapper(MusicMapper.class);
@@ -79,6 +79,78 @@ SqlSessionFactory factory = MybatisConfig.getSqlSessionFactory();
 		}
 			return null;
 	}
+	
+	//별점 입력
+	public void insertStar(Song song) {
+		try (SqlSession session = factory.openSession()) {
+			MusicMapper mapper = session.getMapper(MusicMapper.class);
+			
+			mapper.insertStar(song);
+			session.commit();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		
+	}
+	
+	//코멘트 입력
+	public void insertComment(SongComment SC) {
+		try (SqlSession session = factory.openSession()) {
+			MusicMapper mapper = session.getMapper(MusicMapper.class);
+			
+			mapper.insertComment(SC);
+			session.commit();
+			System.out.println("입력 완료");
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	//노래 id로 코멘트 출력
+	public ArrayList<SongComment> selectCommentBySongId(int sid) {
+		try (SqlSession session = factory.openSession()) {
+			MusicMapper mapper = session.getMapper(MusicMapper.class);
+			
+			return mapper.selectCommentBySongId(sid);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	//조회수 증가
+	public int addHits(Song song) {
+		try (SqlSession session = factory.openSession()) {
+			MusicMapper mapper = session.getMapper(MusicMapper.class);
+			
+			mapper.addHits(song);
+		    session.commit();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return 0;
+	}
+	
+	//가수id로 가수 찾기
+	public Singer selectSingerBySid(int sid) {
+		try (SqlSession session = factory.openSession()) {
+			MusicMapper mapper = session.getMapper(MusicMapper.class);
+			
+			return mapper.selectSingerBySid(sid);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return null;
+	}
+	
 	
 	//가수 이름으로 가수 리스트 불러오기
 	public ArrayList<Singer> getSingersByName(String singer){
@@ -166,6 +238,72 @@ SqlSessionFactory factory = MybatisConfig.getSqlSessionFactory();
 			return null;
 		}
 		
+		// 다음 list 시퀀스 값을 가져옴
+		public int getListSeq() {
+			int result = 0;
+			
+			try (SqlSession session = factory.openSession()) {
+				MusicMapper mapper = session.getMapper(MusicMapper.class);
+				
+				result = mapper.getListSeq();
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			
+			return result;
+		}
+		
+		//playlist 에 곡 등록
+		public int addList(PlayList pList) {
+			int result = 0;
+			
+			try (SqlSession session = factory.openSession()) {
+				MusicMapper mapper = session.getMapper(MusicMapper.class);
+				
+				//리스트 이름이 중복된지 확인
+				if(mapper.listNameDupleCheck(pList) > 0) { 
+					System.out.println("리스트 이름이 중복되었습니다. 등록실패!");
+					return result;
+				}
+				
+				result = mapper.addList(pList);
+				
+				if(result > 0) {
+					System.out.println("등록 성공!!");
+					session.commit();
+				}else {
+					
+					System.out.println("등록 실패!!");
+				}
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			
+			return result;
+		}
+		
+		//playlist_detail 에 곡 등록
+		public void addListDetail(PlayList pList) {
+			try (SqlSession session = factory.openSession()) {
+				MusicMapper mapper = session.getMapper(MusicMapper.class);
+				
+				if(mapper.listSongDupleCheck(pList) > 0) { System.out.println("곡 이름이 중복되었습니다. 등록 실패!"); return;}
+				
+				if(mapper.addListDetail(pList) > 0) {
+					System.out.println("등록 성공!!");
+					session.commit();
+				}else {
+					
+					System.out.println("등록 실패!!");
+				}
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		
 		//list_id로 리스트 삭제
 		public int  deleteList(int list_id) {
 			int result = 0;
@@ -184,45 +322,5 @@ SqlSessionFactory factory = MybatisConfig.getSqlSessionFactory();
 			
 			return result;
 		}
-		
-		public void insertStar(Song song) {
-			try (SqlSession session = factory.openSession()) {
-				MusicMapper mapper = session.getMapper(MusicMapper.class);
-				
-				mapper.insertStar(song);
-				session.commit();
-				
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-			
-			
-		}
-		
-		public void insertComment(SongComment SC) {
-			try (SqlSession session = factory.openSession()) {
-				MusicMapper mapper = session.getMapper(MusicMapper.class);
-				
-				mapper.insertComment(SC);
-				session.commit();
-				System.out.println("입력 완료");
-				
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
-		
-		public ArrayList<SongComment> selectCommentBySongId(int sid) {
-			try (SqlSession session = factory.openSession()) {
-				MusicMapper mapper = session.getMapper(MusicMapper.class);
-				
-				return mapper.selectCommentBySongId(sid);
-				
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-			return null;
-		}
-		
 
 }

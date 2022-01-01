@@ -33,7 +33,7 @@ public class MusicController {
 		// 별점 입력
 		public void insertStar(Song song) {
 			song.setStar_counter(song.getStar_counter() + 1);
-//			System.out.println("입력한 수 : " + song.getStar_counter());
+			
 			md.insertStar(song);
 		}
 		
@@ -48,6 +48,13 @@ public class MusicController {
 
 			
 			return md.selectCommentBySongId(sid);
+		}
+		
+		//조회수 증가
+		public int addHits(Song song) {
+			
+			return md.addHits(song);
+			
 		}
 		
 }

@@ -15,6 +15,18 @@ public interface MusicMapper {
 	
 	//노래 id로 노래 가져찾기
 	public Song showSong(int song_id);
+	
+	//별점 입력
+	public void insertStar(Song song);
+	
+	//코멘트 입력
+	public void insertComment(SongComment SC);
+	
+	//코멘트 출력
+	public ArrayList<SongComment> selectCommentBySongId(int sid);
+	
+	//조회수 증가
+	public int addHits(Song song);
 
 	//가수 이름으로 가수 리스트 불러오기
 	public ArrayList<Singer> getSingersByName(String singer);
@@ -40,19 +52,24 @@ public interface MusicMapper {
 	//리스트id로 플레이 리스트 리스트 불러오기
 	public ArrayList<PlayList> getUserListSongs(int listId);
 	
+	// 다음 list 시퀀스 값을 가져옴
+	public int getListSeq();
+	
+	//playlist 에 곡 등록
+	public int addList(PlayList pList);
+	
+	//playlist_detail 에 곡 등록
+	public int addListDetail(PlayList pList);
+	
+	// 한 유저는 같은 이름의 리스트를 만들 수 없음
+	public int listNameDupleCheck(PlayList pList);
+	// 한 리스트 안에선 곡 중복 안됨. 중복체크
+	public int listSongDupleCheck(PlayList pList);
+	
 	//list_id로 리스트 삭제
 	public int deleteList(int list_id);
 	
 	//list_id로 리스트 삭제
 	public int deleteListDetail(int list_id);
 	
-	//별점 입력
-	public void insertStar(Song song);
-	
-	//코멘트 입력
-	public void insertComment(SongComment SC);
-	
-	//코멘트 출력
-	public ArrayList<SongComment> selectCommentBySongId(int sid);
-
 }

@@ -1,5 +1,8 @@
 package com.mini.ui;
 
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 import com.mini.control.*;
@@ -18,11 +21,9 @@ import com.mini.vo.*;
  * MusicDAO : Admin, MusicManager에서 할일 다 처리
  * UserDAO : 로그인 / 회원가입
  * 
- * 항상 염두에 둘 것 : 예외처리 /		//가져온 객체 or 리스트가 null일 때 처리
 
  */
 
-// try - catch???
 //UI 초반
 public class UI {
 	Scanner sc = new Scanner(System.in);
@@ -34,15 +35,12 @@ public class UI {
 	//콘서트 매니저(추가)
 	ConcertManager cm = new ConcertManager();
 	
-	
-	
 	public UI() {
 		boolean flag = true;
 		
 		while(flag) {
 			mainUI();
 			int num = sc.nextInt();
-			
 			
 			switch(num) {
 				case 1: 
@@ -51,7 +49,7 @@ public class UI {
 						um.logout();
 						
 					}else {
-					loginPage(); 
+						loginPage(); 
 					}
 					break;
 				case 2: searchMusic(); break;
@@ -64,60 +62,54 @@ public class UI {
 		}
 	}
 	
-	public void amugona() {
-		System.out.println("아무거나 쓰라고해서 씀");
-		System.out.println("2번째로 씀");
-		System.out.println("3번째로 씀");
-	}
-	
 	//1. 회원가입, 로그인 메뉴를 표시하는 함수
 	public void loginPage() {
-		
-		
 		
 			System.out.println("===================");
 			System.out.println("1. 회원가입");
 			System.out.println("2. 로그인");
 			System.out.println("3. 메인화면으로 돌아가기");
 			System.out.println("===================");
-			int num = sc.nextInt();
 			
-			// 1. 회원가입, 2. 로그인 실행
-			switch(num) {
-				case 1: signUp(); break;
-				case 2:	login(); break;
-				case 3: break;
+			try {
+				int num = sc.nextInt();
 
-				default: System.out.println("잘못 입력하셨습니다!!");
-
+				// 1. 회원가입, 2. 로그인 실행
+				switch(num) {
+					case 1: signUp(); break;
+					case 2:	login(); break;
+					case 3: break;
+					default: System.out.println("잘못 입력하셨습니다!!");
+				}
+				
+			}catch(InputMismatchException e) {
+				System.out.println("숫자만 입력해주세요!!");
+				sc.nextLine();
+				//e.printStackTrace();
 			}
 			
+			
 		}
-		
-	
 	
 	//1-1 로그인
 	public void login() {
 		
-		 boolean flag=true;
+		boolean flag=true;
 		 
 		while(flag) {
-		System.out.print("ID : ");
-		String user_id = sc.next();
-		System.out.print("패스워드 : ");
-		String password = sc.next();
-		
-		if(um.login(user_id, password)) {
-			System.out.println("로그인 성공!!");
-			um.login(user_id, password);
+			System.out.print("ID : ");
+			String user_id = sc.next();
+			System.out.print("패스워드 : ");
+			String password = sc.next();
 			
-			flag=false;
-			break;
-			
-		}else {
-			System.out.println("로그인 실패!");
-			
-		}
+			if(um.login(user_id, password)) {
+				System.out.println("로그인 성공!!");
+				flag=false;
+				
+			}else {
+				System.out.println("로그인 실패!");
+				
+			}
 		}
 	}
 	
@@ -157,8 +149,6 @@ public class UI {
 	public void searchMusic() {
 		System.out.println("===================");
 
-		//몇 글자만 입력해도 인식해서 찾아주도록 -> Like(선택??)
-		//가사 검색 추가??
 		System.out.println("1. 가수명으로 검색");
 		System.out.println("2. 곡명으로 검색");
 		System.out.println("3. 가사로 검색");
@@ -177,60 +167,53 @@ public class UI {
 		}
 	}
 	
-	//가수명으로 곡 검색
-	//조회수 : 검색될 때마다 증가
+	//singer_id를 사용자에게 보여주지 않기 위해 HashMap<가져온 곡 리스트 번호(1번부터 시작), 실제 song_id>사용
+	/*
+	 *  1,  18
+	 *  2,  20
+	 *  3,  30
+	 *  1번  -> 18번 노래
+	 */
+	//2-1. 가수명으로 곡 검색
 	public void searchSongBySinger() {
 		
-		//singer_id를 사용자에게 보여주지 않기 위해 HashMap<가져온 곡 리스트 번호(1번부터 시작), 실제 song_id>사용
-				/*
-				 *  1,  18
-				 *  2,  20
-				 *  3,  30
-				 *  
-				 *  1번  -> 18번 노래
-				 */
-				HashMap<Integer, Singer> singerMap = new HashMap<>();
-				//가져온 곡 리스트에 번호를 매기는데 song_id 대신 사용자에게 보여줄 번호 
-				int singerNum = 1;
-				
-				//1. 검색어를 입력받아 해당 가수가 포함된 모든 곡을 가져옴
-				System.out.print("가수입력 : ");
-				String singer = sc.next();
-				//검색어가 포함되어 있는 가수 가져옴
-				//null일 경우
-				ArrayList<Singer> singerList = mm.getSingersByName(singer);
-				
-				//가져온 객체 or 리스트가 없을 때 메인화면으로 이동
-				if(singerList.size() < 1) {
-					System.out.println("검색 결과가 없습니다!");
-					return;
-				}
-				
-				
-				//2. 가사로 찾은 곡 리스트 출력
-				System.out.println("===============================");
-				System.out.println("번호\t곡 이름\t가수 이름");
-
-				for(Singer singer2 : singerList) {
-					System.out.print(singerNum +"\t"+ singer2.getSinger_name()+"\n");
-					singerMap.put(singerNum++, singer2);
-				}
-				
-				System.out.println("===============================");
-				System.out.println("찾고 싶은 가수 번호 입력 : ");
-				int num = sc.nextInt();
-				
-				
-				// 가수객체로 노래리스트를 가져옴
-				ArrayList<Song> songs = mc.selectMusicsBySinger(singerMap.get(num));
-				
-				
-				
-
-				songPage(printSong(songs));	
+		HashMap<Integer, Singer> singerMap = new HashMap<>();
+		//가져온 곡 리스트에 번호를 매기는데 song_id 대신 사용자에게 보여줄 번호 
+		int singerNum = 1;
+		
+		//1. 검색어를 입력받아 해당 가수가 포함된 모든 곡을 가져옴
+		System.out.print("가수입력 : ");
+		String singer = sc.next();
+		//검색어가 포함되어 있는 가수 가져옴
+		//null일 경우
+		ArrayList<Singer> singerList = mm.getSingersByName(singer);
+		
+		//가져온 객체 or 리스트가 없을 때 메인화면으로 이동
+		if(singerList.size() < 1) {
+			System.out.println("검색 결과가 없습니다!");
+			return;
+		}
+		
+		//2. 가수로 찾은 곡 리스트 출력
+		System.out.println("===============================");
+		System.out.println("번호\t가수 이름");
+		
+		for(Singer singer2 : singerList) {
+			System.out.print(singerNum +"\t"+ singer2.getSinger_name()+"\n");
+			singerMap.put(singerNum++, singer2);
+		}
+		
+		System.out.println("===============================");
+		System.out.print("찾고 싶은 가수 번호 입력 : ");
+		int num = sc.nextInt();
+		
+		// 가수객체로 노래리스트를 가져옴
+		ArrayList<Song> songs = mc.selectMusicsBySinger(singerMap.get(num));
+		
+		songPage(printSong(songs));	
 	}
 	
-	// 가수 검색으로 가져온 송리스트를 출력하는 페이지
+	// 가수 검색으로 가져온 곡 리스트를 가지고 사용자가 번호를 선택한 특정 곡을 리턴 
 	public Song printSong(ArrayList<Song> songs) {
 		HashMap<Integer, Integer> songMap = new HashMap<>();
 		//가져온 곡 리스트에 번호를 매기는데 song_id 대신 사용자에게 보여줄 번호 
@@ -238,7 +221,7 @@ public class UI {
 		
 		//가수의 리스트 출력
 		System.out.println("===============================");
-		System.out.println("번호\t곡 이름\t가수 이름");
+		System.out.println("번호\t곡 이름");
 
 		for(Song song : songs) {
 			System.out.print(songNum +"\t"+ song.getSong_name()+"\n");
@@ -249,57 +232,33 @@ public class UI {
 		System.out.print("찾고 싶은 곡 번호 입력 : ");
 		int num = sc.nextInt();
 		
-		
 		return mm.showSong(songMap.get(num));
 		
 	}
-	
-	
-	//노래명으로 검색
-	public void searchMusicByName() {
-		//song_id를 사용자에게 보여주지 않기 위해 HashMap<가져온 곡 리스트 번호(1번부터 시작), 실제 song_id>사용
-				/*
-				 *  1,  18
-				 *  2,  20
-				 *  3,  30
-				 *  
-				 *  1번  -> 18번 노래
-				 */
-				HashMap<Integer, Integer> songMap = new HashMap<>();
-				//가져온 곡 리스트에 번호를 매기는데 song_id 대신 사용자에게 보여줄 번호 
-				int lyricNum = 1;
-				
-				//1. 가사를 입력받아 해당 가사가 포함된 모든 곡을 가져옴
-				System.out.print("곡입력 : ");
-				String songN = sc.next();
-				//곡이 포함되어 있는 곡 가져옴
-				//null일 경우
-				ArrayList<Song> songList = mc.searchMusicByName(songN);
-				
-				//가져온 객체 or 리스트가 없을 때 메인화면으로 이동
-				if(songList.size() < 1) {
-					System.out.println("검색 결과가 없습니다!");
-					return;
-				}
-				
-				
-				//2. 노래로 찾은 곡 리스트 출력
-				System.out.println("===============================");
-				System.out.println("번호\t곡 이름\t가수 이름");
 
-				for(Song song : songList) {
-					System.out.print(lyricNum +"\t"+ song.getSong_name()+"\n");
-					songMap.put(lyricNum++, song.getSong_id());
-				}
-				
-				System.out.println("===============================");
-				System.out.print("찾고 싶은 곡 번호 입력 : ");
-				int num = sc.nextInt();
-				
-				//사용자가 입력한 song_id로 곡을 가져옴
-				Song song = mm.showSong(songMap.get(num));
-				//곡 정보 표시
-				songPage(song);	
+	//곡명으로 검색
+	public void searchMusicByName() {
+		HashMap<Integer, Integer> songMap = new HashMap<>();
+		//가져온 곡 리스트에 번호를 매기는데 song_id 대신 사용자에게 보여줄 번호 
+		int lyricNum = 1;
+		
+		//1. 가사를 입력받아 해당 가사가 포함된 모든 곡을 가져옴
+		System.out.print("곡입력 : ");
+		String songN = sc.next();
+		//검색어가 포함되어 있는 곡 가져옴
+		ArrayList<Song> songList = mc.searchMusicByName(songN);
+		
+		//가져온 객체 or 리스트가 없을 때 메인화면으로 이동
+		if(songList.size() < 1) {
+			System.out.println("검색 결과가 없습니다!");
+			return;
+		}
+		
+		//곡 리스트 중에서 사용자가 선택한 곡이 저장
+		Song song = printSong(songList);
+		//곡 정보 표시
+		songPage(song);	
+		
 	}
 	
 	/*
@@ -310,14 +269,6 @@ public class UI {
 	 */
 	//각 곡마다 가사를 보여줘야(보류)
 	public void searchMusicByLyric() {
-		//song_id를 사용자에게 보여주지 않기 위해 HashMap<가져온 곡 리스트 번호(1번부터 시작), 실제 song_id>사용
-		/*
-		 *  1,  18
-		 *  2,  20
-		 *  3,  30
-		 *  
-		 *  1번  -> 18번 노래
-		 */
 		HashMap<Integer, Integer> songMap = new HashMap<>();
 		//가져온 곡 리스트에 번호를 매기는데 song_id 대신 사용자에게 보여줄 번호 
 		int lyricNum = 1;
@@ -335,111 +286,99 @@ public class UI {
 			return;
 		}
 		
+		//곡 리스트 중에서 사용자가 선택한 곡이 저장
+		Song song = printSong(songList);
 		
-		//2. 가사로 찾은 곡 리스트 출력
-		System.out.println("===============================");
-		System.out.println("번호\t곡 이름\t가수 이름");
-
-		for(Song song : songList) {
-			System.out.print(lyricNum +"\t"+ song.getSong_name()+"\n");
-			songMap.put(lyricNum++, song.getSong_id());
-		}
-		
-		System.out.println("===============================");
-		System.out.print("찾고 싶은 곡 ID 입력 : ");
-		int num = sc.nextInt();
-		
-		//사용자가 입력한 song_id로 곡을 가져옴
-		Song song = mm.showSong(songMap.get(num));
 		//곡 정보 표시
 		songPage(song);
 		
 		
 	}
-	
+	/*
+	 * 2. 코멘트
+	 * 로그인 한 사람만 별점 / 코멘트 달 수 있도록
+	 */
 	//곡 정보 표시하는 함수. 곡 객체를 받아서 곡 정보 표시
-	// TOP10에서 노래 상세보기 누르면 이 함수를 재활용하게끔 함수를 수정한다. (TOP10 함수)
-	public void songPage(Song song) {
-		System.out.println("가수명 입력받으면 아래 화면이 뜸");
-		System.out.println("===================");
-		System.out.println("곡 id : " + song.getSong_id());
-		System.out.println("곡명 : " + song.getSong_name());
-		//가수 id로 가수 이름을 가져오는 함수 작성 필요 ???????????????????
-		System.out.println("가수 : " + song.getMain_sid());
-		System.out.println("발매일 : " + song.getRelease_date());
-		System.out.println("작사 : " + song.getWriter());
-		System.out.println("작곡 : " + song.getComposer());
-		System.out.println("===================");
-		System.out.println("조회수 : " + song.getHits());
-		//ex) 4점대는 별 4개로 표시
-		showStar(song);
-		showComment(song);
-		//?????? 이것도 함수 하나 만들어서 코멘트 가져와야
-//		System.out.println("[코멘트] : 3개 정도 출력");
-//		System.out.println("코멘트 옛시(200자)ㄴㅇㅁㄴㅇㄴㅁㅇㅁ\n"	
-//				+ "글자수채우기 ㅁㅈㄱㅈㄱㅂㅈㄱㅂㅈㄱㅂㅈㄱㅂㅈㄱㅈㄷㄱㅈㄷ \n"
-//				+ "잘래라아아아아아아아아ㅏ아아아아아아아ㅏ아아아아아아아아아\n"
-//				+ "자고싶다아아아아아아ㅏ앙아아아아아아아앙아아앙아아앙앙아ㅏ\n");
+	public void songPage(Song song_t) {
+		boolean flag = true;
 		
+		while(flag) {
+			//노래 객체 갱신 필요(조회수 증가 위함)
+			Song song = mm.showSong(song_t.getSong_id());
+			
+			System.out.println("===================");
+			System.out.println("<곡 정보>");
+			System.out.println("곡명 : " + song.getSong_name());
+			
+			//가수 id로 가수 이름을 가져옴
+			Singer singer =mm.selectSingerBySid(song.getMain_sid());
+			System.out.println("가수 : " + singer.getSinger_name());
+	
+			System.out.println("발매일 : " + song.getRelease_date().substring(0, 10));
+			System.out.println("작사 : " + song.getWriter());
+			System.out.println("작곡 : " + song.getComposer());
+			System.out.println("===================");
+			System.out.println("조회수 : " + (song.getHits() + 1));
+			//조회수 증가
+			mc.addHits(song);
+			//ex) 별점, 코멘트 출력
+			showStar(song);
+			showComment(song);
+			
+			
+			System.out.println("===================");
+			
+			//이미 특정 리스트에 이 곡이 들어가 있다면 추가로 못넣도록 해야 됨!!!
+			System.out.println("1. 가사 보기");
+			System.out.println("2. 별점 등록");    // 2,3,4번은 로그인을 했을때만 할수 있도록.
+			System.out.println("3. 리스트에 추가");
+			System.out.println("4. 코멘트 남기기");
+			System.out.println("5. 메인화면으로 이동");
+			
+			int num = sc.nextInt();
+			
+			switch(num) {
+				case 1: showLyric(song); break;
+				case 2: insertStar(song); break;
+				case 3: insertSongToList(song); break; // 리스트에 추가(윤영이가 한다고 함)
+				case 4: insertComment(song); break;
+				case 5: flag = false ; break;
+				default : System.out.println("잘못 입력하셨습니다.");
+				
+			}
 		
-		System.out.println("===================");
-		//로그인 안되어있으면 번호를 선택해도 못하도록
-		// 별점 남기기 추가
-		//코멘트 삭제 추가(보류)
-		/*[고민중]
-		 * 별점을 이미 입력한 경우  다시 입력 기능 추가???(이거 안하려면 별점 입력 메뉴를 없애든지)
-		 */
-		//이미 특정 리스트에 이 곡이 들어가 있다면 추가로 못넣도록 해야 됨!!!
-		System.out.println("1. 가사 보기");
-		System.out.println("2. 별점 등록");    // 2,3,4번은 로그인을 했을때만 할수 있도록.
-		System.out.println("3. 리스트에 추가");
-		System.out.println("4. 코멘트 남기기");
-		System.out.println("5. 메인화면으로 이동");
-		
-		int num = sc.nextInt();
-		
-		switch(num) {
-			case 1: showLyric(song);
-			case 2: insertStar(song);
-			case 3: insertSongToList(song); ; // 리스트에 추가(윤영이가 한다고 함)
-			case 4: insertComment(song);
-			case 5: return ;		}
+		}
 		
 		
 	}
 	
 	// 노래 받아서 노래 가사 출력
 	public void showLyric(Song song) {
-		System.out.println("가수 : " + song.getMain_sid());
+		//가수 id로 가수 이름을 가져옴
+		Singer singer =mm.selectSingerBySid(song.getMain_sid());
+		System.out.println("가수 : " + singer.getSinger_name());
 		System.out.println("노래 : " + song.getSong_name());
 		System.out.println("==============<가사>==============");
 		System.out.println("==================================");
 		System.out.println(song.getLyrics());
 		System.out.println();
-		
-		System.out.println("1. 곡으로 돌아가기");
-		System.out.println("2. 메인메뉴로 돌아가기");
-		int num = sc.nextInt();
-		
-		switch(num) {
-			case 1: songPage(song);
-			//일엽이 형이 만져주기
-			case 2: return;
-			}
+		System.out.println("===================");
+		System.out.print("아무문자나 입력하면 곡 화면으로 돌아갑니다 : ");
+		String str = sc.nextLine();
+		sc.nextLine();
 	}
 	
 	// 별점 계산 및 출력
 	public void showStar(Song song) {
 		double star = song.getCounting_star();
 		double counter = song.getStar_counter();
-		// System.out.println("별점 : " + star + "숫자 : " + counter);
-		// 평균 계산 후 소수점 셋째 자리에서 반올림
+		// 평균 계산 후 소수점 셋째 자리에서 반올림. 여기서 누적 별점이 0이면 안됨
 		if (star != 0) {
 			double avr1 = star / counter;
 			double avr2 = (Math.round(avr1 * 100) / 100.0);
 			int avr3 = (int)avr2;
 			
-			// 팀장님 아이디어(뽐내고 싶어하셨던거 아님)
+			// ex) 총 5번 도는데 4.xx 점이면 ★가 4개 출력
 			System.out.print("별점 ");
 			for (int i=0; i<5; i++) {
 				if(i < avr3) {
@@ -451,94 +390,188 @@ public class UI {
 			System.out.println(" " + avr2);
 				
 		}else {
-			System.out.println("별점 : ☆☆☆☆☆☆ 0.0");
+			System.out.println("별점 : ☆☆☆☆☆ 0.0");
 		}
 		
 	}
 	
 	//2. 점수를 입력받아 song 에 입력함.
 	public void insertStar(Song song) {
-		
+			if(!um.isLogin()) {
+				System.out.println("로그인이 필요한 서비스 입니다.");
+				return;
+			}
 
 			// 입력 받을 별점
-			System.out.println("별점을 입력해 주세요 : ");
+			System.out.println("별점(0~5 사이의 정수)을 입력해 주세요 : ");
 			int insertStar = sc.nextInt();
 			int origin = song.getCounting_star();
+			
+			//누적 별점 수 저장. startCounter는 MC에서 1 추가
 			song.setCounting_star(insertStar + origin);
 			
-			// System.out.println("입력할 별점 : " + song.getCounting_star());
-			
-			// 별점을 입력하기
+			// 별점을 입력하기(0~5점 사이)
 			if ( insertStar <= 5 && insertStar >= 0) {
+				//누적 별점/사람 수 갱신
 				mc.insertStar(song);	
 				System.out.println("입력이 완료됐습니다.");
-				System.out.print("별점 ");
 				showStar(song);
 			}else {
 			// 0~5이 아니면 다시 입력
 				System.out.println("잘못 입력했습니다.");
-				return;
 			}
 	}
 	
-	
+	/*
+	 * 1. 전체 리스트 목록 출력
+	 * 2. 리스트 목록에서 선택
+	 * 2-2 없는 경우 새로 만듬
+	 * 3. 곡을 넣음
+	 */
 	//리스트에 집어 넣기 (윤영이가 할거임)
 	public void insertSongToList(Song song) {
-		System.out.println("");
-		String dd = sc.next();
+		if(!um.isLogin()) {
+			System.out.println("로그인이 필요한 서비스 입니다.");
+			return;
+		}
+		
+		System.out.println("===================");
+		System.out.println("1. 리스트 새로 추가");
+		System.out.println("2. 기존 리스트에 곡 추가");
+		System.out.println("===================");
+		System.out.print("번호 입력 : ");
+		int num = sc.nextInt();
+		
+		switch(num) {
+			case 1 : addNewList(song); break;
+			case 2 : addSongToList(song); break;
+			default : System.out.println("잘못 입력하셨습니다");
+		
+		}
+
 		
 	}
 	
+	//기존에 리스트가 없는 경우 리스트 추가 후 리스트에 곡 추가
+	public void addNewList(Song song) {
+		String loginId = um.getLoginId();
+		//현재 유저의 리스트 가져옴
+		ArrayList<PlayList> playList =  mm.getUserList(loginId);
+		
+			System.out.print("리스트 이름 입력 : ");
+			//버퍼를 비워줘야 함
+			sc.nextLine();
+			String lName = sc.nextLine();
+			
+			//새 list 시퀀스 번호
+			int list_id = mm.getListSeq();
+			System.out.println("현재 시퀀스 번호 : " + list_id);
+			PlayList list = new PlayList(list_id, lName, loginId, song.getSong_id());
+			//리스트에 곡 추가 
+			//같은 유저가 같은 이름의 리스트 만들 수 없고, 한 리스트 안에선 곡 중복 안됨.(DAO에서 처리)
+			if(mm.addList(list) > 0) {
+				
+				mm.addListDetail(list);
+			}
+	}
+	
+	// 리스트가 있는 경우 해당 리스트에 곡만 추가
+	public void addSongToList(Song song) {
+		String loginId = um.getLoginId();
+		//현재 유저의 리스트 가져옴
+		ArrayList<PlayList> playList =  mm.getUserList(loginId);
+		
+		//리스트 ID 대신 표시할 리스트 목록 번호
+		int listNum = 1;
+		//(listNum, 해당 리스트의 id)   ex) 1. A    -> (1, A의 listId) 저장
+		HashMap<Integer, PlayList> playMap = new HashMap<>();
+		
+		System.out.println("===========================");
+		System.out.println("\t전체 리스트 보기 ");
+		System.out.println("===========================");
+		
+		System.out.println("유저 "+ um.getLoginId() + "가 가지고 있는 리스트를 표시합니다.");
+		
+		
+		System.out.println("===============================");
+		System.out.println("번호\t리스트 이름");
+
+		for(PlayList play : playList) {
+			//메뉴 번호 	리스트 이름 	출력
+			System.out.println(listNum + "\t" + play.getList_name());
+			playMap.put(listNum++, play);
+		}
+		
+		System.out.print("리스트 선택 :");
+		int num2 = sc.nextInt();
+		//리스트 id로 리스트 가져옴
+		PlayList list = playMap.get(num2);
+		list.setSong_id(song.getSong_id());
+		
+		//곡 리스트에 추가
+		//같은 유저가 같은 이름의 리스트 만들 수 없고, 한 리스트 안에선 곡 중복 안됨.(DAO에서 처리)
+		mm.addListDetail(list);
+	}
+	
+	// 코멘트 등록
 	public void insertComment(Song song) {
+		if(!um.isLogin()) {
+			System.out.println("로그인이 필요한 서비스 입니다.");
+			return;
+		}
+		
 		SongComment SC = new SongComment();
 		SC.setUser_id(um.getLoginId());
 		SC.setSong_id(song.getSong_id());
 		
 		//코멘트 입력 받기
 		System.out.println("코멘트를 입력해 주세요 : ");
-		String comment = sc.next();
+		
+		//버퍼 비움. 안그러면 바로 메인화면 가버림
+		sc.nextLine();
+		String comment ="";
+		
+		while(true) {
+			//한 줄 입력받음
+			String temp = sc.nextLine();
+			
+			//exit 입력받으면 코멘트 입력 종료
+			if(temp.equals("exit")) {
+				break;
+			}
+			//최종 코멘트 (띄어쓰기, 엔터 키 다 적용됨)
+			comment += "\n" +  temp;
+		}
 		
 		// 코멘트 길이 확인
-		if (comment.length() <  90) {
+		if (comment.length() <  90 && comment.length() > 0) {
 			SC.setUser_comment(comment);
-//			System.out.println(SC);
 			mc.insertComment(SC);
 			
 		}else {
-			System.out.println("너무 길다고");
+			System.out.println("글자 수를 초과했거나 빈 값이 입력되었습니다");
 			
 		}
-		
-		return;
 		
 	}
 	
 	public void showComment(Song song) {
 		
 		ArrayList<SongComment> sc = mc.selectCommentBySongId(song.getSong_id());
-		System.out.println("유저 아이디\t코멘트\t입력 시간");
 		
-		//코멘트가 null이 아니고 3개보다 적을때
-		if(sc.size() < 3 && sc != null) {
-			for (int i = 0; i < sc.size(); i++) {
-
-				System.out.println("유저 아이디 : " + sc.get(i).getUser_id() + 
-					"\t코멘트 : " + sc.get(i).getUser_comment() + 
-					"\t입력 시간 :  " + sc.get(i).getComment_date());
-			}
+		//코멘트가 null이 아니면 최근순으로 3개의 코멘트 출력
+		if(sc.size() > 0) {
+			System.out.println("=============[코멘트]=============");
 			
-		}else{
-		//코멘트가 3개 이상일때
 			for (int i = 0; i < 3; i++) {
-	
-				System.out.println("유저 아이디 : " + sc.get(i).getUser_id() + 
-					"\t코멘트 : " + sc.get(i).getUser_comment() + 
-					"\t입력 시간 :  " + sc.get(i).getComment_date());
+
+				System.out.println("<코멘트>\n유저 아이디 : " + sc.get(i).getUser_id() + 
+					"\t입력 시간 :  " + sc.get(i).getComment_date() +	
+					sc.get(i).getUser_comment() );
 			}
 			
 		}
 	}
-	
 	
 	
 	//가수 이름을 입력받아 해당 이름이 포함된 모든 가수 리스트를 출력하고 사용자가 선택한 가수의 sid를 리턴함
@@ -648,116 +681,197 @@ public class UI {
 		
 		ArrayList<Song> topSong = tm.topSong();
 		int cnt =1;
+		
+		//곡 상세정보 출력 변수 지정
+		HashMap<Integer, Integer> list = new HashMap<Integer, Integer>();
+		
 		System.out.println("=======================================================");
 		for(Song song : topSong) {
 			System.out.println("TOP"+cnt);
-			System.out.println("\n");
 			System.out.println(song);
 			System.out.println("\n");
-			cnt++;
+			
+			//1~10번 노래 저장
+			list.put(cnt++, song.getSong_id());
 		}
 		boolean flag=true;
 		
-			while(flag) {
-				
-				System.out.println("메인화면으로 돌아가시겠습니까? Y");
-				System.out.println("문자를 입력하세요 : ");
-				String result = sc.next();
-				
-				switch(result) {
-					case "Y" : flag=false; break;
-					case "y" : flag=false; break;
-				default : System.out.println("잘못 입력하셨습니다. \nY만 입력해주세요.\n");
+		while(flag) {
+			
+			//곡 상세정보 추가
+			System.out.println("1. 곡 상세정보 보기");
+			System.out.println("2. 메인화면으로 돌아가기");
+			System.out.println("번호를 입력해주세요 : ");
+			int num = sc.nextInt();
+			
+			
+			switch(num) {
+			case 1 : System.out.println("곡 번호를 입력해 주세요 : ");
+			int num2 = sc.nextInt();
+			Song song = mm.showSong(list.get(num2));
+			songPage(song);
+			
+			case 2 : flag = false;
+			default : System.out.println("잘못 입력하셨습니다. \nY만 입력해주세요.\n");
 			}
 		}
-			
-		
 		
 	}
+
 	
 	// 콘서트 정보 확인
-	
 	public void concertInfo() {
-			// 메뉴 2가지 가수명으로 검색, 전체출력
+		// 메뉴 2가지 가수명으로 검색, 전체출력
 		boolean flag = true;
-			
+		
+		HashMap<Integer, Integer> list  = new HashMap<Integer, Integer>();
+		
 		while (flag) {
 			System.out.println("=============== 콘서트 정보 =============");
-			System.out.println("1. 가수명으로 콘서트를 검색합니다.");
-			System.out.println("2. 콘서트의 모든 정보를 출력합니다.");
+			System.out.println("1. 가수명으로 콘서트 검색하기.");
+			System.out.println("2. 콘서트 검색하기.");
 			System.out.println("3. 메인 화면으로 돌아가기");
+			System.out.println("번호를 입력해주세요 : ");
 			
 			int select = sc.nextInt();
-				
-				
+			
+			
 			switch(select) {
-				case 1 : break; // 가수명으로 콘서트 검색
-				case 2 : AllConcert(); // 콘서트의 모든 정보를 출력
-				case 3 : flag=false; break; // 메인화면으로 돌아가기 인데, flag를 안쓰면 while로 돌아가니까 flag를 false로 하고 브레이크를 해서 완전히 메인메뉴로 빠져나감.
-				default : System.out.println("잘못 입력하셨습니다. 다시 입력해 주세요");
+			case 1 :
+				selectConcert();
+				break; // 가수명으로 콘서트 검색
+			case 2 : 
+				list = AllConcert(); // 콘서트의 모든 정보를 출력
+				System.out.println("========================");
+				System.out.println("콘서트 번호 선택 : ");
+				int num  = sc.nextInt();
+				
+				Concert c = cm.concertDetail(list.get(num));
+				concertPage(c);
+				break;
+			case 3 : flag=false; break; // 메인화면으로 돌아가기 인데, flag를 안쓰면 while로 돌아가니까 flag를 false로 하고 브레이크를 해서 완전히 메인메뉴로 빠져나감.
+			default : System.out.println("잘못 입력하셨습니다. 다시 입력해 주세요");
 			}
 		}
 	}
 	
-	public void AllConcert() {
+	//가수명으로 콘서트 검색
+	public void selectConcert() {
+		ArrayList<Concert> slist = new ArrayList<Concert>();
+		HashMap<Integer, Integer> list = new HashMap<Integer, Integer>();
+		int cnt = 1;
+		
+		System.out.print("가수명을 입력해주세요 : ");
+		String name = sc.next();
+		
+		slist = cm.concertSinger(name);
+		//가수 이름 잘 못 입력했을 때 concertInfo로 돌아가기
+		if(slist.size() < 1) return;
+		
+		
+		System.out.println("========================");
+		System.out.println("번호\t콘서트명\t가수");
+		
+		for(Concert singer : slist) {
+			System.out.println("No." + cnt + "\t" + singer.getConcert_name() + "\t" + singer.getSinger_name());
+			list.put(cnt++, singer.getConcert_id());
+		}
+		System.out.println("========================");
+		System.out.print("번호를 입력해주세요 : ");
+		int num = sc.nextInt();
+		System.out.println("========================");
+		
+		Concert c = cm.concertOne(list.get(num));
+		
+		concertPage(c);
+		
+	}
+	
+	//콘서트 상세정보 수정
+	public HashMap<Integer, Integer> AllConcert() {
 		System.out.println("=======================================================");
 		ConcertManager cm = new ConcertManager();
 		ArrayList<Concert> concertlist = cm.concertList();
 		
+		int cnt = 1;
+		HashMap<Integer, Integer> list = new HashMap<Integer, Integer>();
+		
 		for(Concert concert : concertlist) {
+			list.put(cnt++, concert.getConcert_id());
 			System.out.println(concert);
 		}
-	
+		
+		return list;
+		
 	}
 	
-	/*
-	 * 리스트 ]
-	 * 1. 현재 유저의 전체 리스트 출력
-	 * 		- 전체 리스트 목록 출력(list_id는 숨김)
-	 * 			해쉬맵에 (번호, 리스트Id) 형태로 저장
-	 * 
-	 * 		- 메뉴 2개( 리스트 선택 / 리스트 삭제)
-	 * 			- 리스트 선택
-	 * 				해당 리스트의 곡 목록 표시
-	 * 				곡 선택 -> 곡 정보 띄움(songPage 함수 사용)
-	 * 			- 리스트 삭제 
-	 * 				- 사용자가 선택한 번호로 해쉬맵에서 listId를 찾아 이걸 이용해서 삭제
-	 * 		- 곡 선택 -> 곡 정보 띄움(송페이지)
-	 */
-		//6. 리스트 확인
-		//현재 로그인한 사용자의 전체리스트 출력 후 번호 입력 받음
-		public void showList() {
-			if(um.isLogin()) {
-				System.out.println("===========================");
-				System.out.println("1. 전체 리스트 보기 ");
-				System.out.println("===========================");
-				
-				System.out.println("유저 "+ um.getLoginId() + "가 가지고 있는 리스트를 표시합니다.");
-				
-				String loginId = um.getLoginId();
-				//현재 유저의 리스트 가져옴
-				ArrayList<PlayList> playList =  mm.getUserList(loginId);
-				//리스트 ID 대신 표시할 리스트 목록 번호
-				int listNum = 1;
-				//(listNum, 해당 리스트의 id)   ex) 1. A    -> (1, A의 listId) 저장
-				HashMap<Integer, Integer> playMap = new HashMap<>();
-				
-				System.out.println("===============================");
-				System.out.println("번호\t리스트 이름");
+	public void concertPage(Concert c) {
+		System.out.println("콘서트명 : " + c.getConcert_name());
+		System.out.println("가수 : " + c.getSinger_name());
+		System.out.println("장소 : " + c.getPlace());
+		System.out.println("일시 : " + c.getConcert_date());
+		System.out.println("가격 : " + c.getPrice());
+		System.out.println("상영시간 : " + c.getRunning_time());
+	}
 
-				for(PlayList play : playList) {
-					//메뉴 번호 	리스트 이름 	출력
-					System.out.println(listNum + "\t" + play.getList_name());
-					playMap.put(listNum++, play.getList_id());
-				}
-				
-				System.out.println("===============================");
-				System.out.println("1. 리스트 선택(번호입력)");
-				System.out.println("2. 리스트 삭제");
-				System.out.println("===============================");
-				System.out.print("번호입력 : ");
-				int num = sc.nextInt();
-				
+	
+/*
+ * 리스트 ]
+ * 1. 현재 유저의 전체 리스트 출력
+ * 		- 전체 리스트 목록 출력(list_id는 숨김)
+ * 			해쉬맵에 (번호, 리스트Id) 형태로 저장
+ * 
+ * 		- 메뉴 2개( 리스트 선택 / 리스트 삭제)
+ * 			- 리스트 선택
+ * 				해당 리스트의 곡 목록 표시
+ * 				곡 선택 -> 곡 정보 띄움(songPage 함수 사용)
+ * 			- 리스트 삭제 
+ * 				- 사용자가 선택한 번호로 해쉬맵에서 listId를 찾아 이걸 이용해서 삭제
+ * 		- 곡 선택 -> 곡 정보 띄움(송페이지)
+ */
+	//6. 리스트 확인
+	//현재 로그인한 사용자의 전체리스트 출력 후 번호 입력 받음
+	
+	// 리스트를 확인한 후 바로 메인화면으로 나가지지 않도록 수정해야할 부분 존재.
+	public void showList() {
+		if(um.isLogin()) {
+			String loginId = um.getLoginId();
+			//현재 유저의 리스트 가져옴
+			ArrayList<PlayList> playList =  mm.getUserList(loginId);
+			
+			if(playList.size()<1) {
+				System.out.println("유저" + um.getLoginId()+"는 가지고 있는 리스트가 없습니다.");
+				return;}
+			//리스트 ID 대신 표시할 리스트 목록 번호
+			int listNum = 1;
+			//(listNum, 해당 리스트의 id)   ex) 1. A    -> (1, A의 listId) 저장
+			HashMap<Integer, Integer> playMap = new HashMap<>();
+			
+			System.out.println("===========================");
+			System.out.println("\t전체 리스트 보기 ");
+			System.out.println("===========================");
+			
+			System.out.println("유저 "+ um.getLoginId() + "가 가지고 있는 리스트를 표시합니다.");
+			
+			
+			System.out.println("===============================");
+			System.out.println("번호\t리스트 이름");
+
+			for(PlayList play : playList) {
+				//메뉴 번호 	리스트 이름 	출력
+				System.out.println(listNum + "\t" + play.getList_name());
+				playMap.put(listNum++, play.getList_id());
+			}
+			
+			System.out.println("===============================");
+			System.out.println("1. 리스트 선택(번호입력)");
+			System.out.println("2. 리스트 삭제");
+			System.out.println("===============================");
+			System.out.print("번호입력 : ");
+			int num = sc.nextInt();
+			
+			boolean flag=true;
+			while(flag) {
 				switch(num) {
 					//리스트 선택 -> 곡 목록 표시
 					case 1: 
@@ -765,58 +879,60 @@ public class UI {
 						int num2 = sc.nextInt();
 						//리스트의 id로 해당 리스트의 곡 목록 들고옴
 						showSongList(playMap.get(num2));
+						flag=false;
 						break;
-					case 2: 
+					case 2:
 						System.out.print("삭제할 리스트 번호 : ");
 						int num3 = sc.nextInt();
 						//리스트 id로 삭제
 						deleteList(playMap.get(num3));
+						flag=false;
 						break;
-					default : System.out.println("잘못입력하셨습니다");
+					default : System.out.println("잘못 입력하셨습니다. 다시 입력해주세요");
 				}
-				
-				
-				
-			}else {
-				System.out.println("로그인이 필요한 서비스 입니다.");
-			}
-		}
-		
-		//리스트의 id로 해당 리스트의 곡 목록 들고옴 -> 사용자가 선택한 곡의 정보 출력
-		public void showSongList(int list_id) {
-			//list_id로 해당 리스트의 곡 목록 가져옴
-			ArrayList<PlayList> playListD = mm.getUserListSongs(list_id);
-			HashMap<Integer, Integer> playMap = new HashMap<>();
-			int listNum = 1;
 			
-			System.out.println("===============================");
-			System.out.println("번호\t곡 이름");
+			}
+			
+		}else {
+			System.out.println("로그인이 필요한 서비스 입니다.");
+		}
+	}
+	
+	//리스트의 id로 해당 리스트의 곡 목록 들고옴 -> 사용자가 선택한 곡의 정보 출력
+	public void showSongList(int list_id) {
+		//list_id로 해당 리스트의 곡 목록 가져옴
+		ArrayList<PlayList> playListD = mm.getUserListSongs(list_id);
+		HashMap<Integer, Integer> playMap = new HashMap<>();
+		int listNum = 1;
+		
+		System.out.println("===============================");
+		System.out.println("번호\t곡 이름");
 
-			for(PlayList play : playListD) {
-				//n번째 곡을 가져옴 songid를 써서
-				Song song = mm.showSong(play.getSong_id());
-				//메뉴 번호 	곡 이름 	출력
-				System.out.println(listNum + "\t" + song.getSong_name());
-				//곡 목록 번호, 해당 곡의 song_id 
-				playMap.put(listNum++, song.getSong_id());
-			}
-			
-			System.out.println("===============================");
-			System.out.print("번호입력 : ");
-			int num2 = sc.nextInt();
-			
-			//사용자가 선택한 곡의 id로 곡을 찾아서 -> 곡 정보 표시
-			songPage( mm.showSong(playMap.get(num2)));
+		for(PlayList play : playListD) {
+			//n번째 곡을 가져옴 songid를 써서
+			Song song = mm.showSong(play.getSong_id());
+			//메뉴 번호 	곡 이름 	출력
+			System.out.println(listNum + "\t" + song.getSong_name());
+			//곡 목록 번호, 해당 곡의 song_id 
+			playMap.put(listNum++, song.getSong_id());
 		}
 		
-		//리스트 id로 삭제( playlist, detail 값 다 삭제)
-		public void deleteList(int list_id) {
-			if(mm.deleteList(list_id)) {
-				System.out.println("삭제 성공!");
-			}else {
-				System.out.println("삭제 실패!!");
-			}
+		System.out.println("===============================");
+		System.out.print("번호입력 : ");
+		int num2 = sc.nextInt();
+		
+		//사용자가 선택한 곡의 id로 곡을 찾아서 -> 곡 정보 표시
+		songPage( mm.showSong(playMap.get(num2)) );
+	}
+	
+	//리스트 id로 삭제( playlist, detail 값 다 삭제)
+	public void deleteList(int list_id) {
+		if(mm.deleteList(list_id)) {
+			System.out.println("삭제 성공!");
+		}else {
+			System.out.println("삭제 실패!!");
 		}
+	}
 	
 	
 	// 안 만들어져있는 부분 추가해주세요!
@@ -826,7 +942,7 @@ public class UI {
 
 		System.out.println("ㅡㅡㅡㅡㅡㅡㅡㅡ 메인화면 ㅡㅡㅡㅡㅡㅡㅡㅡ");
 		if(!um.isLogin()) {
-		System.out.println("1. 로그인/회원가입");
+			System.out.println("1. 로그인/회원가입");
 		}else {
 			System.out.println("1. 로그아웃");
 		}

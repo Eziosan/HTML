@@ -1,7 +1,6 @@
 package com.mini.control;
 
 import com.mini.dao.UserDAO;
-import com.mini.vo.SongComment;
 import com.mini.vo.UserInfo;
 
 public class UserManager {

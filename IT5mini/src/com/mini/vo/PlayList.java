@@ -20,7 +20,6 @@ public class PlayList {
 	}
 
 
-
 	public int getList_id() {
 		return list_id;
 	}

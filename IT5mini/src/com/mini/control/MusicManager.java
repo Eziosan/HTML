@@ -19,14 +19,17 @@ public class MusicManager {
 		return songList;
 	}
 	
-	
-
 	//곡 id로 해당 곡 정보 표시
 	public Song showSong(int song_id) {
 		
 		Song song = md.showSong(song_id);
 		
 		return song;
+	}
+	
+	//가수id로 가수 찾기
+	public Singer selectSingerBySid(int sid) {
+		return md.selectSingerBySid(sid);
 	}
 	
 	//가수 이름으로 가수 리스트 불러오기
@@ -57,6 +60,21 @@ public class MusicManager {
 	public ArrayList<PlayList> getUserListSongs(int listId){
 		
 		return md.getUserListSongs(listId);
+	}
+	
+	// 다음 list 시퀀스 값을 가져옴
+	public int getListSeq() {
+		return md.getListSeq();
+	}
+	
+	//playlist 에 곡 등록
+	public int addList(PlayList pList) {
+		return md.addList(pList);
+	}
+	
+	//playlist_detail 에 곡 등록
+	public void addListDetail(PlayList pList) {
+		md.addListDetail(pList);
 	}
 	
 	//list_id로 리스트 삭제
