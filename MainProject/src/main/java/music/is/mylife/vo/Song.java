@@ -11,6 +11,8 @@ public class Song {
 	private int song_like;
 	private int hit;
 	private String lyrics;
+	
+	private int singer_id;
 	private String pic;
 	private String video;
 

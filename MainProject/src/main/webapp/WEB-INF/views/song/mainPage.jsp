@@ -9,5 +9,7 @@
 <body>
 <jsp:include page="/WEB-INF/views/menu/menu.jsp" />
 	<h1>곡 페이지</h1>
+	
+	
 </body>
 </html>

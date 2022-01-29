@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import music.is.mylife.vo.Song;
 
+@RequestMapping("search")
 @Controller
 public class SearchController {
 	

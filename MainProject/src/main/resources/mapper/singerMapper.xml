@@ -4,7 +4,8 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
   <!-- 인터페이스 위치 지정!!!!!! -->
-<mapper namespace="music.is.mylife.dao.SearchMapper">
+<mapper namespace="music.is.mylife.dao.SingerMapper">
+
 
 
 

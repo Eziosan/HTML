@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import music.is.mylife.vo.Song;
 
-@RequestMapping("/song")
+@RequestMapping("song")
 @Controller
 public class SongController {
 	
