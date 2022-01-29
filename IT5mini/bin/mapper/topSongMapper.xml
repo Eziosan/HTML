@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mini.dao.TopSongMapper">
+	
+	<!-- 노래 탑 10 곡 제목, 가수 출력
+		id : topSong
+		parameterType : 없음
+		resultType : song
+		
+		1. singer 테이블, song 테이블 조인
+		2. song 테이블 = song_name, singer 테이블 = singer_name 출력
+	 -->
+	<select id="topSong" resultType="song">
+		select song.song_name, song.song_id ,singer.singer_name
+		from singer singer, song song
+		where singer.main_sid = song.main_sid
+		and song.song_id between 1 and 10
+        order by song.song_id
+	</select>
+	
+	
+	<!-- 탑 10 곡 상세 정보 출력
+		id : topSongDetail
+		parameterType : song
+		resultType : song
+		
+		1. singer 테이블, song 테이블 조인
+		2. song 테이블 = 전체 출력, singer 테이블 = singer_name 출력
+		 & song_id를 입력해 원하는 정보 출력
+	-->
+	<select id="topSongDetail" parameterType="song" resultType="song">
+		select singer.singer_name,
+        	   song.song_name, song.release_date, song.writer, song.composer, song.counting_star,
+       		   song.star_counter, song.lyrics, song.hits
+		from singer singer, song song
+		where singer.main_sid = song.main_sid
+		and song.song_id between 1 and 10
+		and song.song_id = #{song_id}
+	</select>
+
+</mapper>
