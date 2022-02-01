@@ -12,7 +12,7 @@ public void mainFunc5(){
 public void mainFunc1(){
 		System.out.println("ㅡㅡㅡㅡㅡㅡㅡㅡ 메인화면 ㅡㅡㅡㅡㅡㅡㅡㅡ");
 		if(!um.isLogin()) {
-		System.out.println("1. 로그인/회원가입");
+			System.out.println("하위에서 만든 코드 메인화면 ㅡㅡㅡㅡㅡㅡㅡㅡ");
 		}else {
 			System.out.println("1. 로그아웃");
 		}
