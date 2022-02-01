@@ -63,34 +63,7 @@ voidsa(asdasd)
 
 	
 	
-		
-
 	
-	
-	//1-1 로그인
-	public void login() {
-		
-		 boolean flag=true;
-		 
-		while(flag) {
-		System.out.print("ID : ");
-		String user_id = sc.next();
-		System.out.print("패스워드 : ");
-		String password = sc.next();
-		
-		if(um.login(user_id, password)) {
-			System.out.println("로그인 성공!!");
-			um.login(user_id, password);
-			
-			flag=false;
-			break;
-			
-		}else {
-			System.out.println("로그인 실패!");
-			
-		}
-		}
-	}
 	
 	//1-2 회원가입
 	public void signUp() {
