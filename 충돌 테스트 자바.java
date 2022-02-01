@@ -62,29 +62,7 @@ voidsa(asdasd)
 
 
 	
-	//1. 회원가입, 로그인 메뉴를 표시하는 함수
-	public void loginPage() {
-		
-		
-		
-			System.out.println("===================");
-			System.out.println("1. 회원가입");
-			System.out.println("2. 로그인");
-			System.out.println("3. 메인화면으로 돌아가기");
-			System.out.println("===================");
-			int num = sc.nextInt();
-			
-			// 1. 회원가입, 2. 로그인 실행
-			switch(num) {
-				case 1: signUp(); break;
-				case 2:	login(); break;
-				case 3: break;
-
-				default: System.out.println("잘못 입력하셨습니다!!");
-
-			}
-			
-		}
+	
 		
 
 	
