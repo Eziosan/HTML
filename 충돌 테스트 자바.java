@@ -52,9 +52,7 @@ public class UI {
 	//충돌 테스트
 	public void conflict() {
 		System.out.println("전진 메세지");
-		System.out.println("tnw수정 헿 메세지");
 
-System.out.println("화원 메세지");
 
 		sys("마스터에서 추가한 메세지
 	}
@@ -88,6 +86,7 @@ voidsa(asdasd)
 			
 		}
 		
+
 	
 	
 	//1-1 로그인
