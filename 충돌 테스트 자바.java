@@ -45,58 +45,26 @@ public class UI {
 						//로그아웃 시켜주는 메소드 실행
 						um.logout();
 						
-					}else {
-					loginPage(); 
-					}
-					break;
-				case 2: searchMusic(); break;
-				case 3: enroll(); break;
-				case 4: top10(); break;
-				case 5: concertInfo(); break;
-				case 6: listCheck(); break;
-				case 7: adminMode(); break;
-				default : System.out.println("잘못 입력했습니다");
-			}
+		
 		}
 	}
 
 	//충돌 테스트
 	public void conflict() {
 		System.out.println("전진 메세지");
-		System.out.println("tnw수정 헿 메세지");
-System.out.println("전진 메세지");
-	
-		
+
+
+		sys("마스터에서 추가한 메세지
 	}
 
+voidsa(asdasd) 
+ 마스터에서 추가한 함수
+d
 
 	
-	//1. 회원가입, 로그인 메뉴를 표시하는 함수
-	public void loginPage() {
-		
-		
-		
-			System.out.println("===================");
-			System.out.println("1. 회원가입");
-			System.out.println("2. 로그인");
-			System.out.println("3. 메인화면으로 돌아가기");
-			System.out.println("===================");
-			int num = sc.nextInt();
-			
-			// 1. 회원가입, 2. 로그인 실행
-			switch(num) {
-				case 1: signUp(); break;
-				case 2:	login(); break;
-				case 3: break;
-
-				default: System.out.println("잘못 입력하셨습니다!!");
-
-			}
-			
-		}
-		
 	
 	
+<<<<<<< HEAD
 	//1-1 로그인
 	public void login() {
 		
@@ -124,6 +92,7 @@ System.out.println("전진 메세지");
 	
 	//1-2 회원가입
 	public void signUp() {
+d
 		System.out.print("ID : ");
 		String user_id = sc.next();
 		System.out.print("패스워드 : ");
@@ -152,6 +121,8 @@ System.out.println("전진 메세지");
 		
 		
 	}
+=======
+>>>>>>> conflict
 	
 	// 2. 곡 검색
 	//default설정. 메인화면으로 가기 추가
