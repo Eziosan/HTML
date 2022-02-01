@@ -63,39 +63,14 @@ public class UI {
 	//충돌 테스트
 	public void conflict() {
 		System.out.println("전진 메세지");
-		System.out.println("tnw수정 헿 메세지");
 
-System.out.println("화원 메세지");
-
+	sys(conflict에서 만든 메세지 임니다0
 		
 	}
 
-
-	
-	//1. 회원가입, 로그인 메뉴를 표시하는 함수
-	public void loginPage() {
-		
-		
-		
-			System.out.println("===================");
-			System.out.println("1. 회원가입");
-			System.out.println("2. 로그인");
-			System.out.println("3. 메인화면으로 돌아가기");
-			System.out.println("===================");
-			int num = sc.nextInt();
-			
-			// 1. 회원가입, 2. 로그인 실행
-			switch(num) {
-				case 1: signUp(); break;
-				case 2:	login(); break;
-				case 3: break;
-
-				default: System.out.println("잘못 입력하셨습니다!!");
-
-			}
-			
-		}
-		
+void newFunc(){
+	sys("로그인 페이지 함수 없애고 만든 겁니다
+}
 	
 	
 	//1-1 로그인
