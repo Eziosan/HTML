@@ -1,9 +1,32 @@
 
 	// 안 만들어져있는 부분 추가해주세요!
 	//메인화면
+public void mainFunc1(){
+		System.out.println("ㅡㅡㅡㅡㅡㅡㅡㅡ 메인화면 ㅡㅡㅡㅡㅡㅡㅡㅡ");
+		if(!um.isLogin()) {
+		System.out.println("1. 로그인/회원가입");
+		}else {
+			System.out.println("1. 로그아웃");
+		}
+}
+public void mainFunc2(){
+	System.out.println("ㅡㅡㅡㅡㅡㅡㅡㅡ 메인화면 ㅡㅡㅡㅡㅡㅡㅡㅡ");
+	if(!um.isLogin()) {
+		System.out.println("1. 로그인/회원가입");
+	}else {
+		System.out.println("1. 로그아웃");
+	}
+}
+public void mainFunc3(){
+	System.out.println("ㅡㅡㅡㅡㅡㅡㅡㅡ 메인화면 ㅡㅡㅡㅡㅡㅡㅡㅡ");
+	if(!um.isLogin()) {
+		System.out.println("1. 로그인/회원가입");
+	}else {
+		System.out.println("1. 로그아웃");
+	}
+}
 
-<<<<<<< HEAD
-public void mainFunc(){
+public void mainFunc4(){
 		System.out.println("ㅡㅡㅡㅡㅡㅡㅡㅡ 메인화면 ㅡㅡㅡㅡㅡㅡㅡㅡ");
 		if(!um.isLogin()) {
 		System.out.println("1. 로그인/회원가입");
@@ -23,9 +46,7 @@ public void mainFunc(){
 		System.out.println("===========================");
 		System.out.print("번호 입력 : ");
 		감히 충돌을??
-그만해
-=======
->>>>>>> conflict
+}
 
 
 	
