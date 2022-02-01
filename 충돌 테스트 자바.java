@@ -22,6 +22,7 @@ public void mainFunc(){
 		System.out.println("===========================");
 		System.out.print("번호 입력 : ");
 		감히 충돌을??
+그만해
 
 	}
 
