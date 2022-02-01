@@ -45,18 +45,7 @@ public class UI {
 						//로그아웃 시켜주는 메소드 실행
 						um.logout();
 						
-					}else {
-					loginPage(); 
-					}
-					break;
-				case 2: searchMusic(); break;
-				case 3: enroll(); break;
-				case 4: top10(); break;
-				case 5: concertInfo(); break;
-				case 6: listCheck(); break;
-				case 7: adminMode(); break;
-				default : System.out.println("잘못 입력했습니다");
-			}
+		
 		}
 	}
 
@@ -67,8 +56,11 @@ public class UI {
 
 System.out.println("화원 메세지");
 
-		
+		sys("마스터에서 추가한 메세지
 	}
+
+voidsa(asdasd) 
+ 마스터에서 추가한 함수
 
 
 	
