@@ -1,9 +1,8 @@
 
 	// 안 만들어져있는 부분 추가해주세요!
 	//메인화면
-	public void mainUI() {
-		System.out.println("===========================");
 
+<<<<<<< HEAD
 		System.out.println("ㅡㅡㅡㅡㅡㅡㅡㅡ 메인화면 ㅡㅡㅡㅡㅡㅡㅡㅡ");
 		if(!um.isLogin()) {
 		System.out.println("1. 로그인/회원가입");
@@ -25,6 +24,8 @@
 		감히 충돌을??
 
 	}
+=======
+>>>>>>> conflict
 	
 	
 	public static void main(String[] args) {
