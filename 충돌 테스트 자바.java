@@ -9,6 +9,9 @@ public void mainFunc5(){
 		System.out.println("1. 로그아웃");
 	}
 }
+public void saveMain() {
+	sys함수 지켜
+}
 public void mainFunc1(){
 		System.out.println("ㅡㅡㅡㅡㅡㅡㅡㅡ 메인화면 ㅡㅡㅡㅡㅡㅡㅡㅡ");
 		if(!um.isLogin()) {
