@@ -63,7 +63,7 @@ public class UI {
 	//충돌 테스트
 	public void conflict() {
 		System.out.println("전진 메세지");
-		System.out.println("전진 메세지");
+		System.out.println("tnw수정 헿 메세지");
 System.out.println("전진 메세지");
 	
 		
