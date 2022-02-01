@@ -22,6 +22,7 @@
 		System.out.println("7. 관리자 모드(등록, 검색, 수정, 삭제)");
 		System.out.println("===========================");
 		System.out.print("번호 입력 : ");
+		감히 충돌을??
 
 	}
 	
