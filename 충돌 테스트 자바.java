@@ -52,7 +52,17 @@ public class UI {
 	//충돌 테스트
 	public void conflict() {
 		System.out.println("전진 메세지");
+<<<<<<< HEAD
+=======
 
+
+		sys("마스터에서 추가한 메세지
+	}
+>>>>>>> 394f82a0d93d352584fad9949fff1a18df3d7473
+
+voidsa(asdasd) 
+ 마스터에서 추가한 함수
+d
 
 		sys("마스터에서 추가한 메세지
 	}
@@ -61,6 +71,14 @@ voidsa(asdasd)
  마스터에서 추가한 함수
 d
 
+<<<<<<< HEAD
+=======
+			}
+			
+		}
+		
+
+>>>>>>> 394f82a0d93d352584fad9949fff1a18df3d7473
 	
 	
 	
