@@ -48,6 +48,10 @@ public void mainFunc4(){
 		감히 충돌을??
 }
 
+public void main5() {
+sys
+}
+
 
 	
 	
