@@ -2,6 +2,7 @@
 	// 안 만들어져있는 부분 추가해주세요!
 	//메인화면
 
+<<<<<<< HEAD
 public void mainFunc(){
 		System.out.println("ㅡㅡㅡㅡㅡㅡㅡㅡ 메인화면 ㅡㅡㅡㅡㅡㅡㅡㅡ");
 		if(!um.isLogin()) {
@@ -23,8 +24,9 @@ public void mainFunc(){
 		System.out.print("번호 입력 : ");
 		감히 충돌을??
 그만해
+=======
+>>>>>>> conflict
 
-	}
 
 	
 	
