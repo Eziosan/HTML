@@ -16,6 +16,8 @@ public void mainFunc1(){
 		}else {
 			System.out.println("1. 로그아웃");
 		}
+		System.out.println("1. 코드를 하나 더 추가");
+		
 }
 public void mainFunc6(){
 	System.out.println("ㅡㅡㅡㅡㅡㅡㅡㅡ 메인화면 ㅡㅡㅡㅡㅡㅡㅡㅡ");
