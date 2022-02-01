@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mini.dao.MusicMapper">
+
+	
+	<!-- 1. 노래로 노래 검색. like쓸 때 밑에 처럼 써야함  -->
+	<select id="selectMusicByName" parameterType="string" resultType="song">
+		select * from song
+		where song_name like '%' || #{song_name} || '%'
+	</select>
+
+	<!-- 가사로 노래 검색. like쓸 때 밑에 처럼 써야함  -->
+	<select id="musicByLyric" parameterType="string" resultType="song">
+		select * from song
+		where lyrics like '%' || #{lyrics} || '%'
+	</select>
+	
+	<!-- 검색된 노래중에 보고 싶은 노래의 id를 입력받아 찾음 -->
+	<select id="showSong" parameterType="int" resultType="song">
+		select * from song 
+		where song_id = #{song_id}
+	</select>
+	
+	<!-- 가수 이름으로 가수 리스트 불러오기 -->
+	<select id="getSingersByName" parameterType="string" resultType="singer">
+		select * from singer
+		where singer_name like '%' || #{singer_name} || '%' 
+	</select>
+	
+	<!-- 가수로 노래 찾기  -->
+	<select id="selectMusicsBySinger" parameterType="singer" resultType="song">
+		select * from song
+		where main_sid = #{main_sid} 
+  		or sub_sid like  #{main_sid}||', %' 
+ 		or sub_sid like '%, ' || #{main_sid} || ',%'  
+		or sub_sid like '%, ' ||  #{main_sid}
+	</select>
+	
+	<!-- 가수id로 가수 찾기 -->
+	<select id="selectSingerBySid" parameterType="int" resultType="singer">
+		select * from where main_sid = #{sid}
+	</select>
+	
+	<!-- singer테이블에서 현재 시퀀스 값 가져오기 -->
+	<select id="getSingerSeq" resultType="int">
+		select singer_seq.nextval from dual
+	</select>
+	
+	<!-- 가수 등록 -->
+	<insert id="addSinger" parameterType="singer">
+		insert into singer values(singer_seq.nextval
+			, #{singer_name}
+			, #{sex}
+			, #{isGrouped}
+			, #{introduce}
+			, #{debut_date} )
+	</insert>
+	
+	<!-- 곡 등록  -->
+	<insert id="enroll" parameterType="song">
+		insert into song (song_id, song_name, main_sid, release_date, writer, composer, lyrics)
+		values (song_seq.nextval , #{song_name}, #{main_sid}, #{release_date}, #{writer}, #{composer}, #{lyrics} )
+	</insert>
+
+		<!-- 현재 로그인한 유저의 전체 리스트 출력 -->
+	<select id="getUserList" parameterType="string" resultType="playlist">
+		select * from playlist
+		where user_id = #{loginId}
+	</select>
+	
+	<!-- 유저가 리스트를 선택하면 해당 리스트의 곡 목록 표시 -->
+	<select id="getUserListSongs" parameterType="int" resultType="playlist">
+		select * from playlist_detail
+		where list_id = #{listId}
+	</select>
+	
+	<!-- list_id로 리스트 삭제 -->
+	<delete id="deleteList" parameterType="int" >
+		delete from playlist
+		where list_id = #{list_id}
+	</delete>
+	
+	<!-- list_id로 리스트 삭제 -->
+	<delete id="deleteListDetail" parameterType="int" >
+		delete from playlist_detail
+		where list_id = #{list_id}
+	</delete>
+	
+	<!-- 별점 입력 -->
+	<update id="insertStar" parameterType="song">
+		update song set counting_star = #{counting_star} , star_counter = #{star_counter}
+		where song_id = #{song_id}
+
+	</update>
+	
+	<!-- 코멘트 입력 -->
+	<insert id="insertComment" parameterType="song_comment">
+		insert into song_comment (comment_id, song_id, user_id, user_comment)
+		values (comment_seq.nextval, #{song_id}, #{user_id}, #{user_comment})
+	</insert>
+	
+	<!-- 노래id로 코멘트 출력 -->
+	<select id="selectCommentBySongId" parameterType="int" resultType="song_comment" >
+		select * from song_comment where song_id = #{song_id}
+	</select>
+</mapper>
