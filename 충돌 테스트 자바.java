@@ -59,7 +59,7 @@ public class UI {
 
 voidsa(asdasd) 
  마스터에서 추가한 함수
-
+d
 
 	
 	//1. 회원가입, 로그인 메뉴를 표시하는 함수
