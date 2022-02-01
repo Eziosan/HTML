@@ -1,6 +1,14 @@
 
 	// 안 만들어져있는 부분 추가해주세요!
 	//메인화면
+public void mainFunc5(){
+	System.out.println("ㅡㅡㅡㅡㅡㅡㅡㅡ 메인화면 ㅡㅡㅡㅡㅡㅡㅡㅡ");
+	if(!um.isLogin()) {
+		System.out.println("1. 로그인/회원가입");
+	}else {
+		System.out.println("1. 로그아웃");
+	}
+}
 public void mainFunc1(){
 		System.out.println("ㅡㅡㅡㅡㅡㅡㅡㅡ 메인화면 ㅡㅡㅡㅡㅡㅡㅡㅡ");
 		if(!um.isLogin()) {
@@ -8,6 +16,14 @@ public void mainFunc1(){
 		}else {
 			System.out.println("1. 로그아웃");
 		}
+}
+public void mainFunc6(){
+	System.out.println("ㅡㅡㅡㅡㅡㅡㅡㅡ 메인화면 ㅡㅡㅡㅡㅡㅡㅡㅡ");
+	if(!um.isLogin()) {
+		System.out.println("1. 로그인/회원가입");
+	}else {
+		System.out.println("1. 로그아웃");
+	}
 }
 public void mainFunc2(){
 	System.out.println("ㅡㅡㅡㅡㅡㅡㅡㅡ 메인화면 ㅡㅡㅡㅡㅡㅡㅡㅡ");
