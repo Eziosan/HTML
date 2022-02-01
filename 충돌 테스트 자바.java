@@ -65,37 +65,6 @@ voidsa(asdasd)
 	
 	
 	
-	//1-2 회원가입
-	public void signUp() {
-		System.out.print("ID : ");
-		String user_id = sc.next();
-		System.out.print("패스워드 : ");
-		String password = sc.next();
-		System.out.print("이름 : ");
-		String name = sc.next();
-		System.out.print("성별 : ");
-		String sex = sc.next();
-		System.out.print("생년월일 : ");
-		String birth = sc.next();
-		System.out.print("이메일 : ");
-		String email = sc.next();
-		System.out.print("전화번호 : ");
-		String phone = sc.next();
-		System.out.print("주소 : ");
-		String address = sc.next();
-		
-		UserInfo ui = new UserInfo(user_id, password, name, sex, birth, email, phone,
-				address);
-		
-		if(um.signUp(ui)) {
-			System.out.println("회원가입 성공"); 
-		}else {
-			System.out.println("회원가입 실패!!");
-		}
-		
-		
-	}
-	
 	// 2. 곡 검색
 	//default설정. 메인화면으로 가기 추가
 	public void searchMusic() {
