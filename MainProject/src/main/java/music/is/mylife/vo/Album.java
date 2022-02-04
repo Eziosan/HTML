@@ -10,8 +10,9 @@ public class Album {
 	private String album_date;
 	private int album_star;
 	private int album_person;
+	
 	private int singer_id;
-	private String pic;
+	private String album_img;
 
 
 }

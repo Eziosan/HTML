@@ -23,7 +23,8 @@ $(document).ready(function(){
 </script>
 </head>
 <body>
-
+	<a href="test">테스트</a>
+	
 	<%-- <a href="#login" class="login">로그인</a>
 	<jsp:include page="/WEB-INF/views/popupPage.jsp" /> --%>
 	

@@ -13,7 +13,7 @@ public class Song {
 	private String lyrics;
 	
 	private int singer_id;
-	private String pic;
+	private String song_img;
 	private String video;
 	private int recommend;
 

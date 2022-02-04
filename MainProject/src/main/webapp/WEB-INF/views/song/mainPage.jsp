@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-<jsp:include page="/WEB-INF/views/menu/menu.jsp" />
+<jsp:include page="/WEB-INF/views/menu/header.jsp" />
 	<h1>곡 페이지</h1>
 	
 	이런식으로 사진 출력
