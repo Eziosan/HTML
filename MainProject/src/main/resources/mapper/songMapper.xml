@@ -6,7 +6,16 @@
   <!-- 인터페이스 위치 지정!!!!!! -->
 <mapper namespace="music.is.mylife.dao.SongMapper">
 
-
+	<!--<select id="getBanner" parameterType="string" resultType="string">
+		배너 사진 URL을 가져오는 SQL문
+		select pic from singer where main_sid<=3 order by main_sid asc;
+	</select> -->
+	
+	<!--<select id="getAlbumPic" parameterType="string" resultType="string">
+		앨범 사진 URL을 가져오는 SQL문 2중조인
+		select pic from album_pic where album_id=#{album_id} order by main_sid asc;
+	</select> -->
+	
 
 
 </mapper>

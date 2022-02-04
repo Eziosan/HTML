@@ -16,4 +16,10 @@ public class SongController {
 //		
 //		
 //	}
+	
+	@RequestMapping(value="mainPage",method=RequestMethod.GET)
+	public String mainPage() {
+		
+		return "song/mainPage";
+	}
 }
