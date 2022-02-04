@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <html>
 <head>
-	<title>메인 페이지</title>
+	<title>로그인</title>
 <link rel="stylesheet" type="text/css"
 	href="./resources/css/default.css">
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
@@ -63,15 +63,15 @@
 			<div class="agree">
 				<input type="checkbox" id="chk1_4"><label for="chk1_4">[필수]개인정보
 					수집 및 이용 동의</label> 
-					<a href="#a" >전문보기</a>
+					<a href="#login" >전문보기</a>
 			</div>
 
 		</div>
 	
 		<div class="txt_center">
-			<a href="#a" class="btn_type1">상담신청</a> 
+			<a href="#login" class="btn_type1">상담신청</a> 
 		</div>
-		<a href="#a" class="close">닫기</a>
+		<a href="#login" class="close">닫기</a>
 	</div>
 
 	<div class="dim"></div>

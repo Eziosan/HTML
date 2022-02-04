@@ -7,8 +7,9 @@
 	href="./resources/css/default.css">
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 <script type="text/javascript">
+
 $(document).ready(function(){
-	$(".open").on('click', function(){
+	$(".join").on('click', function(){
 		$(".popup").show();
 		$(".dim").show();
 
@@ -16,7 +17,6 @@ $(document).ready(function(){
 	$(".popup .close").on('click', function(){
 		$(this).parent().hide();
 		$(".dim").hide();
-
 	});
 });
 
@@ -24,9 +24,11 @@ $(document).ready(function(){
 </head>
 <body>
 
-	<a href="#a" class="open">로그인</a>
+	<%-- <a href="#login" class="login">로그인</a>
+	<jsp:include page="/WEB-INF/views/popupPage.jsp" /> --%>
 	
-	<jsp:include page="/WEB-INF/views/popupPage.jsp" />
+	<a href="#join" class="join">회원가입</a>
+	<jsp:include page="/WEB-INF/views/joinPopup.jsp" />
 
 </body>
 </html>
