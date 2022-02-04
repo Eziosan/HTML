@@ -15,5 +15,6 @@ public class Song {
 	private int singer_id;
 	private String pic;
 	private String video;
+	private int recommend;
 
 }

@@ -8,4 +8,5 @@ public class SongMaker {
 	private String maker_name;
 	private int song_id;
 	private int maker_type;
+	private String pic;
 }

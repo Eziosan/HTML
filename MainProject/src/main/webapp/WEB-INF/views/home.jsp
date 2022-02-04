@@ -28,7 +28,7 @@ $(document).ready(function(){
 	<jsp:include page="/WEB-INF/views/popupPage.jsp" /> --%>
 	
 	<a href="#join" class="join">회원가입</a>
-	<jsp:include page="/WEB-INF/views/joinPopup.jsp" />
+	<jsp:include page="/WEB-INF/views/user/joinPopup.jsp" />
 
 </body>
 </html>

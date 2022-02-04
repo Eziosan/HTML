@@ -20,8 +20,9 @@
   	
   <mappers>
     <mapper resource="./mapper/albumMapper.xml"/>
-    <mapper resource="./mapper/searchMapper.xml"/>
+    <mapper resource="./mapper/mediaMapper.xml"/>
     <mapper resource="./mapper/singerMapper.xml"/>
+    <mapper resource="./mapper/sMakerMapper.xml"/>
     <mapper resource="./mapper/songMapper.xml"/>
     <mapper resource="./mapper/tagMapper.xml"/>
     <mapper resource="./mapper/userMapper.xml"/>

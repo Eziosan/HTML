@@ -10,5 +10,6 @@ public class Singer {
 	private int singer_like;
 	private String pic;
 	private String video;
+	private int recommend;
 
 }

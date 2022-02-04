@@ -1,5 +1,5 @@
 package music.is.mylife.dao;
 
-public interface SearchMapper {
+public interface SMakerMapper {
 
 }
