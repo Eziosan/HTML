@@ -28,4 +28,15 @@ public class LoginInterceptor extends HandlerInterceptorAdapter{
 //		
 //		return super.preHandle(request, response, handler);
 //	}
+
+	//나중에 추가 appServlet에
+//	<beans:bean id="LoginInterceptor" class="music.is.mylife.interceptor.LoginInterceptor"></beans:bean>
+//	
+//	<mvc:interceptors>
+//		<mvc:interceptor>
+//			<mvc:mapping path="/song/*"/>
+//			
+//			<beans:ref bean="LoginInterceptor"/>
+//		</mvc:interceptor>
+//	</mvc:interceptors>
 }

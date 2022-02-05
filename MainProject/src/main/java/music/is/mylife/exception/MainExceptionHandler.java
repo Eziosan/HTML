@@ -10,15 +10,15 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 public class MainExceptionHandler {
 	
 //	//모든 예외 처리
-//	@ExceptionHandler(Exception.class)
-//	//404 에러 처리
-//	@ResponseStatus(HttpStatus.NOT_FOUND)
-//	public String errorHandler_404(Model model) {
-//		
-//		model.addAttribute("errorMsg", "404 error");
-//		
-//		return "/error";
-//	}
+	@ExceptionHandler(Exception.class)
+	//404 에러 처리
+	@ResponseStatus(HttpStatus.NOT_FOUND)
+	public String errorHandler_404(Model model) {
+		
+		model.addAttribute("errorMsg", "404 error");
+		
+		return "/error";
+	}
 //	
 //	//런타임 에러 처리
 //	@ExceptionHandler(RuntimeException.class)
@@ -28,4 +28,5 @@ public class MainExceptionHandler {
 //		model.addAttribute("errorMsg", "500 error");
 //		return "/error";
 //	}
+	
 }
