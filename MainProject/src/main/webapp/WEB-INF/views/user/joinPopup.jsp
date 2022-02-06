@@ -34,8 +34,10 @@
 			</tr>
 		</table>
 		<input type="submit" value="회원가입">
-		<a href="#join" class="close">X</a>
 		</form>
+		<a href="#join" class="close">X</a>
 </div>
+
+<div class="dim"></div>
 </body>
 </html>
