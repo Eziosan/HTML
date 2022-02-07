@@ -6,7 +6,23 @@
   <!-- 인터페이스 위치 지정!!!!!! -->
 <mapper namespace="music.is.mylife.dao.TagMapper">
 
+		<!-- 
+			song_id를 입력받아서 해당 곡의 상위 태그 3개를 반환 하는 sql문
+		<select id="selectTag" parameterType="int" resultType="tag">
+			select t.tag_name
+			from tag t, song_tag_detail st 
+			where rownum between 1 and 3 and t.tag_id = st.tag_id and st.song_id = #{song_id} 
+			order by recommend desc
+		</select> 
 
-
-
+			
+			song_id, tag_id를 입력받아서 해당곡의 특정 태그의 추천수를 1개 증가시키는 sql문
+		<update id="updateSongTagRecommend" parameterType="tag">
+			update song_tag_detail set recommend = recommend +1
+			where tag_id=#{tag_id} and song_id=#{song_id}
+		</update>
+		
+		
+		
+		-->
 </mapper>
