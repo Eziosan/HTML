@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <!-- 인터페이스 위치 지정!!!!!! -->
+<mapper namespace="music.is.mylife.dao.SongMapper">
+
+	<!--<select id="selectBanner" parameterType="string" resultType="string">
+		배너 사진 URL을 가져오는 SQL문
+		select song_img 
+		from (select * from song_banner order by recommend desc)
+		where rownum = 1 and song_id=#{song_id}
+	</select> -->
+	
+	<!--<select id="selectAlbumImg" parameterType="int" resultType="string">
+		앨범 사진 URL을 가져오는 SQL문 2중조인
+		select album_img 
+		from album 
+		where album_id = #{album_id};
+	</select> -->
+	
+	<!--
+	 	좋아요 수를 가져오는 SQL문 곡 명으로 가져올 생각임.
+	 <select id="selectSongLike" parameterType="int" resultType="int">
+		select song_like from song where song_id = #{song_id}
+	</select>
+	-->
+	<!-- 
+		곡명을 입력받아 좋아요 수를 증가시키는 SQL문
+		<update id="plusSongLike" parameterType="int" >
+			update song set song_like = song_like +1 where song_id=#{song_id}
+		</update>
+		
+		곡명을 입력받아 좋아요 수를 증가시키는 SQL문
+		<update id="minusSongLike" parameterType="int" >
+			update song set song_like = song_like - 1 where song_id=#{song_id}
+		</update>
+ 	-->
+ 	
+ 	
+ 	
+		
+ 	 
+
+</mapper>
