@@ -25,13 +25,7 @@ public class HomeController {
 		
 		return "test";
 	}
-	
-	
-	@RequestMapping(value = "user/login", method = RequestMethod.GET)
-	public String login() {
-		
-		return "user/loginPage";
-	}
+
 
 	
 }

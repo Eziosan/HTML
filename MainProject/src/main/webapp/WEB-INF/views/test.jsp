@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!doctype html>
 <html lang="en">
   <head>
@@ -22,12 +23,14 @@
     
       
       </style>
-  <script async src='/cdn-cgi/bm/cv/669835187/api.js'></script></head>
+  </head>
+  <body>
+   </head>
   <body>
          
     
     
-    <header class="p-2 mb-3 bg-white fixed-top align-items-center border-bottom border-info">
+    <header class="p-2 mb-3 bg-white fixed-top align-items-center border-bottom border-info" style="font-family: 'Noto Sans KR', sans-serif;">
     <div class="container-fluid w-75">
       <div class="d-flex flex-wrap align-items-center justify-content-start ">
 <!--          justify-content-lg-start-->
@@ -35,12 +38,18 @@
           <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap"><use xlink:href="#bootstrap"></use></svg>
         </a>
 
-        <ul class="nav col-12 col-lg-auto fw-bold me-lg-auto mlmb-2 justify-content-center mb-md-0">
-          <li><a href="https://www.naver.com/" class="nav-link px-2 link-secondary">곡</a></li>
-          <li><a href="#" class="nav-link px-2 link-dark">앨범</a></li>
-          <li><a href="#" class="nav-link px-2 link-dark">가수</a></li>
+
+
+<!-- 메뉴바 -->
+        <ul class="nav col-12 col-lg-auto me-lg-auto mlmb-2 justify-content-center mb-md-0">
+          <li><div  class="nav-link px-2 w-100" ><img src="%EC%B4%88%EC%95%882.png" alt="img" width="" height="40" style="margin-right: 30px"> </div></li>
+          <li><a href="https://www.naver.com/" class="nav-link px-2 mt-3   mb-0 link-secondary" style="">곡</a></li>
+          <li><a href="#" class="nav-link px-2 mt-3 link-dark">앨범</a></li>
+          <li><a href="#" class="nav-link px-2 mt-3 link-dark">가수</a></li>
         </ul>
 
+
+<!-- 검색 툴바 -->
         <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
           <input type="search" class="form-control" placeholder="# 태그를 검색해보세요"  aria-label="Search" control-id="ControlID-2" style="background: #F2F2F2">
         </form>
@@ -53,12 +62,23 @@
           </a>
                  
             
-            
+         
+<!-- 로그인, 회원가입 -->            
           <ul class="dropdown-menu text-small" aria-labelledby="dropdownUser1">
+            
+            <c:if test="${user_id == null }">
+            <li><a class="dropdown-item" href="/mylife/user/login">로그인</a></li>
+            <li><a class="dropdown-item" href="/mylife/user/join">회원가입</a></li>
+            </c:if>
+            
+            <c:if test="${user_id != null }">
             <li><a class="dropdown-item" href="#">프로필</a></li>
             <li><a class="dropdown-item" id="openModalBtn" href="#">마이 리스트</a></li>
             <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="#">Sign out</a></li>
+            <li><a class="dropdown-item" href="/mylife/user/logout">Sign out</a></li>
+            </c:if>
+            
+            
           </ul>
         </div>
       </div>
@@ -68,112 +88,29 @@
         
   </header>
    
-      <div class="modal" id="modalBox" tabindex="-1">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">Modal title</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <p>Modal body text goes here.</p>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-      
-      
-      
-<script>
-      
-     // 모달 버튼에 이벤트를 건다.
-        $('#openModalBtn').on('click', function(){
-        $('#modalBox').modal('show');
-        });
-        
 
 
-        // 모달 안의 취소 버튼에 이벤트를 건다.
-        $('#closeModalBtn').on('click', function(){
-        $('#modalBox').modal('hide');
-
-           
-       }))
-
-       
- </script>
-
-
-<!--
-      <div class="modal modal-signin position-static d-block bg-secondary py-5" tabindex="-1" role="dialog" id="modalBox" >
-  <div class="modal-dialog" role="document">
-    <div class="modal-content rounded-5 shadow">
-      <div class="modal-header p-5 pb-0 border-bottom-0 col-12">
-         <h5 class="modal-title">Modal title</h5> 
-       
-          <button type="button" class="btn-close" id="closeModalBtn" data-bs-dismiss="modal" aria-label="Close"></button>
-         
-         
-      </div>
-        
-         <div class="row text-center" style="width: 100%"> 
-             <div style="float: none; margin:0 auto" >
-             
-              <img src="%EC%B4%88%EC%95%882.png" alt="img" width="50%" height="50%">
-                </div>
-          </div>
-
-      <div class="modal-body p-5 pt-0">
-        <form class="">
-          <div class="form-floating mb-3">
-            <input type="email" class="form-control rounded-4" id="floatingInput" placeholder="name@example.com" control-id="ControlID-1">
-            <label for="floatingInput">ID</label>
-          </div>
-          <div class="form-floating mb-3">
-            <input type="password" class="form-control rounded-4" id="floatingPassword" placeholder="Password" control-id="ControlID-2">
-            <label for="floatingPassword">Password</label>
-          </div>
-          <button class="w-100 mb-2 btn btn-lg rounded-4 btn-primary" type="submit" control-id="ControlID-3">Sign in</button>
-          
-          <hr class="my-4">
-          
-          <button class="w-100 py-2 mb-2 btn btn-outline-dark rounded-4" type="submit" control-id="ControlID-4">
-            <svg class="bi me-1" width="16" height="16"><use xlink:href="#twitter"></use></svg>
-            Sign up
-          </button>
-         
-        </form>
-      </div>
-    </div>
-  </div>
-</div>    
--->
       
       
       
 <main>
-    
-    
-
 <!-- 메인 페이지 -->
     
-  <div class="album py-5 bg-white mt-4" style="font-family: 'Noto Sans KR', sans-serif;">
-    <div class="container">
+  <div class="album py-5 bg-white" style="font-family: 'Noto Sans KR', sans-serif; margin-top: 80px">
+    <div class="container" >
 
-    <div class="titles fw-bold mb-3" style="font-size: 25px;">
+    <div class="titles fw-bold mb-4" style="font-size: 25px;">
         #겨울에 듣기 좋은 노래
         </div>
         
  
         
 <!-- 곡 화면-->        
-      <div class="row row-cols-sm-3 row-cols-lg-5">
+      <div class="row row-cols-sm-3 row-cols-lg-5" >
 <!--          row-cols-1  row-cols-sm-2 row-cols-md-3 g-3 -->
+
+
+
 <!-- 1번 곡 프로필-->
         <div class="col">
           <div class="card border border-white">
@@ -196,6 +133,9 @@
             </div>
           </div>
         </div>
+          
+          
+          
           
 <!--  2번 곡 프로필 -->
       <div class="col">
@@ -220,6 +160,9 @@
           </div>
         </div>
         
+        
+        
+        
 <!--  3번 곡 프로필 -->
       <div class="col">
           <div class="card border border-white">
@@ -243,6 +186,9 @@
           </div>
         </div>
           
+          
+          
+          
 <!--  4번 곡 프로필 -->
       <div class="col">
           <div class="card border border-white">
@@ -265,6 +211,9 @@
             </div>
           </div>
         </div>
+          
+          
+          
           
 <!--  5번 곡 프로필 -->
       <div class="col">
@@ -290,17 +239,21 @@
           
           
         </div>
+
         </div>
         
     
       </div>
     </div>
 
+
+
+
     <!-- 메인 페이지 -->
   <div class="album py-5 bg-white" style="font-family: 'Noto Sans KR', sans-serif;">
     <div class="container">
 
-    <div class="titles fw-bold mb-3" style="font-size: 25px;">
+    <div class="titles fw-bold mb-4" style="font-size: 25px; ">
         #여름에 듣기 좋은 노래
         </div>        
 <!-- 곡 화면-->        
@@ -329,6 +282,9 @@
           </div>
         </div>
           
+          
+          
+          
 <!--  2번 곡 프로필 -->
       <div class="col">
           <div class="card border border-white">
@@ -351,6 +307,10 @@
             </div>
           </div>
         </div>
+        
+        
+        
+        
         
 <!--  3번 곡 프로필 -->
       <div class="col">
@@ -375,6 +335,10 @@
           </div>
         </div>
           
+          
+          
+          
+          
 <!--  4번 곡 프로필 -->
       <div class="col">
           <div class="card border border-white">
@@ -397,6 +361,11 @@
             </div>
           </div>
         </div>
+          
+          
+          
+          
+          
           
 <!--  5번 곡 프로필 -->
       <div class="col">
@@ -430,5 +399,5 @@
 
 </main>
 
-  <script type="text/javascript">(function(){window['__CF$cv$params']={r:'6d92770c9b8f350e',m:'FOa7nQ9_4UxjNBSKP08nsf09deji_oUFVvUJyuojbx4-1644130444-0-Ad0zIEq7TyC9f9WcB1ONhnf1NRJQeQKcfw63XunFWW+5Weov0sTBO6uTRqErbjiNLWJE3KdP3xzs2waCj8M1klghEgMw7zH3H7VKvR6rTYkptzMtuKZmF5uQQdOft9kLDRdEM8VR359VaGYuqPifPTL0EQL/UDynqt9Dfyu5Y4Hw7MNJAKsl82hORJvGWQLooA==',s:[0x9f1d549bde,0x8d8a13d09f],}})();</script></body>
+  </body>
 </html>
