@@ -39,6 +39,6 @@
 	
 	<button class="join">회원가입</button>
 	<jsp:include page="/WEB-INF/views/user/joinPopup.jsp" />
-
+	<a href="song/mainPage">송페이지 이동</a>
 </body>
 </html>

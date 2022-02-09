@@ -5,7 +5,20 @@
   
   <!-- 인터페이스 위치 지정!!!!!! -->
 <mapper namespace="music.is.mylife.dao.SingerMapper">
-
+	
+	<!-- singer_id를 받아서 가수 정보 ( 가수 이름, 가수 사진 )을 불러오는 sql문 -->
+	<select id="selectSinger" parameterType="int" resultType="singer">
+		select s.singer_name, sp.singer_img
+		from singer s , singer_pic sp
+		where s.singer_id = sp.singer_id and s.singer_id = #{singer_id} 
+	</select>
+	
+	<!-- singer_id를 받아서 해당 가수와 관련된 영상을 불러오는 sql문  -->
+	<select id="selectVideo" parameterType="int" resultType="string">
+		select sv.video
+		from singer s , singer_video sv
+		where s.singer_id = sv.singer_id and s.singer_id = #{singer_id} 
+	</select>
 
 
 

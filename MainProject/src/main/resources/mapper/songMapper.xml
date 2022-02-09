@@ -6,12 +6,12 @@
   <!-- 인터페이스 위치 지정!!!!!! -->
 <mapper namespace="music.is.mylife.dao.SongMapper">
 
-	<!--<select id="selectBanner" parameterType="string" resultType="string">
-		배너 사진 URL을 가져오는 SQL문
+		<!--  배너 사진 URL을 가져오는 SQL문 -->
+	<select id="selectBanner" parameterType="int" resultType="string">
 		select song_img 
 		from (select * from song_banner order by recommend desc)
 		where rownum = 1 and song_id=#{song_id}
-	</select> -->
+	</select> 
 	
 	<!--<select id="selectAlbumImg" parameterType="int" resultType="string">
 		앨범 사진 URL을 가져오는 SQL문 2중조인

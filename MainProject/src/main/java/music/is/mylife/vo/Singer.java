@@ -9,8 +9,4 @@ public class Singer {
 	private String country;
 	private int singer_like;
 	
-	private String singer_img;
-	private String video;
-	private int recommend;
-
 }
