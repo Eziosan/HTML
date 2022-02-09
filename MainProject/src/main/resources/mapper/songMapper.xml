@@ -14,33 +14,42 @@
 	</select> 
 	
 	<!--<select id="selectAlbumImg" parameterType="int" resultType="string">
-		앨범 사진 URL을 가져오는 SQL문 2중조인
+		앨범 사진 URL을 가져오는 SQL문 
 		select album_img 
 		from album 
-		where album_id = #{album_id};
+		where album_id = #{album_id}
 	</select> -->
 	
 	<!--
 	 	좋아요 수를 가져오는 SQL문 곡 명으로 가져올 생각임.
 	 <select id="selectSongLike" parameterType="int" resultType="int">
-		select song_like from song where song_id = #{song_id}
+		select song_like 
+		from song 
+		where song_id = #{song_id}
 	</select>
 	-->
 	<!-- 
 		곡명을 입력받아 좋아요 수를 증가시키는 SQL문
 		<update id="plusSongLike" parameterType="int" >
-			update song set song_like = song_like +1 where song_id=#{song_id}
+			update song 
+			set song_like = song_like +1 
+			where song_id=#{song_id}
 		</update>
 		
-		곡명을 입력받아 좋아요 수를 증가시키는 SQL문
+		곡명을 입력받아 좋아요 수를 감소시키는 SQL문
 		<update id="minusSongLike" parameterType="int" >
-			update song set song_like = song_like - 1 where song_id=#{song_id}
+			update song 
+			set song_like = song_like - 1 
+			where song_id=#{song_id}
 		</update>
  	-->
  	
- 	
- 	
-		
- 	 
+ 	<!-- 	곡 아이디를 받아 곡명, 가수 이름, 국적, 앨범 이름, 앨범 날짜, 장르 가져오는 SQL문
+ 		 <select id="selectSongOne" parameterType="int" resultType="song">
+ 			select so.song_name,si.singer_name,si.country,so.album_name,so.album_date,so.genre
+            from song so, singer si
+            where so.singer_id = si.singer_id and so.song_id=#{song_id} 	 
+ 		 </select>
+ 	 -->
 
 </mapper>
