@@ -48,7 +48,7 @@
 		<a href="mypage">마이페이지</a>
 	</c:if>
 	
-	<a href="song/mainPage">송페이지 이동</a>
+	<a href="song/song2">송페이지 이동</a>
 
 
 </body>
