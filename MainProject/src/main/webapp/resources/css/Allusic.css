@@ -1,0 +1,29 @@
+
+.banner {
+        margin: 0 auto;
+  
+
+        background: linear-gradient(
+            to right,
+            rgba(20, 20, 20, 1) 10%,
+
+            rgba(20, 20, 20, 0.95) 40%,
+            rgba(20, 20, 20, 0) 50%,
+            rgba(20, 20, 20, 0.95) 60%,
+            rgba(20, 20, 20, 1) 100%
+          ), url("%EA%B7%B8%EB%9D%BC%EB%8D%B0%EC%9D%B4%EC%85%98.png");
+
+}
+
+.gradient {
+    
+     background: linear-gradient(
+            to right,
+            rgba(20, 20, 20, 1) 10%,
+
+            rgba(20, 20, 20, 0.95) 40%,
+            rgba(20, 20, 20, 0) 50%,
+            rgba(20, 20, 20, 0.95) 60%,
+            rgba(20, 20, 20, 1) 100%
+          ), url("IU.jpg")
+}

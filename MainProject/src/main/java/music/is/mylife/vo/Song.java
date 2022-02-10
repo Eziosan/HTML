@@ -18,5 +18,8 @@ public class Song {
 	private String writer;
 	private String composer;
 	
+	private String country;
+	private String singer_name;
+	
 	
 }

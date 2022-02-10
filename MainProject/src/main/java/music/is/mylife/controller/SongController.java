@@ -29,17 +29,17 @@ public class SongController {
 	@Autowired
 	SongService ss;
 	
-	@RequestMapping(value="mainPage",method=RequestMethod.GET)
+	@RequestMapping(value="song2",method=RequestMethod.GET)
 	public String mainPage( Model model) {
 		
 		int a=1;
 		
-		String banner = ss.selectBanner(1);
+		String banner = ss.selectBanner(9);
 		String ai = ss.selectAlbumImg(1);
-		int sl = ss.selectSongLike(1);
+		int sl = ss.selectSongLike(9);
 		ss.plusSongLike(1);
 		ss.minusSongLike(2);
-		Song song = ss.selectSongOne(1);
+		Song song = ss.selectSongOne(9);
 		ArrayList<Tag> tag = ss.selectTag(1);
 		
 		//ss.plusSongTagRecommend(1);
@@ -53,8 +53,8 @@ public class SongController {
 		
 		model.addAttribute("banner", banner);
 		model.addAttribute("ai", ai);
-		model.addAttribute("sl",sl);
+		model.addAttribute("Song",song);
 		
-		return "song/mainPage";
+		return "song/song2";
 	}
 }

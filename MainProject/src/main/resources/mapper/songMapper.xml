@@ -46,7 +46,7 @@
  	
  		<!-- 곡 아이디를 받아 곡명, 가수 이름, 국적, 앨범 이름, 앨범 날짜, 장르 가져오는 SQL문 -->
  		 <select id="selectSongOne" parameterType="int" resultType="song">
- 			select so.song_name,si.singer_name,si.country,so.album_name,so.album_date,so.genre
+ 			select *
             from song so, singer si
             where so.singer_id = si.singer_id and so.song_id=#{song_id} 	 
  		 </select>
