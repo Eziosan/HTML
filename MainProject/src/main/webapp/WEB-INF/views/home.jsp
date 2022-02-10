@@ -32,7 +32,7 @@
 	<a href="test">메인화면</a>
 	<br>
 
-	<c:if test="${user_id == null }">
+	<c:if test="${user_id == null  }">
 		<%-- <button class="join">회원가입</button>
 		<jsp:include page="/WEB-INF/views/user/joinPopup.jsp" />
 		<button class="login">로그인</button> --%>
