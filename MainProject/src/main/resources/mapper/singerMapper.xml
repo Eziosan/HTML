@@ -6,12 +6,6 @@
   <!-- 인터페이스 위치 지정!!!!!! -->
 <mapper namespace="music.is.mylife.dao.SingerMapper">
 	
-	<!-- singer_id를 받아서 가수 정보 가수 이름을 불러오는 sql문 -->
-	<select id="selectSinger" parameterType="int" resultType="singer">
-		select singer_name
-		from singer
-		where singer_id = #{singer_id} 
-	</select>
 	
 	
 
