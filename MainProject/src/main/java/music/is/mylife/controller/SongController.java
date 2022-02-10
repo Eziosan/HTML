@@ -1,5 +1,7 @@
 package music.is.mylife.controller;
 
+import java.util.ArrayList;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import music.is.mylife.service.SongService;
 import music.is.mylife.vo.Song;
+import music.is.mylife.vo.Tag;
 
 @RequestMapping("song")
 @Controller
@@ -32,10 +35,25 @@ public class SongController {
 		int a=1;
 		
 		String banner = ss.selectBanner(1);
+		String ai = ss.selectAlbumImg(1);
+		int sl = ss.selectSongLike(1);
+		ss.plusSongLike(1);
+		ss.minusSongLike(2);
+		Song song = ss.selectSongOne(1);
+		ArrayList<Tag> tag = ss.selectTag(1);
 		
-		logger.info("Banner : {}", banner);
+		//ss.plusSongTagRecommend(1);
+		//ss.minusSongTagRecommend(2);
+		
+		logger.info("banner : {}", banner);
+		logger.info("AlbumImg : {}", ai);
+		logger.info("sl : {}", sl);
+		logger.info("Song : {}", song);
+		logger.info("tag : {}", tag);
 		
 		model.addAttribute("banner", banner);
+		model.addAttribute("ai", ai);
+		model.addAttribute("sl",sl);
 		
 		return "song/mainPage";
 	}
