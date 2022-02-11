@@ -36,7 +36,7 @@ public class SongController {
 		
 		String banner = ss.selectBanner(9);
 		String ai = ss.selectAlbumImg(1);
-		int sl = ss.selectSongLike(9);
+		Integer sl = ss.selectSongLike(9);
 		ss.plusSongLike(1);
 		ss.minusSongLike(2);
 		Song song = ss.selectSongOne(9);

@@ -9,7 +9,7 @@ public interface SongMapper {
 	//앨범 아이디로 앨범 사진 URL을 가져오는 SQL문 //
 	public String selectAlbumImg(int song_id);
 	//곡 아이디로 곡 좋아요 수를 가져오는 SQL문//
-	public int selectSongLike(int song_id);
+	public Integer selectSongLike(int song_id);
 	//곡 아이디를 입력받아 좋아요 수를 증가시키는 SQL문//
 	public int plusSongLike(int song_id);
 	//곡 아이디를 입력받아 좋아요 수를 감소시키는 SQL문//

@@ -32,7 +32,7 @@ public class SongService {
 		return sdao.selectAlbumImg(song_id);
 	}
 	
-	public int selectSongLike(int song_id) {
+	public Integer selectSongLike(int song_id) {
 		
 		
 		return sdao.selectSongLike(song_id);

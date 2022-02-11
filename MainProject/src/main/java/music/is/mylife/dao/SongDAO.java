@@ -35,10 +35,10 @@ public class SongDAO {
 		return aimg;
 	}
 	
-	public int selectSongLike(int song_id) {
+	public Integer selectSongLike(int song_id) {
 		SongMapper mapper = session.getMapper(SongMapper.class);
 		
-		int slike = mapper.selectSongLike(song_id);
+		Integer slike = mapper.selectSongLike(song_id);
 		
 		return slike;
 	}

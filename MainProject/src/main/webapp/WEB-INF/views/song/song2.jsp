@@ -25,11 +25,6 @@
   </style>
 </head>
          
-
-
-         
-    
-    
     <header class="p-2 mb-3 fixed-top align-items-center " style="font-family: 'Noto Sans KR', sans-serif;">
     <div class="container-fluid w-75">
       <div class="d-flex flex-wrap align-items-center justify-content-start ">
@@ -39,7 +34,7 @@
         </a>
 
         <ul class="nav col-12 col-lg-auto me-lg-auto mlmb-2 justify-content-center mb-md-0 text-white">
-          <li><div  class="nav-link px-2 w-100" ><img src="../resources/img/songpage_img/곡용.png" alt="img" width="" height="40" style="margin-right: 30px"> </div></li>
+          <li><div  class="nav-link px-2 w-100" ><img src="../resources/img/logo.png" alt="img" width="" height="40" style="margin-right: 30px"> </div></li>
           <li><a href="https://www.naver.com/" class="nav-link px-2 mt-3   mb-0 text-white" style="">곡</a></li>
           <li><a href="#" class="nav-link px-2 mt-3 text-white">앨범</a></li>
           <li><a href="#" class="nav-link px-2 mt-3 text-white">가수</a></li>
@@ -82,7 +77,7 @@
 -->
     <div class="banner1" style="background-color: rgba(0,0,0);">
 
-            <img src="../resources/img/songpage_img/${Song.song_banner }" style="position:relative;" width="800px">
+            <img src="../resources/img/banner/${Song.song_banner }" style="position:relative;" width="800px">
 
         
         <div class="gradient"></div>
@@ -91,7 +86,7 @@
   <div class="곡정보 자리 w-100 border" style="height: 232px;  padding: 13px 16px 22px; background-color: white;">
 <!--      background-color: rgba(199,221,253);-->
     <div class="정보 자리잡기용 m-auto" style="width:  960px">
-    <img src="../resources/img/songpage_img/LILAC 아이유 앨범 사진.jpg" width="230px" style="float: left; margin-left: -50px; margin-top: -32px; vertical-align: top;" >
+    <img src="../resources/img/album/LILAC(IU)_album.jpg" width="230px" style="float: left; margin-left: -50px; margin-top: -32px; vertical-align: top;" >
         
      <div class="곡정보 주황" style="width: 745px; height: 197px; border-radius: 10px;  float: right; font-family: 'Noto Sans KR', sans-serif; text-align: left; margin-top: 5px;">
 <!--         background-color: rgba(255,229,208);-->
@@ -117,18 +112,18 @@
          <div class="row" style="width: 730px; height: 58px; margin-top: 8px; align-content: center; ">
 
              <div class="col-2" style="align-content: center; ">
-                <img src="../resources/img/songpage_img/like.png" width="30px">
+                <img src="../resources/img/like.png" width="30px">
                  <span> 좋아요 </span>
              </div>
              
              <div class="col-2">
-                 <img src="../resources/img/songpage_img/tag.JPG" width="30px">
+                 <img src="../resources/img/add_tag.JPG" width="30px">
                  <span> 태그  </span>
 
              </div>
              
              <div class="col-2">
-             <img src="../resources/img/songpage_img/more.JPG" width="30px">
+             <img src="../resources/img/more.JPG" width="30px">
                  <span> 더보기 </span>
                  
              </div>
@@ -154,7 +149,7 @@
                 <div class="row 가수 프로필 mt-2" style="height: 150px">
                     <div class="col-3 text-center">
                         <div class="프로필 카드" style="margin-right: auto; margin-left: auto; margin-top: 5px">
-                        <img src="../resources/img/songpage_img/IUP.jpg" width="80px" style="border-radius: 50%">
+                        <img src="../resources/img/profile/IU_profile.jpg" width="80px" style="border-radius: 50%">
                         <div class="가수명" style="margin-top: 5px; font-size: 25px">
                             ${Song.singer_name }
                         </div>
@@ -174,7 +169,7 @@
                 <div class="row 작사 프로필" style="height: 150px">
                     <div class="col-3 text-center mt-2">
                         <div class="프로필 카드" style="margin-right: auto; margin-left: auto; margin-top: 5px">
-                        <img src="../resources/img/songpage_img/IUP.jpg" width="80px" style="border-radius: 50%">
+                        <img src="../resources/img/profile/IU_profile.jpg" width="80px" style="border-radius: 50%">
                         <div class="작사가명" style="margin-top: 5px; font-size: 25px">
                             ${Song.writer }
                         </div>
@@ -193,7 +188,7 @@
                 <div class="row 작사 프로필 mt-2" style="height: 150px">
                     <div class="col-3 text-center">
                         <div class="프로필 카드" style="margin-right: auto; margin-left: auto; margin-top: 5px">
-                        <img src="../resources/img/songpage_img/Dr.JO.png" width="80px" style="border-radius: 50%">
+                        <img src="../resources/img/profile/Dr.JO_profile.png" width="80px" style="border-radius: 50%">
                         <div class="작곡가명" style="margin-top: 5px; font-size: 25px">
                             ${Song.composer }
                         </div>
@@ -203,7 +198,7 @@
                     
                     <div class="col-3 text-center">
                         <div class="프로필 카드" style="margin-right: auto; margin-left: auto; margin-top: 5px">
-                        <img src="../resources/img/songpage_img/profile2.jpg" width="80px" style="border-radius: 50%">
+                        <img src="../resources/img/profile/basic_profile.jpg" width="80px" style="border-radius: 50%">
                         <div class="작곡가명" style="margin-top: 5px; font-size: 25px">
                             Dr.Jo
                         </div>
