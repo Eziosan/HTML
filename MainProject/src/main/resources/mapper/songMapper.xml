@@ -28,6 +28,43 @@
 		where song_id = #{song_id}
 	</select>
 	
+	
+	<!--[메인 페이지] 
+		조회수가 높은 순으로 상위 5개의 곡 출력
+		아이디: selectTopSong
+		파라미터 타입: Song
+		리턴 타입: ArrayList<Song>
+		
+		* 작거나 같다 <=  ->  lte/le
+		* 부등호(< >) 사용 -> <![CDATA[ ]]> 문법 사용
+	 -->
+	<select id="selectTopSong" parameterType="song" resultType="song">
+		<![CDATA[
+	    	select * from (select singer.singer_id, singer.singer_name,
+				song.song_id, song.song_name, song.album_name, to_char(song.album_date,'YYYY') as album_date, song.hit, song.album_img
+			from singer singer, song song
+			where singer.singer_id = song.singer_id
+			order by song.hit desc) where rownum <= 5
+    	]]>
+	</select>
+	
+	
+	<!--[메인 페이지] 
+		좋아요가 높은 순으로 상위 5개 곡 출력
+		아이디: selectLikeSong
+		파라미터 타입: Song
+		리턴 타입: ArrayList<Song>
+	 -->
+	<select id="selectLikeSong" parameterType="song" resultType="song">
+		<![CDATA[
+			select * from (select singer.singer_id, singer.singer_name,
+				song.song_id, song.song_name, song.album_name, to_char(song.album_date,'YYYY') as album_date, song.song_like, song.album_img
+			from singer singer, song song
+			where singer.singer_id = song.singer_id
+			order by song.song_like desc) where rownum <= 5
+		]]>
+	</select>
+	
 	 
 		<!-- 곡 아이디를 입력받아 좋아요 수를 증가 시키는 SQL문 -->
 		<update id="plusSongLike" parameterType="int" >
