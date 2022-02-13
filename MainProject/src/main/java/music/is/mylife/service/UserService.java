@@ -37,7 +37,7 @@ public class UserService {
 		if(join != 1) {
 			return "user/joinPage";
 		}
-		return "redirect:/";
+		return "redirect:/main";
 	}
 	
 	/**
