@@ -18,8 +18,7 @@ public class Song {
 	private String writer;
 	private String composer;
 	
-	private String country;
+	// song에서 가수 이름 받기
 	private String singer_name;
-	
 	
 }

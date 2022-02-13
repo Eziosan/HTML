@@ -6,50 +6,77 @@
   <!-- 인터페이스 위치 지정!!!!!! -->
 <mapper namespace="music.is.mylife.dao.SongMapper">
 
-		<!--  곡 아이디로 배너 사진 URL을 가져오는 SQL문 -->
+		<!-- 배너 사진 URL을 가져오는 SQL문 -->
 	<select id="selectBanner" parameterType="int" resultType="string">
-		select song_banner
-		from song
-		where song_id=#{song_id}
+		select song_img 
+		from (select * from song_banner order by recommend desc)
+		where rownum = 1 and song_id=#{song_id}
 	</select> 
 	
-		<!--  곡 아이디로 앨범 사진 URL을 가져오는 SQL문 -->
-	<select id="selectAlbumImg" parameterType="int" resultType="string">
-		select album_img 
-		from song 
-		where song_id = #{song_id}
-	</select> 
-	
-	
-		 <!--	좋아요 수를 가져오는 SQL문 곡 명으로 가져올 생각임.-->
-	 <select id="selectSongLike" parameterType="int" resultType="int">
-		select song_like 
-		from song 
-		where song_id = #{song_id}
+	<!-- 조회수가 높은 순으로 상위 5개의 곡 출력
+		아이디: selectTopSong
+		파라미터 타입: Song
+		리턴 타입: ArrayList<Song>
+		
+		* 작거나 같다 <=  ->  lte/le
+		* 부등호(< >) 사용 -> <![CDATA[ ]]> 문법 사용
+	 -->
+	<select id="selectTopSong" parameterType="song" resultType="song">
+		<![CDATA[
+	    	select * from (select singer.singer_id, singer.singer_name,
+				song.song_id, song.song_name, song.album_name, to_char(song.album_date,'YYYY') as album_date, song.hit, song.album_img
+			from singer singer, song song
+			where singer.singer_id = song.singer_id
+			order by song.hit desc) where rownum <= 5
+    	]]>
 	</select>
 	
-	 
-		<!-- 곡 아이디를 입력받아 좋아요 수를 증가 시키는 SQL문 -->
+	
+	<!-- 좋아요가 높은 순으로 상위 5개 곡 출력
+		아이디: selectLikeSong
+		파라미터 타입: Song
+		리턴 타입: ArrayList<Song>
+	 -->
+	<select id="selectLikeSong" parameterType="song" resultType="song">
+		<![CDATA[
+			select * from (select singer.singer_id, singer.singer_name,
+				song.song_id, song.song_name, song.album_name, to_char(song.album_date,'YYYY') as album_date, song.song_like, song.album_img
+			from singer singer, song song
+			where singer.singer_id = song.singer_id
+			order by song.song_like desc) where rownum <= 5
+		]]>
+	</select>
+	
+	
+	
+	<!--<select id="selectAlbumImg" parameterType="int" resultType="string">
+		앨범 사진 URL을 가져오는 SQL문 2중조인
+		select album_img 
+		from album 
+		where album_id = #{album_id};
+	</select> -->
+	
+	<!--
+	 	좋아요 수를 가져오는 SQL문 곡 명으로 가져올 생각임.
+	 <select id="selectSongLike" parameterType="int" resultType="int">
+		select song_like from song where song_id = #{song_id}
+	</select>
+	-->
+	<!-- 
+		곡명을 입력받아 좋아요 수를 증가시키는 SQL문
 		<update id="plusSongLike" parameterType="int" >
-			update song 
-			set song_like = song_like +1 
-			where song_id=#{song_id}
+			update song set song_like = song_like +1 where song_id=#{song_id}
 		</update>
 		
-		<!-- 곡 아이디를 입력받아 좋아요 수를 감소 시키는 SQL문 -->
+		곡명을 입력받아 좋아요 수를 증가시키는 SQL문
 		<update id="minusSongLike" parameterType="int" >
-			update song 
-			set song_like = song_like - 1 
-			where song_id=#{song_id}
+			update song set song_like = song_like - 1 where song_id=#{song_id}
 		</update>
+ 	-->
  	
  	
- 		<!-- 곡 아이디를 받아 곡명, 가수 이름, 국적, 앨범 이름, 앨범 날짜, 장르 가져오는 SQL문 -->
- 		 <select id="selectSongOne" parameterType="int" resultType="song">
- 			select *
-            from song so, singer si
-            where so.singer_id = si.singer_id and so.song_id=#{song_id} 	 
- 		 </select>
  	
+		
+ 	 
 
 </mapper>

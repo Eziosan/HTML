@@ -110,7 +110,7 @@ public class UserController {
 		//아이디와 패스워드가 존재할 때 user_id를 넘긴다.
 		if(user_info != null && user_info.getUser_pw().equals(user_pw)) {
 			session.setAttribute("user_id", user_id);
-			return "test";
+			return "redirect:/main";
 		} else {
 			model.addAttribute("errorMsg", "아이디 혹은 비밀번호가 잘못되었습니다.");
 			return "user/loginPage";
@@ -127,6 +127,6 @@ public class UserController {
 		
 		session.invalidate();
 		
-		return "test";
+		return "redirect:/main";
 	}
 }

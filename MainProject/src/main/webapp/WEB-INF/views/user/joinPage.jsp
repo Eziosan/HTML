@@ -80,7 +80,7 @@
 			</tr>
 		</table>
 		<input type="submit" value="회원가입">
-		<input type="reset" value="다시입력">
+		<input type="reset" value="다시입력"><br>
 		계정이 있으신가요?<a href="login">로그인</a>
 	</form>
 
