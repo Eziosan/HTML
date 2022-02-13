@@ -42,7 +42,7 @@
 
 <!-- 메뉴바 -->
         <ul class="nav col-12 col-lg-auto me-lg-auto mlmb-2 justify-content-center mb-md-0">
-          <li><div  class="nav-link px-2 w-100" ><img src="./resources/img/로고.png" alt="img" width="" height="40" style="margin-right: 30px"> </div></li>
+          <li><div  class="nav-link px-2 w-100" ><img src="./resources/img/mainLogo.png" alt="img" width="" height="40" style="margin-right: 30px"> </div></li>
           <li><a href="https://www.naver.com/" class="nav-link px-2 mt-3   mb-0 link-secondary" style="">곡</a></li>
           <li><a href="#" class="nav-link px-2 mt-3 link-dark">앨범</a></li>
           <li><a href="#" class="nav-link px-2 mt-3 link-dark">가수</a></li>
@@ -114,7 +114,7 @@
       <c:forEach var="song" items="${songList }">
         <div class="col">
           <div class="card border border-white">
-            <img src="./resources/img/main/${song.album_img }" alt="img" width="100%" height="225">
+            <img src="./resources/img/album/${song.album_img }" alt="img" width="100%" height="225">
 
             <div class="card1 mt-3 "> 
                 <p class="card-text mb-1 fw-bold" style="font-size: 23px;">${song.song_name}</p>
@@ -159,7 +159,7 @@
 	<c:forEach var="song" items="${likeSong }">
         <div class="col">
           <div class="card border border-white">
-            <img src="./resources/img/main/${song.album_img }" alt="img" width="100%" height="225">
+            <img src="./resources/img/album/${song.album_img }" alt="img" width="100%" height="225">
 			
 			
             <div class="card1 mt-3 "> 
