@@ -29,7 +29,7 @@ public class SongController {
 	@Autowired
 	SongService ss;
 	
-	@RequestMapping(value="song2",method=RequestMethod.GET)
+	@RequestMapping(value="mainPage",method=RequestMethod.GET)
 	public String mainPage( Model model) {
 		
 		int a=1;

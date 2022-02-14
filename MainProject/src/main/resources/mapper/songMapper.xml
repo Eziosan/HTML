@@ -13,7 +13,7 @@
 		where song_id=#{song_id}
 	</select> 
 	
-		<!--  곡 아이디로 앨범 사진 URL을 가져오는 SQL문 -->
+		<!--  곡 아이디로 앨범 사진 URL을 가져오는 SQL문  이것들 지워야함-->
 	<select id="selectAlbumImg" parameterType="int" resultType="string">
 		select album_img 
 		from song 
@@ -83,10 +83,14 @@
  	
  		<!-- 곡 아이디를 받아 곡명, 가수 이름, 국적, 앨범 이름, 앨범 날짜, 장르 가져오는 SQL문 -->
  		 <select id="selectSongOne" parameterType="int" resultType="song">
- 			select *
+ 			select so.song_id, so.singer_id, so.song_name, so.genre, so.song_like,so.hit,so.lyrics,so.song_banner, so.album_name,so.album_img
+  				  , to_char(so.album_date, 'YYYY-MM-DD') as album_date ,so.writer,so.composer , si.singer_name, si.country, si.singer_like
             from song so, singer si
             where so.singer_id = si.singer_id and so.song_id=#{song_id} 	 
  		 </select>
+ 		 
+ 		 
+ 		 
  	
 
 </mapper>
