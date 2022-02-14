@@ -495,7 +495,7 @@
 
       </div>
 -->
-    <div class="banner1" style="background-color: rgba(0,0,0); ">
+    <div class="banner1" style="background-color: rgba(0,0,0); " >
 
             <img src="../resources/img/banner/${Song.song_banner }" style="position:relative;" width="800px">
 
