@@ -489,12 +489,7 @@
 </div>
     
 <div class="전체화면 text-center overflow-hidden" style="background-color: rgba(248,248,248); height: auto;">
-<!--
-      <div class="banner" >
-        <img src="IU.jpg">
 
-      </div>
--->
     <div class="banner1" style="background-color: rgba(0,0,0); ">
 
             <img src="../resources/img/banner/${Song.song_banner }" style="position:relative;" width="800px">

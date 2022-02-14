@@ -23,20 +23,34 @@
       
       
   </style>
+  <script src="http://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script type="text/javascript">
   
-  $(function(){
-	  $("#like1").on("click", function(){
+  $(document).ready(function(){
+	  $("#like1").on('click', function(){
 		  
-		  $("#like1").html("<img id='like2'src='../resources/img/like2.png' width='30px'>")
+		  
+		  $("#likeDiv").html("<img id='like2' src='../resources/img/like2.png' width='30px'> <span> 좋아요 </span>");
+	  });
+	  
+	  
+	  $("#like1").click(function(){
+
+		  alert("dsjaf");
+		   $("#like1").off('#like1');
+
+		  
+		  
+		 
 	  });
 	  
   });
   
   
-  
+ 
   </script>
 </head>
+<h1 id="like2">되러고 좀!!!!! </h1>
          
     <header class="p-2 mb-3 fixed-top align-items-center " style="font-family: 'Noto Sans KR', sans-serif;">
     <div class="container-fluid w-75">
@@ -119,11 +133,13 @@
          </div>
          <div class="row" style="width: 730px; height: 58px; margin-top: 8px; align-content: center; ">
 			
-             <div class="col-2" style="align-content: center; margin-left: ">
-                <img id="like1"src="../resources/img/like1.png" width="30px">
+             <div id="likeDiv" class="col-2" style="align-content: center; margin-left: ">
+                <img id="like1" src="../resources/img/like1.png" width="30px">
                 
                  <span> 좋아요 </span>
              </div>
+             
+             <div id="a"></div>
              
              <div class="col-2">
                  <img src="../resources/img/add_tag.JPG" width="30px">
