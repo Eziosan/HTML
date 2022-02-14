@@ -13,22 +13,28 @@
 		
 		//1. id, pw 유무 검사
 		if(user_id.length == "" || user_pw.length == ""){
-			alert('아이디와 비밀번호를 입력해 주세요');
-			return false;
+			document.getElementById("check").innerHTML='아이디, 비밀번호를 입력해주세요';
+		return false;
 		}
 		
-		//2. id 유효성 검사
+		//2. id, pw 둘다 잘못 입력 되었을 경우
+		if((user_id.length < 4 || user_pw.length > 10) &&
+				(user_pw.length < 4 || user_pw.length > 10)){
+		document.getElementById("check").innerHTML='아이디, 비밀번호를 올바르게 입력하세요';
+		return false;
+		}
+		
+		
+		//3. id 유효성 검사
 		if(user_id.length < 4 || user_pw.length > 10){
-			alert('아이디를 올바르게 입력하세요');
-		} else{
-			alert('아이디가 입력되었습니다.');
+			document.getElementById("check").innerHTML='아이디를 올바르게 입력하세요';
+		return false;
 		}
 		
-		//3. pw 유효성 검사
+		//4. pw 유효성 검사
 		if(user_pw.length < 4 || user_pw.length > 10){
-			alert('비밀번호를 올바르게 입력하세요');
-		}	else{
-			alert('비밀번호가 입력되었습니다.');
+			document.getElementById("check").innerHTML='비밀번호를 올바르게 입력하세요';
+		return false;
 		}
 		
 	return true;
@@ -53,7 +59,7 @@
 			</tr>
 			<tr>
 				<td colspan="2">
-					<p style="color: red">${errorMsg}</p>
+					<p style="color: red" id="check"></p>
 				</td>
 			</tr>
 			<tr>

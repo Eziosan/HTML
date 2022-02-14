@@ -17,7 +17,6 @@ import music.is.mylife.service.UserService;
 import music.is.mylife.vo.UserInfo;
 
 @SessionAttributes("userinfo")
-@RequestMapping("user")
 @Controller
 public class UserController {
 	private static final Logger logger = LoggerFactory.getLogger(UserController.class);
@@ -41,33 +40,6 @@ public class UserController {
 		return "user/joinPage";
 	}
 	
-	/**
-	 * 아이디 중복확인 창 띄우기
-	 * @return idCheck.jsp
-	 */
-	@RequestMapping(value = "idCheck", method = RequestMethod.GET)
-	public String idCheck() {
-		return "user/idCheck";
-	}
-	
-	/**
-	 * 아이디 중복검사 하기
-	 * @param searchId
-	 * @param model
-	 * @return idCheck.jsp
-	 */
-	@RequestMapping(value = "idCheck", method = RequestMethod.POST)
-	public String idCheck(String searchId, Model model) {
-		logger.debug("searchId : {}", searchId);
-		//검색 결과를 변수 idCheck에 담음
-		UserInfo idCheck = us.idCheck(searchId);
-			
-		model.addAttribute("searchId", searchId);
-		model.addAttribute("searchResult", idCheck);
-		model.addAttribute("search", true);
-		
-		return "user/idCheck";
-	}
 	
 	/**
 	 * 회원가입 처리
@@ -83,14 +55,6 @@ public class UserController {
 		return us.insertUser(userinfo);
 	}
 	
-	/**
-	 * 로그인 창 띄우기
-	 * @return loginPage
-	 */
-	@RequestMapping(value = "login", method = RequestMethod.GET)
-	public String login() {
-		return "user/loginPage";
-	}
 	
 	/**
 	 * 로그인 하기
@@ -110,11 +74,8 @@ public class UserController {
 		//아이디와 패스워드가 존재할 때 user_id를 넘긴다.
 		if(user_info != null && user_info.getUser_pw().equals(user_pw)) {
 			session.setAttribute("user_id", user_id);
-			return "redirect:/main";
-		} else {
-			model.addAttribute("errorMsg", "아이디 혹은 비밀번호가 잘못되었습니다.");
-			return "user/loginPage";
 		}
+		return "redirect:/main";
 	}
 	
 	/**

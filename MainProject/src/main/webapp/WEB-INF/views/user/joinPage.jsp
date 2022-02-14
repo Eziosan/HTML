@@ -13,34 +13,32 @@
 		var namecheck = document.getElementById("user_name").value;
 		
 		if(namecheck == ''){
-			alert('이름을 입력해 주세요');
+			document.getElementById("nameCheck").innerHTML='이름을 입력해 주세요';
+		return false;
 		}
 		//2. id 유효성 검사
 		var user_id = document.getElementById("user_id").value;
 		
 		if(user_id.length < 4 || user_id.length > 10){
-			alert('ID를 올바르게 입력해주세요');
-		} else{
-			alert('ID가 입력되었습니다.');
-		}
+			document.getElementById("idCheck").innerHTML='아이디를 올바르게 입력해 주세요';
+		return false;
+		} 
 		
 		//3. pw 유효성 검사
 		var user_pw = document.getElementById("user_pw").value;
-		
-		if(user_pw.length < 4 || user_pw.length > 10){
-			alert('비밀번호를 올바르게 입력해주세요');
-		} else{
-			alert('비밀번호가 입력되었습니다.');
-		}
-		
-		//4. pwcheck 유효성 검사
 		var pwcheck = document.getElementById("user_pw").value;
 		
-		if(pwcheck == user_pw){
-			alert('비밀번호가 일치합니다.');
-		} else{
-			alert('비밀번호가 일치하지 않습니다.');
+		
+		if(user_pw.length < 4 || user_pw.length > 10){
+			document.getElementById("pwCheck").innerHTML='비밀번호를 올바르게 입력해 주세요';
+		return false;
+		} 
+		//4. pwcheck 유효성 검사
+		if(pwcheck != user_pw){
+			document.getElementById("pw2Check").innerHTML='비밀번호가 일치하지 않습니다';
+		return false;
 		}
+		
 		
 		//5. 모든 값이 입력 되지 않을 경우 값을 보내지 않는다.
 		if(namecheck == '' || user_id == '' || user_pw == '' || pwcheck == ''){
@@ -50,10 +48,10 @@
 	return true;
 	}
 	
-	//아이디 중복 확인 창 띄우기
+/* 	//아이디 중복 확인 창 띄우기
 	function idCheckOpen(){
 		window.open("idCheck", "newwin", "top = 100, left = 200, width = 200, heigth = 150, resizeable = no" );
-	}
+	} */
 
 </script>
 </head>
@@ -64,18 +62,21 @@
 			<tr>
 				<td>
 				<input type="text" placeholder="이름" name="user_name" id="user_name"><br>
+				<div style="color:red" id="nameCheck"></div>
 				</td>
 			</tr>
 			<tr>
 				<td>
-				<input type="text" placeholder="아이디" name="user_id" id="user_id" readonly="readonly"><br>
-				<input type="button" value="ID 중복확인" onclick="idCheckOpen()"><br>
+				<input type="text" placeholder="아이디" name="user_id" id="user_id"><br>
+				<div style="color:red" id="idCheck"></div>
 				</td>
 			</tr>
 			<tr>
 				<td>
 				<input type="password" placeholder="비밀번호" name="user_pw" id="user_pw"><br>
+				<div style="color:red" id="pwCheck"></div>
 				<input type="password" placeholder="비밀번호 확인" name="pwcheck" id="pwcheck"><br>
+				<div style="color:red" id="pw2Check"></div>
 				</td>
 			</tr>
 		</table>
