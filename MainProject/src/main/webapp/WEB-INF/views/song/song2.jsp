@@ -23,6 +23,19 @@
       
       
   </style>
+  <script type="text/javascript">
+  
+  $(function(){
+	  $("#like1").on("click", function(){
+		  
+		  $("#like1").html("<img id='like2'src='../resources/img/like2.png' width='30px'>")
+	  });
+	  
+  });
+  
+  
+  
+  </script>
 </head>
          
     <header class="p-2 mb-3 fixed-top align-items-center " style="font-family: 'Noto Sans KR', sans-serif;">
@@ -34,8 +47,8 @@
         </a>
 
         <ul class="nav col-12 col-lg-auto me-lg-auto mlmb-2 justify-content-center mb-md-0 text-white">
-          <li><div  class="nav-link px-2 w-100" ><img src="../resources/img/logo.png" alt="img" width="" height="40" style="margin-right: 30px"> </div></li>
-          <li><a href="https://www.naver.com/" class="nav-link px-2 mt-3   mb-0 text-white" style="">곡</a></li>
+          <li><div  class="nav-link px-2 w-100" ><img src="../resources/img/songLogo.png" alt="img" width="" height="40" style="margin-right: 30px"> </div></li>
+          <li><a href="#" class="nav-link px-2 mt-3   mb-0 text-white" style="">곡</a></li>
           <li><a href="#" class="nav-link px-2 mt-3 text-white">앨범</a></li>
           <li><a href="#" class="nav-link px-2 mt-3 text-white">가수</a></li>
         </ul>
@@ -69,12 +82,7 @@
     
 
 <div class="전체화면 text-center overflow-hidden" style="background-color: rgba(248,248,248)">
-<!--
-      <div class="banner" >
-        <img src="IU.jpg">
 
-      </div>
--->
     <div class="banner1" style="background-color: rgba(0,0,0);">
 
             <img src="../resources/img/banner/${Song.song_banner }" style="position:relative;" width="800px">
@@ -86,7 +94,7 @@
   <div class="곡정보 자리 w-100 border" style="height: 232px;  padding: 13px 16px 22px; background-color: white;">
 <!--      background-color: rgba(199,221,253);-->
     <div class="정보 자리잡기용 m-auto" style="width:  960px">
-    <img src="../resources/img/album/LILAC(IU)_album.jpg" width="230px" style="float: left; margin-left: -50px; margin-top: -32px; vertical-align: top;" >
+    <img src="../resources/img/album/${Song.album_img }" width="230px" style="float: left; margin-left: -50px; margin-top: -32px; vertical-align: top;" >
         
      <div class="곡정보 주황" style="width: 745px; height: 197px; border-radius: 10px;  float: right; font-family: 'Noto Sans KR', sans-serif; text-align: left; margin-top: 5px;">
 <!--         background-color: rgba(255,229,208);-->
@@ -110,9 +118,10 @@
             별점 ★${Song.song_like } 
          </div>
          <div class="row" style="width: 730px; height: 58px; margin-top: 8px; align-content: center; ">
-
-             <div class="col-2" style="align-content: center; ">
-                <img src="../resources/img/like.png" width="30px">
+			
+             <div class="col-2" style="align-content: center; margin-left: ">
+                <img id="like1"src="../resources/img/like1.png" width="30px">
+                
                  <span> 좋아요 </span>
              </div>
              
