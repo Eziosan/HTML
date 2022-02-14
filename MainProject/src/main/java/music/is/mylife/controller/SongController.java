@@ -39,7 +39,7 @@ public class SongController {
 		Integer sl = ss.selectSongLike(9);
 		ss.plusSongLike(1);
 		ss.minusSongLike(2);
-		Song song = ss.selectSongOne(9);
+		Song song = ss.selectSongOne(8);
 		ArrayList<Tag> tag = ss.selectTag(1);
 		
 		//ss.plusSongTagRecommend(1);
