@@ -49,6 +49,8 @@
 	</c:if>
 	
 	<a href="song/mainPage">송페이지 이동</a>
+	<br>
+	<a href="search/test">검색 페이지 테스팅</a>
 
 
 </body>

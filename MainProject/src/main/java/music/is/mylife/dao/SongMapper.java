@@ -36,5 +36,10 @@ public interface SongMapper {
 		 * @return ArrayList<Song>
 		 */
 		public ArrayList<Song> selectLikeSong(Song song);
+		
+		// 검색 페이지(윤영)
+		public ArrayList<Song> selectSongsBySongName(String searchText);
+		public ArrayList<Song> selectSongsBySingerName(String searchText);
+		
 	
 }

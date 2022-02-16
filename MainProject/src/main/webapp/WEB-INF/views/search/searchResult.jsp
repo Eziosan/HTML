@@ -8,5 +8,6 @@
 </head>
 <body>
 	<h1>검색 결과 페이지</h1>
+	<h1>검색어 : ${searchText}</h1>
 </body>
 </html>

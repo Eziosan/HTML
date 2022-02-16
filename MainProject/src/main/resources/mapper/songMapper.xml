@@ -65,6 +65,24 @@
 		]]>
 	</select>
 	
+		<!--[검색 페이지] 
+			1. 곡명으로 검색
+			2. 가수명으로 검색
+		-->
+		<select id="selectSongsBySongName" parameterType="string" resultType="song">
+			select singer.singer_id, singer.singer_name, song.song_id, song.song_name, song.album_name,
+				   to_char(song.album_date,'YYYY') as album_date, song.album_img
+			from singer singer, song song
+			where singer.singer_id = song.singer_id and song.song_name like '%' || #{searchText} ||'%'
+		</select>
+		<select id="selectSongsBySingerName" parameterType="string" resultType="song">
+			select singer.singer_id, singer.singer_name, song.song_id, song.song_name, song.album_name,
+				   to_char(song.album_date,'YYYY') as album_date, song.album_img
+			from singer singer, song song
+			where singer.singer_id = song.singer_id and singer.singer_name like '%' || #{searchText} ||'%'
+			
+		</select>
+		
 	 
 		<!-- 곡 아이디를 입력받아 좋아요 수를 증가 시키는 SQL문 -->
 		<update id="plusSongLike" parameterType="int" >
@@ -88,9 +106,6 @@
             from song so, singer si
             where so.singer_id = si.singer_id and so.song_id=#{song_id} 	 
  		 </select>
- 		 
- 		 
- 		 
  	
 
 </mapper>

@@ -92,5 +92,21 @@ public class SongDAO {
 			
 			return likeSong;
 		}
-	
+		
+		// 검색 페이지(윤영)
+		//곡명으로 검색
+		public ArrayList<Song> selectSongsBySongName(String searchText){
+			SongMapper mapper = session.getMapper(SongMapper.class);
+			ArrayList<Song> searchList1 = mapper.selectSongsBySongName(searchText);
+			
+			return searchList1;
+		}
+		//가수명으로 검색
+		public ArrayList<Song> selectSongsBySingerName(String searchText){
+			SongMapper mapper = session.getMapper(SongMapper.class);
+			ArrayList<Song> searchList2 = mapper.selectSongsBySingerName(searchText);
+			
+			return searchList2;
+		}
+		
 }
