@@ -13,7 +13,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
       
     <link href="../resources/css/Allusic.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 
       
     <title>곡 화면</title>
@@ -30,14 +29,12 @@
 	  $("#like1").on('click', function(){
 		  
 		  
-		  $("#likeDiv").html("<img id='like2' src='../resources/img/like2.png' width='30px'> <span> 좋아요 </span>");
+		  $("#likeDiv").html("<img onclick='result();' id='like2' src='../resources/img/like2.png' width='30px'> <span> 좋아요 </span>");
 	  });
 	  
-	  
-	  $("#like1").click(function(){
 
-		  alert("dsjaf");
-		   $("#like1").off('#like1');
+	  $("#like2").on('click', function(){
+		alert("왜 안되냐고");
 
 		  
 		  
@@ -45,13 +42,15 @@
 	  });
 	  
   });
-  
+  function result(){
+		alert("이미지 2 클릭 됨");
+		$("#likeDiv").html("<img id='like1' src='../resources/img/like1.png' width='30px'> <span> 좋아요 </span>");
+	  }
   
  
   </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 </head>
-<h1 id="like2">되러고 좀!!!!! </h1>
-         
     <header class="p-2 mb-3 fixed-top align-items-center " style="font-family: 'Noto Sans KR', sans-serif;">
     <div class="container-fluid w-75">
       <div class="d-flex flex-wrap align-items-center justify-content-start ">
@@ -133,7 +132,7 @@
          </div>
          <div class="row" style="width: 730px; height: 58px; margin-top: 8px; align-content: center; ">
 			
-             <div id="likeDiv" class="col-2" style="align-content: center; margin-left: ">
+             <div id="likeDiv" class="col-2" style="align-content: center;">
                 <img id="like1" src="../resources/img/like1.png" width="30px">
                 
                  <span> 좋아요 </span>

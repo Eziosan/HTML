@@ -48,7 +48,8 @@
 
 	}
 });
-  
+
+$(document).ready(function(){
   $(function(){
 	  $("#like1").on("click", function(){
 		  
@@ -56,6 +57,15 @@
 	  });
 	  
   });
+  $(function(){
+	  $("#like2").on("click", function(){
+		  
+		  $("#like1").html("<img id='like1'src='../resources/img/like1.png' width='30px'>")
+	  });
+	  
+  });
+	
+});
       
       
       </script>
