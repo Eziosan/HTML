@@ -42,7 +42,7 @@
 		<a href="user/login">로그인</a>
 	</c:if> 
 
-	<c:if test="${user_id != null }">
+	<c:if test="${user_id != null }">  
 		<a href="logout">로그아웃</a>
 		<br>
 		<a href="mypage">마이페이지</a>
