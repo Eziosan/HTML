@@ -27,6 +27,7 @@ public interface SongMapper {
 	public void insertList(Playlist playlist);
 	// 리스트 디테일 추가하는 sql문
 	public void insertList_Detail(Playlist playlist);
+
 	
 	
 	// 메인 페이지(화원)

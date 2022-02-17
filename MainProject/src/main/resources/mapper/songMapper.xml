@@ -47,19 +47,21 @@
 		<select id="selectListSeq" resultType="int">
 			select playlist_seq.nextval from dual
 		</select>
+		
 		<!-- 리스트 추가하는 sql문 -->
 		<insert id="insertList" parameterType="playlist" >
 			insert into playlist(playlist_id,user_id,list_name,list_explain,list_like,list_date)
-            values(#{num}, #{user_id}, #{list_name}, #{list_explain}, 0, sysdate)
+            values(#{playlist_id}, #{user_id}, #{list_name}, #{list_explain}, 0, sysdate)
 		</insert>
+		
 		<!-- 리스트 디테일 추가하는 sql문 -->
 		<insert id="insertList_Detail" parameterType="playlist">
 			insert into playlist_detail(list_detail_id,playlist_id,song_id)
-            values(playlist_detail_seq.nextval,#{num}, #{song_id})
+            values(playlist_detail_seq.nextval,#{playlist_id}, #{song_id})
 		</insert>
 	
 	
-	
+		
 	
 	
 	

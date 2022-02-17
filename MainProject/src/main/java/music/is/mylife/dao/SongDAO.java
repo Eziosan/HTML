@@ -84,8 +84,11 @@ public class SongDAO {
 		SongMapper mapper = session.getMapper(SongMapper.class);
 		
 		int num = mapper.selectListSeq();
+		System.out.println("num = "+num);
+		
 		
 		playlist.setPlaylist_id(num);
+		
 		
 		
 		mapper.insertList(playlist);
