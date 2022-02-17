@@ -11,100 +11,104 @@ import music.is.mylife.vo.Playlist;
 import music.is.mylife.vo.Song;
 import music.is.mylife.vo.Tag;
 
-
 @Service
 public class SongService {
-	//Autowired DAO, 세션(선택)
-	
+	// Autowired DAO, 세션(선택)
+
 	@Autowired
 	SongDAO sdao;
 	@Autowired
 	TagDAO tdao;
-	
+
 	// 해당 곡의 배너를 가져오는 메소드
 	public String selectBanner(int song_id) {
 
 		return sdao.selectBanner(song_id);
 	}
-	
+
 	public String selectAlbumImg(int song_id) {
-	
+
 		// 앨범 id 값을 리턴해줌.
 		return sdao.selectAlbumImg(song_id);
 	}
-	
+
 	public Integer selectSongLike(int song_id) {
-		
-		
+
 		return sdao.selectSongLike(song_id);
-		
+
 	}
-	
+
 	public void plusSongLike(int song_id) {
-		
-		
-		
+
 		sdao.plusSongLike(song_id);
 
-		
 	}
-	
+
 	public void minusSongLike(int song_id) {
-		
+
 		sdao.minusSongLike(song_id);
-		
-	
+
 	}
-	
+
 	public Song selectSongOne(int song_id) {
-		
-	
+
 		return sdao.selectSongOne(song_id);
-		
-	
-		
+
 	}
-	
-	public ArrayList<Playlist> selectList(String user_id){
-		
+
+	public ArrayList<Playlist> selectList(String user_id) {
+
 		ArrayList<Playlist> playlist = sdao.selectList(user_id);
-		
+
 		return playlist;
 	}
-	
-	
-	
-	
-	public void insertPlaylist(Playlist playlist) {
-		
-		// 이미 있는 리스트에는 추가하면 안되는거 유효성 검사해야함
-		sdao.insertList(playlist);
-		
+
+	public Boolean insertPlaylist(Playlist playlist) {
+
+		// 어레이 리스트로 리스트 전체를 받아서 for each문을 돌려 현재 존재하는 리스트의 이름과 새로 받은 리스트의 이름과 비교해서 있으면
+		// 종료 없으면 리스트 생성
+		ArrayList<Playlist> ps = sdao.selectList(playlist.getUser_id());
+
+		Boolean result = false;
+
+		for (Playlist p : ps) {
+			if (p.getList_name().equals(playlist.getList_name())) {
+				
+				System.out.println(p.getList_name());
+				System.out.println(playlist.getList_name());
+				
+				result=false;
+				break;
+			}
+
+			else {
+				result = true;
+			}
+
+		}
+		if (result) {
+			sdao.insertList(playlist);
+
+		}
+		return result;
+
 	}
-	
-	
-	
-	
-	
-	
-	public ArrayList<Tag> selectTag(int song_id){
-		
+
+	public ArrayList<Tag> selectTag(int song_id) {
+
 		ArrayList<Tag> tag = tdao.selectTag(song_id);
 		return tag;
 	}
-	
-	
+
 	public void plusSongTagRecommend(Tag tag) {
-		
+
 		tdao.plusSongTagRecommend(tag);
-		
+
 	}
-	
-	
+
 	public void minusSongTagRecommend(Tag tag) {
-		
+
 		tdao.minusSongTagRecommend(tag);
 	}
-	
-	
+
 }

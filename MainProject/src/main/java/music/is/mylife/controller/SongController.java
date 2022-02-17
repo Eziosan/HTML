@@ -90,13 +90,32 @@ public class SongController {
 		return "song/listPage";
 	}
 	
+
+	
 	
 	@RequestMapping(value="insertList", method=RequestMethod.POST)
-	public String insertList(Playlist playlist) {
+	public String insertList(Model model, Playlist playlist) {
 		
 		//여기서 할 거 > 리스트 생성하기
+		String url;
 		
-		return "song/listPage";
+		Boolean result = ss.insertPlaylist(playlist);
+		
+		if(result) {
+			url="redirect:/main";
+			
+		}else {
+			url="song/listPage";
+		}
+		
+		// 트루면 메인으로
+		// 펄스면 listpage로 감
+		
+		logger.debug("Result : {}", result);
+		// 추가 됐으면 true 안됐으면 false.
+		// listPage에서 true냐, false냐에 따라 리스트 추가됐는지 안됐는지 코드짜면 될거같음.
+		
+		return url;
 	}
 	
 	
