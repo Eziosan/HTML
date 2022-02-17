@@ -28,6 +28,43 @@
 		where song_id = #{song_id}
 	</select>
 	
+ 		<!-- 곡 아이디를 받아 곡명, 가수 이름, 국적, 앨범 이름, 앨범 날짜, 장르 가져오는 SQL문 -->
+ 		 <select id="selectSongOne" parameterType="int" resultType="song">
+ 			select so.song_id, so.singer_id, so.song_name, so.genre, so.song_like,so.hit,so.lyrics,so.song_banner, so.album_name,so.album_img
+  				  , to_char(so.album_date, 'YYYY-MM-DD') as album_date ,so.writer,so.composer , si.singer_name, si.country, si.singer_like
+            from song so, singer si
+            where so.singer_id = si.singer_id and so.song_id=#{song_id} 	 
+ 		 </select>
+	
+	<!-- 유저가 가진 플레이 리스트 가져오기 -->
+		<select id="selectList" parameterType="string" resultType="playlist">
+			select * from playlist where user_id=#{user_id }
+		</select>
+		
+		
+		<!-- 시퀀스 하나 증가시키는 sql문 -->
+		<!-- 리스트 추가할 때 먼저 selectListseq로 시퀀스 증가하고 int변수에 값 넣어두고 그 값으로 insertList 추가 동시에 detail에도 넣어줌 -->
+		<select id="selectListSeq" resultType="int">
+			select playlist_seq.nextval from dual
+		</select>
+		<!-- 리스트 추가하는 sql문 -->
+		<insert id="insertList" parameterType="playlist" >
+			insert into playlist(playlist_id,user_id,list_name,list_explain,list_like,list_date)
+            values(#{num}, #{user_id}, #{list_name}, #{list_explain}, 0, sysdate)
+		</insert>
+		<!-- 리스트 디테일 추가하는 sql문 -->
+		<insert id="insertList_Detail" parameterType="playlist">
+			insert into playlist_detail(list_detail_id,playlist_id,song_id)
+            values(playlist_detail_seq.nextval,#{num}, #{song_id})
+		</insert>
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	<!--[메인 페이지] 
 		조회수가 높은 순으로 상위 5개의 곡 출력
@@ -99,13 +136,6 @@
 		</update>
  	
  	
- 		<!-- 곡 아이디를 받아 곡명, 가수 이름, 국적, 앨범 이름, 앨범 날짜, 장르 가져오는 SQL문 -->
- 		 <select id="selectSongOne" parameterType="int" resultType="song">
- 			select so.song_id, so.singer_id, so.song_name, so.genre, so.song_like,so.hit,so.lyrics,so.song_banner, so.album_name,so.album_img
-  				  , to_char(so.album_date, 'YYYY-MM-DD') as album_date ,so.writer,so.composer , si.singer_name, si.country, si.singer_like
-            from song so, singer si
-            where so.singer_id = si.singer_id and so.song_id=#{song_id} 	 
- 		 </select>
  	
 
 </mapper>

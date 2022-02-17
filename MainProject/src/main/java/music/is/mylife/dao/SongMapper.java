@@ -2,6 +2,7 @@ package music.is.mylife.dao;
 
 import java.util.ArrayList;
 
+import music.is.mylife.vo.Playlist;
 import music.is.mylife.vo.Song;
 
 public interface SongMapper {
@@ -18,7 +19,14 @@ public interface SongMapper {
 	public int minusSongLike(int song_id);
 	//곡 아이디를 받아 곡명, 가수 이름, 국적, 앨범 이름, 앨범 날짜, 장르 가져오는 SQL문//
 	public Song selectSongOne(int song_id);
-	
+	// 유저 아이디를 받아 유저가 가지고 있는 모든 리스트를 반환함
+	public ArrayList<Playlist> selectList(String user_id);
+	// 시퀀스 하나 증가시키는 sql문
+	public int selectListSeq();
+	// 리스트 추가하는 sql문
+	public void insertList(Playlist playlist);
+	// 리스트 디테일 추가하는 sql문
+	public void insertList_Detail(Playlist playlist);
 	
 	
 	// 메인 페이지(화원)

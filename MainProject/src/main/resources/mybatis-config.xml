@@ -10,6 +10,7 @@
   	<typeAlias type="music.is.mylife.vo.Song" alias="song"/>
   	<typeAlias type="music.is.mylife.vo.Tag" alias="tag"/>
   	<typeAlias type="music.is.mylife.vo.UserInfo" alias="user_info"/>
+  	<typeAlias type="music.is.mylife.vo.Playlist" alias="playlist"/>
  	
  </typeAliases> 
 
@@ -20,6 +21,7 @@
     <mapper resource="./mapper/songMapper.xml"/>
     <mapper resource="./mapper/tagMapper.xml"/>
     <mapper resource="./mapper/userMapper.xml"/>
+    
   </mappers>
 
 </configuration>

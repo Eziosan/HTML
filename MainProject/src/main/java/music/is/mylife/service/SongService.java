@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import music.is.mylife.dao.SongDAO;
 import music.is.mylife.dao.TagDAO;
+import music.is.mylife.vo.Playlist;
 import music.is.mylife.vo.Song;
 import music.is.mylife.vo.Tag;
 
@@ -41,7 +42,10 @@ public class SongService {
 	
 	public void plusSongLike(int song_id) {
 		
+		
+		
 		sdao.plusSongLike(song_id);
+
 		
 	}
 	
@@ -49,6 +53,7 @@ public class SongService {
 		
 		sdao.minusSongLike(song_id);
 		
+	
 	}
 	
 	public Song selectSongOne(int song_id) {
@@ -60,6 +65,22 @@ public class SongService {
 		
 	}
 	
+	public ArrayList<Playlist> selectList(String user_id){
+		
+		ArrayList<Playlist> playlist = sdao.selectList(user_id);
+		
+		return playlist;
+	}
+	
+	
+	
+	
+	public void insertPlaylist(Playlist playlist) {
+		
+		// 이미 있는 리스트에는 추가하면 안되는거 유효성 검사해야함
+		sdao.insertList(playlist);
+		
+	}
 	
 	
 	

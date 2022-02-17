@@ -1,6 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ko">
   <head>
 
@@ -12,7 +10,7 @@
       
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
       
-    <link href="../resources/css/Allusic.css" rel="stylesheet">
+    <link href="Allusic.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
       
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css"/>
@@ -20,21 +18,10 @@
       <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous">
       </script>
       
-      
        <script>
       
   $(window).scroll(function() {
-//	if($(this).scrollTop() < 200) {
-//        $("#AllusicH").show();
-//		$("#AllusicH2").hide();
-//		$("#AllusicH").css('background','rgba(255,255,255,0)');
-//        
-//	}
-//	else {
-//		$("#AllusicH2").show();
-//        $("#AllusicH").hide();
-//		$("#AllusicH2").css('background','#FFFFFF');
-//	}
+
       
       if($(this).scrollTop() > 200) {
         $("#AllusicH2").show();
@@ -44,49 +31,23 @@
         
         
 	}
-      
 	else {
         $("#AllusicH").show();
 		$("#AllusicH2").hide();
 
 	}
 });
-
-
       
       
-$(document).ready(function(){
-	  $("#like1").on('click', function(){
-		  $("#likeDiv").html("<img onclick='result();' id='like2' src='../resources/img/like2.png' width='30px'> <span> 좋아요 </span>");
-		  location.href = "plusStar?song_id="+9;	
-	  });
-	
-	   
-});
-function result(){
-	
-		$("#likeDiv").html("<img onclick='result2();' id='like1' src='../resources/img/like1.png' width='30px'> <span> 좋아요 </span>");
-		 location.href = "minusStar?song_id="+9;
-			
-}
-function result2(){
-	  $("#like1").on('click', function(){
-		  $("#likeDiv").html("<img onclick='result();' id='like2' src='../resources/img/like2.png' width='30px'> <span> 좋아요 </span>");
-		 
-	  });
-}
-
-
-
       </script>
       
+      <!-- CSS , JS -->
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+      
     <title>곡 화면</title>
-  <style>
-     @import url(//fonts.googleapis.com/earlyaccess/jejuhallasan.css);
-    
-      
-      
-  </style>
+  
 </head>
     <body>
          
@@ -103,8 +64,8 @@ function result2(){
         </a>
 
         <ul class="nav col-12 col-lg-auto me-lg-auto mlmb-2 justify-content-center mb-md-0">
-          <li><div class="nav-link px-2 w-100" ><img src="../resources/img/songLogo.png" alt="img" width="" height="40" style="margin-right: 30px"> </div></li>
-          <li><a href="#" class="nav-link px-2 mt-3   mb-0 link-secondary" style="">곡</a></li>
+          <li><div  class="nav-link px-2 w-100" ><img src="%EC%B4%88%EC%95%882.png" alt="img" width="" height="40" style="margin-right: 30px"> </div></li>
+          <li><a href="https://www.naver.com/" class="nav-link px-2 mt-3   mb-0 link-secondary" style="">곡</a></li>
           <li><a href="#" class="nav-link px-2 mt-3 link-dark">앨범</a></li>
           <li><a href="#" class="nav-link px-2 mt-3 link-dark">가수</a></li>
         </ul>
@@ -310,7 +271,7 @@ function result2(){
         </a>
 
         <ul class="nav col-12 col-lg-auto me-lg-auto mlmb-2 justify-content-center mb-md-0 text-white">
-          <li><div  class="nav-link px-2 w-100" ><img src="../resources/img/songLogo.png" alt="img" width="" height="40" style="margin-right: 30px"> </div></li>
+          <li><div  class="nav-link px-2 w-100" ><img src="%EA%B3%A1%EC%9A%A9.png" alt="img" width="" height="40" style="margin-right: 30px"> </div></li>
           <li><a href="https://www.naver.com/" class="nav-link px-2 mt-3   mb-0 text-white" style="">곡</a></li>
           <li><a href="#" class="nav-link px-2 mt-3 text-white">앨범</a></li>
           <li><a href="#" class="nav-link px-2 mt-3 text-white">가수</a></li>
@@ -507,16 +468,15 @@ function result2(){
 </div>
     
 <div class="전체화면 text-center overflow-hidden" style="background-color: rgba(248,248,248); height: auto;">
-
+<!--
+      <div class="banner" >
+        <img src="IU.jpg">
 
       </div>
+-->
+    <div class="banner1" style="background-color: rgba(0,0,0); ">
 
-    
-
-    <div class="banner1" style="background-color: rgba(0,0,0); text-align: center; ">
-
-
-            <img src="../resources/img/banner/${Song.song_banner }" style="margin: 0 auto;" height="420px;">
+            <img src="%EC%95%84%EC%9D%B4%EC%9C%A0%20%EC%82%AC%EA%B8%B0%EC%9A%A9.jpg" style="position:relative;" width="800px">
 
         
         <div class="gradient"></div>
@@ -525,51 +485,44 @@ function result2(){
   <div class="곡정보 자리 w-100 border" style="height: 232px;  padding: 13px 16px 22px; background-color: white; position: relative; z-index: 10;">
 <!--      background-color: rgba(199,221,253);-->
     <div class="정보 자리잡기용 m-auto" style="width:  960px">
-    <img src="../resources/img/album/${Song.album_img }" width="250px" style="float: left; margin-left: -70px; margin-top: -52px; vertical-align: top; border:3px solid #eaeaea; border-radius: 2%;" >
+    <img src="https://w.namu.la/s/401e9027b2358a2cdb2eaf9f7ddc8186704741fcb5a0c3c065b48b450cb2bbbb8c92b48df677febaab0befd0fa9ec6f6720173834b6bf4727c677a9f4a9775eb6afa235a233326424a38f6a18f6e07b34899f52a5039611e60767a9850a99cfe0ba2bf19990690984ccc947ec44a7e47" width="250px" style="float: left; margin-left: -70px; margin-top: -52px; vertical-align: top; border:3px solid #eaeaea; border-radius: 2%;" >
         
      <div class="곡정보 주황" style="width: 745px; height: 197px; border-radius: 10px;  float: right; font-family: 'Noto Sans KR', sans-serif; text-align: left; margin-top: 5px;">
 <!--         background-color: rgba(255,229,208);-->
          
         <div class="곡 제목 fw-bold" style="width: 520px; height: 41px; text-align: left; font-size: 33px;">
-            ${Song.song_name }
+            Lilac
         </div>
          
         <div class="제목 바로 밑" style="color: darkgray; margin-top: 5px; height: 22px">
             <span class="연도" style="">
-                ${Song.album_date } ・
+                2021 ・
             </span>
             <span>
-                ${Song.genre } ・
+                댄스 ・
             </span>
             <span>
-                ${Song.country }
+                한국
             </span>
          </div>
         <div class="예상" style="height: 42px; margin-top: 20px; padding-top: 8px; border-top: 1px solid ; border-bottom: 1px solid; border-color: darkgray">
-            별점 ★★★★★ ${Song.song_like } 
+            예상 ★2.7 
          </div>
          <div class="row" style="width: 730px; height: 58px; margin-top: 8px; align-content: center; ">
-			
-             <div id="likeDiv" class="col-2" style="align-content: center; margin-left: ">
-                <img id="like1"src="../resources/img/like1.png" width="30px">
-                
+
+             <div class="col-2" style="align-content: center; margin-left: ">
+                <img src="like.png" width="30px">
                  <span> 좋아요 </span>
              </div>
              
              <div class="col-2">
-                 <img src="../resources/img/add_tag.JPG" width="30px">
+                 <img src="tag.JPG" width="30px">
                  <span> 태그  </span>
 
              </div>
              
-             <div class="col-3">
-             <a href="selectList"><img src="../resources/img/more.JPG" width="30px" ></a>
-                 <span> 리스트 추가 </span>
-                 
-             </div>
-             
              <div class="col-2">
-             <img src="../resources/img/more.JPG" width="30px">
+             <img src="more.JPG" width="30px">
                  <span> 더보기 </span>
                  
              </div>
@@ -596,9 +549,9 @@ function result2(){
                 <div class="row 가수 프로필 mt-2" style="height: 150px">
                     <div class="col-3 text-center">
                         <div class="프로필 카드" style="margin-right: auto; margin-left: auto; margin-top: 5px">
-                        <img src="../resources/img/profile/IU_profile.jpg" width="80px" style="border-radius: 50%">
+                        <img src="IUP.jpg" width="80px" style="border-radius: 50%">
                         <div class="가수명" style="margin-top: 5px; font-size: 25px">
-                            ${Song.singer_name }
+                            IU
                         </div>
                     </div>
                     </div>
@@ -617,9 +570,9 @@ function result2(){
                 <div class="row 작사 프로필" style="height: 150px">
                     <div class="col-3 text-center mt-2">
                         <div class="프로필 카드" style="margin-right: auto; margin-left: auto; margin-top: 5px">
-                        <img src="../resources/img/profile/IU_profile.jpg" width="80px" style="border-radius: 50%">
+                        <img src="IUP.jpg" width="80px" style="border-radius: 50%">
                         <div class="작사가명" style="margin-top: 5px; font-size: 25px">
-                            ${Song.writer }
+                            IU
                         </div>
                     </div>
                     </div>
@@ -637,15 +590,23 @@ function result2(){
                 <div class="row 작사 프로필 mt-2" style="height: 150px">
                     <div class="col-3 text-center">
                         <div class="프로필 카드" style="margin-right: auto; margin-left: auto; margin-top: 5px">
-                        <img src="../resources/img/profile/basic_profile.jpg" width="80px" style="border-radius: 50%">
+                        <img src="Dr.JO.png" width="80px" style="border-radius: 50%">
                         <div class="작곡가명" style="margin-top: 5px; font-size: 25px">
-                            ${Song.composer }
+                            Dr.Jo
                         </div>
                             
                     </div>
                     </div>
                     
-                   
+                    <div class="col-3 text-center">
+                        <div class="프로필 카드" style="margin-right: auto; margin-left: auto; margin-top: 5px">
+                        <img src="profile2.jpg" width="80px" style="border-radius: 50%">
+                        <div class="작곡가명" style="margin-top: 5px; font-size: 25px">
+                            Dr.Jo
+                        </div>
+                            
+                    </div>
+                    </div>
                 
                 </div>
             
@@ -672,7 +633,73 @@ function result2(){
                 </div>
                 <div class="collapse" id="가사란">
                  <div class="가사 card" style="margin-left: px; margin-top: 5px; font-size: 18px; height: auto; white-space: pre; padding-left: 8px; background-color: rgb(245,245,245); pa">
-					${Song.lyrics }
+나리는 꽃가루에 눈이 따끔해 (아야)
+눈물이 고여도 꾹 참을래
+내 마음 한켠 비밀스런 오르골에 넣어두고서
+영원히 되감을 순간이니까
+
+우리 둘의 마지막 페이지를 잘 부탁해
+어느 작별이 이보다 완벽할까
+Love me only 'till this spring
+
+오 라일락 꽃이 지는 날 goodbye
+이런 결말이 어울려
+안녕 꽃잎 같은 안녕
+하이얀 우리 봄날의 climax
+아 얼마나 기쁜 일이야
+
+Ooh, ooh, ooh, ooh
+Love me only 'till this spring
+봄바람처럼
+Ooh, ooh, ooh, ooh
+Love me only 'till this spring
+봄바람처럼
+
+기분이 달아 콧노래 부르네 (랄라)
+입꼬리는 살짝 올린 채
+어쩜 이렇게 하늘은 더 바람은 또 완벽한 건지
+오늘따라 내 모습 맘에 들어
+
+처음 만난 그날처럼 예쁘다고 말해줄래
+어느 이별이 이토록 달콤할까
+Love resembles misty dream
+
+오 라일락 꽃이 지는 날 goodbye
+이런 결말이 어울려
+안녕 꽃잎 같은 안녕
+하이얀 우리 봄날의 climax
+아 얼마나 기쁜 일이야
+
+Ooh, ooh, ooh, ooh
+Love resembles misty dream
+뜬구름처럼
+Ooh, ooh, ooh, ooh
+Love resembles misty dream
+뜬구름처럼
+
+너도 언젠가 날 잊게 될까
+지금 표정과 오늘의 향기도
+단잠 사이에 스쳐간
+봄날의 꿈처럼
+
+오 라일락 꽃이 지는 날 goodbye
+너의 대답이 날 울려
+안녕 약속 같은 안녕
+하이얀 우리 봄날에 climax
+아 얼마나 기쁜 일이야
+
+Ooh, ooh, ooh, ooh
+Love me only 'till this spring
+봄바람처럼
+Ooh, ooh, ooh, ooh
+Love me only 'till this spring
+봄바람처럼
+Ooh, ooh, ooh, ooh
+Love resembles misty dream
+뜬구름처럼
+Ooh, ooh, ooh, ooh
+Love resembles misty dream
+뜬구름처럼
                 </div>
                 </div>
             </div>
@@ -722,11 +749,11 @@ function result2(){
                   </div>
                 </div>
                  <button class="carousel-control-prev" type="button" data-bs-target="#캐러셀사진" data-bs-slide="prev" style="right:30px; width: 20px; ">
-                     <img src="../resources/img/왼2.png" width="15px">
+                     <img src="%EC%99%BC2.png" width="15px">
 
                   </button>
                   <button class="carousel-control-next" type="button" data-bs-target="#캐러셀사진" data-bs-slide="next">
-                      <img src="../resources/img/오2.png" width="15px">
+                      <img src="%EC%98%A42.png" width="15px">
 
                   </button>      
               </div>
@@ -771,11 +798,11 @@ function result2(){
                   </div>
                 </div>
                  <button class="carousel-control-prev" type="button" data-bs-target="#캐러셀동영상" data-bs-slide="prev" style="right:30px; width: 20px; ">
-                     <img src="../resources/img/왼2.png" width="15px">
+                     <img src="%EC%99%BC2.png" width="15px">
 
                   </button>
                   <button class="carousel-control-next" type="button" data-bs-target="#캐러셀동영상" data-bs-slide="next">
-                      <img src="../resources/img/오2.png" width="15px">
+                      <img src="%EC%98%A42.png" width="15px">
 
                   </button>      
               </div>

@@ -9,10 +9,13 @@
 		
 		<!-- song_id를 입력받아서 해당 곡의 상위 태그 3개를 반환 하는 sql문 -->
 		<select id="selectTag" parameterType="int" resultType="tag">
-			select t.tag_name,st.recommend
-			from song_tag t, song_tag_detail st, song s 
-			where rownum between 1 and 3 and t.tag_id = st.tag_id and st.song_id = s.song_id and st.song_id = #{song_id}
-			order by recommend desc
+			<![CDATA[   
+					select * from (select t.tag_name,st.recommend 
+					from song_tag t, song_tag_detail st, song s 
+					where t.tag_id = st.tag_id and st.song_id = s.song_id and st.song_id = 1
+           			order by recommend desc )
+            		where rownum <= 3
+            ]]>
 		</select> 
 
 			

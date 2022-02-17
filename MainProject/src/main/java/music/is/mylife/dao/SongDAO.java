@@ -7,6 +7,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import music.is.mylife.vo.Playlist;
 import music.is.mylife.vo.Song;
 
 @Repository
@@ -64,6 +65,40 @@ public class SongDAO {
 		
 		return song;
 	}
+	
+	
+	public ArrayList<Playlist> selectList(String user_id){
+		
+		SongMapper mapper = session.getMapper(SongMapper.class);
+		
+		ArrayList<Playlist> playlist = mapper.selectList(user_id);
+		
+		return playlist;
+	}
+	
+	
+	
+	
+	public void insertList(Playlist playlist) {
+		
+		SongMapper mapper = session.getMapper(SongMapper.class);
+		
+		int num = mapper.selectListSeq();
+		
+		playlist.setPlaylist_id(num);
+		
+		
+		mapper.insertList(playlist);
+		mapper.insertList_Detail(playlist);
+		
+	}
+	
+	
+	
+	
+	
+	
+	
 	
 	// 메인 페이지(화원)
 	

@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import music.is.mylife.service.SongService;
+import music.is.mylife.vo.Playlist;
 import music.is.mylife.vo.Song;
 import music.is.mylife.vo.Tag;
 
@@ -19,27 +20,19 @@ import music.is.mylife.vo.Tag;
 public class SongController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(SongController.class);
-//	@RequestMapping(value="song/main", method=RequestMethod.GET)
-//	public void test() {
-//		Song song = new Song();
-//		
-//		
-//	}
 	
 	@Autowired
 	SongService ss;
 	
 	@RequestMapping(value="mainPage",method=RequestMethod.GET)
-	public String mainPage( Model model) {
-		
-		int a=1;
-		
+	public String mainPage(Model model) {
+		//
 		String banner = ss.selectBanner(9);
 		String ai = ss.selectAlbumImg(1);
 		Integer sl = ss.selectSongLike(9);
 		ss.plusSongLike(1);
 		ss.minusSongLike(2);
-		Song song = ss.selectSongOne(8);
+		Song song = ss.selectSongOne(9);
 		ArrayList<Tag> tag = ss.selectTag(1);
 		
 		//ss.plusSongTagRecommend(1);
@@ -55,6 +48,60 @@ public class SongController {
 		model.addAttribute("ai", ai);
 		model.addAttribute("Song",song);
 		
-		return "song/song2";
+		return "song/mainPage";
 	}
+	
+	
+	@RequestMapping(value="plusStar",method=RequestMethod.GET)
+	public String plusStar(int song_id) {
+		logger.debug("플러스 스타 실행");
+		ss.plusSongLike(song_id);
+	
+		return "redirect:/song/mainPage";
+	
+		
+	}
+	
+	
+	@RequestMapping(value="minusStar",method=RequestMethod.GET)
+	public String minusStar(int song_id) {
+		
+		logger.debug("마이너스 스타 실행");
+		ss.minusSongLike(song_id);
+		
+		return "redirect:/song/mainPage";
+	
+		
+	}
+	
+	@RequestMapping(value="selectList", method=RequestMethod.GET)
+	public String selectList(Model model) {
+		
+		String name="aaaa";
+		
+		ArrayList<Playlist> playlist = ss.selectList(name);
+		
+		logger.debug("playlist : {}", playlist);
+		
+		
+		model.addAttribute("playlist", playlist);
+		
+		
+		return "song/listPage";
+	}
+	
+	
+	@RequestMapping(value="insertList", method=RequestMethod.POST)
+	public String insertList(Playlist playlist) {
+		
+		//여기서 할 거 > 리스트 생성하기
+		
+		return "song/listPage";
+	}
+	
+	
+	
+	
+	
+	
 }
