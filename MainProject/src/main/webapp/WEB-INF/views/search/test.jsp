@@ -109,6 +109,7 @@ function searchCheck(){
         
 <!-- 곡 화면--> 
 <div id="겨울" class="carousel slide" data-bs-ride="carousel" style="height: 400px;"  data-bs-interval="false">
+
     <div class="carousel-item active" >
       <div class="row row-cols-sm-3 row-cols-lg-5">
 <!--          row-cols-1  row-cols-sm-2 row-cols-md-3 g-3 -->
