@@ -122,6 +122,36 @@ public class SongController {
 	
 	
 	// 여기다가 특정 유저의 특정 리스트에 곡 담는거 구현해야함
+	// 일단 플레이리스트를 받아와야하는데 그럼 로그인을 할때 로그인 정보, 플레이리스트 정보도 같이 세션이 담아서 보내놓으면 
+	// 다른곳에서도 쓸 수 있는게 아닌가? >> 물어보기
+	
+	@RequestMapping(value="inserSong",method=RequestMethod.GET)
+	public String insertSong(Model model, Playlist playlist) {
+		
+		
+		
+		
+		
+		return ss.insertSong(playlist);
+		
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	@RequestMapping(value="bannerPage",method=RequestMethod.GET)
+	public String bannerPage() {
+		
+		
+		return "song/bannerPage";
+	
+		
+	}
 	
 	
 	/**

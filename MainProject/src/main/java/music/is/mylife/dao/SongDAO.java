@@ -102,7 +102,9 @@ public class SongDAO {
 		
 		int playlist_id = playlist.getPlaylist_id();
 		
-		mapper.insertList_Detail(playlist);
+		// 플레이리스트 디테일에 곡 넣기
+		mapper.insertList_Detail(playlist);  
+		// 플레이리스트에 날짜 업데이트
 		mapper.updateList_Date(playlist_id);
 		
 		

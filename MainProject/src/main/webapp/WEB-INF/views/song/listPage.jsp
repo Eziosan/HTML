@@ -49,9 +49,9 @@ return true;
 	<%-- <c:forEach var="song" items="${songList }" begin="0" end="4"> --%>
 	dsfdsf
 	
-	<%-- for each 문 돌리는 법 <c:forEach var="playlist" items="${playlist }">
-		<h1>${playlist.list_name }</h1>
-	</c:forEach> --%>
+	<c:forEach var="playlist" items="${playlist }">
+		<h6>${playlist.list_name }</h6>
+	</c:forEach> 
 	
 	
 	
@@ -87,5 +87,42 @@ return true;
 			</tr>
 		</table>
 		<input type="submit" value="리스트추가">
+		
+		
+		
+		
+		<h2>곡 추가</h2>
+	<form action="insertSong" method="post" onsubmit="return formCheck()">
+		<table>
+			<tr>
+				<td>
+				<input type="text" placeholder="유저 아이디" name="user_id" id="user_id"><br>
+				<div style="color:red" id="idCheck"></div>
+				</td>
+			</tr>
+			
+			<tr>
+				<td>
+				<input type="text" placeholder="리스트 이름" name="list_name" id="list_name"><br>
+				<div style="color:red" id="nameCheck"></div>
+				</td>
+			</tr>
+			<tr>
+				<td>
+				<input type="text" placeholder="리스트 설명" name="list_explain" id="list_explain"><br>
+				<div style="color:red" id="explainCheck"></div>
+				</td>
+			</tr>
+			<tr>
+				<td>
+				<input type="text" placeholder="곡 id ( 1~ 8까지)" name="song_id" id="song_id"><br>
+				<div style="color:red" id="songCheck"></div>
+				</td>
+			</tr>
+		</table>
+		<input type="submit" value="리스트추가">
+		
+		
+		
 </body>
 </html>
