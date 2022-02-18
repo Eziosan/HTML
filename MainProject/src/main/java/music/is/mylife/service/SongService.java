@@ -110,5 +110,19 @@ public class SongService {
 
 		tdao.minusSongTagRecommend(tag);
 	}
+	
+	
+	
+	/**
+	 * [메인페이지]
+	 * 전체 곡 검색해서 해당 곡 하나 들고오기
+	 * @param song
+	 * @return song
+	 */
+	public Song selectAllSong(Song song) {
+		Song selectSong = sdao.selectAllSong(song);
+		
+		return selectSong;
+	}
 
 }
