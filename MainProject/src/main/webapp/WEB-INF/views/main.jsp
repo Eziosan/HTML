@@ -120,7 +120,15 @@
 	return false;
 	}
 	
-	return true;
+		return true;
+	}
+
+	function searchCheck(){
+		if(window.event.keyCode == 13){
+			alert("enter키 클릭");
+			var searchText = $("#searchText").text();
+			location.href="/mylife/search/search?searchText=" + searchText;
+		}
 	}
     
     </script>
@@ -131,9 +139,7 @@
       </style>
   </head>
   <body>
-         
-    
-         
+                  
     
     
     <header class="p-2 mb-3 fixed-top align-items-center border-bottom border-info" id="AllusicH" style="font-family: 'Noto Sans KR', sans-serif; background-color: white;">
@@ -151,8 +157,9 @@
           <li><a href="#" class="nav-link px-2 mt-3 link-dark">가수</a></li>
         </ul>
 
-        <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
-          <input type="search" class="form-control" placeholder="# 태그를 검색해보세요"  aria-label="Search" control-id="ControlID-2" style="background: #F2F2F2">
+        <form action="/mylife/search/search" method="get" onsubmit="return searchCheck()"
+        			class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
+          <input type="search" id="searchText" name="searchText" class="form-control" placeholder="# 태그를 검색해보세요"  aria-label="Search" control-id="ControlID-2" style="background: #F2F2F2">
         </form>
 
           
@@ -380,8 +387,6 @@
       
 <main>
     
-  
-    
     
 
 <!-- 메인 페이지 -->
@@ -398,7 +403,9 @@
         
     <div class="titles fw-bold mb-4" style="font-size: 25px;">
         오늘의 TOP SONG
-        </div>
+    </div>
+       
+       
         <div>
   
         
