@@ -28,7 +28,7 @@ public class AnalysisService {
 		return us.selectUser(user_id);
 	}
 	
-	//유저의 평점 수를 구하는 함수
+	//유저의 평점 수 부분에 들어갈 데이터들을 구하는 함수
 	public HashMap<String, Integer> userGradeInfo(String user_id) {
 		
 		HashMap<String, Integer> userGradeCount = new HashMap<>();
