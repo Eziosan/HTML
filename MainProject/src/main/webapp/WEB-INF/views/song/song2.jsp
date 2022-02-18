@@ -78,7 +78,7 @@
           </a>
                  
             
-            
+            <a>dddddd</a>
           <ul class="dropdown-menu text-small color-white" aria-labelledby="dropdownUser1">
             <li><a class="dropdown-item" href="#">프로필</a></li>
             <li><a class="dropdown-item" id="openModalBtn" href="#">마이 리스트</a></li>
