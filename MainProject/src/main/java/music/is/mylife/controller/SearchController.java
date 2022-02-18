@@ -30,6 +30,7 @@ public class SearchController {
 		for(Song s : searchResult1) {
 			System.out.println(s);
 		}
+		System.out.println("======================");
 		
 		for(Song s : searchResult2) {
 			System.out.println(s);
@@ -37,12 +38,18 @@ public class SearchController {
 		
 		
 		
-		return "search/test";
+		return "search/main";
 	}
 	@RequestMapping(value="test", method=RequestMethod.GET)
 	public String search() {
 		
 		
 		return "search/test";
+	}
+	@RequestMapping(value="main", method=RequestMethod.GET)
+	public String main() {
+		
+		
+		return "search/main";
 	}
 }

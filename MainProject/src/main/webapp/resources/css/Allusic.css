@@ -1,3 +1,4 @@
+
 .banner {
         margin: 0 auto;
   
@@ -10,7 +11,7 @@
             rgba(20, 20, 20, 0) 50%,
             rgba(20, 20, 20, 0.95) 60%,
             rgba(20, 20, 20, 1) 100%
-          );
+          ), url("%EA%B7%B8%EB%9D%BC%EB%8D%B0%EC%9D%B4%EC%85%98.png");
 
 }
 
@@ -24,5 +25,518 @@
             rgba(20, 20, 20, 0) 50%,
             rgba(20, 20, 20, 0.95) 60%,
             rgba(20, 20, 20, 1) 100%
-          );
+          ), url("IU.jpg")
+}
+
+.cont {
+    width: 300vw;
+}
+
+.inner {
+    width: 100vw;
+    float: left;
+}
+
+.swiper {
+    width: 950px;
+}
+
+.로그인 {
+    font-size: 17px;
+    letter-spacing: -0.5px;
+    line-height: 22px;
+    font-weight: 700;
+    text-align: center;
+    margin: 24px 0px 20px;
+}
+
+
+
+.로그인란 {
+    
+}
+
+#검색결과 {
+    width: 100%; 
+    height: 43px; 
+    margin-top: 72px;
+    background-color: rgb(247, 247, 247);
+    padding: 10px 0px;
+    
+}
+
+#결과란 {
+    width: 100%;
+    max-width: 1320px;
+    margin: 0 auto;
+    color: rgb(116, 116, 123);
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: -0.3px;
+    
+}
+
+#로긘이미 {
+    margin-top: 20px;
+    margin-bottom: 14px;
+    text-align: center;
+    width: 355px;
+    height: 21px;
+}
+
+#로그인버튼 {
+    width: 355px;
+   height: 44px;
+   background: rgb(255, 47, 110);
+   color: rgb(255, 255, 255);
+   text-align: center;
+   font-size: 17px;
+   font-weight: 400;
+   border-radius: 10px;
+   margin-top: 40px;
+   margin-left: 10px;
+   box-shadow: none;
+   border: none;
+}
+
+#로그인버튼 {
+    width: 355px;
+   height: 44px;
+   background: rgb(255, 47, 110);
+   color: rgb(255, 255, 255);
+   text-align: center;
+   font-size: 17px;
+   font-weight: 400;
+   border-radius: 10px;
+   margin-top: 40px;
+   margin-left: 10px;
+   box-shadow: none;
+   border: none;
+}
+
+#모달정보입력란막내 {
+    width: 100%;
+         height: 44px;
+         padding: 0px 12px;
+         
+}
+
+#회원가입모달창 {
+    display: flex; justify-content: center; align-items: center; padding: 32px 0px 48px; width: 375px; height: 580px; border-radius: 3%
+}
+
+#횐갑이미 {
+    text-align: center;
+                                    width: 355px;
+                                    height: 21px;
+}
+
+#모달정보입력란 {
+    width: 100%;
+          height: 44px;
+          padding: 0px 12px;
+          margin-bottom: 20px;
+}
+
+#결과창 {
+    margin-right: auto;
+    margin-left: auto;
+    max-width: 1320px;
+}
+
+#종류 {
+    height: 49px;
+    border-bottom: 1px solid;
+    border-bottom-color: lightgray;
+    
+}
+
+#컨텐츠종류 {
+    width: 100px;
+    height: 100%;
+    padding: 12px;
+    text-align: center;
+    float: left;
+}
+
+#곡결과 {
+    height: 430px;
+    padding-top: 30px;
+    border-bottom: 1px solid;
+    border-bottom-color: lightgray;
+}
+
+#앨범결과좌 {
+    width: 15px; 
+    height: 15px; 
+    position: relative; 
+    opacity: 0.2;
+    top: 200px;
+}
+
+#앨범결과좌:hover {
+    width: 15px; 
+    height: 15px; 
+    position: relative; 
+    opacity: 1.0;
+    top:200px;
+}
+
+#container {
+    margin-top: 100px;
+    width: 638px;
+    height:  1817px;
+    background-color: white;
+    border: 1px solid;
+    border-color: lightgray;
+    border-radius: 6px;
+    padding: 0px;
+    overflow: hidden;
+        
+}
+
+#리스트배경 {
+    width: 100vw; height: auto; font-family: 'Noto Sans KR', sans-serif; 
+    overflow: hidden;
+}
+
+#프로필베너 {
+    width: 3000px;
+    height: 263px;
+    overflow: hidden; 
+    background-image: linear-gradient( to bottom, rgba(20,20,20,0.4), rgba(20,20,20,0.6) 48%, rgba(20,20,20,0.95) 95% ); 
+    display: inline-block;
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+    
+}
+
+
+
+#커버1 {
+    height: 263px;
+    position: relative;
+    z-index: 10;
+    box-shadow: 0 0 8px 4px rgb(0 0 0 / 65%);
+    transition: all 300ms ease 0s;
+    filter: brightness(60%);
+}
+
+#커버2 {
+    height: 263px;
+    position: relative;
+    z-index: 9;
+    right: 140px;
+    box-shadow: 0 0 8px 4px rgb(0 0 0 / 65%);
+    filter: brightness(60%);
+}
+
+#커버3 {
+    height: 263px;
+    position: relative;
+    z-index: 8;
+    right: 290px;
+    box-shadow: 0 0 8px 4px rgb(0 0 0 / 65%);
+    filter: brightness(60%);
+    
+}
+
+#list메인 {
+     width: 3000px;
+    height: 263px;
+    overflow: hidden;
+}
+
+#커버4 {
+     height: 263px;
+    position: relative;
+    z-index: 7;
+    box-shadow: 0 0 8px 4px rgb(0 0 0 / 65%);
+    right: 480px;
+    filter: brightness(60%);
+    
+}
+
+#커버5 {
+    height: 263px;
+    position: relative;
+    z-index: 6;
+    box-shadow: 0 0 8px 4px rgb(0 0 0 / 65%);
+    right: 620px;
+    filter: brightness(60%);
+}
+
+#커버a {
+    background-image: url(%EB%B0%A4%ED%8E%B8%EC%A7%80.jfif);
+    height: 263px;
+    position: relative;
+    z-index: 10;
+    box-shadow: 0 0 8px 4px rgb(0 0 0 / 65%);
+    transition: all 300ms ease 0s;
+    display: inline-block;
+    position: absolute;
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    opacity: 1;
+    transition: all 300ms ease 0s;
+    white-space: nowrap;
+}
+
+#배너닉네임 {
+    position: relative;
+    z-index: 15;
+    color: white;
+    float: left;
+    bottom: 50px;
+    left: 60px;
+ font-size: 15px;
+    font-weight: 400;
+}
+
+#리스트소개란 {
+    margin: 16px 20px 0px;
+    height: 141px;
+    
+}
+
+#리스트타이틀 {
+    height: 28px;
+    font-size: 19px;
+    font-weight: 700;
+    margin-bottom: 6px;
+    padding: 0px;
+    
+}
+
+#리스트설명 {
+    height: 28px;
+    color: #787878;
+    font-weight: 400;
+    font-size: 15px;
+    width: auto;
+    height: auto;
+        
+}
+
+#좋아요 {
+    color: #8c8c8c;
+    vertical-align: top;
+    font-size: 14px;
+    font-weight: 400;
+    list-style:none;
+    width: 100px;
+    margin: 0 auto;
+}
+
+#리스트정보 {
+    list-style:none;
+    padding: 0px;
+    padding-left: 0px;
+    
+}
+
+#버튼박스 {
+    height: 44px;
+    border-bottom: 1px solid;
+    border-top: 1px solid;
+    border-color: lightgray
+}
+
+#좋아요박스 {
+    width: 180px;
+    margin: 0 auto;
+    height: 38px;
+    background-color: white;
+    border: 0px;
+    color: rgb(103, 104, 106);
+    font-size: 15px;
+    margin: 2px;
+   
+}
+#좋아요박스:hover{
+    background-color: rgba(41, 42, 50, 0.08);
+    color: black;
+    border-radius: 3px;
+}
+
+#버튼박스내용 {
+    width: 598px;
+    margin: 0 auto;
+}
+
+#좋아요수 {
+        color: #8c8c8c;
+    vertical-align: top;
+    font-size: 13px;
+    font-weight: 400;
+    list-style:none;
+    width: 100px;
+}
+
+#작품들란 {
+    width: 638px;
+    height: auto;
+    padding-top: 8px;
+}
+
+#작품들란2 {
+    height: 44px;
+}
+
+#작품수 {
+    color: rgb(160, 160, 160);
+    font-size: 15px;
+    margin: 12px 6px 12px;
+}
+
+#작품들란3 {
+    width: 598px;
+    height: 43px;
+    margin: 0 auto;
+    
+}
+
+#작품들란 {
+    
+}
+
+#작품들명 {
+    margin: 8px 0px;
+}
+
+#작품란 {
+    width: 638px;
+    height: atuo;
+}
+
+#작품란2 {
+    width: 608px;
+    margin: 0 auto;
+
+
+}
+
+#리스트앨범커버 {
+    border-radius: 8px;
+    width: 178px;
+}
+
+#작품카드 {
+    height: 250px;
+    margin-bottom: 24px;
+}
+
+#작품명 {
+    width: 132px;
+    height: 22px;
+    text-align: center;
+    margin: 0 auto;
+    color: rgb(41, 42, 50);
+    font-size: 16px;
+    font-weight: 500;
+}
+
+#리스트평균 {
+    height: 18px;
+    color: rgb(120, 120, 120);
+    font-size: 13px;
+    text-align: center;
+    margin-top: 2px;
+}
+
+#리스트정보 {
+    color: rgb(160, 160, 160);
+    font-size: 12px;
+    margin-top: 3px;
+    text-align: center;
+    
+}
+
+#리스트예상 {
+    
+}
+
+#더보기 {
+    margin: 0px 213px;
+    width: 172px;
+    height: 34px;
+    background: rgb(255, 255, 255);
+    border-radius: 6px;
+    border: 1px solid rgb(227, 227, 227);
+    padding: 0px 0px 0px 8px;
+    color: rgb(0, 0, 0);
+    font-size: 14px;
+
+    
+}
+
+#댓글란1 {
+    width: 638px;
+    height: 600px;
+}
+
+#댓글타이틀 {
+    width: 598px;
+    height: 63px;
+    padding: 18px 0px;
+    margin: 0 auto;
+    font-size: 19px;
+    border-bottom: 1px solid;
+    border-top: 1px solid;
+    border-color: lightgray
+}
+
+#댓글수 {
+    color: rgb(160, 160, 160);
+    font-size: 15px;
+}
+
+#버튼란 {
+    height: 34px;
+    margin-bottom: 20px;
+    margin-top: -10px;
+}
+
+#댓글란2 {
+    width: 598px;
+    height: 324px;
+    margin: 0 auto;
+}
+
+#ㄹㅇ댓글 {
+    width: 598px;
+    height: 101px;
+    padding: 12px 0px;
+    border-bottom: 1px solid;
+    border-color: lightgray
+}
+
+#댓글프로필 {
+    width: 32px;
+    height: 76px;
+    float: left;
+}
+
+#닉네임 {
+    width: 558px;
+    height: 18px;
+
+}
+
+#댓글내용 {
+    width: 558px;
+    height: 22px;
+
+}
+
+#댓글버튼 {
+    width: 558px;
+    height: 24px;
+}
+
+#댓글우측 {
+    width:  558px;
+    height: 76px;
+    float: right;
 }
