@@ -12,8 +12,8 @@ public class UserDAO {
 	@Autowired
 	private SqlSession session;
 
-	/* 아이디 중복확인 하기
- 	이름: selectIdCheck
+	/* 로그인 하기
+ 	이름: selectUser
  	파라미터 타입: String
  	변수 이름: user_id
  	리턴 타입: UserInfo

@@ -7,51 +7,40 @@
 <title>회원가입 페이지</title>
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 <script type="text/javascript">
-	function formCheck(){
-		//유효성 검사
-		//1. 이름 필수 입력
-		var namecheck = document.getElementById("user_name").value;
-		
-		if(namecheck == ''){
-			document.getElementById("nameCheck").innerHTML='이름을 입력해 주세요';
-		return false;
-		}
-		//2. id 유효성 검사
-		var user_id = document.getElementById("user_id").value;
-		
-		if(user_id.length < 4 || user_id.length > 10){
-			document.getElementById("idCheck").innerHTML='아이디를 올바르게 입력해 주세요';
-		return false;
-		} 
-		
-		//3. pw 유효성 검사
-		var user_pw = document.getElementById("user_pw").value;
-		var pwcheck = document.getElementById("user_pw").value;
-		
-		
-		if(user_pw.length < 4 || user_pw.length > 10){
-			document.getElementById("pwCheck").innerHTML='비밀번호를 올바르게 입력해 주세요';
-		return false;
-		} 
-		//4. pwcheck 유효성 검사
-		if(pwcheck != user_pw){
-			document.getElementById("pw2Check").innerHTML='비밀번호가 일치하지 않습니다';
-		return false;
-		}
-		
-		
-		//5. 모든 값이 입력 되지 않을 경우 값을 보내지 않는다.
-		if(namecheck == '' || user_id == '' || user_pw == '' || pwcheck == ''){
-			return false;
-		}
-		
-	return true;
+function formCheck(){
+	//유효성 검사
+	var user_id = document.getElementById("user_id").value;
+	var user_pw = document.getElementById("user_pw").value;
+	
+	//1. id, pw 유무 검사
+	if(user_id.length == "" || user_pw.length == ""){
+		document.getElementById("check").innerHTML='아이디, 비밀번호를 입력해주세요';
+	return false;
 	}
 	
-/* 	//아이디 중복 확인 창 띄우기
-	function idCheckOpen(){
-		window.open("idCheck", "newwin", "top = 100, left = 200, width = 200, heigth = 150, resizeable = no" );
-	} */
+	//2. id, pw 둘다 잘못 입력 되었을 경우
+	if((user_id.length < 4 || user_pw.length > 10) &&
+			(user_pw.length < 4 || user_pw.length > 10)){
+	document.getElementById("check").innerHTML='아이디, 비밀번호를 올바르게 입력하세요';
+	return false;
+	}
+	
+	
+	//3. id 유효성 검사
+	if(user_id.length < 4 || user_pw.length > 10){
+		document.getElementById("check").innerHTML='아이디를 올바르게 입력하세요';
+	return false;
+	}
+	
+	//4. pw 유효성 검사
+	if(user_pw.length < 4 || user_pw.length > 10){
+		document.getElementById("check").innerHTML='비밀번호를 올바르게 입력하세요';
+	return false;
+	}
+	
+return true;
+}
+
 
 </script>
 </head>

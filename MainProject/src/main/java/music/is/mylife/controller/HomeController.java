@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import music.is.mylife.service.HomeService;
+import music.is.mylife.service.SongService;
 import music.is.mylife.vo.Song;
 
 
@@ -20,6 +21,9 @@ import music.is.mylife.vo.Song;
 public class HomeController {
 
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
+	
+	@Autowired
+	SongService ss;
 	
 	@Autowired
 	HomeService hs;
@@ -41,8 +45,9 @@ public class HomeController {
 	 */
 	@RequestMapping(value = "main", method = RequestMethod.GET)
 	public String topSong(Song song, Model model) {
+		logger.info("노래:{}", song);
 		ArrayList<Song> songList = hs.selectTopSong(song);
-		logger.info("Song:{}", songList);
+		logger.info("SongList:{}", songList);
 		
 		ArrayList<Song> likeSong = hs.selectLikeSong(song);
 		logger.info("SongLike: {}", likeSong);
@@ -53,7 +58,24 @@ public class HomeController {
 		return "main";
 	}
 	
-	
+	/**
+	 * 곡 이름누르면 해당 곡 페이지로 이동
+	 * @param session
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping(value = "song/songPage", method = RequestMethod.GET)
+	public String songPage(Model model, int singer_id, int song_id, Song song) {
+		Song selectSong = ss.selectAllSong(song);
+		
+		logger.info("Song:{}", selectSong);
+		
+		model.addAttribute("singer_id", singer_id);
+		model.addAttribute("song_id", song_id);
+		model.addAttribute("Song", selectSong);
+		
+		return "song/song2";
+	}
 
 
 

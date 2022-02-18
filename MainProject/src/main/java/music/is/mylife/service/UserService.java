@@ -10,19 +10,7 @@ import music.is.mylife.vo.UserInfo;
 public class UserService {
 	@Autowired
 	UserDAO userDao;
-	
-	/**
-	 * 아이디 중복 검사
-	 * @param searchId
-	 * @return
-	 */
-	public UserInfo idCheck(String searchId) {
 
-		//검색 결과를 변수 idCheck에 담음
-		UserInfo idCheck = userDao.selectUser(searchId);
-		
-		return idCheck;
-	}
 	
 	/**
 	 * 회원가입 처리
@@ -35,7 +23,7 @@ public class UserService {
 		int join = userDao.insertUser(userinfo);
 		
 		if(join != 1) {
-			return "user/joinPage";
+			return "redirect:/main";
 		}
 		return "redirect:/main";
 	}
