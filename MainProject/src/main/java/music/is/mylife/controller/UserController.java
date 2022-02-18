@@ -14,9 +14,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import music.is.mylife.service.UserService;
+import music.is.mylife.vo.Song;
 import music.is.mylife.vo.UserInfo;
 
-@SessionAttributes("userinfo")
 @Controller
 public class UserController {
 	private static final Logger logger = LoggerFactory.getLogger(UserController.class);
@@ -29,16 +29,16 @@ public class UserController {
 	 * @param model
 	 * @return joinPopup.jsp
 	 */
-	@RequestMapping(value = "join", method = RequestMethod.GET)
-	public String join(Model model) {
-		
-		//세션에 담을 빈 UserInfo 객체
-		UserInfo userinfo = new UserInfo();
-		
-		model.addAttribute("userinfo", userinfo);
-		
-		return "user/joinPage";
-	}
+	/*
+	 * @RequestMapping(value = "join", method = RequestMethod.GET) public String
+	 * join(Model model) {
+	 * 
+	 * //세션에 담을 빈 UserInfo 객체 UserInfo userinfo = new UserInfo();
+	 * 
+	 * model.addAttribute("userinfo", userinfo);
+	 * 
+	 * return "redirect:/main"; }
+	 */
 	
 	
 	/**
@@ -90,4 +90,6 @@ public class UserController {
 		
 		return "redirect:/main";
 	}
+	
+	
 }

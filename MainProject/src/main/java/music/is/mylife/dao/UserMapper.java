@@ -3,7 +3,7 @@ package music.is.mylife.dao;
 import music.is.mylife.vo.UserInfo;
 
 public interface UserMapper {
-	/* 아이디 중복확인 하기
+	/* 로그인하기
 	 	이름: selectIdCheck
 	 	파라미터 타입: String
 	 	변수 이름: user_id

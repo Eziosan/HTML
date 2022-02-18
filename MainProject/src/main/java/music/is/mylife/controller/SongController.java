@@ -2,6 +2,8 @@ package music.is.mylife.controller;
 
 import java.util.ArrayList;
 
+import javax.servlet.http.HttpSession;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -116,6 +118,29 @@ public class SongController {
 		// listPage에서 true냐, false냐에 따라 리스트 추가됐는지 안됐는지 코드짜면 될거같음.
 		
 		return url;
+	}
+	
+	
+	/**
+	 * 곡페이지에서 로그아웃하기
+	 * @param session
+	 * @param song
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping(value = "logout", method = RequestMethod.GET)
+	public String lougout(HttpSession session, Song song, Model model) {
+		
+		session.invalidate();
+		
+		Song selectSong = ss.selectAllSong(song);
+		
+		
+		model.addAttribute("singer_id", song.getSinger_id());
+		model.addAttribute("song_id", song.getSong_id());
+		model.addAttribute("Song", selectSong);
+		
+		return "song/song2";
 	}
 	
 	
