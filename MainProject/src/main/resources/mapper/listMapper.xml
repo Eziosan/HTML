@@ -5,8 +5,12 @@
   
   <!-- 인터페이스 위치 지정!!!!!! -->
 <mapper namespace="music.is.mylife.dao.ListMapper">
-
- 	
- 	
+	
+	<select id="selectListLikesByUser" parameterType="string" resultType="int">
+		select sum(list_like) from playlist where user_id = #{user_id}
+	</select>
+	<select id="selectListCommentsNumByUser" parameterType="string" resultType="int">
+		select count(*) from list_comment where user_id = #{user_id}
+	</select>
 
 </mapper>

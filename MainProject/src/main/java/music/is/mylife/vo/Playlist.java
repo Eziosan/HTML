@@ -17,8 +17,4 @@ public class Playlist {
 	private int song_id;
 	
 	
-	
-	
-	
-	
 }

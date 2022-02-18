@@ -31,11 +31,51 @@
 <body>
 	<h1>배너</h1>
 	<br>
-	<h1>프로필 / 이름 / 자기소개</h1>
+	<h1>프로필 </h1>
+	<li> ${u_info.user_name}  </li>
+	<li> ${u_info.user_introduce} </li>
+	
 	<br>
 	<h1>평가 수</h1>
+	<table>
+		<tr><td>미정</td></tr>
+		<tr>
+			<td>
+				유저 리스트 좋아요 수 ${userGradeCount.listLikeNum} 
+			</td>
+		</tr>
+		<tr>
+			<td>
+				리스트 댓글 수 ${userGradeCount.listCommentNum}
+			</td>
+		</tr>
+	</table>
 	<br>
 	<h1>별점 분포 </h1>
+	<table>
+		<tr>
+			<td>
+				숫자
+			</td>
+			<td>
+				숫자
+			</td>
+			<td>
+				숫자
+			</td>
+		</tr>
+		<tr>
+			<td>
+				별점 평균
+			</td>
+			<td>
+				별점 개수
+			</td>
+			<td>
+				많이 준 별점
+			</td>
+		</tr>
+	</table>
 	<br>
 	<h1>선호 태그</h1>
 	<br>
