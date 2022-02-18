@@ -96,6 +96,19 @@ public class SongDAO {
 		
 	}
 	
+	public void insertSong(Playlist playlist) {
+		
+		SongMapper mapper = session.getMapper(SongMapper.class);
+		
+		int playlist_id = playlist.getPlaylist_id();
+		
+		mapper.insertList_Detail(playlist);
+		mapper.updateList_Date(playlist_id);
+		
+		
+	
+	}
+	
 	
 	
 	

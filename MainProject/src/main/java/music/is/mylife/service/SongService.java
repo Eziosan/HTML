@@ -66,7 +66,7 @@ public class SongService {
 	public Boolean insertPlaylist(Playlist playlist) {
 
 		// 어레이 리스트로 리스트 전체를 받아서 for each문을 돌려 현재 존재하는 리스트의 이름과 새로 받은 리스트의 이름과 비교해서 있으면
-		// 종료 없으면 리스트 생성
+		// 종료 없으면 리스트 생성하면서 곡까지 넣어줌.
 		ArrayList<Playlist> ps = sdao.selectList(playlist.getUser_id());
 
 		Boolean result = false;
@@ -93,6 +93,29 @@ public class SongService {
 		return result;
 
 	}
+	
+	
+	// 여기서 해야할게 곡아이디를 받아서 특정 유저의 특정 playlist에 곡을 담는걸 구현해야함.
+	// ? 굳이 당초에 playlist name을 보여주고 특정 playlist를 클릭해서 곡 담는다고 했는데 여기서 유효성 검사할 필요는 없을거같음(?)
+	
+	public void insertSong(Playlist playlist) {
+		
+		String user_id = playlist.getUser_id();
+		
+		ArrayList<Playlist> pl = sdao.selectList(user_id);
+		
+		for(Playlist p : pl) {
+			
+			// playlist 이름과 같은 list를 찾아서 sysdate 업데이트
+			if(p.getList_name().equals(playlist.getList_name())) {
+				sdao.insertSong(playlist);
+				// 곡을 추가함. 그러면 작업 끝 -> return 해야지
+				return;
+			}
+		}
+	}
+	
+	
 
 	public ArrayList<Tag> selectTag(int song_id) {
 

@@ -121,6 +121,9 @@ public class SongController {
 	}
 	
 	
+	// 여기다가 특정 유저의 특정 리스트에 곡 담는거 구현해야함
+	
+	
 	/**
 	 * 곡페이지에서 로그아웃하기
 	 * @param session

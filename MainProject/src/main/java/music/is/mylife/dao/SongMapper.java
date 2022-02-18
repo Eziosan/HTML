@@ -27,6 +27,8 @@ public interface SongMapper {
 	public void insertList(Playlist playlist);
 	// 리스트 디테일 추가하는 sql문
 	public void insertList_Detail(Playlist playlist);
+	// 플레이리스트 날짜를 최신날짜로 업데이트하는 sql문
+	public int updateList_Date(int playlist_id);
 
 	
 	
