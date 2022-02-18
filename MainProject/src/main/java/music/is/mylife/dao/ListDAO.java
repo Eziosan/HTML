@@ -5,7 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class MediaDAO {
+public class ListDAO {
 	
 	@Autowired
 	private SqlSession session;

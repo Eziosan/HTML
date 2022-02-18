@@ -5,7 +5,7 @@
 <head>
 <title>메인 페이지</title>
 <link rel="stylesheet" type="text/css"
-	href="./resources/css/default.css">
+	href="../resources/css/default.css">
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script> 
 <script type="text/javascript">
 	$(document).ready(function() {
@@ -29,9 +29,24 @@
 </script>
 </head>
 <body>
-	<a href="main">메인화면</a>
+	<h1>배너</h1>
 	<br>
-
+	<h1>프로필 / 이름 / 자기소개</h1>
+	<br>
+	<h1>평가 수</h1>
+	<br>
+	<h1>별점 분포 </h1>
+	<br>
+	<h1>선호 태그</h1>
+	<br>
+	<h1>선호 가수</h1>
+	<br>
+	<h1>선호 장르</h1>
+	<br>
+	<h1>선호 국가</h1>
+	<br>
+	
+	
 	<c:if test="${user_id == null }">
 		<%-- <button class="join">회원가입</button>
 		<jsp:include page="/WEB-INF/views/user/joinPopup.jsp" />

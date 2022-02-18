@@ -18,13 +18,15 @@ public class SearchController {
 	@Autowired
 	SearchService sServ;
 
-	@RequestMapping(value="search", method=RequestMethod.GET)
+	@RequestMapping(value="searchResult", method=RequestMethod.GET)
 	public String search(String searchText, Model model) {
 		ArrayList<Song> searchResult1 = sServ.searchSongsBySongName(searchText);
 		ArrayList<Song> searchResult2 = sServ.searchSongsBySingerName(searchText);
 		
 		model.addAttribute("searchText", searchText);
+		//곡명으로 검색 검색 결과
 		model.addAttribute("searchResult1", searchResult1);
+		//가수명으로 검색
 		model.addAttribute("searchResult2", searchResult2);
 		
 		for(Song s : searchResult1) {
@@ -38,18 +40,12 @@ public class SearchController {
 		
 		
 		
-		return "search/main";
+		return "search/searchResult";
 	}
-	@RequestMapping(value="test", method=RequestMethod.GET)
+	@RequestMapping(value="main", method=RequestMethod.GET)
 	public String search() {
 		
 		
-		return "search/test";
-	}
-	@RequestMapping(value="main", method=RequestMethod.GET)
-	public String main() {
-		
-		
-		return "search/main";
+		return "search/searchResult";
 	}
 }

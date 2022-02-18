@@ -50,8 +50,10 @@
 	
 	<a href="song/mainPage">송페이지 이동</a>
 	<br>
-	<a href="search/test">검색 페이지 테스팅(임시)</a>
 	<a href="search/main">검색 페이지 테스팅(메인)</a>
+	<br>
+	<a href="analysis/analysisPage">취향분석 페이지 테스팅(메인)</a>
+	<a href="analysis/main">취향분석 페이지 테스팅(메인)</a>
 
 
 </body>

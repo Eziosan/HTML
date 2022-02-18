@@ -124,12 +124,14 @@
 	}
 
 	function searchCheck(){
-		if(window.event.keyCode == 13){
-			alert("enter키 클릭");
-			var searchText = $("#searchText").text();
-			location.href="/mylife/search/search?searchText=" + searchText;
+		if($("#searchText").val().length < 1){
+			alert("글자 수는 1자 이상 입력하셔야 합니다!!")
+			return false;
 		}
-	}
+
+		return true;
+			
+	} 
     
     </script>
       <style>
@@ -157,7 +159,7 @@
           <li><a href="#" class="nav-link px-2 mt-3 link-dark">가수</a></li>
         </ul>
 
-        <form action="/mylife/search/search" method="get" onsubmit="return searchCheck()"
+        <form action="/mylife/search/searchResult" method="get" onsubmit="return searchCheck();" 
         			class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
           <input type="search" id="searchText" name="searchText" class="form-control" placeholder="# 태그를 검색해보세요"  aria-label="Search" control-id="ControlID-2" style="background: #F2F2F2">
         </form>

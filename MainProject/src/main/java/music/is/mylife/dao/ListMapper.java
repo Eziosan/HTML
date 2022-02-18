@@ -1,5 +1,5 @@
 package music.is.mylife.dao;
 
-public interface MediaMapper {
+public interface ListMapper {
 
 }

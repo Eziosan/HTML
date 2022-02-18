@@ -6,7 +6,6 @@ import lombok.Data;
 
 @Data
 public class Playlist {
-	private int num;
 	private int playlist_id;
 	private String user_id;
 	private String list_name;
