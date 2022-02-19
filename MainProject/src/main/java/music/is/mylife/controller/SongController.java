@@ -9,13 +9,16 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import music.is.mylife.service.SongService;
+import music.is.mylife.service.UserService;
 import music.is.mylife.vo.Playlist;
 import music.is.mylife.vo.Song;
 import music.is.mylife.vo.Tag;
+import music.is.mylife.vo.UserInfo;
 
 @RequestMapping("song")
 @Controller
@@ -25,6 +28,9 @@ public class SongController {
 	
 	@Autowired
 	SongService ss;
+	
+	@Autowired
+	UserService us;
 	
 	@RequestMapping(value="mainPage",method=RequestMethod.GET)
 	public String mainPage(Model model) {
@@ -120,6 +126,56 @@ public class SongController {
 		return url;
 	}
 	
+	/**
+	 * 곡페이지에서 로그인하기
+	 * @param user_id
+	 * @param user_pw
+	 * @param model
+	 * @param session
+	 * @return song/songPage
+	 */
+	@RequestMapping(value = "login", method = RequestMethod.POST)
+	public String login(String user_id, String user_pw, Model model, HttpSession session, Song song) {
+		
+		UserInfo user_info = us.selectUser(user_id);
+		
+		if(user_info != null && user_info.getUser_pw().equals(user_pw)) {
+			session.setAttribute("user_id", user_id);
+		}
+		
+		
+		Song selectSong = ss.selectAllSong(song);
+		
+		
+		model.addAttribute("singer_id", song.getSinger_id());
+		model.addAttribute("song_id", song.getSong_id());
+		model.addAttribute("Song", selectSong);
+		
+		
+		
+		
+		return "song/mainPage";
+	}
+	
+	
+	/**
+	 * 곡페이지에서 회원가입 처리
+	 * @param userinfo
+	 * @param model
+	 * @return ss.insertUser(userinfo)
+	 */
+	@RequestMapping(value = "join", method = RequestMethod.POST)
+	public String join(@ModelAttribute("userinfo") UserInfo userinfo ,Model model, Song song) {
+		
+		Song selectSong = ss.selectAllSong(song);
+		
+		
+		model.addAttribute("singer_id", song.getSinger_id());
+		model.addAttribute("song_id", song.getSong_id());
+		model.addAttribute("Song", selectSong);
+		
+		return ss.insertUser(userinfo);
+	}
 	
 	/**
 	 * 곡페이지에서 로그아웃하기
@@ -140,7 +196,7 @@ public class SongController {
 		model.addAttribute("song_id", song.getSong_id());
 		model.addAttribute("Song", selectSong);
 		
-		return "song/song2";
+		return "song/mainPage";
 	}
 	
 	

@@ -7,9 +7,11 @@ import org.springframework.stereotype.Service;
 
 import music.is.mylife.dao.SongDAO;
 import music.is.mylife.dao.TagDAO;
+import music.is.mylife.dao.UserDAO;
 import music.is.mylife.vo.Playlist;
 import music.is.mylife.vo.Song;
 import music.is.mylife.vo.Tag;
+import music.is.mylife.vo.UserInfo;
 
 @Service
 public class SongService {
@@ -19,6 +21,8 @@ public class SongService {
 	SongDAO sdao;
 	@Autowired
 	TagDAO tdao;
+	@Autowired
+	UserDAO udao;
 
 	// 해당 곡의 배너를 가져오는 메소드
 	public String selectBanner(int song_id) {
@@ -111,7 +115,21 @@ public class SongService {
 		tdao.minusSongTagRecommend(tag);
 	}
 	
-	
+	/**
+	 * 곡페이지에서 회원가입하기
+	 * @param userinfo
+	 * @return
+	 */
+	public String insertUser(UserInfo userinfo) {
+		
+		//회원가입 처리
+		int join = udao.insertUser(userinfo);
+		
+		if(join != 1) {
+			return "song/mainPage";
+		}
+		return "song/mainPage";
+	}
 	
 	/**
 	 * [메인페이지]

@@ -79,7 +79,6 @@
           </a>
                  
             
-            <a>dddddd</a>
           <ul class="dropdown-menu text-small color-white" aria-labelledby="dropdownUser1">
             <c:if test="${user_id == null }">
             <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#로그인모달">로그인</a></li>

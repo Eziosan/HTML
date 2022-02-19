@@ -23,22 +23,6 @@ public class UserController {
 	
 	@Autowired
 	UserService us;
-
-	/**
-	 * 회원가입 창 보기
-	 * @param model
-	 * @return joinPopup.jsp
-	 */
-	/*
-	 * @RequestMapping(value = "join", method = RequestMethod.GET) public String
-	 * join(Model model) {
-	 * 
-	 * //세션에 담을 빈 UserInfo 객체 UserInfo userinfo = new UserInfo();
-	 * 
-	 * model.addAttribute("userinfo", userinfo);
-	 * 
-	 * return "redirect:/main"; }
-	 */
 	
 	
 	/**

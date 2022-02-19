@@ -74,7 +74,7 @@ public class HomeController {
 		model.addAttribute("song_id", song_id);
 		model.addAttribute("Song", selectSong);
 		
-		return "song/song2";
+		return "song/mainPage";
 	}
 
 
