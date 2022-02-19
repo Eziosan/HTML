@@ -40,6 +40,10 @@ function formCheck(){
 return true;
 }
 
+function result(){
+	alert(document.getElementById())
+}
+
 
 </script>
 </head>
@@ -49,11 +53,13 @@ return true;
 	<%-- <c:forEach var="song" items="${songList }" begin="0" end="4"> --%>
 	dsfdsf
 	
-	<c:forEach var="playlist" items="${playlist }">
-		<h6>${playlist.list_name }</h6>
+	<c:forEach var="plist" items="${playlist }">
+		<h6><a href="insertSong?plist=${plist.list_name}"><h6>${plist.list_name }</h6> </a></h6>
+		<%-- <c:out value="${playlist.list_name}"><input type="hidden" name="list_name" id="list_name" value="${playlist.list_name}"></c:out> --%>
 	</c:forEach> 
 	
-	
+	<!-- 특정 playlist를 컨트롤러로 보내는걸 어떻게?? -->
+	 
 	
 	
 	

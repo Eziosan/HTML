@@ -65,13 +65,17 @@
 		
 		<!-- Playlist의 date를 최신날짜로 업데이트하는 sql문 -->
 		<update id="updateList_Date" parameterType="int">
-			update playlist set list_date = sysdate where playlist_id = #{playlistd_id };
+			update playlist set list_date = sysdate where playlist_id = #{playlist_id }
 		</update>
 	
-	
+		<select id="selectPlayListId" parameterType="string" resultType="int">
+			select playlist_id from playlist where list_name=#{list_name}
+		</select>
 		
 	
-	
+		<select id="selectPlayList_Song_id" parameterType="int" resultType="playlist">
+			select song_id from playlist_detail where playlist_id = #{playlist_id}
+		</select>
 	
 	
 	

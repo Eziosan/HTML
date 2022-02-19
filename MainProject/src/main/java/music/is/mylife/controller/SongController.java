@@ -2,6 +2,7 @@ package music.is.mylife.controller;
 
 import java.util.ArrayList;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -77,12 +78,17 @@ public class SongController {
 	}
 	
 	@RequestMapping(value="selectList", method=RequestMethod.GET)
-	public String selectList(Model model) {
+	public String selectList(Model model,HttpSession session) {
 		
-		String name="aaaa";
+		String user_id;
 		
-		ArrayList<Playlist> playlist = ss.selectList(name);
+		//int Song_id = (int)session.getAttribute("song_id");
 		
+		user_id = (String)session.getAttribute("user_id");
+		
+		ArrayList<Playlist> playlist = ss.selectList(user_id);
+		
+		//logger.debug("song_id : {}", Song_id);
 		logger.debug("playlist : {}", playlist);
 		
 		
@@ -124,14 +130,29 @@ public class SongController {
 	// 여기다가 특정 유저의 특정 리스트에 곡 담는거 구현해야함
 	// 일단 플레이리스트를 받아와야하는데 그럼 로그인을 할때 로그인 정보, 플레이리스트 정보도 같이 세션이 담아서 보내놓으면 
 	// 다른곳에서도 쓸 수 있는게 아닌가? >> 물어보기
+	// 유저 id, list name을 받아오면?
+	@RequestMapping(value="insertSong",method=RequestMethod.GET)
+	public String insertSong(String plist, HttpSession session  ) {
+		
+		String user_id = (String)session.getAttribute("user_id");
+		String playlist_name = plist;
 	
-	@RequestMapping(value="inserSong",method=RequestMethod.GET)
-	public String insertSong(Model model, Playlist playlist) {
+		int playlist_id = ss.selectPlayListId(playlist_name);
+		
+		logger.debug("playlist_id : {}", playlist_id);
+		logger.debug("playlist 객체 출력 : {}", playlist_name) ; // nullpointexception 뜹니다.
+		logger.debug("user_id 출력 : {}", user_id) ;
+		
+		Playlist playlist = new Playlist();
+		
+		playlist.setUser_id(user_id);
+		playlist.setList_name(playlist_name);
+		playlist.setPlaylist_id(playlist_id);
+		playlist.setSong_id(5);
 		
 		
 		
-		
-		
+		//return "redirect:selectList";
 		return ss.insertSong(playlist);
 		
 	}

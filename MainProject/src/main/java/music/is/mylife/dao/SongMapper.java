@@ -29,7 +29,10 @@ public interface SongMapper {
 	public void insertList_Detail(Playlist playlist);
 	// 플레이리스트 날짜를 최신날짜로 업데이트하는 sql문
 	public int updateList_Date(int playlist_id);
-
+	// 리스트 이름으로 플레이리스트 id를 가져오는 sql문
+	public int selectPlayListId(String list_name);
+	// playlist_id 로 playlist_detail의 곡 id들을 가져오는 sql문
+	public ArrayList<Playlist> selectPlayList_Song_id(int playlist_id);
 	
 	
 	// 메인 페이지(화원)
