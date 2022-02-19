@@ -70,18 +70,18 @@ public class SongService {
 	public Boolean insertPlaylist(Playlist playlist) {
 
 		// 어레이 리스트로 리스트 전체를 받아서 for each문을 돌려 현재 존재하는 리스트의 이름과 새로 받은 리스트의 이름과 비교해서 있으면
-		// 종료 없으면 리스트 생성
+		// 종료 없으면 리스트 생성하면서 곡까지 넣어줌.
 		ArrayList<Playlist> ps = sdao.selectList(playlist.getUser_id());
 
 		Boolean result = false;
 
 		for (Playlist p : ps) {
 			if (p.getList_name().equals(playlist.getList_name())) {
-				
+
 				System.out.println(p.getList_name());
 				System.out.println(playlist.getList_name());
-				
-				result=false;
+
+				result = false;
 				break;
 			}
 
@@ -96,6 +96,51 @@ public class SongService {
 		}
 		return result;
 
+	}
+
+	// 여기서 해야할게 곡아이디를 받아서 특정 유저의 특정 playlist에 곡을 담는걸 구현해야함.
+	// ? 굳이 당초에 playlist name을 보여주고 특정 playlist를 클릭해서 곡 담는다고 했는데 여기서 유효성 검사할 필요는
+	// 없을거같음(?)
+	// 성공적으로 됐으면 redirect 실패면 다른걸로
+	public String insertSong(Playlist playlist) {
+		
+		String user_id = playlist.getUser_id();
+		
+		ArrayList<Playlist> pl = sdao.selectList(user_id);
+		ArrayList<Playlist> songs = sdao.selectPlayList_Song_id(playlist);
+		
+		
+		Boolean flag = true;
+		
+		for(Playlist p : pl) {
+			// playlist 이름과 같은 list를 찾아서 sysdate 업데이트 
+			if(p.getList_name().equals(playlist.getList_name())) {
+				// 리스트 이름이 있으면
+			
+				for(Playlist p2 : songs) {
+					if(p2.getSong_id() == playlist.getSong_id()) {
+						// 곡 아이디가 중복이면
+						flag = false;
+					
+				}
+			}
+		}
+		
+		if(flag) {
+			sdao.insertSong(playlist);
+			// 곡을 추가함. 그러면 작업 끝 -> return 해야지
+			return "redirect:/song/mainPage";
+		}
+		
+	}
+		return "redirect:/song/mainPage"; //추가 못했을 때 근데 추가 못할일이없는데 굳이 이걸 써야하나?
+	}
+
+	public int selectPlayListId(String list_name) {
+
+		int playlist_id = sdao.selectPlayListId(list_name);
+
+		return playlist_id;
 	}
 
 	public ArrayList<Tag> selectTag(int song_id) {
@@ -114,6 +159,7 @@ public class SongService {
 
 		tdao.minusSongTagRecommend(tag);
 	}
+
 	
 	/**
 	 * 곡페이지에서 회원가입하기
@@ -131,15 +177,16 @@ public class SongService {
 		return "song/mainPage";
 	}
 	
+
 	/**
-	 * [메인페이지]
-	 * 전체 곡 검색해서 해당 곡 하나 들고오기
+	 * [메인페이지] 전체 곡 검색해서 해당 곡 하나 들고오기
+	 * 
 	 * @param song
 	 * @return song
 	 */
 	public Song selectAllSong(Song song) {
 		Song selectSong = sdao.selectAllSong(song);
-		
+
 		return selectSong;
 	}
 
