@@ -70,7 +70,8 @@ public class UserController {
 	@RequestMapping(value = "logout", method = RequestMethod.GET)
 	public String logout(HttpSession session) {
 		
-		session.invalidate();
+		//session.invalidate();
+		session.removeAttribute("user_id");
 		
 		return "redirect:/main";
 	}

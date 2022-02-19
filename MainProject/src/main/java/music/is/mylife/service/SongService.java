@@ -102,7 +102,7 @@ public class SongService {
 	// ? 굳이 당초에 playlist name을 보여주고 특정 playlist를 클릭해서 곡 담는다고 했는데 여기서 유효성 검사할 필요는
 	// 없을거같음(?)
 	// 성공적으로 됐으면 redirect 실패면 다른걸로
-	public String insertSong(Playlist playlist) {
+	public void insertSong(Playlist playlist) {
 		
 		String user_id = playlist.getUser_id();
 		
@@ -129,12 +129,17 @@ public class SongService {
 		if(flag) {
 			sdao.insertSong(playlist);
 			// 곡을 추가함. 그러면 작업 끝 -> return 해야지
-			return "redirect:/song/mainPage";
+			
 		}
 		
 	}
-		return "redirect:/song/mainPage"; //추가 못했을 때 근데 추가 못할일이없는데 굳이 이걸 써야하나?
+		 //추가 못했을 때 근데 추가 못할일이없는데 굳이 이걸 써야하나?
 	}
+	
+	
+	
+	
+	
 
 	public int selectPlayListId(String list_name) {
 
