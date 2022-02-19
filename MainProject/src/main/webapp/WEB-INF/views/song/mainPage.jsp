@@ -759,7 +759,7 @@ function result2(){
                 <div class="row 가수 프로필 mt-2" style="height: 150px">
                     <div class="col-3 text-center">
                         <div class="프로필 카드" style="margin-right: auto; margin-left: auto; margin-top: 5px">
-                        <img src="../resources/img/profile/IU_profile.jpg" width="80px" style="border-radius: 50%">
+                        <img src="../resources/img/profile/basic_profile.jpg" width="80px" style="border-radius: 50%">
                         <div class="가수명" style="margin-top: 5px; font-size: 25px">
                             ${Song.singer_name }
                         </div>
@@ -780,7 +780,7 @@ function result2(){
                 <div class="row 작사 프로필" style="height: 150px">
                     <div class="col-3 text-center mt-2">
                         <div class="프로필 카드" style="margin-right: auto; margin-left: auto; margin-top: 5px">
-                        <img src="../resources/img/profile/IU_profile.jpg" width="80px" style="border-radius: 50%">
+                        <img src="../resources/img/profile/basic_profile.jpg" width="80px" style="border-radius: 50%">
                         <div class="작사가명" style="margin-top: 5px; font-size: 25px">
                             ${Song.writer }
                         </div>
