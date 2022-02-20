@@ -180,6 +180,11 @@ function result2(){
 	return true;
 	}
     
+    
+    
+    
+    
+    
     </script>
   <style>
      @import url(//fonts.googleapis.com/earlyaccess/jejuhallasan.css);
@@ -708,15 +713,43 @@ function result2(){
                 ${Song.country }
             </span>
          </div>
-        <div class="예상" style="height: 42px; margin-top: 20px; padding-top: 8px; border-top: 1px solid ; border-bottom: 1px solid; border-color: darkgray">
-            별점 ★★★★★ ${Song.song_like } 
+       <div class="예상" id="예상" >
+            예상 ★2.7 
          </div>
          <div class="row" style="width: 730px; height: 58px; margin-top: 8px; align-content: center; ">
-			
-             <div id="likeDiv" class="col-2" style="align-content: center; margin-left: ">
-                <img id="like1"src="../resources/img/like1.png" width="30px">
-                
-                 <span> 좋아요 </span>
+
+             <div class="col-4" style="align-content: center; margin-left: ">
+                 <div id="별점큰박스">
+                     <span id="별점기록" >
+                        <span class="fw-bold" id="별점평균"> 4.26 </span>/  5
+                     </span>
+     <div class="starpoint_wrap" id="별점박스">
+          <div class="starpoint_box">
+            <label for="starpoint_1" class="label_star" title="0.5"><span class="blind">0.5점</span></label>
+            <label for="starpoint_2" class="label_star" title="1"><span class="blind">1점</span></label>
+            <label for="starpoint_3" class="label_star" title="1.5"><span class="blind">1.5점</span></label>
+            <label for="starpoint_4" class="label_star" title="2"><span class="blind">2점</span></label>
+            <label for="starpoint_5" class="label_star" title="2.5"><span class="blind">2.5점</span></label>
+            <label for="starpoint_6" class="label_star" title="3"><span class="blind">3점</span></label>
+            <label for="starpoint_7" class="label_star" title="3.5"><span class="blind">3.5점</span></label>
+            <label for="starpoint_8" class="label_star" title="4"><span class="blind">4점</span></label>
+            <label for="starpoint_9" class="label_star" title="4.5"><span class="blind">4.5점</span></label>
+            <label for="starpoint_10" class="label_star" title="5"><span class="blind">5점</span></label>
+            <input type="radio" name="starpoint" id="starpoint_1" class="star_radio">
+            <input type="radio" name="starpoint" id="starpoint_2" class="star_radio">
+            <input type="radio" name="starpoint" id="starpoint_3" class="star_radio">
+            <input type="radio" name="starpoint" id="starpoint_4" class="star_radio">
+            <input type="radio" name="starpoint" id="starpoint_5" class="star_radio">
+            <input type="radio" name="starpoint" id="starpoint_6" class="star_radio">
+            <input type="radio" name="starpoint" id="starpoint_7" class="star_radio">
+            <input type="radio" name="starpoint" id="starpoint_8" class="star_radio">
+            <input type="radio" name="starpoint" id="starpoint_9" class="star_radio">
+            <input type="radio" name="starpoint" id="starpoint_10" class="star_radio">
+            <span class="starpoint_bg"></span>
+          </div>
+        </div>
+    </div>                 
+
              </div>
              
              <div class="col-2">
@@ -841,8 +874,43 @@ function result2(){
             </div>
             
 
-        </div>
+        
+  <!--           태그 -->
+            <div id="태그큰창">
+                
+                <div class="태 fw-bold" style="margin-left: margin-top: 20px; font-size: 22px; height: 50px; ">
+                태그
+                   
+                </div>
+                <div id="태그큰칸3">
+                    <div id="태그칸">
+                    	<c:forEach var="Tags" items="${Tag }"  varStatus="status">
+                    		<%-- <c:if test="${status.count <= 3 }">
+	                    		<span id="큰태그${status.count }">${Tags.tag_name }</span>
+                    		</c:if>
+                    		<c:if test="${status.count > 3} ">
+                    			<span id="작은태그${status.count - 3 }">${Tags.tag_name }</span>
+                    		</c:if> --%>
+                    		<c:choose>
+                    			<c:when test="${status.count <=3 && status.count > 0}"><span id="큰태그${status.count }">${Tags.tag_name }</span></c:when>
+                    			<c:when test="${status.count > 3}"><span id="작은태그${status.count - 3 }">${Tags.tag_name }</span></c:when>
+                    			<c:otherwise></c:otherwise>
+                    		</c:choose>
+                    		
+                    		
+                    	</c:forEach>
+                 
+					                      
+                       
+                    </div>
+                
+                </div>
+                
+                
             
+            </div>
+
+        </div>
         
           <div class="오른쪽 보라 border" style="width: 318px; height: auto; border-radius: 10px; float: right; padding-left: 5px; padding-right: 5px; background-color: white; font-family: 'Noto Sans KR', sans-serif; overflow: hidden; padding-bottom: 40px;" >   
               

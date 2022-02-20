@@ -6,7 +6,7 @@ import music.is.mylife.vo.Tag;
 
 public interface TagMapper {
 
-	//song_id를 입력받아서 해당 곡의 상위 태그 3개를 반환 하는 sql문//
+	//song_id를 입력받아서 해당 곡의 상위 태그 10개를 반환 하는 sql문//
 	public ArrayList<Tag> selectTag(int song_id);
 	
 	//태그 id를 입력받아 태그 리턴

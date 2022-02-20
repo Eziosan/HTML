@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import music.is.mylife.service.HomeService;
 import music.is.mylife.service.SongService;
 import music.is.mylife.vo.Song;
+import music.is.mylife.vo.Tag;
 
 @Controller
 public class HomeController {
@@ -70,12 +71,16 @@ public class HomeController {
 
 		logger.info("Song:{}", selectSong);
 
+		ArrayList<Tag> tag = ss.selectTag(song_id);
 		
 		 model.addAttribute("singer_id", singer_id); 
 		 //model.addAttribute("song_id", song_id); 
 		 model.addAttribute("Song", selectSong);
+		 model.addAttribute("Tag", tag);
 		 
+		 logger.debug("Tag : {}", tag);
 		 session.setAttribute("song_id", song_id);
+		 
 		 
 
 		return "song/mainPage";

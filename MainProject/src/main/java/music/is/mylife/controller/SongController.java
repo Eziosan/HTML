@@ -181,6 +181,7 @@ public class SongController {
 	
 	
 	
+	
 	@RequestMapping(value="bannerPage",method=RequestMethod.GET)
 	public String bannerPage() {
 		
@@ -220,7 +221,7 @@ public class SongController {
 		
 		int song_id = (int)session.getAttribute("song_id");
 		
-		
+		ArrayList<Tag> tag = ss.selectTag(song_id);
 		
 		
 		
@@ -231,6 +232,7 @@ public class SongController {
 		  model.addAttribute("song_id", song.getSong_id()); 
 		 // model.addAttribute("Song",  selectSong);
 		  model.addAttribute("Song",song);
+		  model.addAttribute("Tag", tag);
 		 
 	
 		
@@ -279,10 +281,11 @@ public class SongController {
 		int song_id = (int)session.getAttribute("song_id");
 		
 		Song selectSong = (Song)ss.selectSongOne(song_id);
-
+		ArrayList<Tag> tag = ss.selectTag(song_id);
+		
 		
 		model.addAttribute("Song", selectSong);
-		
+		model.addAttribute("Tag", tag);
 	
 		
 		return "song/mainPage";

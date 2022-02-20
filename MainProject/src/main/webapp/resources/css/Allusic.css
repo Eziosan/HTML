@@ -476,7 +476,7 @@
 
 #댓글란1 {
     width: 638px;
-    height: 600px;
+    height: auto;
 }
 
 #댓글타이틀 {
@@ -504,7 +504,7 @@
 
 #댓글란2 {
     width: 598px;
-    height: 500px;
+    height: auto;
     margin: 0 auto;
 }
 
@@ -710,19 +710,21 @@
 }
 
 #큰태그1 {
-    position: absolute; font-size: 17px; font-weight: bold; line-height: 23px; color: rgb(255, 47, 110); transform: translate(137px, 57px) rotate(0deg); font-family: "Noto Sans KR", sans-serif; font-style: normal; text-align: center; transform-origin: center bottom; white-space: nowrap; width: 96px;
+    position: absolute; font-size: 17px; font-weight: bold; line-height: 23px; color: rgb(255, 47, 110); 
+    transform: translate(0px, 100px) rotate(0deg); 
+    font-family: "Noto Sans KR", sans-serif; font-style: normal; text-align: center; transform-origin: center bottom; white-space: nowrap; width: 96px;
 }
 
 #큰태그2 {
-    position: absolute; font-size: 17px; font-weight: bold; line-height: 23px; color: rgb(255, 47, 110); transform: translate(95px, 89px) rotate(0deg); font-family: "Noto Sans KR", sans-serif; font-style: normal; text-align: center; transform-origin: center bottom; white-space: nowrap; width: 96px;
+    position: absolute; font-size: 17px; font-weight: bold; line-height: 23px; color: rgb(255, 47, 110); transform: translate(95px, 50px) rotate(0deg); font-family: "Noto Sans KR", sans-serif; font-style: normal; text-align: center; transform-origin: center bottom; white-space: nowrap; width: 96px;
 }
 
 #큰태그3 {
-    position: absolute; font-size: 17px; font-weight: bold; line-height: 23px; color: rgb(255, 47, 110); transform: translate(142px, 28px) rotate(0deg); font-family: "Noto Sans KR", sans-serif; font-style: normal; text-align: center; transform-origin: center bottom; white-space: nowrap; width: 64px;
+    position: absolute; font-size: 17px; font-weight: bold; line-height: 23px; color: rgb(255, 47, 110); transform: translate(160px, 28px) rotate(0deg); font-family: "Noto Sans KR", sans-serif; font-style: normal; text-align: center; transform-origin: center bottom; white-space: nowrap; width: 64px;
 }
 
 #작은태그1 {
-    position: absolute; font-size: 13px; line-height: 19px; color: rgb(255, 47, 110); transform: translate(60px, 52px) rotate(0deg); font-family: "Noto Sans KR", sans-serif; font-style: normal; font-weight: normal; text-align: center; transform-origin: center bottom; white-space: nowrap; width: 96px;
+    position: absolute; font-size: 13px; line-height: 19px; color: rgb(255, 47, 110); transform: translate(50px, 80px) rotate(0deg); font-family: "Noto Sans KR", sans-serif; font-style: normal; font-weight: normal; text-align: center; transform-origin: center bottom; white-space: nowrap; width: 96px;
 }
 
 #작은태그2 {
@@ -730,7 +732,7 @@
 }
 
 #작은태그3 {
-    position: absolute; font-size: 13px; line-height: 19px; color: rgb(255, 47, 110); transform: translate(189px, 89px) rotate(0deg); font-family: "Noto Sans KR", sans-serif; font-style: normal; font-weight: normal; text-align: center; transform-origin: center bottom; white-space: nowrap; width: 64px;
+    position: absolute; font-size: 13px; line-height: 19px; color: rgb(255, 47, 110); transform: translate(155px, 85px) rotate(0deg); font-family: "Noto Sans KR", sans-serif; font-style: normal; font-weight: normal; text-align: center; transform-origin: center bottom; white-space: nowrap; width: 64px;
 }
 
 #작은태그4 {
@@ -738,11 +740,11 @@
 }
 
 #작은태그5 {
-    position: absolute; font-size: 13px; line-height: 19px; color: rgb(255, 47, 110); transform: translate(198px, 115px) rotate(0deg); font-family: "Noto Sans KR", sans-serif; font-style: normal; font-weight: normal; text-align: center; transform-origin: center bottom; white-space: nowrap; width: 64px;
+    position: absolute; font-size: 13px; line-height: 19px; color: rgb(255, 47, 110); transform: translate(100px, 115px) rotate(0deg); font-family: "Noto Sans KR", sans-serif; font-style: normal; font-weight: normal; text-align: center; transform-origin: center bottom; white-space: nowrap; width: 64px;
 }
 
 #작은태그6 {
-    position: absolute; font-size: 13px; line-height: 19px; color: rgb(255, 47, 110); transform: translate(9px, 27px) rotate(0deg); font-family: "Noto Sans KR", sans-serif; font-style: normal; font-weight: normal; text-align: center; transform-origin: center bottom; white-space: nowrap; width: 64px;
+    position: absolute; font-size: 13px; line-height: 19px; color: rgb(255, 47, 110); transform: translate(29px, 57px) rotate(0deg); font-family: "Noto Sans KR", sans-serif; font-style: normal; font-weight: normal; text-align: center; transform-origin: center bottom; white-space: nowrap; width: 64px;
 }
 
 #작은태그7 {
@@ -770,19 +772,24 @@
     width: 598px;
     height: 76px;
     padding: 0px;
+    float: left;
     
 }
 
 #가수프로필칸 {
     width:  68px;
     height: 76px;
+
     
     
 }
 
 #가수정보란 {
-    width: 540px;
+    width: 530px;
     height: 76px;
+    float: right;
+    position: relative;
+    
 }
 
 #국가큰칸 {
@@ -884,9 +891,9 @@
     float: right
 }
 
-/* #헤더사이즈 {
+#헤더사이즈 {
     width: 
-} */
+}
 
 #댓글입력창 {
     text-align: center;
@@ -965,4 +972,159 @@
 
 #메인컨테이너 {
     height: 500px;
+}
+
+#공유드롭다운 {
+    width: 180px;
+}
+
+#선호가수프로필 {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    margin: 10px 0px;
+    
+}
+
+#선호가수명 {
+        color: #1e1e1e;
+    font-size: 17px;
+    font-weight: 400;
+        white-space: nowrap;
+    margin: 13px 0px;
+}
+
+#선호가수앨범 {
+        color: #8c8c8c;
+    font-size: 14px;
+    font-weight: 400;
+        white-space: nowrap;
+    margin-top: 4px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+#선호가수점수 {
+        color: #787878;
+    font-size: 14px;
+    font-weight: 400;
+    float: right;
+}
+
+#좌버튼취향 {
+    width: 20px; height: 20px; position: relative; 
+    top:168px; right: 500px;
+}
+
+#우버튼취향 {
+            width: 20px; height: 30px; position: relative; top:100px; 
+    float: right
+}
+
+.carousel-control-prev {
+    
+}
+
+#아무거나1 {
+    
+}
+
+
+
+.carousel {
+    
+}
+
+.starpoint_wrap{display:inline-block;}
+.starpoint_box{position:relative;background:url(https://hsecode.github.io/images_codepen/codepen_sp_star.png) 0 0 no-repeat;font-size:0; }
+.starpoint_box .starpoint_bg{display:block;position:absolute;top:0;left:0;height:18px;background:url(https://hsecode.github.io/images_codepen/codepen_sp_star.png) 0 -20px no-repeat;pointer-events:none;}
+.starpoint_box .label_star{display:inline-block;width:10px;height:18px;box-sizing:border-box;}
+.starpoint_box .star_radio{opacity:0;width:0;height:0;position:absolute;}
+.starpoint_box .star_radio:nth-of-type(1):hover ~ .starpoint_bg,
+.starpoint_box .star_radio:nth-of-type(1):checked ~ .starpoint_bg{width:10%;}
+.starpoint_box .star_radio:nth-of-type(2):hover ~ .starpoint_bg,
+.starpoint_box .star_radio:nth-of-type(2):checked ~ .starpoint_bg{width:20%;}
+.starpoint_box .star_radio:nth-of-type(3):hover ~ .starpoint_bg,
+.starpoint_box .star_radio:nth-of-type(3):checked ~ .starpoint_bg{width:30%;}
+.starpoint_box .star_radio:nth-of-type(4):hover ~ .starpoint_bg,
+.starpoint_box .star_radio:nth-of-type(4):checked ~ .starpoint_bg{width:40%;}
+.starpoint_box .star_radio:nth-of-type(5):hover ~ .starpoint_bg,
+.starpoint_box .star_radio:nth-of-type(5):checked ~ .starpoint_bg{width:50%;}
+.starpoint_box .star_radio:nth-of-type(6):hover ~ .starpoint_bg,
+.starpoint_box .star_radio:nth-of-type(6):checked ~ .starpoint_bg{width:60%;}
+.starpoint_box .star_radio:nth-of-type(7):hover ~ .starpoint_bg,
+.starpoint_box .star_radio:nth-of-type(7):checked ~ .starpoint_bg{width:70%;}
+.starpoint_box .star_radio:nth-of-type(8):hover ~ .starpoint_bg,
+.starpoint_box .star_radio:nth-of-type(8):checked ~ .starpoint_bg{width:80%;}
+.starpoint_box .star_radio:nth-of-type(9):hover ~ .starpoint_bg,
+.starpoint_box .star_radio:nth-of-type(9):checked ~ .starpoint_bg{width:90%;}
+.starpoint_box .star_radio:nth-of-type(10):hover ~ .starpoint_bg,
+.starpoint_box .star_radio:nth-of-type(10):checked ~ .starpoint_bg{width:100%;}
+
+.blind{position:absolute;clip:rect(0 0 0 0);margin:-1px;width:1px;height: 1px;overflow:hidden;}
+
+
+
+
+#별점박스 {
+    
+}
+
+#별점큰박스 {
+   text-align: center;
+}
+
+#별점기록 {
+    margin-right: 10px;
+    font-size: 20px;
+}
+
+#별점평균 {
+    
+}
+
+#예상 {
+    height: 42px; 
+    margin-top: 20px; 
+    padding-top: 8px; 
+    border-top: 1px solid ; 
+    border-bottom: 1px solid; 
+    border-color: darkgray;
+    color: red;
+}
+
+#송오른쪽 {
+    
+}
+
+#선호가수캐러셀 {
+    right: 95px;
+}
+
+#태그큰창 {
+    width: 598px; 
+    height: 250px; 
+    text-align: left; 
+    margin-left: 20px; 
+    margin-right: 20px; 
+    margin-top: 40px; 
+    padding-top: 35px;
+    border-top: solid 1px;
+    border-top-color: lightgray;
+}
+
+#태그큰칸3 {
+        width: 598px;
+    height: 197px;
+
+}
+
+#아티스트이름 {
+    
+    margin-top: 5px; 
+    font-size: 25px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+
 }
