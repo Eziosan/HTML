@@ -12,6 +12,10 @@ public class UserLog {
 	private String star_date;
 	private double all_star;
 	
+	private int singer_id;
+	private String genre;
+	private String country;
+	
 	private int grade_count;
 	
 	

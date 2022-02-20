@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+
 <html>
 <head>
 <title>메인 페이지</title>
@@ -41,12 +43,13 @@
 		<tr><td>미정</td></tr>
 		<tr>
 			<td>
-				유저 리스트 좋아요 수 ${userGradeCount.listLikeNum} 
+				유저 리스트 좋아요 수 ${userGradeList.listLikeNum} 
 			</td>
 		</tr>
 		<tr>
 			<td>
-				리스트 댓글 수 ${userGradeCount.listCommentNum}
+				리스트 댓글 수 ${userGradeList.listCommentNum}
+				리스트 개수
 			</td>
 		</tr>
 	</table>
@@ -55,13 +58,16 @@
 	<table>
 		<tr>
 			<td>
-				숫자
+				<fmt:formatNumber type="number" maxFractionDigits="0" value="${userStarCount.allStarCount}">
+				</fmt:formatNumber>
+					
 			</td>
 			<td>
-				숫자
+				<fmt:formatNumber type="number" maxFractionDigits="1" value="${userStarCount.allStarSum}">
+				</fmt:formatNumber>
 			</td>
 			<td>
-				숫자
+				${userStarCount.topStar}
 			</td>
 		</tr>
 		<tr>

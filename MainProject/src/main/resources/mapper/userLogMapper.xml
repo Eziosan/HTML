@@ -7,17 +7,69 @@
 <mapper namespace="music.is.mylife.dao.UserLogMapper">
 
 	<!-- 한 유저가 지금까지 별점을 매긴 곡 수 -->
-	<select id="selectAllStarCountByUser" parameterType="string" resultType="int">
-		
+	<select id="selectAllStarCountByUser" parameterType="string" resultType="double">
+		select count(*) from user_song_log where user_id = #{user_id}
 	</select>
 	<!-- 한 유저가 지금까지 매긴 별점의 총합 -->
 	<select id="selectAllStarSumByUser" parameterType="string" resultType="double">
-	
+		select sum(star) / count(*) from user_song_log where user_id = #{user_id}
 	</select>
 	<!-- 한 유저가 가장 많이 준 별점 -->
-	<select id="selectTopStarByUser" parameterType="string" resultType="int">
-	
+	<select id="selectTopStarByUser" parameterType="string" resultType="double">
+		select star
+		from (select star, count(star) cnt from user_song_log 
+		        where user_id = #{user_id}
+		        group by star
+		        order by cnt desc)
+		where rownum = 1
 	</select>
+	
+	<!-- 특정 유저의 Top10 태그를 불러옴 -->
+	<select id="selectTop10TagByUser" parameterType="string" resultType="tag">
+		<![CDATA[
+		select * from
+		(select tag_id, (all_star/grade_count) as star_avg
+			from user_tag_log 
+			where user_id = #{user_id}
+			order by star_avg desc)
+		where rownum <=10
+		]]>
+	</select>
+ 	
+	<!-- 특정 유저의 Top3 가수를 불러옴 -->
+	<select id="selectTop3SingerByUser" parameterType="string" resultType="user_log">
+		<![CDATA[
+		select * from
+		(select user_singer_log_id, user_id, singer_id, all_star, grade_count,(all_star/grade_count) as star_avg
+			from user_singer_log 
+			where user_id = #{user_id}
+			order by star_avg desc)
+		where rownum <=3 
+		]]>
+	</select>
+	<!-- 특정 유저의 Top3 장르를 불러옴 -->
+	<select id="selectTop3GenreByUser" parameterType="string" resultType="user_log">
+		<![CDATA[
+		select * from
+		(select user_genre_log_id, user_id, genre , all_star, grade_count, (all_star/grade_count) as star_avg
+			from user_genre_log 
+			where user_id = #{user_id}
+			order by star_avg desc)
+		where rownum <=3  
+		]]>
+	</select>
+	<!-- 특정 유저의 Top3 국가를 불러옴 -->
+	<select id="selectTop3CountryByUser" parameterType="string" resultType="user_log">
+		<![CDATA[
+		select * from
+		(select user_country_log_id, user_id, country, all_star, grade_count,(all_star/grade_count) as star_avg
+			from user_country_log 
+			where user_id = #{user_id}
+			order by star_avg desc)
+		where rownum <=3
+		]]>
+	</select>
+	
  	
  	
 

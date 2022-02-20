@@ -24,6 +24,13 @@ public class TagDAO {
 		return st;
 	}
 	
+	//태그 id를 입력받아 태그 목록 가져옴
+	public Tag selectTagsById(int tag_id){
+		TagMapper mapper = session.getMapper(TagMapper.class);
+		
+		return mapper.selectTagsById(tag_id);
+	}
+	
 	public int plusSongTagRecommend(Tag tag) {
 		
 		TagMapper mapper = session.getMapper(TagMapper.class);

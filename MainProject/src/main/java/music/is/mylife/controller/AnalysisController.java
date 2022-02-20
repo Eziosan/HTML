@@ -17,8 +17,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import music.is.mylife.service.AnalysisService;
 import music.is.mylife.service.HomeService;
 import music.is.mylife.service.SongService;
+import music.is.mylife.vo.Singer;
 import music.is.mylife.vo.Song;
+import music.is.mylife.vo.Tag;
 import music.is.mylife.vo.UserInfo;
+import music.is.mylife.vo.UserLog;
 
 @RequestMapping("analysis")
 @Controller
@@ -47,17 +50,38 @@ public class AnalysisController {
 		//유저 id가 aaaa인 유저를 가져옴
 		UserInfo u_info = as.selectUser("aaaa");
 		
-		HashMap<String, Integer> userGradeCount = as.userGradeInfo("aaaa");
-
+		HashMap<String, Integer> userGradeList = as.userGradeInfo("aaaa");
+		HashMap<String, Double> userStarCount = as.userStarInfo("aaaa");
+		
 		model.addAttribute("u_info", u_info);
-		model.addAttribute("userGradeCount", userGradeCount);
+		model.addAttribute("userGradeList", userGradeList);
+		model.addAttribute("userStarCount", userStarCount);
+		
 		
 		return "analysis/analysisPage";
 	}
 	@RequestMapping(value = "main", method = RequestMethod.GET)
 	public String main(Song song, Model model) {
+		//유저 id가 aaaa인 유저를 가져옴
+		UserInfo u_info = as.selectUser("aaaa");
 		
-		return "analysis/analysisPage";
+		HashMap<String, Integer> userGradeList = as.userGradeInfo("aaaa");
+		HashMap<String, Double> userStarCount = as.userStarInfo("aaaa");
+		ArrayList<String> tagNameList = as.selectTop10TagByUser("aaaa");
+		ArrayList<Singer> singerList = as.selectTop3SingerByUser("aaaa");
+		ArrayList<UserLog> genreLogList = as.selectTop3GenreByUser("aaaa");
+		ArrayList<UserLog> countryLogList = as.selectTop3CountryByUser("aaaa");
+		
+
+		model.addAttribute("u_info", u_info);
+		model.addAttribute("userGradeList", userGradeList);
+		model.addAttribute("userStarCount", userStarCount);
+		model.addAttribute("tagNameList", tagNameList);
+		model.addAttribute("singerList", singerList);
+		model.addAttribute("genreLogList", genreLogList);
+		model.addAttribute("countryLogList", countryLogList);
+		
+		return "analysis/main";
 	}
 	
 	
