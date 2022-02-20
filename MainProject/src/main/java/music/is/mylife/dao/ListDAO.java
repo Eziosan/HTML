@@ -1,8 +1,14 @@
 package music.is.mylife.dao;
 
+import java.util.ArrayList;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+
+import music.is.mylife.vo.ListComment;
+import music.is.mylife.vo.Playlist;
+import music.is.mylife.vo.Song;
 
 @Repository
 public class ListDAO {
@@ -28,4 +34,77 @@ public class ListDAO {
 		return listCommentNum;
 	}
 	
+	
+	//리스트 페이지_화원
+	/** [리스트 페이지]
+	 * 플레이리스트를 가진 유저 아이디
+	 * @return ArrayList<string>
+	 */
+	public ArrayList<Playlist> selectListId(int song_id){
+		ListMapper mapper = session.getMapper(ListMapper.class);
+		ArrayList<Playlist> listId = mapper.selectListId(song_id);
+		
+		return listId;
+	}
+	
+	/** 
+	 * 리스트 배너 상위 5개 출력
+	 * @return ArrayList<Song>
+	 */
+	public ArrayList<Playlist> selectListBanner(int playlist_id){
+		ListMapper mapper = session.getMapper(ListMapper.class);
+		
+		ArrayList<Playlist> banner = mapper.selectListBanner(playlist_id);
+		
+		return banner;
+	}
+	
+	/**
+	 * 리스트 곡 정보 출력
+	 * @return ArrayList<Song>
+	 */
+	public ArrayList<Playlist> selectListSong(int playlist_id){
+		ListMapper mapper = session.getMapper(ListMapper.class);
+		
+		ArrayList<Playlist> listSong = mapper.selectListSong(playlist_id);
+		
+		return listSong;
+	}
+	
+	/**
+	 * 리스트 정보 출력
+	 * @param listInfo
+	 * @return Playlist
+	 */
+	public Playlist selectListInfo(int playlist_id) {
+		ListMapper mapper = session.getMapper(ListMapper.class);
+		
+		Playlist info = mapper.selectListInfo(playlist_id);
+		
+		return info;
+	}
+	
+	/**
+	 * 해당 리스트 곡 개수
+	 * @param playlist_id
+	 * @return int
+	 */
+	public int selectCountSong(int playlist_id) {
+		ListMapper mapper = session.getMapper(ListMapper.class);
+		int count = mapper.selectCountSong(playlist_id);
+		
+		return count;
+	}
+	
+	/**
+	 * 리스트 댓글 입력
+	 * @param comment
+	 * @return int
+	 */
+	public int insertListCommnet(ListComment reply) {
+		ListMapper mapper = session.getMapper(ListMapper.class);
+		int listReply = mapper.insertListCommnet(reply);
+		
+		return listReply;
+	}
 }

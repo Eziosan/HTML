@@ -24,6 +24,7 @@ public class SongService {
 	@Autowired
 	UserDAO udao;
 
+
 	// 해당 곡의 배너를 가져오는 메소드
 	public String selectBanner(int song_id) {
 
@@ -126,9 +127,9 @@ public class SongService {
 		int join = udao.insertUser(userinfo);
 		
 		if(join != 1) {
-			return "song/mainPage";
+			return "redirect:/song/mainPage";
 		}
-		return "song/mainPage";
+		return "redirect:/song/mainPage";
 	}
 	
 	/**
@@ -142,5 +143,6 @@ public class SongService {
 		
 		return selectSong;
 	}
+	
 
 }

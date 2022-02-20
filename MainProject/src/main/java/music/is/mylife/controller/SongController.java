@@ -145,16 +145,14 @@ public class SongController {
 		
 		
 		Song selectSong = ss.selectAllSong(song);
-		
+		session.setAttribute("singer", song.getSinger_id());
+		session.setAttribute("song", song.getSong_id());
 		
 		model.addAttribute("singer_id", song.getSinger_id());
 		model.addAttribute("song_id", song.getSong_id());
 		model.addAttribute("Song", selectSong);
 		
-		
-		
-		
-		return "song/mainPage";
+		return "redirect:/song/mainPage";
 	}
 	
 	
@@ -165,10 +163,11 @@ public class SongController {
 	 * @return ss.insertUser(userinfo)
 	 */
 	@RequestMapping(value = "join", method = RequestMethod.POST)
-	public String join(@ModelAttribute("userinfo") UserInfo userinfo ,Model model, Song song) {
+	public String join(@ModelAttribute("userinfo") UserInfo userinfo ,Model model, Song song, HttpSession session) {
 		
 		Song selectSong = ss.selectAllSong(song);
-		
+		session.setAttribute("singer", song.getSinger_id());
+		session.setAttribute("song", song.getSong_id());
 		
 		model.addAttribute("singer_id", song.getSinger_id());
 		model.addAttribute("song_id", song.getSong_id());
@@ -191,12 +190,11 @@ public class SongController {
 		
 		Song selectSong = ss.selectAllSong(song);
 		
-		
 		model.addAttribute("singer_id", song.getSinger_id());
 		model.addAttribute("song_id", song.getSong_id());
 		model.addAttribute("Song", selectSong);
 		
-		return "song/mainPage";
+		return "redirect:/song/mainPage";
 	}
 	
 	

@@ -3,6 +3,7 @@ package music.is.mylife.controller;
 import java.util.ArrayList;
 import java.util.Locale;
 
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -13,7 +14,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import music.is.mylife.service.HomeService;
+import music.is.mylife.service.ListService;
 import music.is.mylife.service.SongService;
+import music.is.mylife.vo.Playlist;
 import music.is.mylife.vo.Song;
 
 
@@ -27,11 +30,12 @@ public class HomeController {
 	
 	@Autowired
 	HomeService hs;
-
+	
+	@Autowired
+	ListService ls;
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String main(Locale locale) {
-		logger.info("Welcome home! The client locale is {}.", locale);
+	public String home() {
 		
 		return "home";
 	}
@@ -65,15 +69,23 @@ public class HomeController {
 	 * @return
 	 */
 	@RequestMapping(value = "song/songPage", method = RequestMethod.GET)
-	public String songPage(Model model, int singer_id, int song_id, Song song) {
+	public String songPage(Model model, int singer_id, int song_id, Song song, HttpSession session) {
+		
 		Song selectSong = ss.selectAllSong(song);
+		//플레이 리스트 아이디
+		ArrayList<Playlist> listId = ls.selectListId(song_id);
+		logger.info("리스트 아이디:{}", listId);
 		
 		logger.info("Song:{}", selectSong);
+		session.setAttribute("singer", singer_id);
+		session.setAttribute("song", song_id);
 		
 		model.addAttribute("singer_id", singer_id);
 		model.addAttribute("song_id", song_id);
 		model.addAttribute("Song", selectSong);
-		
+		//플레이리스트아이디
+		model.addAttribute("listId", listId);
+
 		return "song/mainPage";
 	}
 
