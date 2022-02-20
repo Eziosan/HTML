@@ -124,4 +124,9 @@ public class AnalysisService {
 		return countryLogList;
 	}
 	
+	/*
+	 * Insert
+	 */
+	
+	// 상위 3개 태그 : selectTop3TagBySongId
 }

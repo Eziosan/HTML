@@ -23,6 +23,23 @@ public interface UserLogMapper {
 	//특정 유저의 Top3 국가를 불러옴
 	public ArrayList<UserLog> selectTop3CountryByUser(String user_id);
 	
+	/*
+	 * insert 함수
+	 */
+	//해당 곡에 별점을 줬는지 확인
+	public int songStarCheck(UserLog ul);
+	//해당 곡에 별점을 준 적이 없다면 insert
+	public int insertSongLog(UserLog ul);
+	//해당 곡에 별점을 준 적이 있다면 update
+	public int updateSongLog(UserLog ul);
+	
+	//해당 태그에 별점을 줬는지 확인
+	public int tagStarCheck(UserLog ul);
+	//해당 태그에 별점을 준 적이 없다면 insert
+	public int insertTagLog(UserLog ul);
+	//해당 태그에 별점을 준 적이 있다면 update
+	public int updateTagLog(UserLog ul);
+	
 	
 	
 	

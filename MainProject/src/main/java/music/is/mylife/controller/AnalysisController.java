@@ -31,9 +31,7 @@ public class AnalysisController {
 	
 	@Autowired
 	AnalysisService as;
-	
 
-	
 	/*
 	 * 모델로 넘길 정보
 	 * 1. 유저
@@ -42,7 +40,20 @@ public class AnalysisController {
 	 */
 	@RequestMapping(value = "analysisPage", method = RequestMethod.GET)
 	public String analysisPage(Model model, HttpSession session) {
-		logger.debug("뭐죠??");
+		System.out.println("별점 입력 했습니다!!");
+		String user_id = (String)session.getAttribute("user_id");
+		int song_id;
+		double star; 
+		String genre;
+		String singer_id;
+		String country;
+		
+		
+		return "analysis/analysisPage";
+	}
+	@RequestMapping(value = "main", method = RequestMethod.GET)
+	public String main(Song song, Model model, HttpSession session) {
+		
 		String user_id = (String)session.getAttribute("user_id");
 		//로그인이 안됨
 		System.out.println("user id : " + user_id);
@@ -50,27 +61,12 @@ public class AnalysisController {
 		//유저 id가 aaaa인 유저를 가져옴
 		UserInfo u_info = as.selectUser("aaaa");
 		
-		HashMap<String, Integer> userGradeList = as.userGradeInfo("aaaa");
-		HashMap<String, Double> userStarCount = as.userStarInfo("aaaa");
-		
-		model.addAttribute("u_info", u_info);
-		model.addAttribute("userGradeList", userGradeList);
-		model.addAttribute("userStarCount", userStarCount);
-		
-		
-		return "analysis/analysisPage";
-	}
-	@RequestMapping(value = "main", method = RequestMethod.GET)
-	public String main(Song song, Model model) {
-		//유저 id가 aaaa인 유저를 가져옴
-		UserInfo u_info = as.selectUser("aaaa");
-		
-		HashMap<String, Integer> userGradeList = as.userGradeInfo("aaaa");
-		HashMap<String, Double> userStarCount = as.userStarInfo("aaaa");
-		ArrayList<String> tagNameList = as.selectTop10TagByUser("aaaa");
-		ArrayList<Singer> singerList = as.selectTop3SingerByUser("aaaa");
-		ArrayList<UserLog> genreLogList = as.selectTop3GenreByUser("aaaa");
-		ArrayList<UserLog> countryLogList = as.selectTop3CountryByUser("aaaa");
+		HashMap<String, Integer> userGradeList = as.userGradeInfo(user_id);
+		HashMap<String, Double> userStarCount = as.userStarInfo(user_id);
+		ArrayList<String> tagNameList = as.selectTop10TagByUser(user_id);
+		ArrayList<Singer> singerList = as.selectTop3SingerByUser(user_id);
+		ArrayList<UserLog> genreLogList = as.selectTop3GenreByUser(user_id);
+		ArrayList<UserLog> countryLogList = as.selectTop3CountryByUser(user_id);
 		
 
 		model.addAttribute("u_info", u_info);
