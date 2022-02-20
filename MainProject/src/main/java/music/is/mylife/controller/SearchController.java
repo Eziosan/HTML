@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import music.is.mylife.service.HomeService;
 import music.is.mylife.service.SearchService;
 import music.is.mylife.vo.Song;
 
@@ -17,6 +18,8 @@ public class SearchController {
 	
 	@Autowired
 	SearchService sServ;
+	@Autowired
+	HomeService hs;
 
 	@RequestMapping(value="searchResult", method=RequestMethod.GET)
 	public String search(String searchText, Model model) {
@@ -48,4 +51,5 @@ public class SearchController {
 		
 		return "search/searchResult";
 	}
+	
 }

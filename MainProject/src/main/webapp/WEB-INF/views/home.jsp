@@ -52,8 +52,8 @@
 	<br>
 	<a href="search/main">검색 페이지 테스팅(메인)</a>
 	<br>
-	<a href="analysis/analysisPage">취향분석 페이지 테스팅(메인)</a>
-	<a href="analysis/main">취향분석 페이지 테스팅(메인)</a>
+	<a href="analysis/analysisPage">취향분석 페이지 테스팅(임시 메인)</a>
+	<a href="analysis/main">취향분석 페이지 테스팅(전진 형 메인)</a>
 
 
 </body>

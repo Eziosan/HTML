@@ -17,6 +17,11 @@
             		where rownum <= 3
             ]]>
 		</select> 
+		
+		<!-- 태그 id를 입력받아 태그 리턴 -->
+		<select id="selectTagsById" parameterType="int" resultType="tag">
+			select * from song_tag where tag_id = #{tag_id}
+		</select>
 
 			
 		<!-- song_id, tag_id를 입력받아서 해당곡의 특정 태그의 추천수를 1개 증가시키는 sql문 -->
