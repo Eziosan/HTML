@@ -18,9 +18,7 @@ public class UserLog {
 	
 	private int grade_count;
 	
-	
-	
-	
+	private int tag_id;
 	
 	
 	

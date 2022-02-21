@@ -14,12 +14,12 @@ public class TagDAO {
 	@Autowired
 	private SqlSession session;
 	
-	public ArrayList<Tag> selectTag(int song_id){
+	public ArrayList<Tag> selectTop3TagBySongId(int song_id){
 		
 		TagMapper mapper = session.getMapper(TagMapper.class);
 		
 		
-		ArrayList<Tag> st = mapper.selectTag(song_id);
+		ArrayList<Tag> st = mapper.selectTop3TagBySongId(song_id);
 		
 		return st;
 	}
