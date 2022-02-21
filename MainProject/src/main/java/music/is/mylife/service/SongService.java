@@ -127,9 +127,9 @@ public class SongService {
 		int join = udao.insertUser(userinfo);
 		
 		if(join != 1) {
-			return "redirect:/song/mainPage";
+			return "song/mainPage";
 		}
-		return "redirect:/song/mainPage";
+		return "song/mainPage";
 	}
 	
 	/**

@@ -12,7 +12,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
+import music.is.mylife.service.ListService;
 import music.is.mylife.service.SongService;
 import music.is.mylife.service.UserService;
 import music.is.mylife.vo.Playlist;
@@ -31,6 +33,9 @@ public class SongController {
 	
 	@Autowired
 	UserService us;
+	
+	@Autowired
+	ListService ls;
 	
 	@RequestMapping(value="mainPage",method=RequestMethod.GET)
 	public String mainPage(Model model) {
@@ -143,16 +148,19 @@ public class SongController {
 			session.setAttribute("user_id", user_id);
 		}
 		
-		
+		logger.debug("singer_id:{}", song.getSinger_id());
+		logger.debug("song_id:{}", song.getSong_id());
 		Song selectSong = ss.selectAllSong(song);
-		session.setAttribute("singer", song.getSinger_id());
-		session.setAttribute("song", song.getSong_id());
+		
 		
 		model.addAttribute("singer_id", song.getSinger_id());
 		model.addAttribute("song_id", song.getSong_id());
 		model.addAttribute("Song", selectSong);
 		
-		return "redirect:/song/mainPage";
+		ArrayList<Playlist> listId = ls.selectListId(song.getSong_id());
+		model.addAttribute("listId", listId);
+		
+		return "song/mainPage";
 	}
 	
 	
@@ -163,15 +171,16 @@ public class SongController {
 	 * @return ss.insertUser(userinfo)
 	 */
 	@RequestMapping(value = "join", method = RequestMethod.POST)
-	public String join(@ModelAttribute("userinfo") UserInfo userinfo ,Model model, Song song, HttpSession session) {
+	public String join(@ModelAttribute("userinfo") UserInfo userinfo ,Model model, Song song) {
 		
 		Song selectSong = ss.selectAllSong(song);
-		session.setAttribute("singer", song.getSinger_id());
-		session.setAttribute("song", song.getSong_id());
 		
-		model.addAttribute("singer_id", song.getSinger_id());
-		model.addAttribute("song_id", song.getSong_id());
+		model.addAttribute("singer_id", selectSong.getSinger_id());
+		model.addAttribute("song_id", selectSong.getSong_id());
 		model.addAttribute("Song", selectSong);
+		
+		ArrayList<Playlist> listId = ls.selectListId(song.getSong_id());
+		model.addAttribute("listId", listId);
 		
 		return ss.insertUser(userinfo);
 	}
@@ -194,7 +203,10 @@ public class SongController {
 		model.addAttribute("song_id", song.getSong_id());
 		model.addAttribute("Song", selectSong);
 		
-		return "redirect:/song/mainPage";
+		ArrayList<Playlist> listId = ls.selectListId(song.getSong_id());
+		model.addAttribute("listId", listId);
+		
+		return "song/mainPage";
 	}
 	
 	

@@ -22,6 +22,7 @@
 	
 	<!-- [리스트 페이지]_화원 
 		플레이 리스트 아이디 들고오기
+		
 		아이디: selectListId
 		리턴 타입: ArrayList<string>
 	 -->
@@ -34,6 +35,7 @@
 	
 	<!--[리스트 페이지]
 		리스트 배너사진 상위 5개 불러오기
+		
 		아이디: selectListBanner
 		파라미터 타입: playlist
 		리턴 타입: ArrayList<Playlist>
@@ -50,6 +52,7 @@
 	 
 	 <!--[리스트 페이지]
 	   리스트 곡 정보 출력
+	   
 		아이디: selectListSong
 		리턴 타입: ArrayList<Playlist>
 	   -->
@@ -66,18 +69,20 @@
 	 
 	 <!-- [리스트 페이지] 
 	 	리스트 정보 출력
+	 	
 		아이디: selectListInfo
 		리턴 타입: Playlist
 		파라미터 타입: ArrayList<Playlist>
 	 -->
 	 <select id="selectListInfo" resultType="playlist" parameterType="int">
-	 	select playlist_id, user_id, list_name, list_explain, list_like, to_char(list_date, 'YYYYMMDD')
+	 	select playlist_id, user_id, list_name, list_explain, list_like, to_char(list_date, 'YYYY.MM.DD') as list_date
 		from playlist 
 		where playlist_id = #{playlist_id}
 	 </select>
 	 
 	 <!--[리스트 페이지] 
 	  	해당 리스트 곡 개수
+	  	
 		아이디: selectCountSong
 		리턴 타입: int
 		파라미터 타입: int
@@ -89,8 +94,43 @@
 		and pd.playlist_id = #{playlist_id}
 	 </select>
 	 
+	 <!-- [리스트 페이지] 
+	  	해당 리스트 댓글 개수
+	  	
+		아이디: selectCountComment
+		리턴 타입: int
+		파라미터 타입: int 
+	 -->
+	 <select id="selectCountComment" resultType="int" parameterType="int">
+	 	select count(ls.list_comment_id)
+		from list_comment ls, playlist p
+		where ls.playlist_id = p.playlist_id
+        and p.playlist_id = #{playlist_id}
+	 </select>
+	 
+	 <!--[리스트 페이지]
+	 	리스트 검색
+	 	
+		아이디: selectList
+		리턴 타입: ArrayList<PlayList>
+		파라미터 타입: int
+	   -->
+	 <select id="selectList" parameterType="int" resultType="playlist">
+	 	select p.playlist_id, p.user_id, p.list_name, p.list_explain, p.list_like, p.list_date,
+		    s.song_id, s.song_name, s.album_img, s.genre, 
+		    singer.singer_id, singer.singer_name, singer.country
+		from playlist p, playlist_detail pd, song s, singer singer
+		where p.playlist_id = pd.playlist_id
+		and pd.song_id = s.song_id
+		and s.singer_id = singer.singer_id
+		and p.playlist_id = #{playlist_id}
+	 </select>
+	 
+	 <!-- update문 -->
+	 
 	 <!--[리스트 페이지] 
 	  	리스트 댓글 입력
+	  	
 		아이디: insertListCommnet
 		파라미터 타입: ListComment -->
 	 <insert id="insertListCommnet" parameterType="list_comment">

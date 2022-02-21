@@ -70,6 +70,28 @@ public class ListService {
 	}
 	
 	/**
+	 * 리스트 댓글 개수
+	 * @param playlist_id
+	 * @return int
+	 */
+	public int countComment(int playlist_id) {
+		int countComment = ldao.selectCountComment(playlist_id);
+		
+		return countComment;
+	}
+	
+	/**
+	 * 리스트 검색
+	 * @param playlist_id
+	 * @return ArrayList<Playlist>
+	 */
+	public ArrayList<Playlist> oneList(int playlist_id){
+		ArrayList<Playlist> onelist = ldao.selectList(playlist_id);
+		
+		return onelist;
+	}
+	
+	/**
 	 * 리스트 댓글 입력
 	 * @param comment
 	 * @return int

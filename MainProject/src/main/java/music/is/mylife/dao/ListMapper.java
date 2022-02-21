@@ -48,6 +48,22 @@ public interface ListMapper {
 	public int selectCountSong(int playlist_id);
 	
 	/**
+	 * 해당 리스트 댓글 개수
+	 * @param playlist_id
+	 * @return int
+	 */
+	public int selectCountComment(int playlist_id);
+	
+	/**
+	 * 리스트 검색
+	 * @param playlist_id
+	 * @return ArrayList<Playlist>
+	 */
+	public ArrayList<Playlist> selectList(int playlist_id);
+	
+	
+	
+	/**
 	 * 리스트 댓글 입력
 	 * @param comment
 	 * @return int

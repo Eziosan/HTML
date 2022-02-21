@@ -97,6 +97,30 @@ public class ListDAO {
 	}
 	
 	/**
+	 * 리스트 댓글 개수
+	 * @param playlist_id
+	 * @return int
+	 */
+	public int selectCountComment(int playlist_id) {
+		ListMapper mapper = session.getMapper(ListMapper.class);
+		int commentNum = mapper.selectCountComment(playlist_id);
+		
+		return commentNum;
+	}
+	
+	/**
+	 * 리스트 검색
+	 * @param playlist_id
+	 * @return ArrayList<Playlist>
+	 */
+	public ArrayList<Playlist> selectList(int playlist_id){
+		ListMapper mapper = session.getMapper(ListMapper.class);
+		ArrayList<Playlist> onelist = mapper.selectList(playlist_id);
+		
+		return onelist;
+	}
+	
+	/**
 	 * 리스트 댓글 입력
 	 * @param comment
 	 * @return int

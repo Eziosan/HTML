@@ -107,7 +107,7 @@
 	<!-- [메인 페이지] 
 		전체 곡 검색
 		아이디: selectAllSong
-		파라미터 타입: Song
+		파라미터 타입: song
 		리턴 타입: Song-->
 	<select id="selectAllSong" parameterType="song" resultType="song">
 	select singer.singer_id, singer.singer_name, singer.country, singer.singer_like,

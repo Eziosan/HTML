@@ -69,7 +69,7 @@ public class HomeController {
 	 * @return
 	 */
 	@RequestMapping(value = "song/songPage", method = RequestMethod.GET)
-	public String songPage(Model model, int singer_id, int song_id, Song song, HttpSession session) {
+	public String songPage(Model model, int singer_id, int song_id, Song song) {
 		
 		Song selectSong = ss.selectAllSong(song);
 		//플레이 리스트 아이디
@@ -77,15 +77,15 @@ public class HomeController {
 		logger.info("리스트 아이디:{}", listId);
 		
 		logger.info("Song:{}", selectSong);
-		session.setAttribute("singer", singer_id);
-		session.setAttribute("song", song_id);
+		
 		
 		model.addAttribute("singer_id", singer_id);
 		model.addAttribute("song_id", song_id);
 		model.addAttribute("Song", selectSong);
+		
 		//플레이리스트아이디
 		model.addAttribute("listId", listId);
-
+		
 		return "song/mainPage";
 	}
 
