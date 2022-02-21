@@ -31,9 +31,7 @@ public class AnalysisController {
 	
 	@Autowired
 	AnalysisService as;
-	
 
-	
 	/*
 	 * 모델로 넘길 정보
 	 * 1. 유저
@@ -42,31 +40,37 @@ public class AnalysisController {
 	 */
 	@RequestMapping(value = "analysisPage", method = RequestMethod.GET)
 	public String analysisPage(Model model, HttpSession session) {
-		logger.debug("뭐죠??");
-		String user_id = (String)session.getAttribute("user_id");
-		//로그인이 안됨
-		System.out.println("user id : " + user_id);
+		System.out.println("별점 입력 했습니다!!");
+		//String user_id = (String)session.getAttribute("user_id");
+		int song_id = 4;
+		double star = 3.5; 
+		String genre = "댄스";
+		int singer_id = 3;
+		String country ="대한민국";
 		
-		//유저 id가 aaaa인 유저를 가져옴
-		UserInfo u_info = as.selectUser("aaaa");
+		UserLog ul = new UserLog();
+		ul.setUser_id("aaaa");
+		ul.setSong_id(song_id);
+		ul.setStar(star);
+		ul.setGenre(genre);
+		ul.setSinger_id(singer_id);
+		ul.setCountry(country);
 		
-		HashMap<String, Integer> userGradeList = as.userGradeInfo("aaaa");
-		HashMap<String, Double> userStarCount = as.userStarInfo("aaaa");
-		
-		model.addAttribute("u_info", u_info);
-		model.addAttribute("userGradeList", userGradeList);
-		model.addAttribute("userStarCount", userStarCount);
-		
+		as.recordUserLog(ul);
 		
 		return "analysis/analysisPage";
 	}
 	@RequestMapping(value = "main", method = RequestMethod.GET)
-	public String main(Song song, Model model) {
+	public String main(Song song, Model model, HttpSession session) {
+		
+		//String user_id = (String)session.getAttribute("user_id");
+		//로그인이 안됨
+		//System.out.println("user id : " + user_id);
+		
 		//유저 id가 aaaa인 유저를 가져옴
 		UserInfo u_info = as.selectUser("aaaa");
 		
-		HashMap<String, Integer> userGradeList = as.userGradeInfo("aaaa");
-		HashMap<String, Double> userStarCount = as.userStarInfo("aaaa");
+		HashMap<String, Double> userGradeList = as.userGradeInfo("aaaa");
 		ArrayList<String> tagNameList = as.selectTop10TagByUser("aaaa");
 		ArrayList<Singer> singerList = as.selectTop3SingerByUser("aaaa");
 		ArrayList<UserLog> genreLogList = as.selectTop3GenreByUser("aaaa");
@@ -75,7 +79,6 @@ public class AnalysisController {
 
 		model.addAttribute("u_info", u_info);
 		model.addAttribute("userGradeList", userGradeList);
-		model.addAttribute("userStarCount", userStarCount);
 		model.addAttribute("tagNameList", tagNameList);
 		model.addAttribute("singerList", singerList);
 		model.addAttribute("genreLogList", genreLogList);

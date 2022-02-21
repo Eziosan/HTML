@@ -42,40 +42,36 @@ public class AnalysisService {
 		return us.selectUser(user_id);
 	}
 	
-	//유저의 평점 수 부분에 들어갈 데이터들을 구하는 함수
-	public HashMap<String, Integer> userGradeInfo(String user_id) {
+	//유저의 평점 수/별점 부분에 들어갈 데이터들을 구하는 함수
+	public HashMap<String, Double> userGradeInfo(String user_id) {
 		
-		HashMap<String, Integer> userGradeList = new HashMap<>();
+		HashMap<String, Double> userGradeList = new HashMap<>();
 		
-		int listLikeNum = ld.selectListLikesByUser(user_id);
-		int listCommentNum = ld.selectListCommentsNumByUser(user_id);
-		
-		userGradeList.put("listLikeNum", listLikeNum);
-		userGradeList.put("listCommentNum", listCommentNum);
-		
-		return userGradeList;
-	}
-	
-	//유저의 별점 통계 부분에서 보여줄 데이터들을 가져오는 함수
-	public HashMap<String, Double> userStarInfo(String user_id) {
-		
-		
-		HashMap<String, Double> userStarCount = new HashMap<>();
-		double a = 1;
-		//유저가 별점을 매긴 곡의 개수
+		//한 유저가 지금까지 평가한 곡들의 별점 총합
 		double allStarCount = uld.selectAllStarCountByUser(user_id);
+		//리스트 좋아요 수
+		double listLikeNum = ld.selectListLikesByUser(user_id);
+		//리스트 코멘트 수
+		double listCommentNum = ld.selectListCommentsNumByUser(user_id);
+		//해당 유저의 리스트 수
+		double listCount = ld.selectListCountByUser(user_id);
+		//유저가 별점을 매긴 곡의 개수
+		double allsongCount = uld.selectSongCountByUser(user_id);
 		//한 유저가 지금까지 매긴 별점의 총합
 		double allStarSum = uld.selectAllStarSumByUser(user_id);
 		//한 유저가 가장 많이 준 별점
 		double topStar = uld.selectTopStarByUser(user_id);
 		
+		userGradeList.put("allStarCount", allStarCount);
+		userGradeList.put("listLikeNum", listLikeNum);
+		userGradeList.put("listCommentNum", listCommentNum);
+		userGradeList.put("listCount", listCount);
 		
+		userGradeList.put("allsongCount", allsongCount);
+		userGradeList.put("allStarSum", allStarSum);
+		userGradeList.put("topStar", topStar);
 		
-		userStarCount.put("allStarCount", allStarCount);
-		userStarCount.put("allStarSum", allStarSum);
-		userStarCount.put("topStar", topStar);
-		
-		return userStarCount;
+		return userGradeList;
 	}
 	
 	//선호 태그 수 10개 가져오기
@@ -122,6 +118,98 @@ public class AnalysisService {
 		ArrayList<UserLog> countryLogList = uld.selectTop3CountryByUser(user_id);
 		
 		return countryLogList;
+	}
+	
+	
+	/*
+	 * 2. 유저 로그 출력
+	 */
+	public void recordUserLog(UserLog ul) {
+		//중복된 곡이 있을 때
+		if(uld.songStarCheck(ul) > 0) {
+			//user_song_log 업데이트
+			uld.updateSongLog(ul);
+			
+			//all_star는 신규별점 - 기존 별점 차이만큼, grade_count는 안올라가게
+			double star = ul.getStar() - uld.selectSongStarById(ul);
+			ul.setAll_star(star);
+			
+			tagLogInsert(ul);
+			singerLogInsert(ul);
+			countryLogInsert(ul);
+			genreLogInsert(ul);
+			
+		}else{
+			//중복된 곡이 없을 때. 별점 : 새로 추가한 별점, 카운트 : 1 증가
+			ul.setAll_star(ul.getStar());
+			ul.setGrade_count(1);
+			
+			//곡 새로 추가
+			uld.insertSongLog(ul);
+			//tagLog 입력
+			tagLogInsert(ul);
+			singerLogInsert(ul);
+			countryLogInsert(ul);
+			genreLogInsert(ul);
+		}
+			
+	}
+	
+	//태그 로그 처리 : 중복된 태그가 없으면 insert, 있으면 update
+	public void tagLogInsert(UserLog ul) {
+		//상위 3개 태그
+		ArrayList<Tag> tagList = td.selectTop3TagBySongId(ul.getSong_id());
+		
+		for(Tag t : tagList) {
+			//n번째 태그 id를 조건으로 줌 -> 중복검사 위함
+			ul.setTag_id(t.getTag_id());
+			
+			//중복된 태그 있는지 확인. 
+			if(uld.tagStarCheck(ul) > 0) {
+				//업데이트
+				uld.updateTagLog(ul);
+			}else {
+				//중복된 태그가 없어. insert
+				uld.insertTagLog(ul);
+			}
+		}
+	}
+	
+	//가수 로그 처리 : 중복된 태그가 없으면 insert, 있으면 update
+	public void singerLogInsert(UserLog ul) {
+		
+			//중복된 가수 있는지 확인. 
+			if(uld.singerStarCheck(ul) > 0) {
+				//중복된 가수가 있다면 업데이트
+				uld.updateSingerLog(ul);
+			}else {
+				//중복된 태그가 없어. insert
+				uld.insertSingerLog(ul);
+			}
+	}
+	//국가 로그 처리 : 중복된 태그가 없으면 insert, 있으면 update
+	public void countryLogInsert(UserLog ul) {
+		
+		//중복된 국가 있는지 확인. 
+		if(uld.countryStarCheck(ul) > 0) {
+			//중복된 국가가 있다면 업데이트
+			uld.updateCountryLog(ul);
+		}else {
+			//중복된 국가가 없어. insert
+			uld.insertCountryLog(ul);
+		}
+	}
+	//장르 로그 처리 : 중복된 태그가 없으면 insert, 있으면 update
+	public void genreLogInsert(UserLog ul) {
+		
+		//중복된 장르가 있는지 확인. 
+		if(uld.genreStarCheck(ul) > 0) {
+			//중복된 장르가 있다면 업데이트
+			uld.updateGenreLog(ul);
+		}else {
+			//중복된 장르가 없어. insert
+			uld.insertGenreLog(ul);
+		}
 	}
 	
 }

@@ -5,7 +5,7 @@
   
   <!-- 인터페이스 위치 지정!!!!!! -->
 <mapper namespace="music.is.mylife.dao.SongMapper">
-
+	
 		<!--  곡 아이디로 배너 사진 URL을 가져오는 SQL문 -->
 	<select id="selectBanner" parameterType="int" resultType="string">
 		select song_banner

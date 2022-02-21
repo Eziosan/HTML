@@ -150,7 +150,7 @@ public class SongService {
 
 	public ArrayList<Tag> selectTag(int song_id) {
 
-		ArrayList<Tag> tag = tdao.selectTag(song_id);
+		ArrayList<Tag> tag = tdao.selectTop3TagBySongId(song_id);
 		return tag;
 	}
 
