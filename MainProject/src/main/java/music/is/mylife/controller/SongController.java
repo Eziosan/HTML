@@ -33,32 +33,10 @@ public class SongController {
 	@Autowired
 	UserService us;
 	
-	@RequestMapping(value="mainPage",method=RequestMethod.GET)
-	public String mainPage(Model model) {
-		//
-		String banner = ss.selectBanner(9);
-		String ai = ss.selectAlbumImg(1);
-		Integer sl = ss.selectSongLike(9);
-		ss.plusSongLike(1);
-		ss.minusSongLike(2);
-		Song song = ss.selectSongOne(9);
-		ArrayList<Tag> tag = ss.selectTag(1);
-		
-		//ss.plusSongTagRecommend(1);
-		//ss.minusSongTagRecommend(2);
-		
-		logger.info("banner : {}", banner);
-		logger.info("AlbumImg : {}", ai);
-		logger.info("sl : {}", sl);
-		logger.info("Song : {}", song);
-		logger.info("tag : {}", tag);
-		
-		model.addAttribute("banner", banner);
-		model.addAttribute("ai", ai);
-		model.addAttribute("Song",song);
-		
-		return "song/mainPage";
-	}
+	@Autowired
+	ListService ls;
+	
+	
 	
 	
 	@RequestMapping(value="plusStar",method=RequestMethod.GET)
@@ -252,36 +230,36 @@ public class SongController {
 	 * @return song/songPage
 	 */
 	@RequestMapping(value = "login", method = RequestMethod.POST)
-	public String login(String user_id, String user_pw, Model model, HttpSession session) {
+	public String login(String user_id, String user_pw, Model model, HttpSession session, Song song) {
 		
 		UserInfo user_info = us.selectUser(user_id);
 		
 		
 	
 		  if(user_info != null && user_info.getUser_pw().equals(user_pw)) {
-		  session.setAttribute("user_id", user_id); } 
+			  session.setAttribute("user_id", user_id);
+		  } 
 		  //여기서 user_id에 값을 넣어줬기 때문에 밑에서 확인가능.
 		  
 		 
 		
-		logger.debug("user_id 테스트 : {}", session.getAttribute("user_id"));
-		
-		logger.debug("session 값 : {}", (int)session.getAttribute("song_id"));
+		 Song selectSong = ss.selectAllSong(song);
 		
 		int song_id = (int)session.getAttribute("song_id");
 		
-		ArrayList<Tag> tag = ss.selectTag(song_id);
+		ArrayList<Playlist> listId = ls.selectListId(song.getSong_id());
+		ArrayList<Tag> tag = ss.selectTag(song.getSong_id());
 		ArrayList<Playlist> playlist = ss.selectList(user_id);
 		
 		
 		
-		Song song = ss.selectSongOne(song_id);
+		
 		
 		
 		  model.addAttribute("singer_id", song.getSinger_id());
 		  model.addAttribute("song_id", song.getSong_id()); 
-		 // model.addAttribute("Song",  selectSong);
-		  model.addAttribute("Song",song);
+		  model.addAttribute("Song",  selectSong);
+		  model.addAttribute("listId", listId);
 		  model.addAttribute("Tag", tag);
 		  model.addAttribute("playlist",playlist);
 	
@@ -306,12 +284,14 @@ public class SongController {
 		
 		Song selectSong = ss.selectAllSong(song);
 		
-		
-		model.addAttribute("singer_id", song.getSinger_id());
-		model.addAttribute("song_id", song.getSong_id());
+		model.addAttribute("singer_id", selectSong.getSinger_id());
+		model.addAttribute("song_id", selectSong.getSong_id());
 		model.addAttribute("Song", selectSong);
 		
-		return ss.insertUser(userinfo);
+		ArrayList<Playlist> listId = ls.selectListId(song.getSong_id());
+		model.addAttribute("listId", listId);
+		
+		return ss.insertSongUser(userinfo);
 	}
 	
 	
@@ -324,20 +304,26 @@ public class SongController {
 	 * @return
 	 */
 	@RequestMapping(value = "logout", method = RequestMethod.GET)
-	public String lougout(HttpSession session, Model model) {
+	public String lougout(HttpSession session, Song song, Model model) {
 		
-		//session.invalidate();
-		session.removeAttribute("user_id");
+		session.invalidate();
 		
-		
-		int song_id = (int)session.getAttribute("song_id");
-		
-		Song selectSong = (Song)ss.selectSongOne(song_id);
-		ArrayList<Tag> tag = ss.selectTag(song_id);
+		Song selectSong = ss.selectAllSong(song);
+		ArrayList<Playlist> listId = ls.selectListId(song.getSong_id());
+		ArrayList<Tag> tag = ss.selectTag(song.getSong_id());
 		
 		
+		model.addAttribute("singer_id", song.getSinger_id());
+		model.addAttribute("song_id", song.getSong_id());
 		model.addAttribute("Song", selectSong);
+		model.addAttribute("listId", listId);
+		
+		
+		
 		model.addAttribute("Tag", tag);
+		
+		
+		
 	
 		
 		return "song/mainPage";
