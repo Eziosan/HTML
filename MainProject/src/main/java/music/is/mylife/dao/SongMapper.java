@@ -33,6 +33,10 @@ public interface SongMapper {
 	public int selectPlayListId(String list_name);
 	// playlist_id 로 playlist_detail의 곡 id들을 가져오는 sql문
 	public int selectSongCount(Playlist playlist);
+	// 특정 곡의 별점을 가져오는 sql문
+	public double selectStars(int song_id);
+	// 곡에 별점이 있는지 확인하는 sql문
+	public int selectIsStars(int song_id);
 	
 	
 	// 메인 페이지(화원)

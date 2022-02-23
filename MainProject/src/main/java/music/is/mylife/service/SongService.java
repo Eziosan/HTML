@@ -119,8 +119,16 @@ public class SongService {
 		}
 		}
 		
+	
 		
-		
+		public double selectStars(int song_id) {
+			
+			double avg = sdao.selectStars(song_id);
+			
+			System.out.println("songservice avg" + avg);
+			
+			return avg;
+		}
 	
 	
 	

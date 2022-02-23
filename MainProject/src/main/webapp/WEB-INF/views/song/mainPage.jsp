@@ -190,9 +190,26 @@ function result2(){
 	   alert("보낼 곡 ID" +$("#song_id").val());
 	   
 	   
-	   //${addSongListForm}.submit;
-	   
-   }
+	 }
+	 function addPlayListCheck(){
+			 var list_name = document.getElementById("list_name").value;
+			
+			alert(document.getElementById("list_name").value);
+			
+			//3. pw 유효성 검사
+			var list_explain = document.getElementById("list_explain").value;
+			
+			alert(document.getElementById("list_explain").value);
+			
+			
+			if( list_name == '' || list_explain == ''){
+				alert("3개 다 입력해주셔야 해요");
+				alert("리스트 생성 실패!");
+				return false;
+			}
+			
+		return true;
+	 }
     
     
     </script>
@@ -216,10 +233,8 @@ function result2(){
         </a>
 
         <ul class="nav col-12 col-lg-auto me-lg-auto mlmb-2 justify-content-center mb-md-0 text-white">
-          <li><div  class="nav-link px-2 w-100" ><img src="../resources/img/곡용.png" alt="img" width="" height="40" style="margin-right: 30px"> </div></li>
-          <li><a href="https://www.naver.com/" class="nav-link px-2 mt-3   mb-0 text-white" style="">곡</a></li>
-          <li><a href="#" class="nav-link px-2 mt-3 text-white">앨범</a></li>
-          <li><a href="#" class="nav-link px-2 mt-3 text-white">가수</a></li>
+          <li><a href="/mylife/main" ><div  class="nav-link px-2 w-100" ><img src="../resources/img/곡용.png" alt="img" width="" height="40" style="margin-right: 30px"> </div></a></li>
+        
         </ul>
 
         <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
@@ -727,7 +742,7 @@ function result2(){
             </span>
          </div>
        <div class="예상" id="예상" >
-            예상 ★2.7 
+           ★ 평균 ${Song.avg }
          </div>
          <div class="row" style="width: 730px; height: 58px; margin-top: 8px; align-content: center; ">
 
@@ -761,28 +776,25 @@ function result2(){
             <span class="starpoint_bg"></span>
           </div>
         </div>
-    </div>                 
+    </div>        
+    
+   				
 
              </div>
              
-             <div class="col-2">
-                 <img src="../resources/img/add_tag.JPG" width="30px">
-                 <span> 태그  </span>
-
-             </div>
+            
              
+               
              <div class="col-2" >
-                 <div type="button" id="송리스트버튼" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#리스트추가" >
+                 <div type="button" id="송리스트버튼" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#리스트추가"  >
              <img src="../resources/img/plus.png" width="20px">
+                 	
                  <span> 리스트 </span>
                  </div>
              </div>
+                
              
-             <div class="col-2">
-             <img src="../resources/img/more.JPG" width="30px">
-                 <span> 더보기 </span>
-                 
-             </div>
+            
         
         </div>
         </div>
@@ -794,7 +806,7 @@ function result2(){
 
 
 
-
+	
 	<c:if test="${user_id != null }">
 			<!--    리스트 추가 모달-->
 		    <div class="modal fade" id="리스트추가" tabindex="-1" aria-labelledby="exampleModalCenterTitle" style="display: none;" aria-hidden="true">
@@ -816,7 +828,7 @@ function result2(){
 		        </div>
 		        
 		        <!-- 리스트에 곡 추가시 보내질 데이터  -->
-		        <form action="addSongList" method="post" id="addSongListForm">
+		        <form action="addSongList" method="post" id="addSongListForm" >
 		        	<input type="hidden" id ="song_id" name="song_id" value="${Song.song_id}">
 		        	<input type="hidden" id="playlist_id" name="playlist_id" >
 		        	
@@ -842,9 +854,9 @@ function result2(){
 		      </div>
 		      <div class="modal-body" id="리모달바디">
 		      <!-- 리스트 추가 부분 -->
-		      <form action="addPlayList" method="post" id="addPlayListForm">
-		        	<input placeholder="리스트 이름 입력.." name= "list_name" id="list_name">
-		        	<input placeholder="리스트 설명 입력" name= "list_explain" id ="list_explain">
+		      <form action="addPlayList" method="post" id="addPlayListForm" onsubmit="return addPlayListCheck()">
+		        	<input type="text" placeholder="리스트 이름 입력.." name= "list_name" id="list_name">
+		        	<input type="text" placeholder="리스트 설명 입력" name= "list_explain" id ="list_explain">
 		        	<input type="hidden" id ="song_id" name="song_id" value="${Song.song_id}">
 		        
 		        </div>

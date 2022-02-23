@@ -181,14 +181,6 @@ public class SongController {
 	
 	
 	
-	@RequestMapping(value="bannerPage",method=RequestMethod.GET)
-	public String bannerPage() {
-		
-		
-		return "song/bannerPage";
-		
-		
-	}
 	@RequestMapping(value="addPlayList",method=RequestMethod.POST)
 	public String addPlayList(Playlist pl, Model model,HttpSession session) {
 		
