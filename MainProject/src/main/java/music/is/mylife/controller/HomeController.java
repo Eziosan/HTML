@@ -72,7 +72,9 @@ public class HomeController {
 		
 		Song selectSong = ss.selectAllSong(song);
 
+		double avg = ss.selectStars(song_id);
 		
+		selectSong.setAvg(avg);
 		
 		user_id = (String)session.getAttribute("user_id");
 		if(user_id!=null) {

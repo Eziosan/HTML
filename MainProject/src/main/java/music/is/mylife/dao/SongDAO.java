@@ -136,6 +136,24 @@ public class SongDAO {
 		return playlist_id;
 	}
 	
+	// 특정 곡의 별점을 가져오는 sql문
+	public double selectStars(int song_id) {
+		
+		SongMapper mapper = session.getMapper(SongMapper.class);
+		double avg = 0.0;
+		int count = mapper.selectIsStars(song_id);
+		
+		if(count > 0 ) {
+			
+			avg = mapper.selectStars(song_id);
+			
+			
+		}
+		
+			return avg;
+		
+	}
+	
 	
 	
 	

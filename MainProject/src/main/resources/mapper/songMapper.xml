@@ -76,6 +76,25 @@
 		<select id="selectSongCount" parameterType="int" resultType="int">
 			select count(*) from playlist_detail where playlist_id = #{playlist_id} and song_id = #{song_id}
 		</select>
+		
+		
+		
+		
+		<!-- 곡에 별점이 있는지 없는지 반환하는 sql문 -->
+		<select id="selectIsStars" parameterType="int" resultType="int">
+			select count(star) from user_song_log where song_id=#{song_id}
+		</select>
+		
+		<!-- 별점 불러오는 sql문 값이 없으면 에러뜸.-->
+		<select id="selectStars" parameterType="int" resultType="double">
+			select avg(star) from user_song_log where song_id = #{song_id}
+		</select>
+		
+		
+		<!-- <insert id="insertStar" parameterType="">
+			insert into user_song_log(user_log_id, user_id, song_id, star, star_date)
+            values(2, 'cccc', 9, 1, sysdate);
+		</insert> -->
 	
 	
 	
