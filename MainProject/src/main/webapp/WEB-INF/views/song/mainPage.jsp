@@ -337,7 +337,7 @@
 
         </div>
         	<c:forEach var="playlist" items="${listId }">
-           		<a href="/mylife/list/listPage?playlist_id=${playlist.playlist_id}">리스트페이지 테스트</a> 
+           		<a href="/mylife/list/listPage?playlist_id=${playlist.playlist_id}">리스트페이지 테스트</a>
         	</c:forEach>
 
  	
