@@ -100,6 +100,43 @@ public class SongService {
 	}
 	
 	
+public void insertSong(Playlist playlist) {
+		
+		
+		
+		
+		int count = sdao.selectSongCount(playlist);
+		
+		
+		if(count==0) {
+				
+				sdao.insertSong(playlist);
+			}
+		else {
+			return;
+		}
+		}
+
+
+
+		public int selectPlayListId(String list_name) {
+		
+			int playlist_id = sdao.selectPlayListId(list_name);
+		
+			return playlist_id;
+		}
+		
+		
+		public double selectStars(int song_id) {
+					
+					double avg = sdao.selectStars(song_id);
+					
+					System.out.println("songservice avg" + avg);
+					
+					return avg;
+		}
+	
+	
 	
 	
 	
