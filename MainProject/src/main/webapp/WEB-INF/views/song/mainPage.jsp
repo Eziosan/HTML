@@ -81,7 +81,15 @@ function result2(){
 
       </script>
       
+      <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+      
+	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+      
     <title>곡 화면</title>
+    
+   
+    
     <script type="text/javascript">
     //로그인 유효성
     function formLogin(){
@@ -251,15 +259,15 @@ function result2(){
           </a>
                  
             
-          <ul class="dropdown-menu text-small color-white" aria-labelledby="dropdownUser1">
-            <c:if test="${user_id == null }">
-            <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#로그인모달">로그인</a></li>
+          <ul class="dropdown-menu text-small" aria-labelledby="dropdownUser1">
+           <c:if test="${user_id == null }">
+            <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#로그인모달" id="#로그인모달버튼">로그인</a></li>
             <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#회원가입모달">회원가입</a></li>
             </c:if>
-            
+
             <c:if test="${user_id != null }">
             <li><a class="dropdown-item" href="#">프로필</a></li>
-            <li><a class="dropdown-item" id="openModalBtn" href="#">마이 리스트</a></li>
+            <li><a class="dropdown-item" id="openModalBtn" data-bs-toggle="modal" data-bs-target="#staticBackdrop">마이 리스트</a></li>
             <li><hr class="dropdown-divider"></li>
             <li><a class="dropdown-item" href="logout?song_id=${song_id }&singer_id=${singer_id}">Sign out</a></li>
             </c:if>
@@ -301,15 +309,15 @@ function result2(){
           </a>
                  
             
-          <ul class="dropdown-menu text-small color-white" aria-labelledby="dropdownUser1">
-            <c:if test="${user_id == null }">
-            <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#로그인모달">로그인</a></li>
+          <ul class="dropdown-menu text-small" aria-labelledby="dropdownUser1">
+           <c:if test="${user_id == null }">
+            <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#로그인모달" id="#로그인모달버튼">로그인</a></li>
             <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#회원가입모달">회원가입</a></li>
             </c:if>
-            
+
             <c:if test="${user_id != null }">
             <li><a class="dropdown-item" href="#">프로필</a></li>
-            <li><a class="dropdown-item" id="openModalBtn" href="#">마이 리스트</a></li>
+            <li><a class="dropdown-item" id="openModalBtn" data-bs-toggle="modal" data-bs-target="#staticBackdrop">마이 리스트</a></li>
             <li><hr class="dropdown-divider"></li>
             <li><a class="dropdown-item" href="logout?song_id=${song_id }&singer_id=${singer_id}">Sign out</a></li>
             </c:if>
