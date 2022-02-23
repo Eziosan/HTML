@@ -121,7 +121,7 @@ public class SongService {
 	 * @param userinfo
 	 * @return
 	 */
-	public String insertUser(UserInfo userinfo) {
+	public String insertSongUser(UserInfo userinfo) {
 		
 		//회원가입 처리
 		int join = udao.insertUser(userinfo);
@@ -130,6 +130,21 @@ public class SongService {
 			return "song/mainPage";
 		}
 		return "song/mainPage";
+	}
+	
+	/**
+	 * 리스트 페이지에서 회원가입 처리
+	 * @param userinfo
+	 * @return
+	 */
+	public String insertListUser(UserInfo userinfo) {
+		//회원가입 처리
+		int join = udao.insertUser(userinfo);
+		
+		if(join != 1) {
+			return "list/listpage";
+		}
+		return "list/listpage";
 	}
 	
 	/**

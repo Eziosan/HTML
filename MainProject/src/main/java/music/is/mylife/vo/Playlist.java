@@ -22,6 +22,7 @@ public class Playlist {
 	private String genre;
 	private String country;
 	private String singer_name;
+	private String singer_id;
 	
 	
 }

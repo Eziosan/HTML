@@ -141,6 +141,7 @@
 <!--  아이디 -->
 <form action="login" method="post" onsubmit="return formLogin()">
     <input type="hidden" name="playlist_id" value="${playlist_id }">
+    
     <div class="form-floating" style=
          "width: 100%;
           height: 44px;

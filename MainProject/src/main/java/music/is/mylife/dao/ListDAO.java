@@ -84,6 +84,7 @@ public class ListDAO {
 		return info;
 	}
 	
+	
 	/**
 	 * 해당 리스트 곡 개수
 	 * @param playlist_id
@@ -121,6 +122,30 @@ public class ListDAO {
 	}
 	
 	/**
+	 * 리스트 좋아요 검색
+	 * @param playlist_id
+	 * @return Playlist
+	 */
+	public Playlist selectListLike(int playlist_id) {
+		ListMapper mapper = session.getMapper(ListMapper.class);
+		Playlist like = mapper.selectListLike(playlist_id);
+		
+		return like;
+	}
+	
+	/**
+	 * 리스트 전체 출력
+	 * @param listReply
+	 * @return
+	 */
+	public ArrayList<ListComment> selectListComment(int playlist_id){
+		ListMapper mapper = session.getMapper(ListMapper.class);
+		ArrayList<ListComment> list = mapper.selectListComment(playlist_id);
+		
+		return list;
+	}
+	
+	/**
 	 * 리스트 댓글 입력
 	 * @param comment
 	 * @return int
@@ -130,5 +155,29 @@ public class ListDAO {
 		int listReply = mapper.insertListCommnet(reply);
 		
 		return listReply;
+	}
+	
+	/**
+	 * 리스트 좋아요수 올리기
+	 * @param playlist_id
+	 * @return int
+	 */
+	public int updatePluseLike(int playlist_id) {
+		ListMapper mapper = session.getMapper(ListMapper.class);
+		int plusLike = mapper.updatePluseLike(playlist_id);
+		
+		return plusLike;
+	}
+	
+	/**
+	 * 리스트 좋아요수 내리기
+	 * @param playlist_id
+	 * @return int
+	 */
+	public int updateMinuLike(int playlist_id) {
+		ListMapper mapper = session.getMapper(ListMapper.class);
+		int minusLike = mapper.updateMinuLike(playlist_id);
+		
+		return minusLike;
 	}
 }

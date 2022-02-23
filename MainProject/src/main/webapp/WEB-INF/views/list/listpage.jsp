@@ -30,13 +30,56 @@
 	
   <body style="background-color: #f8f8f8;">
   <script type="text/javascript">
-  	function loginCheck(){
-  		var user_id = document.getElementById("user_id");
+  	function listLike(user_id){
   		
   		if(user_id == ''){
   			alert('로그인이 필요한 서비스 입니다');
-  		return false;
+  			return false;
   		}
+  		//beforeLike에 색칠된 아이콘을 넣을 것
+  		$(".beforeLike").html("<img src='../resources/img/like2.png' id='좋아요버튼' width='15px'> 좋아요");
+  		$(".afterLike").html("<img src='../resources/img/like1.png' id='좋아요버튼' width='15px'> 좋아요");
+  		$(".like").toggleClass("beforeLike afterLike");
+  		
+  		
+  		/* var plusLike = $(".like").attr("class"); 
+  		if(plusLike == "like afterLike"){
+  			alert('좋아요를 하셨습니다');
+  		} */
+  		if($(".like").hasClass("afterLike")){
+  			alert('좋아요를 하셨습니다');
+  			$("#hiddenLike").val(1);
+  			$("#likeForm").submit();
+  		} else if($(".like").hasClass("beforeLike")){
+  			alert('좋아요를 취소하셨습니다.');
+  			$("#hiddenLike").val(-1);
+  			$("#likeForm").submit();
+  		}
+  	}
+
+  	
+  
+  	function loginCheck(user_id){
+  		//로그인 확인
+  		if(user_id == ''){
+  			alert('로그인이 필요한 서비스 입니다');
+  		return false;
+  		} 
+  		alert(user_id);
+  		alert($("#playlist_id").val());
+  		//댓글 입력 길이
+  		var comment = document.getElementById('댓글입력').value;
+  		alert(comment);
+  		
+  		if(comment.length > 100){
+  			alert('댓글은 100자 이내로 작성해주세요');
+  			return false;
+  		} else if(comment.length < 1){
+  			alert('문자를 입력해주세요');
+  			return false;
+  		}
+  		
+  		
   		return true;
   	}
   </script>
@@ -139,13 +182,18 @@
             <section class="버튼박스" id="버튼박스">
                 <div id="버튼박스내용">
 <!--                    공유 드롭다운-->
+<form action="like" method="post" id="likeForm">
+	<input type="hidden" id="hiddenLike" name="list_like">
+	<input type="hidden" name="playlist_id" value="${listInfo.playlist_id }">
+</form>
             <div class="dropdown">
-                <button type="button"  id="좋아요박스">
-                        <div id="좋아요">
-                            <img src="../resources/img/like1.png" id="좋아요버튼" width="15px">
+                <button type="button"  id="좋아요박스" onclick="listLike('${user_id}')">
+                        <div id="좋아요" class="beforeLike like">
+                            <img src="../resources/img/like1.png" id="좋아요버튼" width="15px" >
                             좋아요
                         </div>
-                    </button>
+                 </button>
+                    
                         <span style="font-size: 20px">
                             I
                         </span>
@@ -154,17 +202,20 @@
                              <img src="../resources/img/comment.JPG" id="좋아요버튼" width="23px">
                             댓글
                         </div>
-                    </button>
+                         </button>
                         <span style="font-size: 20px">
                             I
                         </span>
 
                         <button class="btn" type="button" data-bs-toggle="dropdown"  aria-expanded="false" id="좋아요박스">
                         <div id="좋아요" >
-                            <img src="../resources/img/share.JPG" id="좋아요버튼" width="23px">
+                            <img src="../resources/img/share2.png" id="좋아요버튼" width="23px">
                             공유
                         </div>
+                       
                     </button>
+                        
+      
                    
                 
                 
@@ -174,7 +225,7 @@
     Dropdown button
   </button>
 -->
-  <ul class="dropdown-menu" id="공유드롭다운" aria-labelledby="dropdownMenuButton1">
+	<ul class="dropdown-menu" id="공유드롭다운" aria-labelledby="dropdownMenuButton1">
     <li><a class="dropdown-item" href="#">페이스북<img src="facebook1.png" height="23px" style="float: right"></a></li>
     <li><a class="dropdown-item" href="#">카카오톡<img src="kakao1.png" height="23px" style="float: right"></a></li>
     <li><a class="dropdown-item" href="#">트위터<img src="twitter1.png" height="23px" style="float: right"></a></li>
@@ -203,15 +254,13 @@
                         <div class="col" id="작품카드" >
                             <img src="../resources/img/album/${playlist.album_img }" id="리스트앨범커버">
                             <div id="작품명">
-                                <a href="/mylife/song/songPage?song_id=${song.song_id }&singer_id=${song.singer_id}">
+                                <a href="/mylife/song/songPage?song_id=${playlist.song_id }&singer_id=${playlist.singer_id}"> 
+                                <!-- <a href="/mylife/song/songPage?song_id=1&singer_id=1"> -->
                                 ${playlist.song_name }
                                 </a>
                             </div>
                             <div id="리스트평균">
                                 ${playlist.singer_name }
-                            </div>
-                            <div id="리스트평균">
-                                평균 ★ 2.8
                             </div>
                          
                             <div id="리스트정보">
@@ -242,41 +291,44 @@
                         <span id="댓글수"> ${countComment } </span>
                     </div>
                     
-                    
+                    <c:forEach var="listcomment" items="${ allList}">
                      <div id="ㄹㅇ댓글">
                         <div id="댓글프로필">
-                         <img src="../resources/img/comment.JPG" id="댓글프로필사진">
+                         <img src="../resources/img/profile2.jpg" id="댓글프로필사진">
                          </div>
                         <div id="댓글우측">
                             <div id="닉네임란">
                                 <span id="닉네임">
-                                    잔스틴
+                                    ${listcomment.user_id }
                                 </span>
                                 <div id="댓글며칠전">
-                                    1개월전
+                                    ${listcomment.comment_date }
                                 </div>
+
                             </div>
                             <div id="댓글내용">
-                                밤편지밖에없네요!
+                                ${listcomment.user_comment }
                             </div>
+                            
                             <div id="댓글버튼">
-                                <button id="댓글좋아요">
-                                    <img src="../resources/img/like1.png" width="15px" style="margin-right: 6px;" >
-                                    0
-                                </button>
+                            
+                            		
+                            
                                  <button id="댓글더보기">
                                      <img src="../resources/img/more.JPG" height="18px">
                                 </button>
                             </div>
+                            
                      </div>
                     </div> 
-                    
+                    </c:forEach>
    <!-- 댓글 입력창 -->                
                     <div id="댓글입력창">
-						<form action="comment" method="post" id="comment" enctype="multipart/form-data" onsubmit="return loginCheck()">
-							<input type="hidden" id="user_id" name="user_id" value="${user_id }" >
-	                        <input type="text" name="comment" id="댓글입력" placeholder="컬렉션에 댓글을 남겨보세요.">
-	                        <input type="submit" id="댓글입력버튼" value="등록" >
+						<form action="comment" method="post" id="comment" onsubmit="return loginCheck('${user_id}')">
+							<input type="hidden" id="playlist_id" name="playlist_id" value="${playlist_id }">
+							<input type="hidden" id="user_id" name="user_id" value="${user_id }">
+	                        <input type="text" name="user_comment" id="댓글입력" placeholder="컬렉션에 댓글을 남겨보세요.">
+	                        <input type="submit" id="댓글입력버튼" value="등록">
 						</form>
                 </div>
                 </div>

@@ -148,8 +148,6 @@
 													class="card-text mb-0"
 													style="font-size: 13px; margin-left: 2px">
 													${song.album_name } </span>
-												<p class="card-text mb-0 text-danger"
-													style="font-size: 13px; margin-left: 1px">예상 ★2.4</p>
 												<div
 													class="d-flex justify-content-between align-items-center">
 	
@@ -238,8 +236,6 @@
 													class="card-text mb-0"
 													style="font-size: 13px; margin-left: 2px">
 													${song.album_name } </span>
-												<p class="card-text mb-0 text-danger"
-													style="font-size: 13px; margin-left: 1px">예상 ★2.4</p>
 												<div
 													class="d-flex justify-content-between align-items-center">
 	

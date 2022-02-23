@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -40,13 +41,20 @@ public class ListController {
 	 * @return
 	 */
 	@RequestMapping(value = "listPage", method = RequestMethod.GET)
-	public String listPage(Song song, Model model, int playlist_id) {
+	public String listPage(Song song, Model model, int playlist_id, ListComment listReply) {
 		
+		//리스트에 필요한 정보들 넘겨주기
 		ArrayList<Playlist> banner = ls.listBanner(playlist_id);
 		ArrayList<Playlist> listSong = ls.listSong(playlist_id);
 		Playlist info = ls.listInfo(playlist_id);
+		Song selectSong = ss.selectAllSong(song);
+		
+		//좋아요수, 댓글수, 곡 수 카운팅 정보
 		int count = ls.countSong(playlist_id);
 		int countComment = ls.countComment(playlist_id);
+		Playlist like = ls.listLike(playlist_id); 
+		//댓글 전체 출력 검색
+		ArrayList<ListComment> list = ls.listComment(playlist_id);
 		
 		logger.info("banner:{}",banner);
 		logger.info("listSong:{}",listSong);
@@ -63,28 +71,196 @@ public class ListController {
 		model.addAttribute("countSong", count);
 		//리스트 댓글 개수
 		model.addAttribute("countComment", countComment);
-		
+		//리스트 좋아요 수
+		model.addAttribute("listLike", like);
+		//전체 곡 정보 
+		model.addAttribute("allSong", selectSong);
+		//리스트 아이디
+		model.addAttribute("playlist_id", info.getPlaylist_id());
+		//댓글 전체출력
+		model.addAttribute("allList", list);
 		
 		return "list/listpage";
 	}
 	
+	/**
+	 * 리스트페이지에서 로그인
+	 * @param user_id
+	 * @param user_pw
+	 * @param model
+	 * @param session
+	 * @param playlist_id
+	 * @param song
+	 * @return
+	 */
 	@RequestMapping(value = "login", method = RequestMethod.POST)
-	public String login(String user_id, String user_pw, Model model, HttpSession session, int playlist_id) {
+	public String login(String user_id, String user_pw, Model model, HttpSession session, int playlist_id, Song song) {
 		UserInfo user_info = us.selectUser(user_id);
 		
 		if(user_info != null && user_info.getUser_pw().equals(user_pw)) {
 			session.setAttribute("user_id", user_id);
 		}
 		
-		logger.debug("playlist_id:{}", playlist_id);
-		//해당 리스트 모든 정보 검색
-		ArrayList<Playlist> onelist = ls.oneList(playlist_id);
+		//리스트에 필요한 정보들 넘겨주기
+		ArrayList<Playlist> banner = ls.listBanner(playlist_id);
+		ArrayList<Playlist> listSong = ls.listSong(playlist_id);
+		Playlist info = ls.listInfo(playlist_id);
+		Song selectSong = ss.selectAllSong(song);
 		
-		model.addAttribute("onelist", onelist);
+		int count = ls.countSong(playlist_id);
+		int countComment = ls.countComment(playlist_id);
+		Playlist like = ls.listLike(playlist_id); 
+		
+		//리스트 정보
+		model.addAttribute("listInfo", info);
+		//배너 사진
+		model.addAttribute("banner", banner);
+		//곡 정보
+		model.addAttribute("listSong", listSong);
+		//리스트 곡 개수
+		model.addAttribute("countSong", count);
+		//리스트 댓글 개수
+		model.addAttribute("countComment", countComment);
+		//리스트 좋아요 수
+		model.addAttribute("listLike", like);
+		//전체 곡 정보 
+		model.addAttribute("allSong", selectSong);
+		//리스트 아이디
+		model.addAttribute("playlist_id", info.getPlaylist_id());
 		
 		return "list/listpage";
 	}
 	
+	/**
+	 * 리스트 페이지에서 로그아웃
+	 * @param session
+	 * @param song
+	 * @param model
+	 * @param playlist_id
+	 * @return
+	 */
+	@RequestMapping(value = "logout", method = RequestMethod.GET)
+	public String logout(HttpSession session, Song song, Model model, int playlist_id) {
+		session.invalidate();
+		
+		//리스트에 필요한 정보들 넘겨주기
+		ArrayList<Playlist> banner = ls.listBanner(playlist_id);
+		ArrayList<Playlist> listSong = ls.listSong(playlist_id);
+		Playlist info = ls.listInfo(playlist_id);
+		Song selectSong = ss.selectAllSong(song);
+		
+		ArrayList<Playlist> list = ls.oneList(playlist_id);
+				
+		int count = ls.countSong(playlist_id);
+		int countComment = ls.countComment(playlist_id);
+		Playlist like = ls.listLike(playlist_id); 
+				
+		//리스트 정보
+		model.addAttribute("listInfo", info);
+		//배너 사진
+		model.addAttribute("banner", banner);
+		//곡 정보
+		model.addAttribute("listSong", listSong);
+		//리스트 곡 개수
+		model.addAttribute("countSong", count);
+		//리스트 댓글 개수
+		model.addAttribute("countComment", countComment);
+		//리스트 좋아요 수
+		model.addAttribute("listLike", like);
+		//전체 곡 정보 
+		model.addAttribute("allSong", selectSong);
+		//리스트 아이디
+		model.addAttribute("playlist_id", info.getPlaylist_id());
+		//리스트 전체 정보
+		model.addAttribute("onelist", list);
+		
+		return "list/listpage";
+	}
+	
+	/**
+	 * 리스트 페이지에서 회원가입
+	 * @param userinfo
+	 * @param model
+	 * @param song
+	 * @param playlist_id
+	 * @return
+	 */
+	@RequestMapping(value = "join", method = RequestMethod.POST)
+	public String join(@ModelAttribute("userinfo") UserInfo userinfo ,Model model, Song song, int playlist_id) {
+		//리스트에 필요한 정보들 넘겨주기
+		ArrayList<Playlist> banner = ls.listBanner(playlist_id);
+		ArrayList<Playlist> listSong = ls.listSong(playlist_id);
+		Playlist info = ls.listInfo(playlist_id);
+		Song selectSong = ss.selectAllSong(song);
+						
+		int count = ls.countSong(playlist_id);
+		int countComment = ls.countComment(playlist_id);
+		Playlist like = ls.listLike(playlist_id); 
+						
+		//리스트 정보
+		model.addAttribute("listInfo", info);
+		//배너 사진
+		model.addAttribute("banner", banner);
+		//곡 정보
+		model.addAttribute("listSong", listSong);
+		//리스트 곡 개수
+		model.addAttribute("countSong", count);
+		//리스트 댓글 개수
+		model.addAttribute("countComment", countComment);
+		//리스트 좋아요 수
+		model.addAttribute("listLike", like);
+		//전체 곡 정보 
+		model.addAttribute("allSong", selectSong);
+		//리스트 아이디
+		model.addAttribute("playlist_id", info.getPlaylist_id());
+		
+		return ss.insertListUser(userinfo);
+	}
+	
+	/**
+	 * 리스트 좋아요 올리고 내리기
+	 * @param playlist_id
+	 * @param model
+	 * @param song
+	 * @return
+	 */
+	@RequestMapping(value = "like", method = RequestMethod.POST)
+	public String listLike(int playlist_id, Model model, Song song) {
+		int plusLike = ls.plusListLike(playlist_id);
+		
+		//리스트에 필요한 정보들 넘겨주기
+		ArrayList<Playlist> banner = ls.listBanner(playlist_id);
+		ArrayList<Playlist> listSong = ls.listSong(playlist_id);
+		Playlist info = ls.listInfo(playlist_id);
+		Song selectSong = ss.selectAllSong(song);
+								
+		int count = ls.countSong(playlist_id);
+		int countComment = ls.countComment(playlist_id);
+		Playlist like = ls.listLike(playlist_id); 
+								
+		//리스트 정보
+		model.addAttribute("listInfo", info);
+		//배너 사진
+		model.addAttribute("banner", banner);
+		//곡 정보
+		model.addAttribute("listSong", listSong);
+		//리스트 곡 개수
+		model.addAttribute("countSong", count);
+		//리스트 댓글 개수
+		model.addAttribute("countComment", countComment);
+		//리스트 좋아요 수
+		model.addAttribute("listLike", like);
+		//전체 곡 정보 
+		model.addAttribute("allSong", selectSong);
+		//리스트 아이디
+		model.addAttribute("playlist_id", info.getPlaylist_id());
+		
+		
+		return "list/listpage";
+	}
+	
+
+
 	/**
 	 * 리스트 댓글 입력하기
 	 * @param comment
@@ -93,10 +269,53 @@ public class ListController {
 	 * @return
 	 */
 	@RequestMapping(value = "comment", method = RequestMethod.POST)
-	public String comment(String comment, Model model, ListComment reply) {
+	public String comment(int playlist_id ,String comment, Model model, Song song , ListComment reply, HttpSession session,
+			ListComment listReply) {
+	
+		// 세션에서 로그인한 사용자 아이디 받아 저장
+		String loginId = (String)session.getAttribute("user_id");
+		//댓글 입력
 		int listRelpy = ls.insertCommnet(reply);
 		
-		return "list/listPage";
+		//리스트에 필요한 정보들 넘겨주기
+		ArrayList<Playlist> banner = ls.listBanner(playlist_id);
+		ArrayList<Playlist> listSong = ls.listSong(playlist_id);
+		Playlist info = ls.listInfo(playlist_id);
+		Song selectSong = ss.selectAllSong(song);
+										
+		int count = ls.countSong(playlist_id);
+		int countComment = ls.countComment(playlist_id);
+		Playlist like = ls.listLike(playlist_id); 
+		//댓글 전체 출력 검색
+		ArrayList<ListComment> list = ls.listComment(playlist_id);
+		
+		
+		//리스트 정보
+		model.addAttribute("listInfo", info);
+		//배너 사진
+		model.addAttribute("banner", banner);
+		//곡 정보
+		model.addAttribute("listSong", listSong);
+		//리스트 곡 개수
+		model.addAttribute("countSong", count);
+		//리스트 댓글 개수
+		model.addAttribute("countComment", countComment);
+		//리스트 좋아요 수
+		model.addAttribute("listLike", like);
+		//전체 곡 정보 
+		model.addAttribute("allSong", selectSong);
+		//리스트 아이디
+		model.addAttribute("playlist_id", info.getPlaylist_id());		
+		//댓글 전체출력
+		model.addAttribute("allList", list);
+		
+		logger.info("playlist_id:{}", playlist_id);
+		logger.info("comment:{}", comment);
+		logger.info("reply:{}", reply);
+		
+		
+		
+		return "list/listpage";
 	}
 
 }

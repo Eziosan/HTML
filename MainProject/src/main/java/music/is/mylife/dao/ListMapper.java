@@ -48,7 +48,7 @@ public interface ListMapper {
 	public int selectCountSong(int playlist_id);
 	
 	/**
-	 * 해당 리스트 댓글 개수
+	 * 리스트 댓글 개수
 	 * @param playlist_id
 	 * @return int
 	 */
@@ -61,7 +61,19 @@ public interface ListMapper {
 	 */
 	public ArrayList<Playlist> selectList(int playlist_id);
 	
+	/**
+	 * 리스트 좋아요 검색
+	 * @param playlist_id
+	 * @return Playlist
+	 */
+	public Playlist selectListLike(int playlist_id);
 	
+	/**
+	 * 리스트 전체 출력
+	 * @param listReply
+	 * @return
+	 */
+	public ArrayList<ListComment> selectListComment(int playlist_id);
 	
 	/**
 	 * 리스트 댓글 입력
@@ -70,5 +82,18 @@ public interface ListMapper {
 	 */
 	public int insertListCommnet(ListComment reply);
 	
+	/**
+	 * 리스트 좋아요수 올리기
+	 * @param playlist_id
+	 * @return int
+	 */
+	public int updatePluseLike(int playlist_id);
+	
+	/**
+	 * 리스트 좋아요수 내리기
+	 * @param playlist_id
+	 * @return int
+	 */
+	public int updateMinuLike(int playlist_id);
 	
 }

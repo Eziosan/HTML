@@ -182,7 +182,7 @@ public class SongController {
 		ArrayList<Playlist> listId = ls.selectListId(song.getSong_id());
 		model.addAttribute("listId", listId);
 		
-		return ss.insertUser(userinfo);
+		return ss.insertSongUser(userinfo);
 	}
 	
 	/**

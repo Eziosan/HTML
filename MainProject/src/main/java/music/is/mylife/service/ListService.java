@@ -92,6 +92,28 @@ public class ListService {
 	}
 	
 	/**
+	 * 리스트 좋아요 검색
+	 * @param playlist_id
+	 * @return Playlist
+	 */
+	public Playlist listLike(int playlist_id) {
+		Playlist like = ldao.selectListLike(playlist_id);
+		
+		return like;
+	}
+	
+	/**
+	 * 리스트 전체 출력
+	 * @param listReply
+	 * @return
+	 */
+	public ArrayList<ListComment> listComment(int playlist_id){
+		ArrayList<ListComment> list = ldao.selectListComment(playlist_id);
+		
+		return list;
+	}
+	
+	/**
 	 * 리스트 댓글 입력
 	 * @param comment
 	 * @return int
@@ -100,5 +122,27 @@ public class ListService {
 		int listReply = ldao.insertListCommnet(reply);
 		
 		return listReply;
+	}
+	
+	/**
+	 * 리스트 좋아요수 올리기
+	 * @param playlist_id
+	 * @return int
+	 */
+	public int plusListLike(int playlist_id) {
+		int plusLike = ldao.updatePluseLike(playlist_id);
+		
+		return plusLike;
+	}
+	
+	/**
+	 * 리스트 좋아요수 내리기
+	 * @param playlist_id
+	 * @return int
+	 */
+	public int minusListLike(int playlist_id) {
+		int minusLike = ldao.updateMinuLike(playlist_id);
+		
+		return minusLike;
 	}
 }
