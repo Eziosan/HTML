@@ -235,6 +235,13 @@
 	<main class="배경" id="리스트배경">
 
 		<div class="container" id="konomibanner">
+			<a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
+            	<img src="https://github.com/mdo.png" alt="mdo" width="32" height="32" class="rounded-circle">
+          	</a>
+				<div id="유저 아이디">
+					<div class="fw-bold" id="평가수텍">${user_id }</div>
+
+				</div>
 			<!--          
 margin-top: 100px;
     width: 638px;

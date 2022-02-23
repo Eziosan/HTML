@@ -321,7 +321,9 @@
 												height="225">
 	
 											<div class="card1 mt-3 ">
-												<p class="card-text mb-1 fw-bold" style="font-size: 23px;">${song.song_name}</p>
+												<p class="card-text mb-1 fw-bold" style="font-size: 23px;">
+													<a href="/mylife/song/songPage?song_id=${song.song_id }&singer_id=${song.singer_id}">${song.song_name}</a>
+												</p>
 												<p class="card-text mb-0" style="font-size: 15px;">${song.singer_name }</p>
 												<span class="card-text mb-0"
 													style="font-size: 13px; margin-left: 1px">
@@ -426,7 +428,9 @@ style="position: absolute; left: 100px; top: 130px"-->
 												height="225">
 	
 											<div class="card1 mt-3 ">
-												<p class="card-text mb-1 fw-bold" style="font-size: 23px;">${song.song_name}</p>
+												<p class="card-text mb-1 fw-bold" style="font-size: 23px;">
+													<a href="/mylife/song/songPage?song_id=${song.song_id }&singer_id=${song.singer_id}">${song.song_name}</a>												
+												</p>
 												<p class="card-text mb-0" style="font-size: 15px;">${song.singer_name }</p>
 												<span class="card-text mb-0"
 													style="font-size: 13px; margin-left: 1px">
