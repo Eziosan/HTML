@@ -1027,6 +1027,12 @@ ${Song.lyrics }
 
         </div>
         
+        
+        	<c:forEach var="playlist" items="${listId }">
+           		<a href="/mylife/list/listPage?playlist_id=${playlist.playlist_id}">리스트페이지 테스트</a>
+        	</c:forEach>
+        
+        
           <div class="오른쪽 보라 border" style="width: 318px; height: auto; border-radius: 10px; float: right; padding-left: 5px; padding-right: 5px; background-color: white; font-family: 'Noto Sans KR', sans-serif; overflow: hidden; padding-bottom: 40px;" >   
               
 <!--             갤러리 -->
