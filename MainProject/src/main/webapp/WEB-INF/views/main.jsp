@@ -145,7 +145,7 @@
     
     
     <header class="p-2 mb-3 fixed-top align-items-center border-bottom border-info" id="AllusicH" style="font-family: 'Noto Sans KR', sans-serif; background-color: white;">
-    <div class="container-fluid w-75">
+    <div class="container-fluid" style="width: 93%">
       <div class="d-flex flex-wrap align-items-center justify-content-start ">
 <!--          justify-content-lg-start-->
         <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-dark text-decoration-none">
@@ -154,9 +154,6 @@
 
         <ul class="nav col-12 col-lg-auto me-lg-auto mlmb-2 justify-content-center mb-md-0">
           <li><div  class="nav-link px-2 w-100" ><img src="./resources/img/mainLogo.png" alt="img" width="" height="40" style="margin-right: 30px"> </div></li>
-          <li><a href="https://www.naver.com/" class="nav-link px-2 mt-3   mb-0 link-secondary" style="">곡</a></li>
-          <li><a href="#" class="nav-link px-2 mt-3 link-dark">앨범</a></li>
-          <li><a href="#" class="nav-link px-2 mt-3 link-dark">가수</a></li>
         </ul>
 
         <form action="/mylife/search/searchResult" method="get" onsubmit="return searchCheck();" 
@@ -181,7 +178,10 @@
             
             <c:if test="${user_id != null }">
             <li><a class="dropdown-item" href="#">프로필</a></li>
-            <li><a class="dropdown-item" id="openModalBtn" data-bs-toggle="modal" data-bs-target="#staticBackdrop">마이 리스트</a></li>
+            <li><a class="dropdown-item" id="openModalBtn" href="/mylife/analysis/main">마이 리스트</a></li>
+       <!--      <li><a class="dropdown-item" id="openModalBtn" data-bs-toggle="modal" data-bs-target="#staticBackdrop" 
+            	href="logout">마이 리스트</a></li> -->
+            	
             <li><hr class="dropdown-divider"></li>
             <li><a class="dropdown-item" href="logout">Sign out</a></li>
             </c:if>

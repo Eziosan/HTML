@@ -301,7 +301,7 @@ margin-top: 100px;
 
 					</div>
 					<div id="분포작은칸">
-						<div id="분포분석">ddddddddddd'삼겹살파'</div>
+						
 						<div id="분포도"></div>
 						<div id="분포내용란" style="margin: 0 atuo;">
 							<div id="분포내용">
@@ -474,7 +474,10 @@ margin-top: 100px;
 						<div class="fw-bold" id="평가수텍">선호장르</div>
 					</div>
 					<div id="국가큰칸2">
-						<div id="장르코멘트">발라드충이군요</div>
+						<!--  
+							<div id="장르코멘트">발라드충이군요</div>
+						
+						-->
 						<div id="국가칸">
 							<div id="국가탑">
 								<c:forEach var="genreLog" items="${genreLogList}" begin="0"

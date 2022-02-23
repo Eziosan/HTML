@@ -41,15 +41,16 @@ public class AnalysisController {
 	@RequestMapping(value = "analysisPage", method = RequestMethod.GET)
 	public String analysisPage(Model model, HttpSession session) {
 		System.out.println("별점 입력 했습니다!!");
-		//String user_id = (String)session.getAttribute("user_id");
+		String user_id = (String)session.getAttribute("user_id");
 		int song_id = 4;
 		double star = 3.5; 
 		String genre = "댄스";
 		int singer_id = 3;
 		String country ="대한민국";
 		
+		//
 		UserLog ul = new UserLog();
-		ul.setUser_id("aaaa");
+		ul.setUser_id(user_id);
 		ul.setSong_id(song_id);
 		ul.setStar(star);
 		ul.setGenre(genre);
