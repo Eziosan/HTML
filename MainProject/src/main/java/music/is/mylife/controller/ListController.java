@@ -324,9 +324,6 @@ public class ListController {
 		//댓글 전체출력
 		model.addAttribute("allList", list);
 		
-		logger.info("playlist_id:{}", playlist_id);
-		logger.info("comment:{}", comment);
-		logger.info("reply:{}", reply);
 		
 		
 		
@@ -334,7 +331,7 @@ public class ListController {
 		return "list/listpage";
 	}
 	
-	@RequestMapping(value = "comment", method = RequestMethod.GET)
+	@RequestMapping(value = "delComment", method = RequestMethod.POST)
 	public String deleteComment(HttpSession session, ListComment delComment, Song song, int playlist_id, Model model) {
 		String loginId = (String)session.getAttribute("user_id");
 		delComment.setUser_id(loginId);
@@ -372,7 +369,8 @@ public class ListController {
 		model.addAttribute("playlist_id", info.getPlaylist_id());		
 		//댓글 전체출력
 		model.addAttribute("allList", list);
-		return "list/listpage?playlist_id=" + delComment.getPlaylist_id();
+		
+		return "list/listpage";
 	}
 
 }

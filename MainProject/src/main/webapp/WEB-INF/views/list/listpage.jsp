@@ -30,7 +30,8 @@
 	
   <body style="background-color: #f8f8f8;">
   <script type="text/javascript">
-  	function listLike(user_id){
+  //좋아요 누르기	
+  function listLike(user_id){
   		
   		if(user_id == ''){
   			alert('로그인이 필요한 서비스 입니다');
@@ -58,18 +59,16 @@
   	}
 
   	
-  
+  	//댓글 로그인 확인
   	function loginCheck(user_id){
   		//로그인 확인
   		if(user_id == ''){
   			alert('로그인이 필요한 서비스 입니다');
   		return false;
   		} 
-  		alert(user_id);
-  		alert($("#playlist_id").val());
+  		
   		//댓글 입력 길이
   		var comment = document.getElementById('댓글입력').value;
-  		alert(comment);
   		
   		if(comment.length > 100){
   			alert('댓글은 100자 이내로 작성해주세요');
@@ -79,7 +78,11 @@
   			return false;
   		}
   		
-  		
+  	//댓글 삭제 확인 알람
+  	function deleteComment(user_id){
+		alert('댓글을 삭제하시겠습니까?');
+		return false;
+  	}
   		return true;
   	}
   </script>
@@ -314,7 +317,12 @@
                             
                             		
                             <c:if test="${user_id ==  listcomment.user_id}">
-                                 <button id="댓글입력버튼" onclick="return deleteComment()">삭제</button>
+                            	<form action="delComment" method="post" id="delComment" onsubmit="return deleteComment('${user_id}')">
+                                 <input type="hidden" id="user_id" name="user_id" value="${user_id }">
+                                 <input type="hidden" id="playlist_id" name="playlist_id" value="${playlist_id }">
+                                 <input type="hidden" id="list_comment_id" name="list_comment_id" value="${listcomment.list_comment_id }">
+                                 <input type="submit" id="댓글입력버튼" value="삭제">
+                            	</form>
                             </c:if>
                             </div>
                             
