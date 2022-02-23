@@ -31,8 +31,8 @@ public class HomeService {
 	 * @param song
 	 * @return ArrayList<Song>
 	 */
-	public ArrayList<Song> selectLikeSong(Song song){
-		ArrayList<Song> likeSong = songDao.selectLikeSong(song);
+	public ArrayList<Song> selectSongByGenre(String genre){
+		ArrayList<Song> likeSong = songDao.selectSongByGenre(genre);
 		
 		return likeSong;
 	}

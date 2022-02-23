@@ -17,15 +17,18 @@ public class UserService {
 	 * @param userinfo
 	 * @return
 	 */
-	public String insertUser(UserInfo userinfo) {
+	public boolean insertUser(UserInfo userinfo) {
 		
 		//회원가입 처리
 		int join = userDao.insertUser(userinfo);
 		
-		if(join != 1) {
-			return "redirect:/main";
-		}
-		return "redirect:/main";
+		if(join > 0) {
+			return true;
+		}else {return false;}
+//		if(join != 1) {
+//			return "redirect:/main";
+//		}
+//		return "redirect:/main";
 	}
 	
 	/**

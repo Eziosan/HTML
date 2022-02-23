@@ -35,8 +35,16 @@ public class UserController {
 	public String join(@ModelAttribute("userinfo") UserInfo userinfo ,Model model) {
 		logger.debug("userinfo : {}", userinfo);
 		
+		String result = null;
+				
+		if(us.insertUser(userinfo)) {
+			result = "redirect:/main";
+		}else {
+			result = "redirect:/main";
+		}
+			
 		//회원가입 처리
-		return us.insertUser(userinfo);
+		return result;
 	}
 	
 	
