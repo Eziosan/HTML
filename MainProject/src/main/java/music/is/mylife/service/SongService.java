@@ -144,9 +144,10 @@ public void insertSong(Playlist playlist) {
 
 	public ArrayList<Tag> selectTag(int song_id) {
 
-		ArrayList<Tag> tag = tdao.selectTag(song_id);
+		ArrayList<Tag> tag = tdao.selectTop10TagBySongId(song_id);
 		return tag;
 	}
+	
 
 	public void plusSongTagRecommend(Tag tag) {
 
