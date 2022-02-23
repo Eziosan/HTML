@@ -24,6 +24,7 @@ public class SongService {
 	@Autowired
 	UserDAO udao;
 
+
 	// 해당 곡의 배너를 가져오는 메소드
 	public String selectBanner(int song_id) {
 
@@ -70,18 +71,18 @@ public class SongService {
 	public Boolean insertPlaylist(Playlist playlist) {
 
 		// 어레이 리스트로 리스트 전체를 받아서 for each문을 돌려 현재 존재하는 리스트의 이름과 새로 받은 리스트의 이름과 비교해서 있으면
-		// 종료 없으면 리스트 생성하면서 곡까지 넣어줌.
+		// 종료 없으면 리스트 생성
 		ArrayList<Playlist> ps = sdao.selectList(playlist.getUser_id());
 
 		Boolean result = false;
 
 		for (Playlist p : ps) {
 			if (p.getList_name().equals(playlist.getList_name())) {
-
+				
 				System.out.println(p.getList_name());
 				System.out.println(playlist.getList_name());
-
-				result = false;
+				
+				result=false;
 				break;
 			}
 
@@ -98,58 +99,11 @@ public class SongService {
 
 	}
 
-	// 여기서 해야할게 곡아이디를 받아서 특정 유저의 특정 playlist에 곡을 담는걸 구현해야함.
-	// ? 굳이 당초에 playlist name을 보여주고 특정 playlist를 클릭해서 곡 담는다고 했는데 여기서 유효성 검사할 필요는
-	// 없을거같음(?)
-	// 성공적으로 됐으면 redirect 실패면 다른걸로
-	public void insertSong(Playlist playlist) {
-		
-		
-		
-		
-		int count = sdao.selectSongCount(playlist);
-		
-		
-		if(count==0) {
-				
-				sdao.insertSong(playlist);
-			}
-		else {
-			return;
-		}
-		}
-		
-	
-		
-		public double selectStars(int song_id) {
-			
-			double avg = sdao.selectStars(song_id);
-			
-			System.out.println("songservice avg" + avg);
-			
-			return avg;
-		}
-	
-	
-	
-	
-	
-	
-
-	public int selectPlayListId(String list_name) {
-
-		int playlist_id = sdao.selectPlayListId(list_name);
-
-		return playlist_id;
-	}
-
 	public ArrayList<Tag> selectTag(int song_id) {
 
-		ArrayList<Tag> tag = tdao.selectTop10TagBySongId(song_id);
+		ArrayList<Tag> tag = tdao.selectTag(song_id);
 		return tag;
 	}
-	
-	
 
 	public void plusSongTagRecommend(Tag tag) {
 
@@ -161,14 +115,13 @@ public class SongService {
 
 		tdao.minusSongTagRecommend(tag);
 	}
-
 	
 	/**
 	 * 곡페이지에서 회원가입하기
 	 * @param userinfo
 	 * @return
 	 */
-	public String insertUser(UserInfo userinfo) {
+	public String insertSongUser(UserInfo userinfo) {
 		
 		//회원가입 처리
 		int join = udao.insertUser(userinfo);
@@ -179,17 +132,32 @@ public class SongService {
 		return "song/mainPage";
 	}
 	
-
 	/**
-	 * [메인페이지] 전체 곡 검색해서 해당 곡 하나 들고오기
-	 * 
+	 * 리스트 페이지에서 회원가입 처리
+	 * @param userinfo
+	 * @return
+	 */
+	public String insertListUser(UserInfo userinfo) {
+		//회원가입 처리
+		int join = udao.insertUser(userinfo);
+		
+		if(join != 1) {
+			return "list/listpage";
+		}
+		return "list/listpage";
+	}
+	
+	/**
+	 * [메인페이지]
+	 * 전체 곡 검색해서 해당 곡 하나 들고오기
 	 * @param song
 	 * @return song
 	 */
 	public Song selectAllSong(Song song) {
 		Song selectSong = sdao.selectAllSong(song);
-
+		
 		return selectSong;
 	}
+	
 
 }
