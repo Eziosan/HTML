@@ -14,7 +14,19 @@
 				from (select * from song_tag_detail where song_id = #{song_id} order by recommend desc)
 				where rownum <= 3
             ]]>
-		</select> 
+		</select>
+		
+		
+		<select id="selectTop10TagBySongId" parameterType="int" resultType="tag">
+			<![CDATA[   
+				select * from (select t.tag_name,st.recommend 
+					from song_tag t, song_tag_detail st, song s 
+					where t.tag_id = st.tag_id and st.song_id = s.song_id and st.song_id = #{song_id}
+           			order by recommend desc )
+            		where rownum <= 10
+            ]]>
+		</select>
+		 
 		
 		<!-- 태그 id를 입력받아 태그 리턴 -->
 		<select id="selectTagsById" parameterType="int" resultType="tag">

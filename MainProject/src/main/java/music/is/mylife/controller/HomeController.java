@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import music.is.mylife.service.HomeService;
 import music.is.mylife.service.SongService;
+import music.is.mylife.vo.Playlist;
 import music.is.mylife.vo.Song;
 import music.is.mylife.vo.Tag;
 
@@ -67,10 +68,23 @@ public class HomeController {
 	 */
 	@RequestMapping(value = "song/songPage", method = RequestMethod.GET)
 	public String songPage(Model model, int singer_id, int song_id, Song song, HttpSession session) {
+		String user_id;
+		
 		Song selectSong = ss.selectAllSong(song);
 
+		
+		
+		user_id = (String)session.getAttribute("user_id");
+		if(user_id!=null) {
+			ArrayList<Playlist> playlist = ss.selectList(user_id);
+			model.addAttribute("playlist", playlist);
+			
+		}
+		
+		
+		
 		logger.info("Song:{}", selectSong);
-
+		
 		ArrayList<Tag> tag = ss.selectTag(song_id);
 		
 		 model.addAttribute("singer_id", singer_id); 
@@ -81,6 +95,17 @@ public class HomeController {
 		 logger.debug("Tag : {}", tag);
 		 session.setAttribute("song_id", song_id);
 		 
+		 
+		 
+			
+			
+			
+			
+			
+			
+			
+			
+			
 		 
 
 		return "song/mainPage";

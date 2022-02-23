@@ -72,9 +72,9 @@
 			select playlist_id from playlist where list_name=#{list_name}
 		</select>
 		
-	
-		<select id="selectPlayList_Song_id" parameterType="int" resultType="playlist">
-			select song_id from playlist_detail where playlist_id = #{playlist_id}
+		<!-- playlist에 곡이 있는지 없는지 0, 1로 반환하는 sql문 -->
+		<select id="selectSongCount" parameterType="int" resultType="int">
+			select count(*) from playlist_detail where playlist_id = #{playlist_id} and song_id = #{song_id}
 		</select>
 	
 	

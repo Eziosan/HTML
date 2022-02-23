@@ -88,15 +88,14 @@ public class SongController {
 		
 		String user_id;
 		
-		//int Song_id = (int)session.getAttribute("song_id");
+		
 		
 		user_id = (String)session.getAttribute("user_id");
 		
 		
 		ArrayList<Playlist> playlist = ss.selectList(user_id);
 		
-		//logger.debug("song_id : {}", Song_id);
-		logger.debug("playlist : {}", playlist);
+		
 		
 		
 		model.addAttribute("playlist", playlist);
@@ -190,7 +189,64 @@ public class SongController {
 		
 		
 	}
+	@RequestMapping(value="addPlayList",method=RequestMethod.POST)
+	public String addPlayList(Playlist pl, Model model,HttpSession session) {
+		
+		
+		String user_id = (String)session.getAttribute("user_id");
+		ArrayList<Playlist> playlist = ss.selectList(user_id);
+		Song song = ss.selectSongOne(pl.getSong_id());
+		
+		//여기서 할 거 > 리스트 생성하기
+				String url;
+				pl.setUser_id(user_id);
+				
+				
+				Boolean result = ss.insertPlaylist(pl);
+				
+				if(result) {
+					url="redirect:/main";
+					
+				}else {
+					url="song/listPage";
+				}
+				
+				model.addAttribute("Song",song);
+				model.addAttribute("playlist",playlist);
+				
+				
+				
+		
+		
+		return "song/mainPage";
+	}
 	
+	
+	
+	@RequestMapping(value="addSongList",method=RequestMethod.POST)
+	public String addSongList(Playlist pl, Model model,HttpSession session) {
+		
+		
+		String user_id = (String)session.getAttribute("user_id");
+		
+		ArrayList<Playlist> playlist = ss.selectList(user_id);
+		Song song = ss.selectSongOne(pl.getSong_id());
+		// 값 받아옴.
+		// 곡 id, playlist_id를 가지고 곡을 넣어야함.
+		
+		pl.setUser_id(user_id);
+		
+		
+		ss.insertSong(pl);
+		
+		
+		
+		model.addAttribute("song_id",pl.getSong_id());
+		model.addAttribute("Song",song);
+		model.addAttribute("playlist",playlist);
+		
+		return "song/mainPage";
+	}
 	
 	
 	
@@ -213,6 +269,7 @@ public class SongController {
 		  if(user_info != null && user_info.getUser_pw().equals(user_pw)) {
 		  session.setAttribute("user_id", user_id); } 
 		  //여기서 user_id에 값을 넣어줬기 때문에 밑에서 확인가능.
+		  
 		 
 		
 		logger.debug("user_id 테스트 : {}", session.getAttribute("user_id"));
@@ -222,6 +279,7 @@ public class SongController {
 		int song_id = (int)session.getAttribute("song_id");
 		
 		ArrayList<Tag> tag = ss.selectTag(song_id);
+		ArrayList<Playlist> playlist = ss.selectList(user_id);
 		
 		
 		
@@ -233,7 +291,7 @@ public class SongController {
 		 // model.addAttribute("Song",  selectSong);
 		  model.addAttribute("Song",song);
 		  model.addAttribute("Tag", tag);
-		 
+		  model.addAttribute("playlist",playlist);
 	
 		
 		
@@ -241,6 +299,8 @@ public class SongController {
 		
 		return "song/mainPage";
 	}
+	
+	
 	
 	
 	/**

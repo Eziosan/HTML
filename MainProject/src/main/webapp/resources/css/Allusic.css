@@ -892,7 +892,7 @@
 }
 
 #헤더사이즈 {
-    width: 
+    
 }
 
 #댓글입력창 {
@@ -1127,4 +1127,133 @@
     overflow: hidden;
     white-space: nowrap;
 
+}
+
+#송리스트추가버튼 {
+    background: white;
+    color: black;
+    border: none;
+    padding: 0px;
+}
+
+#리모달창2 {
+    width: 250px;
+    height: 540px;
+    font-family: 'Noto Sans KR', sans-serif; 
+
+}
+#리모달창 {
+    width: 250px;
+    height: 450px;
+    font-family: 'Noto Sans KR', sans-serif; 
+}
+
+
+#새리스트버튼 {
+    width: 105px;
+    margin: 0 ;
+    border: 1px solid;
+    border-color: lightgray
+    
+}
+#새리스트버튼:hover {
+    background-color: pink;
+    
+}
+
+#리모달바디 {
+    text-align: left;
+    padding-left: 25px;
+    overflow: auto;
+}
+
+#리스트한칸 {
+    height: 30px;
+    margin-bottom: 10px;
+}
+
+#리스트체크 {
+    margin-right: 15px;
+    
+}
+
+#송리스트버튼 {
+    background: none;
+    color: black;
+    border: none;
+    padding: 0;
+}
+
+#리스트노래추가 {
+    width: 110px;
+
+}
+
+#노래추가칸 {
+    width:  112px;
+    height: 40px;
+    float: left;
+}
+
+#리모달푸터 {
+    
+}
+
+#곡추가 {
+    width: 105px;
+    margin: 0 auto;
+    border: 1px solid;
+    border-color: lightgray
+}
+#곡추가:hover {
+    background-color: aliceblue;
+}
+
+#리스트이름인풋 {
+    width: 248px;
+    border: 0px;
+    border-bottom: 1px solid;
+ 
+    
+}
+
+#리스트이름 {
+    font-size: 14px;
+    margin: 0;
+        
+}
+
+#새리스트추가칸 {
+    align-content: center;
+}
+
+#리스트만들기 {
+    color: blue;
+    font-size: 15px;
+}
+
+#리스트추가2 {
+    
+}
+
+#곡추가2 {
+    width: 210px;
+    margin: 0 auto;
+    border: 1px solid;
+    border-color: lightgray
+}
+#곡추가2:hover {
+    background-color: aliceblue;
+}
+
+#리스트큰칸 {
+    width: 598px; 
+    height: 250px; 
+    text-align: left; 
+    margin-left: 20px; 
+    margin-right: 20px; 
+    margin-top: 40px; 
+    padding-top: 35px;
+    border-top: solid 1px;
+    border-top-color: lightgray;
 }

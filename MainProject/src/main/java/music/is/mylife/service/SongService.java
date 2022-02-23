@@ -104,37 +104,24 @@ public class SongService {
 	// 성공적으로 됐으면 redirect 실패면 다른걸로
 	public void insertSong(Playlist playlist) {
 		
-		String user_id = playlist.getUser_id();
-		
-		ArrayList<Playlist> pl = sdao.selectList(user_id);
-		ArrayList<Playlist> songs = sdao.selectPlayList_Song_id(playlist);
 		
 		
-		Boolean flag = true;
 		
-		for(Playlist p : pl) {
-			// playlist 이름과 같은 list를 찾아서 sysdate 업데이트 
-			if(p.getList_name().equals(playlist.getList_name())) {
-				// 리스트 이름이 있으면
-			
-				for(Playlist p2 : songs) {
-					if(p2.getSong_id() == playlist.getSong_id()) {
-						// 곡 아이디가 중복이면
-						flag = false;
-					
-				}
+		int count = sdao.selectSongCount(playlist);
+		
+		
+		if(count==0) {
+				
+				sdao.insertSong(playlist);
 			}
+		else {
+			return;
+		}
 		}
 		
-		if(flag) {
-			sdao.insertSong(playlist);
-			// 곡을 추가함. 그러면 작업 끝 -> return 해야지
-			
-		}
 		
-	}
-		 //추가 못했을 때 근데 추가 못할일이없는데 굳이 이걸 써야하나?
-	}
+		
+	
 	
 	
 	
@@ -150,9 +137,11 @@ public class SongService {
 
 	public ArrayList<Tag> selectTag(int song_id) {
 
-		ArrayList<Tag> tag = tdao.selectTop3TagBySongId(song_id);
+		ArrayList<Tag> tag = tdao.selectTop10TagBySongId(song_id);
 		return tag;
 	}
+	
+	
 
 	public void plusSongTagRecommend(Tag tag) {
 

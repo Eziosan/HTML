@@ -180,9 +180,19 @@ function result2(){
 	return true;
 	}
     
-    
-    
-    
+   function addSongtoList(){
+	   var list = $(":radio[name='list']:checked");
+	   //$로 묶고 .submit하면 컨트롤러로 감
+	   
+	   alert("선택한 리스트 리스트 ID : " + list.val());
+	   $("#playlist_id").val(list.val());
+	   alert("보낼 플레이리스트 ID" +$("#playlist_id").val());
+	   alert("보낼 곡 ID" +$("#song_id").val());
+	   
+	   
+	   //${addSongListForm}.submit;
+	   
+   }
     
     
     </script>
@@ -195,12 +205,62 @@ function result2(){
 </head>
     <body>
          
+         
+<!--  200 이상일때 헤더A-->
+    <header class="p-2 mb-3 fixed-top align-items-center" id="AllusicH" style="font-family: 'Noto Sans KR', sans-serif; ">
+    <div class="container-fluid" style="width: 93%">
+      <div class="d-flex flex-wrap align-items-center justify-content-start ">
+<!--          justify-content-lg-start-->
+        <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-dark text-decoration-none">
+          <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap"><use xlink:href="#bootstrap"></use></svg>
+        </a>
+
+        <ul class="nav col-12 col-lg-auto me-lg-auto mlmb-2 justify-content-center mb-md-0 text-white">
+          <li><div  class="nav-link px-2 w-100" ><img src="../resources/img/곡용.png" alt="img" width="" height="40" style="margin-right: 30px"> </div></li>
+          <li><a href="https://www.naver.com/" class="nav-link px-2 mt-3   mb-0 text-white" style="">곡</a></li>
+          <li><a href="#" class="nav-link px-2 mt-3 text-white">앨범</a></li>
+          <li><a href="#" class="nav-link px-2 mt-3 text-white">가수</a></li>
+        </ul>
+
+        <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
+          <input type="search" class="form-control" placeholder="# 태그를 검색해보세요"  aria-label="Search" control-id="ControlID-2" 
+                 style="background: transparent; 
+                        ">
+        </form>
+
+          
+          
+        <div class="dropdown text-end">
+          <a href="#" class="d-block link-white text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
+            <img src="https://github.com/mdo.png" alt="mdo" width="32" height="32" class="rounded-circle">
+          </a>
+                 
+            
+          <ul class="dropdown-menu text-small color-white" aria-labelledby="dropdownUser1">
+            <c:if test="${user_id == null }">
+            <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#로그인모달">로그인</a></li>
+            <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#회원가입모달">회원가입</a></li>
+            </c:if>
+            
+            <c:if test="${user_id != null }">
+            <li><a class="dropdown-item" href="#">프로필</a></li>
+            <li><a class="dropdown-item" id="openModalBtn" href="#">마이 리스트</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="logout?song_id=${song_id }&singer_id=${singer_id}">Sign out</a></li>
+            </c:if>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </header>
+  
+  
 <!-- 200 미만일때 헤더B-->
     
     <header class="p-2 mb-3 fixed-top align-items-center border-bottom border-info" id="AllusicH2" 
             style="font-family: 'Noto Sans KR', sans-serif; visibility: hidden; 
                    z-index: 20;">
-    <div class="container-fluid w-75">
+    <div class="container-fluid" style="width: 93%">
       <div class="d-flex flex-wrap align-items-center justify-content-start ">
           
         <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-dark text-decoration-none">
@@ -208,7 +268,7 @@ function result2(){
         </a>
 
         <ul class="nav col-12 col-lg-auto me-lg-auto mlmb-2 justify-content-center mb-md-0">
-          <li><div class="nav-link px-2 w-100" ><img src="../resources/img/songLogo.png" alt="img" width="" height="40" style="margin-right: 30px"> </div></li>
+          <li><div class="nav-link px-2 w-100" ><img src="../resources/img/초안2.png" alt="img" width="" height="40" style="margin-right: 30px"> </div></li>
           <li><a href="#" class="nav-link px-2 mt-3   mb-0 link-secondary" style="">곡</a></li>
           <li><a href="#" class="nav-link px-2 mt-3 link-dark">앨범</a></li>
           <li><a href="#" class="nav-link px-2 mt-3 link-dark">가수</a></li>
@@ -434,56 +494,9 @@ function result2(){
 </div>
 
     
-         
+
     
-<!--  200 이상일때 헤더A-->
-    <header class="p-2 mb-3 fixed-top align-items-center" id="AllusicH" style="font-family: 'Noto Sans KR', sans-serif; ">
-    <div class="container-fluid w-75">
-      <div class="d-flex flex-wrap align-items-center justify-content-start ">
-<!--          justify-content-lg-start-->
-        <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-dark text-decoration-none">
-          <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap"><use xlink:href="#bootstrap"></use></svg>
-        </a>
 
-        <ul class="nav col-12 col-lg-auto me-lg-auto mlmb-2 justify-content-center mb-md-0 text-white">
-          <li><div  class="nav-link px-2 w-100" ><img src="../resources/img/songLogo.png" alt="img" width="" height="40" style="margin-right: 30px"> </div></li>
-          <li><a href="https://www.naver.com/" class="nav-link px-2 mt-3   mb-0 text-white" style="">곡</a></li>
-          <li><a href="#" class="nav-link px-2 mt-3 text-white">앨범</a></li>
-          <li><a href="#" class="nav-link px-2 mt-3 text-white">가수</a></li>
-        </ul>
-
-        <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
-          <input type="search" class="form-control" placeholder="# 태그를 검색해보세요"  aria-label="Search" control-id="ControlID-2" 
-                 style="background: transparent; 
-                        ">
-        </form>
-
-          
-          
-        <div class="dropdown text-end">
-          <a href="#" class="d-block link-white text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
-            <img src="https://github.com/mdo.png" alt="mdo" width="32" height="32" class="rounded-circle">
-          </a>
-                 
-            
-            
-          <ul class="dropdown-menu text-small color-white" aria-labelledby="dropdownUser1">
-            <c:if test="${user_id == null }">
-            <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#로그인모달">로그인</a></li>
-            <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#회원가입모달">회원가입</a></li>
-            </c:if>
-            
-            <c:if test="${user_id != null }">
-            <li><a class="dropdown-item" href="#">프로필</a></li>
-            <li><a class="dropdown-item" id="openModalBtn" href="#">마이 리스트</a></li>
-            <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="logout?song_id=${song_id }&singer_id=${singer_id}">Sign out</a></li>
-            </c:if>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </header>
     
 <!-- 로그인모달  -->
     <div class="modal fade" id="로그인모달" tabindex="-1" aria-labelledby="exampleModalCenterTitle" style="display: none; font-family: 'Noto Sans KR', sans-serif;" aria-hidden="true" >
@@ -758,10 +771,11 @@ function result2(){
 
              </div>
              
-             <div class="col-3">
-             <a href="selectList"><img src="../resources/img/more.JPG" width="30px" ></a>
-                 <span> 리스트 추가 </span>
-                 
+             <div class="col-2" >
+                 <div type="button" id="송리스트버튼" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#리스트추가" >
+             <img src="../resources/img/plus.png" width="20px">
+                 <span> 리스트 </span>
+                 </div>
              </div>
              
              <div class="col-2">
@@ -775,6 +789,91 @@ function result2(){
         
     </div>        
  </div>    
+
+
+
+
+
+
+	<c:if test="${user_id != null }">
+			<!--    리스트 추가 모달-->
+		    <div class="modal fade" id="리스트추가" tabindex="-1" aria-labelledby="exampleModalCenterTitle" style="display: none;" aria-hidden="true">
+		  <div class="modal-dialog modal-dialog-centered">
+		    <div class="modal-content" id="리모달창">
+		      <div class="modal-header" id="리모달헤더">
+		        <h5 class="modal-title" id="exampleModalCenterTitle">리스트 추가</h5>
+		        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+		      </div>
+		     
+		      <div class="modal-body" id="리모달바디">
+		      
+		      	<c:forEach var="plist" items="${playlist }" varStatus="status">
+					<div id="리스트한칸 ">
+					<input type="radio" value="${plist.playlist_id }" id= "리스트체크"  name="list">
+						${plist.list_name}</div>
+				</c:forEach> 
+		    
+		        </div>
+		        
+		        <!-- 리스트에 곡 추가시 보내질 데이터  -->
+		        <form action="addSongList" method="post" id="addSongListForm">
+		        	<input type="hidden" id ="song_id" name="song_id" value="${Song.song_id}">
+		        	<input type="hidden" id="playlist_id" name="playlist_id" >
+		        	
+		      <div class="modal-footer" id="리모달푸터">
+		          <button type="submit" id="곡추가" class="btn" onclick="addSongtoList()">추가</button>
+		        <button type="button" id="새리스트버튼" class="btn" data-bs-toggle="modal" data-bs-target="#리스트추가2">
+		            + 새 리스트</button>
+		      </div>
+		        </form>
+				
+		    </div>
+		  </div>
+		</div>
+		    
+		
+		<!--    리스트 추가 모달2-->
+		    <div class="modal fade" id="리스트추가2" tabindex="-1" aria-labelledby="exampleModalCenterTitle" style="display: none;" aria-hidden="true">
+		  <div class="modal-dialog modal-dialog-centered">
+		    <div class="modal-content" id="리모달창2">
+		      <div class="modal-header" id="리모달헤더">
+		        <h5 class="modal-title" id="exampleModalCenterTitle">리스트 추가</h5>
+		        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+		      </div>
+		      <div class="modal-body" id="리모달바디">
+		      <!-- 리스트 추가 부분 -->
+		      <form action="addPlayList" method="post" id="addPlayListForm">
+		        	<input placeholder="리스트 이름 입력.." name= "list_name" id="list_name">
+		        	<input placeholder="리스트 설명 입력" name= "list_explain" id ="list_explain">
+		        	<input type="hidden" id ="song_id" name="song_id" value="${Song.song_id}">
+		        
+		        </div>
+		     
+		        
+		    <div class="modal-footer" id="리모달푸터">
+		          <button type="submit" id="곡추가2" class="btn">추가</button>
+		
+		    </div>
+		    </form>
+		  </div>
+		</div>
+		    </div>
+		  
+	
+	
+	</c:if>
+	
+
+
+
+
+
+
+  
+
+
+
+
 
     
     
@@ -793,7 +892,7 @@ function result2(){
                     <div class="col-3 text-center">
                         <div class="프로필 카드" style="margin-right: auto; margin-left: auto; margin-top: 5px">
                         <img src="../resources/img/profile/basic_profile.jpg" width="80px" style="border-radius: 50%">
-                        <div class="가수명" style="margin-top: 5px; font-size: 25px">
+                        <div class="가수명" id="아티스트이름">
                             ${Song.singer_name }
                         </div>
                     </div>
@@ -814,7 +913,7 @@ function result2(){
                     <div class="col-3 text-center mt-2">
                         <div class="프로필 카드" style="margin-right: auto; margin-left: auto; margin-top: 5px">
                         <img src="../resources/img/profile/basic_profile.jpg" width="80px" style="border-radius: 50%">
-                        <div class="작사가명" style="margin-top: 5px; font-size: 25px">
+                        <div class="작사가명" id="아티스트이름">
                             ${Song.writer }
                         </div>
                     </div>
@@ -834,7 +933,7 @@ function result2(){
                     <div class="col-3 text-center">
                         <div class="프로필 카드" style="margin-right: auto; margin-left: auto; margin-top: 5px">
                         <img src="../resources/img/profile/basic_profile.jpg" width="80px" style="border-radius: 50%">
-                        <div class="작곡가명" style="margin-top: 5px; font-size: 25px">
+                        <div class="작곡가명" id="아티스트이름">
                             ${Song.composer }
                         </div>
                             
@@ -868,7 +967,7 @@ function result2(){
                 </div>
                 <div class="collapse" id="가사란">
                  <div class="가사 card" style="margin-left: px; margin-top: 5px; font-size: 18px; height: auto; white-space: pre; padding-left: 8px; background-color: rgb(245,245,245); pa">
-					${Song.lyrics }
+${Song.lyrics }
                 </div>
                 </div>
             </div>
@@ -885,15 +984,11 @@ function result2(){
                 <div id="태그큰칸3">
                     <div id="태그칸">
                     	<c:forEach var="Tags" items="${Tag }"  varStatus="status">
-                    		<%-- <c:if test="${status.count <= 3 }">
-	                    		<span id="큰태그${status.count }">${Tags.tag_name }</span>
-                    		</c:if>
-                    		<c:if test="${status.count > 3} ">
-                    			<span id="작은태그${status.count - 3 }">${Tags.tag_name }</span>
-                    		</c:if> --%>
+                    		
                     		<c:choose>
                     			<c:when test="${status.count <=3 && status.count > 0}"><span id="큰태그${status.count }">${Tags.tag_name }</span></c:when>
                     			<c:when test="${status.count > 3}"><span id="작은태그${status.count - 3 }">${Tags.tag_name }</span></c:when>
+                    			
                     			<c:otherwise></c:otherwise>
                     		</c:choose>
                     		

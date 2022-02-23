@@ -92,9 +92,11 @@ public class SongDAO {
 		
 		
 		mapper.insertList(playlist);
-		mapper.insertList_Detail(playlist);
+		//mapper.insertList_Detail(playlist);
 		
 	}
+	
+	
 	
 	public void insertSong(Playlist playlist) {
 		
@@ -105,22 +107,22 @@ public class SongDAO {
 		// 플레이리스트 디테일에 곡 넣기
 		mapper.insertList_Detail(playlist);  
 		// 플레이리스트에 날짜 업데이트
-		int result = mapper.updateList_Date(playlist_id);
+		mapper.updateList_Date(playlist_id);
 		
-		System.out.println(result);
+		
 		
 	
 	}
 	
-	public ArrayList<Playlist> selectPlayList_Song_id(Playlist playlist) {
+	public int selectSongCount(Playlist playlist) {
 		
 		SongMapper mapper = session.getMapper(SongMapper.class);
 		
-		int playlist_id = playlist.getPlaylist_id();
 		
-		ArrayList<Playlist> pl = mapper.selectPlayList_Song_id(playlist_id);
 		
-		return pl;
+		int count = mapper.selectSongCount(playlist);
+		
+		return count;
 	}
 	
 	

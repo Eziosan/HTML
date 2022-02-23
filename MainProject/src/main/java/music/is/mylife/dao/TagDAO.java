@@ -24,6 +24,18 @@ public class TagDAO {
 		return st;
 	}
 	
+	
+	public ArrayList<Tag> selectTop10TagBySongId(int song_id){
+		
+		TagMapper mapper = session.getMapper(TagMapper.class);
+		
+		ArrayList<Tag> st = mapper.selectTop10TagBySongId(song_id);
+		
+		
+		return st;
+	}
+	
+	
 	//태그 id를 입력받아 태그 목록 가져옴
 	public Tag selectTagsById(int tag_id){
 		TagMapper mapper = session.getMapper(TagMapper.class);

@@ -55,7 +55,6 @@ function result(){
 	
 	<c:forEach var="plist" items="${playlist }">
 		<h6><a href="insertSong?plist=${plist.list_name}"><h6>${plist.list_name }</h6> </a></h6>
-		<%-- <c:out value="${playlist.list_name}"><input type="hidden" name="list_name" id="list_name" value="${playlist.list_name}"></c:out> --%>
 	</c:forEach> 
 	
 	<!-- 특정 playlist를 컨트롤러로 보내는걸 어떻게?? -->
