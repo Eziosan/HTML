@@ -114,6 +114,17 @@ public class ListService {
 	}
 	
 	/**
+	 * 댓글 삭제하기
+	 * @param delComment
+	 * @return
+	 */
+	public int deleteComment(ListComment delComment) {
+		int commentDel = ldao.deleteComment(delComment);
+		
+		return commentDel;
+	}
+	
+	/**
 	 * 리스트 댓글 입력
 	 * @param comment
 	 * @return int

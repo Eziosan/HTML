@@ -83,6 +83,13 @@ public interface ListMapper {
 	public int insertListCommnet(ListComment reply);
 	
 	/**
+	 * 댓글 삭제하기
+	 * @param delComment
+	 * @return
+	 */
+	public int deleteComment(ListComment delComment);
+	
+	/**
 	 * 리스트 좋아요수 올리기
 	 * @param playlist_id
 	 * @return int
