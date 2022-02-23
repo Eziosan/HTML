@@ -164,20 +164,20 @@ public class SongService {
 
 	
 	/**
-	 * 곡페이지에서 회원가입하기
-	 * @param userinfo
-	 * @return
-	 */
-	public String insertUser(UserInfo userinfo) {
-		
-		//회원가입 처리
-		int join = udao.insertUser(userinfo);
-		
-		if(join != 1) {
-			return "song/mainPage";
-		}
-		return "song/mainPage";
-	}
+     * 곡페이지에서 회원가입하기
+     * @param userinfo
+     * @return
+     */
+    public String insertSongUser(UserInfo userinfo) {
+
+        //회원가입 처리
+        int join = udao.insertUser(userinfo);
+
+        if(join != 1) {
+            return "song/mainPage";
+        }
+        return "song/mainPage";
+    }
 	
 
 	/**
