@@ -166,6 +166,18 @@ public class ListDAO {
 	}
 	
 	/**
+	 * 댓글 삭제하기
+	 * @param delComment
+	 * @return
+	 */
+	public int deleteComment(ListComment delComment) {
+		ListMapper mapper= session.getMapper(ListMapper.class);
+		int commentDel = mapper.deleteComment(delComment);
+		
+		return commentDel;
+	}
+	
+	/**
 	 * 리스트 좋아요수 올리기
 	 * @param playlist_id
 	 * @return int

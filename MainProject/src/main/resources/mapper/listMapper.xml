@@ -170,15 +170,15 @@
 	 <!--[리스트 페이지] 
 	  	댓글 삭제하기
 	  	
-		아이디: insertListCommnet
+		아이디: deleteComment
 		파라미터 타입: ListComment 
 	  -->
-	<!--  <delete id="deleteComment" parameterType="list_comment">
+	<delete id="deleteComment" parameterType="list_comment">
 	 	delete from list_comment
 		where playlist_id = #{playlist_id}
 		and user_id = #{user_id}
 		and list_comment_id = #{list_comment_id}
-	 </delete> -->
+	 </delete>
 	 
 	 
 	 <!-- update문 -->

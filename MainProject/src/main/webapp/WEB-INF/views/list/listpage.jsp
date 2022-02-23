@@ -313,10 +313,9 @@
                             <div id="댓글버튼">
                             
                             		
-                            
-                                 <button id="댓글더보기">
-                                     <img src="../resources/img/more.JPG" height="18px">
-                                </button>
+                            <c:if test="${user_id ==  listcomment.user_id}">
+                                 <button id="댓글입력버튼" onclick="return deleteComment()">삭제</button>
+                            </c:if>
                             </div>
                             
                      </div>
