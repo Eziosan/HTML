@@ -246,7 +246,7 @@ public class SongController {
 		
 		 Song selectSong = ss.selectAllSong(song);
 		
-		int song_id = (int)session.getAttribute("song_id");
+		
 		
 		ArrayList<Playlist> listId = ls.selectListId(song.getSong_id());
 		ArrayList<Tag> tag = ss.selectTag(song.getSong_id());
