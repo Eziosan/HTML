@@ -54,7 +54,7 @@ public class HomeController {
 		ArrayList<Song> songList = hs.selectTopSong(song);
 		logger.info("SongList:{}", songList);
 
-		ArrayList<Song> likeSong = hs.selectSongByGenre("록/메탈");
+		ArrayList<Song> likeSong = hs.selectLikeSong(song);
 		logger.info("SongLike: {}", likeSong);
 
 		model.addAttribute("songList", songList);
@@ -73,12 +73,13 @@ public class HomeController {
 	@RequestMapping(value = "song/songPage", method = RequestMethod.GET)
 	public String songPage(Model model, int singer_id, int song_id, Song song, HttpSession session) {
 		String user_id;
-		
+		//전체 곡 검색해 해당 곡 띄우기
 		Song selectSong = ss.selectAllSong(song);
 
 		double avg = ss.selectStars(song_id);
 		
 		selectSong.setAvg(avg);
+		
 		
 		user_id = (String)session.getAttribute("user_id");
 		if(user_id!=null) {
@@ -87,37 +88,32 @@ public class HomeController {
 			
 		}
 		
-		
-		
-		// 리스트 4개 불러오기 구현해야함
-		ArrayList<Playlist> list = ss.selectTop4ListBySongId(song_id);
 		ArrayList<Tag> tag = ss.selectTag(song_id);
 		
-		// 해당 곡 리스트 부르기
-		ArrayList<Playlist> listId = ls.selectListId(song_id);
-		
+		 // 해당 곡 리스트 부르기
+		 ArrayList<Playlist> listId = ls.selectListId(song_id);
+		 ArrayList<ArrayList<Playlist>> banner = new ArrayList<ArrayList<Playlist>>();
+		 
 		 model.addAttribute("singer_id", singer_id); 
 		 model.addAttribute("song_id", song_id); 
 		 model.addAttribute("Song", selectSong);
 		 model.addAttribute("Tag", tag);
-		// 플레이리스트아이디
-		model.addAttribute("listId", listId);
+		 
+		 // 플레이리스트아이디, 배너 사진들
+		 for(Playlist info : listId) {
+			 info.getPlaylist_id();
+			banner.add(ls.listBanner(info.getPlaylist_id()));
+		 }
+		 	//리스트 아이디
+		 	model.addAttribute("listId", listId);
+		 
+			//배너 사진
+			model.addAttribute("banner", banner);
 		
-		 session.setAttribute("song_id", song_id);
+			//곡 아이디 세션에 담기
+			session.setAttribute("song_id", song_id);
 		 
 		 
-		 
-			
-			
-			
-			
-			
-			
-			
-			
-			
-		 
-
 		return "song/mainPage";
 	}
 

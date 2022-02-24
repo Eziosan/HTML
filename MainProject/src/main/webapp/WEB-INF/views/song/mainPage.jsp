@@ -80,11 +80,10 @@ function result2(){
 
 
       </script>
-      
-      <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-      
-	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+   <!-- CSS , JS -->
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
       
     <title>곡 화면</title>
     
@@ -236,19 +235,11 @@ function result2(){
     
 <div class="전체화면 text-center overflow-hidden" style="background-color: rgba(248,248,248); height: auto;">
 
-
-      
-
-    
-
-    <div class="banner1" style="background-color: rgba(0,0,0); text-align: center; ">
-
-
-            <img src="../resources/img/banner/${Song.song_banner }" style="margin: 0 auto;" height="420px;">
-
-        
-        <div class="gradient"></div>
-    </div>
+        <div class="banner1" id="송배너">
+			<div id="송배너칸">
+			    <img src="../resources/img/banner/${Song.song_banner }" style="margin: 0 auto;" height="420px;">
+			</div>
+    	</div>
     
   <div class="곡정보 자리 w-100 border" style="height: 232px;  padding: 13px 16px 22px; background-color: white; position: relative; z-index: 10;">
 <!--      background-color: rgba(199,221,253);-->
@@ -417,13 +408,13 @@ function result2(){
 
 
 
-<!-- 송 내용칸 -->
+
 
     
     
     <div class="main1 mt-3 m-auto" style="width: 960px; height: 1000px; background-color: rgba(248,248,248); ">
 
-        <div class="컨텐츠 핑크 border" style="width: 900px; height: auto; border-radius: 10px; float: left; background-color:  white; font-family: 'Noto Sans KR', sans-serif; font-size: 0px; padding-bottom: 40px;">
+        <div class="컨텐츠 핑크 border" style="width: 638px; height: auto; border-radius: 10px; float: left; background-color:  white; font-family: 'Noto Sans KR', sans-serif; font-size: 0px; padding-bottom: 40px;">
             
 <!--            가수 -->
             <div class="가수" 
@@ -535,6 +526,8 @@ ${Song.lyrics }
                     			
                     			<c:otherwise></c:otherwise>
                     		</c:choose>
+                    		
+                    		
                     	</c:forEach>
                  
 					                      
@@ -542,21 +535,11 @@ ${Song.lyrics }
                     </div>
                 
                 </div>
-                
-                
             
             </div>
 
-       
-        
-        
-        	<%-- <c:forEach var="playlist" items="${listId }">
-           		<a href="/mylife/list/listPage?playlist_id=${playlist.playlist_id}">리스트페이지 테스트</a>
-        	</c:forEach> --%>
-        
-        
-        <!--            리스트 목록 -->
-          <div class="송리스트목록" id="가수정보칸" style="height: 350px; border-bottom: none;">
+<!--            리스트 목록 -->
+         <div class="송리스트목록" id="가수정보칸" style="height: 350px; border-bottom: none;">
              <div class="태그 fw-bold" style="margin-top: 20px; font-size: 22px; height: 50px; ">
                 리스트
                  
@@ -564,30 +547,45 @@ ${Song.lyrics }
               <div class="row" id="리스트작칸">
                   
 <!--                  리스트 한칸-->
+				<c:forEach var="list" items="${listId }">
                 <div class="col-3">
                     <div id="송리스트한칸">
-                        <span><img src="https://ww.namu.la/s/65f8c2198d2433b464f8a410a43174ed44e13d0863daebe7ce025089360ecc932fdb6dd7af01ad32c906d3f577a692e6f8116f14371a08171a21db191a0909813d7f3174c038c55feeef55df21900003b4e9208d92596e1335bea6c2c0fc0baeecaae02f398c2886a36c99bcd7d9ceb1" width="86px" style="margin: 2px; border-radius: 6px;"></span>
-                        <span><img src="https://ww.namu.la/s/65f8c2198d2433b464f8a410a43174ed44e13d0863daebe7ce025089360ecc932fdb6dd7af01ad32c906d3f577a692e6f8116f14371a08171a21db191a0909813d7f3174c038c55feeef55df21900003b4e9208d92596e1335bea6c2c0fc0baeecaae02f398c2886a36c99bcd7d9ceb1" width="86px" style="margin: 2px; border-radius: 6px;"></span>
-                        <span><img src="https://ww.namu.la/s/65f8c2198d2433b464f8a410a43174ed44e13d0863daebe7ce025089360ecc932fdb6dd7af01ad32c906d3f577a692e6f8116f14371a08171a21db191a0909813d7f3174c038c55feeef55df21900003b4e9208d92596e1335bea6c2c0fc0baeecaae02f398c2886a36c99bcd7d9ceb1" width="86px" style="margin: 2px; border-radius: 6px;"></span>
-                        <span><img src="https://ww.namu.la/s/65f8c2198d2433b464f8a410a43174ed44e13d0863daebe7ce025089360ecc932fdb6dd7af01ad32c906d3f577a692e6f8116f14371a08171a21db191a0909813d7f3174c038c55feeef55df21900003b4e9208d92596e1335bea6c2c0fc0baeecaae02f398c2886a36c99bcd7d9ceb1" width="86px" style="margin: 2px; border-radius: 6px;"></span>
+ 
+                        <a href="/mylife/list/listPage?playlist_id=${list.playlist_id}">
+                        <span>
+                        <c:forEach var="bannerimg" items="${banner }" varStatus="status">
+                        	<c:forEach var="img" items="${bannerimg }" begin="0" end="3" >
+                        	<img src="../resources/img/album/${img.album_img }" id="커버${status.count }" width="86px" style="margin: 2px; border-radius: 6px;">
+                        	</c:forEach>
+                        </c:forEach>
+                        </span>
+                        </a>
                     
                     </div>
                     <div id="송리스트타이틀">
-                    밤편지모음집
+                    <a href="/mylife/list/listPage?playlist_id=${list.playlist_id}">
+                    	${list.list_name}
+                    </a>
                     </div>
                      <div id="송리스트좋아요">
-                   좋아요 200
+                   		${list.user_id }
                   </div>
                     
                   </div>
-        
-        
+                  </c:forEach>
+              </div>
+            
+            
           </div>
+
+
+
+        </div>
+        
      </div>
  </div>
         
-   </div>
- </div>     
+        
       
         
 </body>
