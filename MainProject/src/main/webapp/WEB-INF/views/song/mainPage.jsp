@@ -237,7 +237,7 @@ function result2(){
 <div class="전체화면 text-center overflow-hidden" style="background-color: rgba(248,248,248); height: auto;">
 
 
-      </div>
+      
 
     
 
@@ -417,13 +417,13 @@ function result2(){
 
 
 
-
+<!-- 송 내용칸 -->
 
     
     
     <div class="main1 mt-3 m-auto" style="width: 960px; height: 1000px; background-color: rgba(248,248,248); ">
 
-        <div class="컨텐츠 핑크 border" style="width: 638px; height: auto; border-radius: 10px; float: left; background-color:  white; font-family: 'Noto Sans KR', sans-serif; font-size: 0px; padding-bottom: 40px;">
+        <div class="컨텐츠 핑크 border" style="width: 900px; height: auto; border-radius: 10px; float: left; background-color:  white; font-family: 'Noto Sans KR', sans-serif; font-size: 0px; padding-bottom: 40px;">
             
 <!--            가수 -->
             <div class="가수" 
@@ -535,8 +535,6 @@ ${Song.lyrics }
                     			
                     			<c:otherwise></c:otherwise>
                     		</c:choose>
-                    		
-                    		
                     	</c:forEach>
                  
 					                      
@@ -549,122 +547,47 @@ ${Song.lyrics }
             
             </div>
 
-        </div>
+       
         
         
-        	<c:forEach var="playlist" items="${listId }">
+        	<%-- <c:forEach var="playlist" items="${listId }">
            		<a href="/mylife/list/listPage?playlist_id=${playlist.playlist_id}">리스트페이지 테스트</a>
-        	</c:forEach>
+        	</c:forEach> --%>
         
         
-          <div class="오른쪽 보라 border" style="width: 318px; height: auto; border-radius: 10px; float: right; padding-left: 5px; padding-right: 5px; background-color: white; font-family: 'Noto Sans KR', sans-serif; overflow: hidden; padding-bottom: 40px;" >   
-              
-<!--             갤러리 -->
-              <div class="갤러리타이틀"
-                   style="width: 268px; height: 44px; margin: 0px 20px;">
-                  <p class="fw-bold" style="vertical-align: middle; text-align: left; margin-top: 15px; ">
-                    갤러리
-                </p>
-              </div>
-    
-              
-              
-              
-              <div class="사진들" style="width: 328px; height: 121px; ">
-                
-                  <div id="캐러셀사진" class="carousel slide" data-bs-ride="carousel" data-bs-interval="false" style="width: 328px; height: 89px; padding-left: 10px; position: relative;">
-                      
-                <div class="carousel-inner">
-                 <div class="carousel-item active">
-                <div class="사진란" style="width: 132px; height: 89px; margin: 0px 0px 0px 10px; float: left">
-                    <img src="lilac1.jpg" width="132px;">
+        <!--            리스트 목록 -->
+          <div class="송리스트목록" id="가수정보칸" style="height: 350px; border-bottom: none;">
+             <div class="태그 fw-bold" style="margin-top: 20px; font-size: 22px; height: 50px; ">
+                리스트
+                 
+             </div>
+              <div class="row" id="리스트작칸">
                   
-                  
+<!--                  리스트 한칸-->
+                <div class="col-3">
+                    <div id="송리스트한칸">
+                        <span><img src="https://ww.namu.la/s/65f8c2198d2433b464f8a410a43174ed44e13d0863daebe7ce025089360ecc932fdb6dd7af01ad32c906d3f577a692e6f8116f14371a08171a21db191a0909813d7f3174c038c55feeef55df21900003b4e9208d92596e1335bea6c2c0fc0baeecaae02f398c2886a36c99bcd7d9ceb1" width="86px" style="margin: 2px; border-radius: 6px;"></span>
+                        <span><img src="https://ww.namu.la/s/65f8c2198d2433b464f8a410a43174ed44e13d0863daebe7ce025089360ecc932fdb6dd7af01ad32c906d3f577a692e6f8116f14371a08171a21db191a0909813d7f3174c038c55feeef55df21900003b4e9208d92596e1335bea6c2c0fc0baeecaae02f398c2886a36c99bcd7d9ceb1" width="86px" style="margin: 2px; border-radius: 6px;"></span>
+                        <span><img src="https://ww.namu.la/s/65f8c2198d2433b464f8a410a43174ed44e13d0863daebe7ce025089360ecc932fdb6dd7af01ad32c906d3f577a692e6f8116f14371a08171a21db191a0909813d7f3174c038c55feeef55df21900003b4e9208d92596e1335bea6c2c0fc0baeecaae02f398c2886a36c99bcd7d9ceb1" width="86px" style="margin: 2px; border-radius: 6px;"></span>
+                        <span><img src="https://ww.namu.la/s/65f8c2198d2433b464f8a410a43174ed44e13d0863daebe7ce025089360ecc932fdb6dd7af01ad32c906d3f577a692e6f8116f14371a08171a21db191a0909813d7f3174c038c55feeef55df21900003b4e9208d92596e1335bea6c2c0fc0baeecaae02f398c2886a36c99bcd7d9ceb1" width="86px" style="margin: 2px; border-radius: 6px;"></span>
+                    
+                    </div>
+                    <div id="송리스트타이틀">
+                    밤편지모음집
+                    </div>
+                     <div id="송리스트좋아요">
+                   좋아요 200
                   </div>
-                
-               
-                <div class="사진란" style="width: 132px; height: 89px; margin: 0px 0px 0px 10px; float: left;">
-                    <img src="lilac1.jpg" width="132px;">
-                  
-                  
-                  </div> 
-                      </div>
-                      
-                       <div class="carousel-item">
-                <div class="사진란" style="width: 132px; height: 89px; margin: 0px 0px 0px 10px; float: left;">
-                  <img src="lilac1.jpg" width="132px;">
-                  
-                           </div>
+                    
                   </div>
-                </div>
-                 <button class="carousel-control-prev" type="button" data-bs-target="#캐러셀사진" data-bs-slide="prev" style="right:30px; width: 20px; ">
-                     <img src="../resources/img/왼2.png" width="15px">
-
-                  </button>
-                  <button class="carousel-control-next" type="button" data-bs-target="#캐러셀사진" data-bs-slide="next">
-                      <img src="../resources/img/오2.png" width="15px">
-
-                  </button>      
-              </div>
-              </div>
-              
-              <!--            동영상 -->
-              <div class="동영상타이틀"
-                   style="width: 268px; height: 44px; margin: 30px 0px 0px 20px;">
-                  <p class="fw-bold" style="vertical-align: middle; text-align: left; margin-top: 15px; ">
-                    동영상
-                </p>
-              </div>
-    
-              
-              
-              
-              <div class="동영상들" style="width: 328px; height: 121px; ">
-                
-                  <div id="캐러셀동영상" class="carousel slide" data-bs-ride="carousel" data-bs-interval="false" style="width: 328px; height: 89px; padding-left: 10px; position: relative;">
-                      
-                <div class="carousel-inner">
-                 <div class="carousel-item active">
-                <div class="동영상사진" style="width: 132px; height: 89px; margin: 0px 0px 0px 10px; float: left">
-                    <img src="lilac1.jpg" width="132px;">
-                  
-                  
-                  </div>
-                
-               
-                <div class="동영상사진" style="width: 132px; height: 89px; margin: 0px 0px 0px 10px; float: left;">
-                    <img src="lilac1.jpg" width="132px;">
-                  
-                  
-                  </div> 
-                      </div>
-                      
-                       <div class="carousel-item">
-                <div class="동영상사진" style="width: 132px; height: 89px; margin: 0px 0px 0px 10px; float: left;">
-                  <img src="lilac1.jpg" width="132px;">
-                  
-                           </div>
-                  </div>
-                </div>
-                 <button class="carousel-control-prev" type="button" data-bs-target="#캐러셀동영상" data-bs-slide="prev" style="right:30px; width: 20px; ">
-                     <img src="../resources/img/왼2.png" width="15px">
-
-                  </button>
-                  <button class="carousel-control-next" type="button" data-bs-target="#캐러셀동영상" data-bs-slide="next">
-                      <img src="../resources/img/오2.png" width="15px">
-
-                  </button>      
-              </div>
-              </div>
-              
-              
-              
-              
-        </div>
+        
+        
+          </div>
      </div>
  </div>
         
-        
+   </div>
+ </div>     
       
         
 </body>

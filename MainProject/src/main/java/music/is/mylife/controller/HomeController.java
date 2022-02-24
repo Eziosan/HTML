@@ -89,8 +89,8 @@ public class HomeController {
 		
 		
 		
-		
-		
+		// 리스트 4개 불러오기 구현해야함
+		ArrayList<Playlist> list = ss.selectTop4ListBySongId(song_id);
 		ArrayList<Tag> tag = ss.selectTag(song_id);
 		
 		// 해당 곡 리스트 부르기

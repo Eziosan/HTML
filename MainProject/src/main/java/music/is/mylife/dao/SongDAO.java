@@ -155,6 +155,15 @@ public class SongDAO {
 	}
 	
 	
+	public ArrayList<Playlist> selectTop4ListBySongId(int song_id){
+		
+		SongMapper mapper = session.getMapper(SongMapper.class);
+		
+		ArrayList<Playlist> list = mapper.selectTop4ListBySongId(song_id);
+		
+		
+		return list;
+	}
 	
 	
 	

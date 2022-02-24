@@ -37,6 +37,8 @@ public interface SongMapper {
 	public double selectStars(int song_id);
 	// 곡에 별점이 있는지 확인하는 sql문
 	public int selectIsStars(int song_id);
+	// 곡 id로 상위 4개의 리스트를 반환받는 sql문
+	public ArrayList<Playlist> selectTop4ListBySongId(int song_id);
 	
 	
 	// 메인 페이지(화원)

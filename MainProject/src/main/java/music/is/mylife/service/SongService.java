@@ -120,7 +120,9 @@ public class SongService {
 		}
 		
 	
-		
+		/*
+		 * 곡의 별점을 불러오는 method
+		 * */
 		public double selectStars(int song_id) {
 			
 			double avg = sdao.selectStars(song_id);
@@ -128,6 +130,18 @@ public class SongService {
 			System.out.println("songservice avg" + avg);
 			
 			return avg;
+		}
+		
+		
+		/*
+		 * 곡의 id를 받아서 상위 4개 리스트를 반환하는 method
+		 * */
+		public ArrayList<Playlist> selectTop4ListBySongId(int song_id){
+			
+			ArrayList<Playlist> list = sdao.selectTop4ListBySongId(song_id);
+			
+			return list;
+			
 		}
 	
 	

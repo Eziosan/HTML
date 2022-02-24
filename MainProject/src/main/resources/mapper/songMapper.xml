@@ -91,10 +91,16 @@
 		</select>
 		
 		
-		<!-- <insert id="insertStar" parameterType="">
-			insert into user_song_log(user_log_id, user_id, song_id, star, star_date)
-            values(2, 'cccc', 9, 1, sysdate);
-		</insert> -->
+		<!-- 곡 id로 상위 4개의 리스트를 반환받는 sql문 -->
+		<select id="selectTop4ListBySongId" parameterType="int" resultType="playlist">
+			<![CDATA[  
+			select * from (select pl.list_like, pld.song_id, pld.playlist_id
+	        from playlist pl, playlist_detail pld
+	        where pl.playlist_id = pld.playlist_id and pld.song_id=#{song_id}
+	        order by list_like desc)
+	        where rownum <= 4
+	        ]]>
+		</select>
 	
 	
 	
