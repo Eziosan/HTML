@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import music.is.mylife.service.AnalysisService;
 import music.is.mylife.service.ListService;
 import music.is.mylife.service.SongService;
 import music.is.mylife.service.UserService;
@@ -21,6 +22,7 @@ import music.is.mylife.vo.Playlist;
 import music.is.mylife.vo.Song;
 import music.is.mylife.vo.Tag;
 import music.is.mylife.vo.UserInfo;
+import music.is.mylife.vo.UserLog;
 
 @RequestMapping("song")
 @Controller
@@ -37,7 +39,31 @@ public class SongController {
 	@Autowired
 	ListService ls;
 	
+	@Autowired
+	AnalysisService as;
 	
+	// 별점 입력시 처리
+	/*
+	 * 모델로 넘길 정보
+	 * 1. 유저
+	 * 2. 리스트
+	 * 3. 유저 로그 정보
+	 */
+	@RequestMapping(value = "starLog", method = RequestMethod.POST)
+	public String analysisPage(UserLog ul, Model model, HttpSession session) {
+		System.out.println("별점 입력 했습니다!!");
+		String user_id = (String)session.getAttribute("user_id");
+		
+		//
+		ul.setUser_id(user_id);
+		
+		System.out.println("유저로그 :" + ul);
+		
+		as.recordUserLog(ul);
+		
+		return "analysis/analysisPage";
+	}
+
 	
 	
 	@RequestMapping(value="plusStar",method=RequestMethod.GET)
@@ -150,6 +176,8 @@ public class SongController {
 		// 이거 수정필요함 아이유 lilac으로 가버림
 		
 	}
+	
+
 	
 	
 	
