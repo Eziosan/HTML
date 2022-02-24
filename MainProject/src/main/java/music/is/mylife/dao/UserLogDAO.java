@@ -21,7 +21,18 @@ public class UserLogDAO {
 	public double selectAllStarCountByUser(String user_id) {
 		UserLogMapper mapper = session.getMapper(UserLogMapper.class);
 		
-		return mapper.selectAllStarCountByUser(user_id);
+		double avg = 0.0;
+		Double count = mapper.selectAllStarCountByUser(user_id);
+		
+		if(count != null ) {
+			
+			
+			avg = count;
+			
+		}
+		
+			return avg;
+		
 		
 	}
 	//한 유저가 지금까지 별점을 매긴 곡 수

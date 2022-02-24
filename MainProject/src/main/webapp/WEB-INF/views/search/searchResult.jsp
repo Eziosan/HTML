@@ -170,10 +170,10 @@
 
 				<ul
 					class="nav col-12 col-lg-auto me-lg-auto mlmb-2 justify-content-center mb-md-0">
-					<li><div class="nav-link px-2 w-100">
+					<li><a href="/mylife/main" ><div class="nav-link px-2 w-100">
 							<img src="../resources/img/mainLogo.png" alt="img" width=""
 								height="40" style="margin-right: 30px">
-						</div></li>
+						</div></a></li>
 				</ul>
 
 				<form action="/mylife/search/searchResult" method="get"

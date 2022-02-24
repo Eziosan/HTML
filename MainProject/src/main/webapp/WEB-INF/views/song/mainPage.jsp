@@ -79,6 +79,15 @@ $(document).ready(function(){
 	   
 });
 
+function searchCheck(){
+	if($("#searchText").val().length < 1){
+		alert("글자 수는 1자 이상 입력하셔야 합니다!!")
+		return false;
+	}
+
+	return true;
+		
+} 
 
 
 
@@ -152,10 +161,9 @@ $(document).ready(function(){
         
         </ul>
 
-        <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
-          <input type="search" class="form-control" placeholder="# 태그를 검색해보세요"  aria-label="Search" control-id="ControlID-2" 
-                 style="background: transparent; 
-                        ">
+        <form action="/mylife/search/searchResult" method="get" onsubmit="return searchCheck();" class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
+          <input type="search" id="searchText" name="searchText" class="form-control" placeholder="# 태그를 검색해보세요"  aria-label="Search" control-id="ControlID-2" 
+                 style="background: transparent;">
         </form>
 
           
@@ -198,10 +206,9 @@ $(document).ready(function(){
         </a>
 
         <ul class="nav col-12 col-lg-auto me-lg-auto mlmb-2 justify-content-center mb-md-0">
-          <li><div class="nav-link px-2 w-100" ><img src="../resources/img/초안2.png" alt="img" width="" height="40" style="margin-right: 30px"> </div></li>
-          <li><a href="#" class="nav-link px-2 mt-3   mb-0 link-secondary" style="">곡</a></li>
-          <li><a href="#" class="nav-link px-2 mt-3 link-dark">앨범</a></li>
-          <li><a href="#" class="nav-link px-2 mt-3 link-dark">가수</a></li>
+        
+          <li><a href="/mylife/main" ><div class="nav-link px-2 w-100" ><img src="../resources/img/초안2.png" alt="img" width="" height="40" style="margin-right: 30px"> </div></a></li>
+         
         </ul>
 
         <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">

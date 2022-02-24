@@ -102,9 +102,7 @@
           </a>
           </div></li>
           
-          <li><a href="https://www.naver.com/" class="nav-link px-2 mt-3   mb-0 link-secondary" style="">곡</a></li>
-          <li><a href="#" class="nav-link px-2 mt-3 link-dark">앨범</a></li>
-          <li><a href="#" class="nav-link px-2 mt-3 link-dark">가수</a></li>
+          
         </ul>
 
         <form action="/mylife/search/searchResult" method="get" onsubmit="return searchCheck();" 

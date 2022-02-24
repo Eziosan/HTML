@@ -7,7 +7,7 @@ import music.is.mylife.vo.UserLog;
 
 public interface UserLogMapper {
 	//한 유저가 지금까지 평가한 곡들의 별점 총합
-	public double selectAllStarCountByUser(String user_id);
+	public Double selectAllStarCountByUser(String user_id);
 	
 	//한 유저가 지금까지 별점을 매긴 곡 수
 	public double selectSongCountByUser(String user_id);

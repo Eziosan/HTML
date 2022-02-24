@@ -49,6 +49,9 @@ public class AnalysisService {
 		
 		//한 유저가 지금까지 평가한 곡들의 별점 총합
 		double allStarCount = uld.selectAllStarCountByUser(user_id);
+		
+		System.out.println(allStarCount);
+		
 		//리스트 좋아요 수
 		double listLikeNum = ld.selectListLikesByUser(user_id);
 		//리스트 코멘트 수
