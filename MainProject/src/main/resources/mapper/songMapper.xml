@@ -120,7 +120,7 @@
 				song.song_id, song.song_name, song.album_name, to_char(song.album_date,'YYYY') as album_date, song.hit, song.album_img
 			from singer singer, song song
 			where singer.singer_id = song.singer_id
-			order by song.hit desc) where rownum <= 7
+			order by song.hit desc) where rownum <= 10
     	]]>
 
 	</select>

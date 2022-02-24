@@ -57,25 +57,28 @@
       
       
 $(document).ready(function(){
-	  $("#like1").on('click', function(){
-		  $("#likeDiv").html("<img onclick='result();' id='like2' src='../resources/img/like2.png' width='30px'> <span> 좋아요 </span>");
-		  location.href = "plusStar?song_id="+9;	
+	  $(":radio[name='starpoint']").on('click', function(){
+		  var user_id = $("#ui").val()
+		  alert($("#ui").val());
+
+		  var star = $("radio[name='starpoint']:checked").val();
+
+		  if(user_id ==  ''){
+			  alert("로그인이 필요한 서비스 입니다");
+
+		}else{
+			alert(star);
+			alert("user id 없어요");
+			$("#star").val(star);
+			//$("#starForm").submit();
+			
+		}
+			
 	  });
 	
 	   
 });
-function result(){
-	
-		$("#likeDiv").html("<img onclick='result2();' id='like1' src='../resources/img/like1.png' width='30px'> <span> 좋아요 </span>");
-		 location.href = "minusStar?song_id="+9;
-			
-}
-function result2(){
-	  $("#like1").on('click', function(){
-		  $("#likeDiv").html("<img onclick='result();' id='like2' src='../resources/img/like2.png' width='30px'> <span> 좋아요 </span>");
-		 
-	  });
-}
+
 
 
 
@@ -304,7 +307,14 @@ function result2(){
    				
 
              </div>
-             
+        <form action="starLog" method="post" id="starForm">
+        	<input type="hidden" id="ui"value="${user_id }">
+        	<input type="hidden" name="star" value="">
+        	<input type="hidden" name="song_id" value="${song_id }"> 
+        	<input type="hidden" name="singer_id" value="${singer_id }"> 
+        	<input type="hidden" name="country" value="${Song.genre }">
+        	<input type="hidden" name="genre" value="${Song.country }">
+        </form>
             
              
                
