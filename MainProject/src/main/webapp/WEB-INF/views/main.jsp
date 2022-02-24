@@ -29,8 +29,8 @@
 	<main style="margin-top: 130px">
 	 
 	 <header class="p-2 mb-3 fixed-top align-items-center border-bottom border-info" id="AllusicH" style="font-family: 'Noto Sans KR', sans-serif; background-color: white;">
-    <div class="container-fluid w-75">
-      <div class="d-flex flex-wrap align-items-center justify-content-start ">
+    <div class="container-fluid" style="width: 93%">
+      <div class="d-flex flex-wrap align-items-center justify-content-start " >
 <!--          justify-content-lg-start-->
         <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-dark text-decoration-none">
           <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap"><use xlink:href="#bootstrap"></use></svg>
@@ -44,9 +44,7 @@
           </a>
           </div></li>
           
-          <li><a href="https://www.naver.com/" class="nav-link px-2 mt-3   mb-0 link-secondary" style="">곡</a></li>
-          <li><a href="#" class="nav-link px-2 mt-3 link-dark">앨범</a></li>
-          <li><a href="#" class="nav-link px-2 mt-3 link-dark">가수</a></li>
+
         </ul>
 
         <form action="/mylife/search/searchResult" method="get" onsubmit="return searchCheck();" 
@@ -95,11 +93,12 @@
 	        
 	        <!-- 좌버튼 -->
 	         <button class="carousel-control-prev" type="button" data-bs-target="#아무거나1" data-bs-slide="prev"  id="좌버튼메인">
-	<!--    <span class="왼쪽" aria-hidden="true" style="position: absolute; top: 130px" >-->
+
 	        <img src="./resources/img/left.png" width="30px">
-	<!--        </span>-->
+
 	    <span class="visually-hidden">Previous</span>
 	  </button>
+	  
 	        
 	        
 	    <div class="titles fw-bold mb-4" style="font-size: 25px;">
@@ -134,18 +133,27 @@
 								<c:forEach var="song" items="${songList }" begin="${status.index }" end="${status.index + 4 }">
 									<div class="col">
 										<div class="card border border-white">
+										<a href="/mylife/song/songPage?song_id=${song.song_id }&singer_id=${song.singer_id}">
 											<img src="./resources/img/album/${song.album_img} " alt="img" width="100%"
-												height="225">
+												height="225"></a>
 	
-											<div class="card1 mt-3 ">
-												<a href="/mylife/song/songPage?song_id=${song.song_id }&singer_id=${song.singer_id}" class="card-text mb-1 fw-bold" style="font-size: 23px;">${song.song_name}</a>
+											<div class="card1 " style="text-overflow: ellipsis;
+												    overflow: hidden;
+												    white-space: nowrap;
+												    margin-top: 12px;">
+												<a href="/mylife/song/songPage?song_id=${song.song_id }&singer_id=${song.singer_id}" 
+												class="card-text mb-1 fw-bold" id="메인곡명">${song.song_name}</a>
 												<p class="card-text mb-0" style="font-size: 15px;">${song.singer_name }</p>
 												<span class="card-text mb-0"
-													style="font-size: 13px; margin-left: 1px">
+													style="font-size: 13px; margin-left: 1px; color: #74747b;">
 													${song.album_date } </span> <span class="card-text mb-0 fw-bold"
-													style="font-size: 13px; margin-left: 2px"> • </span> <span
+													style="font-size: 13px; margin-left: 2px; color: #74747b;"> • </span> <span
 													class="card-text mb-0"
-													style="font-size: 13px; margin-left: 2px">
+													style="font-size: 13px; margin-left: 2px;
+													text-overflow: ellipsis;
+												    overflow: hidden;
+												    white-space: nowrap;
+												    color: #74747b;">
 													${song.album_name } </span>
 												<div
 													class="d-flex justify-content-between align-items-center">
@@ -222,26 +230,68 @@
 								<c:forEach var="song" items="${likeSong }" begin="${status.index }" end="${status.index + 4 }">
 									<div class="col">
 										<div class="card border border-white">
+											<a href="/mylife/song/songPage?song_id=${song.song_id }&singer_id=${song.singer_id}">
+												<img src="./resources/img/album/${song.album_img} " alt="img" width="100%"
+													height="225"></a>
+		
+												<div class="card1 " style="text-overflow: ellipsis;
+													    overflow: hidden;
+													    white-space: nowrap;
+													    margin-top: 12px;">
+													<a href="/mylife/song/songPage?song_id=${song.song_id }&singer_id=${song.singer_id}" 
+													class="card-text mb-1 fw-bold" id="메인곡명">${song.song_name}</a>
+													<p class="card-text mb-0" style="font-size: 15px;">${song.singer_name }</p>
+													<span class="card-text mb-0"
+														style="font-size: 13px; margin-left: 1px; color: #74747b;">
+														${song.album_date } </span> <span class="card-text mb-0 fw-bold"
+														style="font-size: 13px; margin-left: 2px; color: #74747b;"> • </span> <span
+														class="card-text mb-0"
+														style="font-size: 13px; margin-left: 2px;
+														text-overflow: ellipsis;
+													    overflow: hidden;
+													    white-space: nowrap;
+													    color: #74747b;">
+														${song.album_name } </span>
+													<div
+														class="d-flex justify-content-between align-items-center">
+		
+														<small class="text-muted"></small>
+													</div>
+												</div>
+											</div>
+										<%-- <div class="card border border-white">
 											<img src="./resources/img/album/${song.album_img} " alt="img" width="100%"
 												height="225">
 	
-											<div class="card1 mt-3 ">
+											<div class="card1 mt-3 " style="
+													text-overflow: ellipsis;
+												    overflow: hidden;
+												    white-space: nowrap;">
 												<a href="/mylife/song/songPage?song_id=${song.song_id }&singer_id=${song.singer_id}" class="card-text mb-1 fw-bold" style="font-size: 23px;">${song.song_name}</a>
 												<p class="card-text mb-0" style="font-size: 15px;">${song.singer_name }</p>
+												
+												
 												<span class="card-text mb-0"
 													style="font-size: 13px; margin-left: 1px">
 													${song.album_date } </span> <span class="card-text mb-0 fw-bold"
-													style="font-size: 13px; margin-left: 2px"> • </span> <span
+													style="font-size: 13px; margin-left: 2px"> • </span> 
+													<span
 													class="card-text mb-0"
-													style="font-size: 13px; margin-left: 2px">
+													style="font-size: 13px; 
+													margin-left: 2px;
+													text-overflow: ellipsis;
+												    overflow: hidden;
+												    white-space: nowrap; 
+													">
 													${song.album_name } </span>
+
 												<div
 													class="d-flex justify-content-between align-items-center">
 	
 													<small class="text-muted"></small>
 												</div>
 											</div>
-										</div>
+										</div> --%>
 									</div>
 								</c:forEach>
 								
