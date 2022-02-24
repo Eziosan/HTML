@@ -54,7 +54,7 @@ public class HomeController {
 		ArrayList<Song> songList = hs.selectTopSong(song);
 		logger.info("SongList:{}", songList);
 
-		ArrayList<Song> likeSong = hs.selectLikeSong(song);
+		ArrayList<Song> likeSong = hs.selectSongByGenre("발라드");
 		logger.info("SongLike: {}", likeSong);
 
 		model.addAttribute("songList", songList);
