@@ -60,16 +60,16 @@ $(document).ready(function(){
 	  $(":radio[name='starpoint']").on('click', function(){
 		  var user_id = $("#ui").val()
 		  alert($("#ui").val());
-		  var star = $("radio[name='starpoint']:checked").val();
+		  var star = $(":radio[name='starpoint']:checked").val();
 
-		  if(user_id ==  ''){
+		if(user_id ==  ''){
 			  alert("로그인이 필요한 서비스 입니다");
 
 		}else{
 			alert(star);
-			alert("user id 없어요");
+			alert("user id 있어요");
 			$("#star").val(star);
-			//$("#starForm").submit();
+			$("#starForm").submit();
 			
 		}
 			
@@ -295,16 +295,16 @@ function searchCheck(){
             <label for="starpoint_8" class="label_star" title="4"><span class="blind">4점</span></label>
             <label for="starpoint_9" class="label_star" title="4.5"><span class="blind">4.5점</span></label>
             <label for="starpoint_10" class="label_star" title="5"><span class="blind">5점</span></label>
-            <input type="radio" name="starpoint" id="starpoint_1" class="star_radio">
-            <input type="radio" name="starpoint" id="starpoint_2" class="star_radio">
-            <input type="radio" name="starpoint" id="starpoint_3" class="star_radio">
-            <input type="radio" name="starpoint" id="starpoint_4" class="star_radio">
-            <input type="radio" name="starpoint" id="starpoint_5" class="star_radio">
-            <input type="radio" name="starpoint" id="starpoint_6" class="star_radio">
-            <input type="radio" name="starpoint" id="starpoint_7" class="star_radio">
-            <input type="radio" name="starpoint" id="starpoint_8" class="star_radio">
-            <input type="radio" name="starpoint" id="starpoint_9" class="star_radio">
-            <input type="radio" name="starpoint" id="starpoint_10" class="star_radio">
+            <input type="radio" name="starpoint" id="starpoint_1" class="star_radio" value="0.5">
+            <input type="radio" name="starpoint" id="starpoint_2" class="star_radio" value="1.0">
+            <input type="radio" name="starpoint" id="starpoint_3" class="star_radio" value="1.5">
+            <input type="radio" name="starpoint" id="starpoint_4" class="star_radio" value="2.0">
+            <input type="radio" name="starpoint" id="starpoint_5" class="star_radio" value="2.5">
+            <input type="radio" name="starpoint" id="starpoint_6" class="star_radio" value="3.0">
+            <input type="radio" name="starpoint" id="starpoint_7" class="star_radio" value="3.5">
+            <input type="radio" name="starpoint" id="starpoint_8" class="star_radio" value="4.0">
+            <input type="radio" name="starpoint" id="starpoint_9" class="star_radio" value="4.5">
+            <input type="radio" name="starpoint" id="starpoint_10" class="star_radio" value="5.0">
             <span class="starpoint_bg"></span>
           </div>
         </div>
@@ -315,13 +315,13 @@ function searchCheck(){
              </div>
         <form action="starLog" method="post" id="starForm">
         	<input type="hidden" id="ui"value="${user_id }">
-        	<input type="hidden" name="star" value="">
+        	<input type="hidden" name="star" id="star" value="">
         	<input type="hidden" name="song_id" value="${song_id }"> 
         	<input type="hidden" name="singer_id" value="${singer_id }"> 
         	<input type="hidden" name="country" value="${Song.genre }">
         	<input type="hidden" name="genre" value="${Song.country }">
         </form>
-            
+	  
              
                
              <div class="col-2" >
