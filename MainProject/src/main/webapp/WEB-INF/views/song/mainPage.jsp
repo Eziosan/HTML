@@ -57,25 +57,36 @@
       
       
 $(document).ready(function(){
-	  $("#like1").on('click', function(){
-		  $("#likeDiv").html("<img onclick='result();' id='like2' src='../resources/img/like2.png' width='30px'> <span> 좋아요 </span>");
-		  location.href = "plusStar?song_id="+9;	
+	  $(":radio[name='starpoint']").on('click', function(){
+		  var user_id = $("#ui").val()
+		  alert($("#ui").val());
+		  var star = $(":radio[name='starpoint']:checked").val();
+
+		if(user_id ==  ''){
+			  alert("로그인이 필요한 서비스 입니다");
+
+		}else{
+			alert(star);
+			alert("user id 있어요");
+			$("#star").val(star);
+			$("#starForm").submit();
+			
+		}
+			
 	  });
 	
 	   
 });
-function result(){
-	
-		$("#likeDiv").html("<img onclick='result2();' id='like1' src='../resources/img/like1.png' width='30px'> <span> 좋아요 </span>");
-		 location.href = "minusStar?song_id="+9;
-			
-}
-function result2(){
-	  $("#like1").on('click', function(){
-		  $("#likeDiv").html("<img onclick='result();' id='like2' src='../resources/img/like2.png' width='30px'> <span> 좋아요 </span>");
-		 
-	  });
-}
+
+function searchCheck(){
+	if($("#searchText").val().length < 1){
+		alert("글자 수는 1자 이상 입력하셔야 합니다!!")
+		return false;
+	}
+
+	return true;
+		
+} 
 
 
 
@@ -149,10 +160,9 @@ function result2(){
         
         </ul>
 
-        <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
-          <input type="search" class="form-control" placeholder="# 태그를 검색해보세요"  aria-label="Search" control-id="ControlID-2" 
-                 style="background: transparent; 
-                        ">
+        <form action="/mylife/search/searchResult" method="get" onsubmit="return searchCheck();" class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
+          <input type="search" id="searchText" name="searchText" class="form-control" placeholder="# 태그를 검색해보세요"  aria-label="Search" control-id="ControlID-2" 
+                 style="background: transparent;">
         </form>
 
           
@@ -195,8 +205,9 @@ function result2(){
         </a>
 
         <ul class="nav col-12 col-lg-auto me-lg-auto mlmb-2 justify-content-center mb-md-0">
-          <li><div class="nav-link px-2 w-100" ><img src="../resources/img/초안2.png" alt="img" width="" height="40" style="margin-right: 30px"> </div></li>
-
+        
+          <li><a href="/mylife/main" ><div class="nav-link px-2 w-100" ><img src="../resources/img/초안2.png" alt="img" width="" height="40" style="margin-right: 30px"> </div></a></li>
+         
         </ul>
 
         <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
@@ -232,24 +243,12 @@ function result2(){
 
     
 <div class="전체화면 text-center overflow-hidden" style="background-color: rgba(248,248,248); height: auto;">
-		
-		 <div class="banner1" id="송배너">
-			<div id="송배너칸">
-			            <img src="../resources/img/album/${Song.album_img }" style="position:relative;"  id="송배너이미지1">
-			
-			            <img src="../resources/img/album/${Song.album_img }" id="송배너이미지2">
-			                 
-			</div>
-        
 
-   		 </div>
-
-
-        <%-- <div class="banner1" id="송배너">
+        <div class="banner1" id="송배너">
 			<div id="송배너칸">
 			    <img src="../resources/img/banner/${Song.song_banner }" style="margin: 0 auto;" height="420px;">
 			</div>
-    	</div> --%>
+    	</div>
     
   <div class="곡정보 자리 w-100 border" style="height: 232px;  padding: 13px 16px 22px; background-color: white; position: relative; z-index: 10;">
 <!--      background-color: rgba(199,221,253);-->
@@ -296,16 +295,16 @@ function result2(){
             <label for="starpoint_8" class="label_star" title="4"><span class="blind">4점</span></label>
             <label for="starpoint_9" class="label_star" title="4.5"><span class="blind">4.5점</span></label>
             <label for="starpoint_10" class="label_star" title="5"><span class="blind">5점</span></label>
-            <input type="radio" name="starpoint" id="starpoint_1" class="star_radio">
-            <input type="radio" name="starpoint" id="starpoint_2" class="star_radio">
-            <input type="radio" name="starpoint" id="starpoint_3" class="star_radio">
-            <input type="radio" name="starpoint" id="starpoint_4" class="star_radio">
-            <input type="radio" name="starpoint" id="starpoint_5" class="star_radio">
-            <input type="radio" name="starpoint" id="starpoint_6" class="star_radio">
-            <input type="radio" name="starpoint" id="starpoint_7" class="star_radio">
-            <input type="radio" name="starpoint" id="starpoint_8" class="star_radio">
-            <input type="radio" name="starpoint" id="starpoint_9" class="star_radio">
-            <input type="radio" name="starpoint" id="starpoint_10" class="star_radio">
+            <input type="radio" name="starpoint" id="starpoint_1" class="star_radio" value="0.5">
+            <input type="radio" name="starpoint" id="starpoint_2" class="star_radio" value="1.0">
+            <input type="radio" name="starpoint" id="starpoint_3" class="star_radio" value="1.5">
+            <input type="radio" name="starpoint" id="starpoint_4" class="star_radio" value="2.0">
+            <input type="radio" name="starpoint" id="starpoint_5" class="star_radio" value="2.5">
+            <input type="radio" name="starpoint" id="starpoint_6" class="star_radio" value="3.0">
+            <input type="radio" name="starpoint" id="starpoint_7" class="star_radio" value="3.5">
+            <input type="radio" name="starpoint" id="starpoint_8" class="star_radio" value="4.0">
+            <input type="radio" name="starpoint" id="starpoint_9" class="star_radio" value="4.5">
+            <input type="radio" name="starpoint" id="starpoint_10" class="star_radio" value="5.0">
             <span class="starpoint_bg"></span>
           </div>
         </div>
@@ -314,8 +313,15 @@ function result2(){
    				
 
              </div>
-             
-            
+        <form action="starLog" method="post" id="starForm">
+        	<input type="hidden" id="ui"value="${user_id }">
+        	<input type="hidden" name="star" id="star" value="">
+        	<input type="hidden" name="song_id" value="${song_id }"> 
+        	<input type="hidden" name="singer_id" value="${singer_id }"> 
+        	<input type="hidden" name="country" value="${Song.genre }">
+        	<input type="hidden" name="genre" value="${Song.country }">
+        </form>
+	  
              
                
              <div class="col-2" >
@@ -424,18 +430,19 @@ function result2(){
     
     <div class="main1 mt-3 m-auto" style="width: 960px; height: 1000px; background-color: rgba(248,248,248); ">
 
-        <div class="컨텐츠 핑크 border" style="width: 960px; height: auto; border-radius: 10px; float: left; background-color:  white; font-family: 'Noto Sans KR', sans-serif; font-size: 0px; padding-bottom: 40px;">
+        <div class="컨텐츠 핑크 border" style="width: 638px; height: auto; border-radius: 10px; float: left; background-color:  white; font-family: 'Noto Sans KR', sans-serif; font-size: 0px; padding-bottom: 40px;">
             
 <!--            가수 -->
-            <div class="가수" id="가수정보칸" style="height: 200px;">
+            <div class="가수" 
+                 style="width: 598px; height: 200px; text-align: left; margin-left: 20px; margin-right: 20px; padding-top: 8px; border-bottom: 1px solid; border-color: darkgray;">
                 
-                <div class="가수 fw-bold"  id="정보칸타이틀">
+                <div class="가수 fw-bold" style="margin-left: px; margin-top: 5px; font-size: 18px; height: 30px; ">
                     가수
                 </div>
                 <div class="row 가수 프로필 mt-2" style="height: 150px">
-                    <div class="col-2 text-center">
+                    <div class="col-3 text-center">
                         <div class="프로필 카드" style="margin-right: auto; margin-left: auto; margin-top: 5px">
-                        <img src="../resources/img/profile/basic_profile.jpg" width="60px" style="border-radius: 50%">
+                        <img src="../resources/img/profile/basic_profile.jpg" width="80px" style="border-radius: 50%">
                         <div class="가수명" id="아티스트이름">
                             ${Song.singer_name }
                         </div>
@@ -448,15 +455,15 @@ function result2(){
             
 <!--           작사  -->
            <div class="작사" 
-                id="가수정보칸" style="height: 200px;">
+                style="width: 598px; height: 200px; text-align: left; margin-left: 20px; margin-right: 20px; margin-top: 20px; padding-top: 8px; border-bottom: 1px solid; border-color: darkgray;">
                 
-                <div class="작사 fw-bold" id="정보칸타이틀">
+                <div class="작사 fw-bold" style="margin-left: px; margin-top: 5px; font-size: 18px; height: 30px; ">
                     작사
                 </div>
                 <div class="row 작사 프로필" style="height: 150px">
-                    <div class="col-2 text-center">
+                    <div class="col-3 text-center mt-2">
                         <div class="프로필 카드" style="margin-right: auto; margin-left: auto; margin-top: 5px">
-                        <img src="../resources/img/profile/basic_profile.jpg" width="60px" style="border-radius: 50%">
+                        <img src="../resources/img/profile/basic_profile.jpg" width="80px" style="border-radius: 50%">
                         <div class="작사가명" id="아티스트이름">
                             ${Song.writer }
                         </div>
@@ -468,16 +475,15 @@ function result2(){
             </div>
             
 <!--           작곡 -->
-            <div class="작곡" 
-            id="가수정보칸" style="height: 200px;">
+            <div class="작곡" style="width: 598px; height: 200px; text-align: left; margin-left: 20px; margin-right: 20px; margin-top: 20px; padding-top: 8px; border-bottom: 1px solid; border-color: darkgray;">
                 
-                <div class="작곡 fw-bold" id="정보칸타이틀">
+                <div class="작곡 fw-bold" style="margin-left: px; margin-top: 5px; font-size: 18px; height: 30px; ">
                     작곡
                 </div>
                 <div class="row 작사 프로필 mt-2" style="height: 150px">
-                    <div class="col-2 text-center">
+                    <div class="col-3 text-center">
                         <div class="프로필 카드" style="margin-right: auto; margin-left: auto; margin-top: 5px">
-                        <img src="../resources/img/profile/basic_profile.jpg" width="60px" style="border-radius: 50%">
+                        <img src="../resources/img/profile/basic_profile.jpg" width="80px" style="border-radius: 50%">
                         <div class="작곡가명" id="아티스트이름">
                             ${Song.composer }
                         </div>
@@ -491,9 +497,9 @@ function result2(){
             
             </div>
 <!--            가사 -->
-            <div class="가사 text-left" id="가수정보칸" style="height: auto; border-bottom: none;">
+            <div class="가사 text-left" style="width: 598px; height: auto; text-align: left; margin-left: 20px; margin-right: 20px; margin-top: 20px; padding-top: 8px;">
                
-                <div class="가사 fw-bold" style="margin-top: 5px; font-size: 22px; height: 50px; ">
+                <div class="가사 fw-bold" style="margin-left: px; margin-top: 5px; font-size: 22px; height: 50px; ">
                     가사
                     <span >
                         <a class="더보기" data-bs-toggle="collapse" data-bs-target="#가사란" aria-expanded="false" aria-controls="collapseExample" 
@@ -511,7 +517,7 @@ function result2(){
                     </span>
                 </div>
                 <div class="collapse" id="가사란">
-                 <div class="가사 card" style="margin-top: 5px; font-size: 18px; height: auto; white-space: pre; padding-left: 8px; background-color: rgb(245,245,245);">
+                 <div class="가사 card" style="margin-left: px; margin-top: 5px; font-size: 18px; height: auto; white-space: pre; padding-left: 8px; background-color: rgb(245,245,245); pa">
 ${Song.lyrics }
                 </div>
                 </div>
@@ -565,7 +571,7 @@ ${Song.lyrics }
                         <span>
                         <c:forEach var="bannerimg" items="${banner }" varStatus="status">
                         	<c:forEach var="img" items="${bannerimg }" begin="0" end="3" >
-                        	<img src="../resources/img/album/${img.album_img }" id="커버${status.count }" width="86px" height="86px" style="margin: 2px; border-radius: 6px;">
+                        	<img src="../resources/img/album/${img.album_img }" id="커버${status.count }" width="86px" style="margin: 2px; border-radius: 6px;">
                         	</c:forEach>
                         </c:forEach>
                         </span>

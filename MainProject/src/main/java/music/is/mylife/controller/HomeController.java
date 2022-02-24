@@ -34,10 +34,10 @@ public class HomeController {
 	@Autowired
 	ListService ls;
 
-	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String main(Locale locale) {
+	@RequestMapping(value = "backdoor", method = RequestMethod.GET)
+	public String backdoor(Locale locale) {
 		
-
+		
 		return "home";
 	}
 
@@ -48,13 +48,13 @@ public class HomeController {
 	 * @param model
 	 * @return main.jsp
 	 */
-	@RequestMapping(value = "main", method = RequestMethod.GET)
+	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String topSong(Song song, Model model) {
 		logger.info("노래:{}", song);
 		ArrayList<Song> songList = hs.selectTopSong(song);
 		logger.info("SongList:{}", songList);
 
-		ArrayList<Song> likeSong = hs.selectSongByGenre("발라드");
+		ArrayList<Song> likeSong = hs.selectSongByGenre("록/메탈");
 		logger.info("SongLike: {}", likeSong);
 
 		model.addAttribute("songList", songList);

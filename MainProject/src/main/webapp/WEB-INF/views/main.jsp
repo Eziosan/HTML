@@ -201,8 +201,8 @@
 	        
 	        
 	    <div class="titles fw-bold mb-4" style="font-size: 25px;">
-	        지금 인기있는 곡
-	        </div>
+	        최근 인기 장르 - 발라드
+	    </div>
 	        
 	  
 	        
