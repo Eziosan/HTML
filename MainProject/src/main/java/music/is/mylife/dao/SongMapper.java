@@ -55,7 +55,7 @@ public interface SongMapper {
 		 * @param song
 		 * @return ArrayList<Song>
 		 */
-		public ArrayList<Song> selectLikeSong(Song song);
+		public ArrayList<Song> selectSongByGenre(String genre);
 		
 		/**
 		 * 전체 곡 검색

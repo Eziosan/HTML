@@ -187,10 +187,10 @@ public class SongDAO {
 		 * @param song
 		 * @return ArrayList<Song>
 		 */
-		public ArrayList<Song> selectLikeSong(Song song){
+		public ArrayList<Song> selectSongByGenre(String genre){
 			SongMapper mapper = session.getMapper(SongMapper.class);
 			
-			ArrayList<Song> likeSong = mapper.selectLikeSong(song);
+			ArrayList<Song> likeSong = mapper.selectSongByGenre(genre);
 			
 			return likeSong;
 		}

@@ -122,6 +122,7 @@
 			where singer.singer_id = song.singer_id
 			order by song.hit desc) where rownum <= 7
     	]]>
+
 	</select>
 	
 	
@@ -131,14 +132,12 @@
 		파라미터 타입: Song
 		리턴 타입: ArrayList<Song>
 	 -->
-	<select id="selectLikeSong" parameterType="song" resultType="song">
-		<![CDATA[
-			select * from (select singer.singer_id, singer.singer_name,
-				song.song_id, song.song_name, song.album_name, to_char(song.album_date,'YYYY') as album_date, song.song_like, song.album_img
+	<select id="selectSongByGenre" parameterType="string" resultType="song">
+					select singer.singer_id, singer.singer_name,
+				song.song_id, song.song_name, song.album_name, to_char(song.album_date,'YYYY') as album_date, song.hit, song.album_img
 			from singer singer, song song
-			where singer.singer_id = song.singer_id
-			order by song.song_like desc) where rownum <= 7
-		]]>
+			where singer.singer_id = song.singer_id and song.genre = #{genre}
+			order by hit desc
 	</select>
 	
 	<!-- [메인 페이지] 
