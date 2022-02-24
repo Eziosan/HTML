@@ -141,8 +141,8 @@ public class ListService {
 	 * @param playlist_id
 	 * @return int
 	 */
-	public int plusListLike(int playlist_id) {
-		int plusLike = ldao.updatePluseLike(playlist_id);
+	public int updateLike(Playlist pl) {
+		int plusLike = ldao.updateLike(pl);
 		
 		return plusLike;
 	}

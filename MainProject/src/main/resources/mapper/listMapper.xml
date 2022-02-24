@@ -191,8 +191,8 @@
 	  	
 		아이디: updatePluseLike
 		파라미터 타입: int -->
-	 <update id="updatePluseLike" parameterType="int">
-	 	update playlist set list_like = list_like + 1 where playlist_id = #{playlist_id}
+	 <update id="updateLike" parameterType="playlist">
+	 	update playlist set list_like = list_like + #{list_like} where playlist_id = #{playlist_id}
 	 </update>
 	 
 	 <!-- [리스트 페이지] 

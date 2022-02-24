@@ -31,6 +31,8 @@ public class AnalysisController {
 	
 	@Autowired
 	AnalysisService as;
+	@Autowired
+	SongService ss;
 
 	/*
 	 * 모델로 넘길 정보
@@ -57,7 +59,7 @@ public class AnalysisController {
 		ul.setSinger_id(singer_id);
 		ul.setCountry(country);
 		
-		as.recordUserLog(ul);
+		ss.recordUserLog(ul);
 		
 		return "analysis/analysisPage";
 	}

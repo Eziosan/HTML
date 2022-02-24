@@ -8,10 +8,12 @@ import org.springframework.stereotype.Service;
 import music.is.mylife.dao.SongDAO;
 import music.is.mylife.dao.TagDAO;
 import music.is.mylife.dao.UserDAO;
+import music.is.mylife.dao.UserLogDAO;
 import music.is.mylife.vo.Playlist;
 import music.is.mylife.vo.Song;
 import music.is.mylife.vo.Tag;
 import music.is.mylife.vo.UserInfo;
+import music.is.mylife.vo.UserLog;
 
 @Service
 public class SongService {
@@ -23,6 +25,10 @@ public class SongService {
 	TagDAO tdao;
 	@Autowired
 	UserDAO udao;
+	@Autowired
+	UserLogDAO uld;
+	@Autowired
+	TagDAO td;
 
 	// 해당 곡의 배너를 가져오는 메소드
 	public String selectBanner(int song_id) {
@@ -224,5 +230,99 @@ public class SongService {
 
 		return selectSong;
 	}
+	
+	
+	
+	/* 
+	 * 2. 별점 매길 시 유저 로그 입력
+	 */
+	public void recordUserLog(UserLog ul) {
+		//중복된 곡이 있을 때
+		if(uld.songStarCheck(ul) > 0) {
+			//user_song_log 업데이트
+			uld.updateSongLog(ul);
+			
+			//all_star는 신규별점 - 기존 별점 차이만큼, grade_count는 안올라가게
+			double star = ul.getStar() - uld.selectSongStarById(ul);
+			ul.setAll_star(star);
+			
+			tagLogInsert(ul);
+			singerLogInsert(ul);
+			countryLogInsert(ul);
+			genreLogInsert(ul);
+			
+		}else{
+			//중복된 곡이 없을 때. 별점 : 새로 추가한 별점, 카운트 : 1 증가
+			ul.setAll_star(ul.getStar());
+			ul.setGrade_count(1);
+			
+			//곡 새로 추가
+			uld.insertSongLog(ul);
+			//tagLog 입력
+			tagLogInsert(ul);
+			singerLogInsert(ul);
+			countryLogInsert(ul);
+			genreLogInsert(ul);
+		}
+		
+	}
+	
+	//태그 로그 처리 : 중복된 태그가 없으면 insert, 있으면 update
+	public void tagLogInsert(UserLog ul) {
+		//상위 3개 태그
+		ArrayList<Tag> tagList = td.selectTop3TagBySongId(ul.getSong_id());
+		
+		for(Tag t : tagList) {
+			//n번째 태그 id를 조건으로 줌 -> 중복검사 위함
+			ul.setTag_id(t.getTag_id());
+			
+			//중복된 태그 있는지 확인. 
+			if(uld.tagStarCheck(ul) > 0) {
+				//업데이트
+				uld.updateTagLog(ul);
+			}else {
+				//중복된 태그가 없어. insert
+				uld.insertTagLog(ul);
+			}
+		}
+	}
+	
+	//가수 로그 처리 : 중복된 태그가 없으면 insert, 있으면 update
+	public void singerLogInsert(UserLog ul) {
+		
+		//중복된 가수 있는지 확인. 
+		if(uld.singerStarCheck(ul) > 0) {
+			//중복된 가수가 있다면 업데이트
+			uld.updateSingerLog(ul);
+		}else {
+			//중복된 태그가 없어. insert
+			uld.insertSingerLog(ul);
+		}
+	}
+	//국가 로그 처리 : 중복된 태그가 없으면 insert, 있으면 update
+	public void countryLogInsert(UserLog ul) {
+		
+		//중복된 국가 있는지 확인. 
+		if(uld.countryStarCheck(ul) > 0) {
+			//중복된 국가가 있다면 업데이트
+			uld.updateCountryLog(ul);
+		}else {
+			//중복된 국가가 없어. insert
+			uld.insertCountryLog(ul);
+		}
+	}
+	//장르 로그 처리 : 중복된 태그가 없으면 insert, 있으면 update
+	public void genreLogInsert(UserLog ul) {
+		
+		//중복된 장르가 있는지 확인. 
+		if(uld.genreStarCheck(ul) > 0) {
+			//중복된 장르가 있다면 업데이트
+			uld.updateGenreLog(ul);
+		}else {
+			//중복된 장르가 없어. insert
+			uld.insertGenreLog(ul);
+		}
+	}
+
 
 }

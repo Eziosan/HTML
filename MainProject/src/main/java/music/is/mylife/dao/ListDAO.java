@@ -182,9 +182,9 @@ public class ListDAO {
 	 * @param playlist_id
 	 * @return int
 	 */
-	public int updatePluseLike(int playlist_id) {
+	public int updateLike(Playlist pl) {
 		ListMapper mapper = session.getMapper(ListMapper.class);
-		int plusLike = mapper.updatePluseLike(playlist_id);
+		int plusLike = mapper.updateLike(pl);
 		
 		return plusLike;
 	}

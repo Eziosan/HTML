@@ -43,19 +43,40 @@
   		$(".like").toggleClass("beforeLike afterLike");
   		
   		
-  		/* var plusLike = $(".like").attr("class"); 
-  		if(plusLike == "like afterLike"){
-  			alert('좋아요를 하셨습니다');
-  		} */
+  		var playlist_id = $("#playlist_id").val();
+  		var list_like = 0;
+  		
   		if($(".like").hasClass("afterLike")){
   			alert('좋아요를 하셨습니다');
-  			$("#hiddenLike").val(1);
-  			$("#likeForm").submit();
+  			alert($("#playlist_id").val());
+  			list_like = 1;
+
   		} else if($(".like").hasClass("beforeLike")){
   			alert('좋아요를 취소하셨습니다.');
-  			$("#hiddenLike").val(-1);
-  			$("#likeForm").submit();
+  			list_like = -1;
   		}
+  		
+  			$.ajax({
+				type : "POST",
+				url : "like",
+				data : {
+					"playlist_id" : playlist_id,
+					"list_like" : list_like
+				},
+				success : function(data, textStatus, xhr){
+					alert("ajax 성공");
+					alert(data);
+					//별점 갱신
+					$(".likeCount").text(data);
+				},
+
+				error : function(request, status, error){
+					alert("error 발생!")
+				}
+
+  	  		});
+
+  		
   	}
 
   	
@@ -179,7 +200,7 @@
                   </p>
                 </div>
                 <div class="p-0" id="리스트정보 ">
-                    <span id="좋아요수"> 좋아요 <em>${listInfo.list_like }</em> <span> ㅣ </span> </span>
+                    <span id="좋아요수" > 좋아요 <em class="likeCount">${listInfo.list_like }</em> <span> ㅣ </span> </span>
                     <span id="좋아요수"> 댓글 <em></em> <span> ㅣ </span> </span>
                     <span id="좋아요수">  <em></em>${listInfo.list_date } <span>  </span> </span>
                 
@@ -188,10 +209,7 @@
             <section class="버튼박스" id="버튼박스">
                 <div id="버튼박스내용">
 <!--                    공유 드롭다운-->
-<form action="like" method="post" id="likeForm">
-	<input type="hidden" id="hiddenLike" name="list_like">
-	<input type="hidden" name="playlist_id" value="${listInfo.playlist_id }">
-</form>
+
             <div class="dropdown">
                 <button type="button"  id="좋아요박스" onclick="listLike('${user_id}')">
                         <div id="좋아요" class="beforeLike like">

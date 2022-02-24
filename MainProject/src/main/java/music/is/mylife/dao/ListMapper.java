@@ -95,7 +95,7 @@ public interface ListMapper {
 	 * @param playlist_id
 	 * @return int
 	 */
-	public int updatePluseLike(int playlist_id);
+	public int updateLike(Playlist pl);
 	
 	/**
 	 * 리스트 좋아요수 내리기

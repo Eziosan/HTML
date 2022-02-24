@@ -13,6 +13,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import music.is.mylife.dao.SongDAO;
 import music.is.mylife.service.ListService;
@@ -229,21 +230,24 @@ public class ListController {
 	 * @param song
 	 * @return
 	 */
+	@ResponseBody
 	@RequestMapping(value = "like", method = RequestMethod.POST)
-	public String listLike(int playlist_id, Model model, Song song) {
-		int plusLike = ls.plusListLike(playlist_id);
+	public int listLike(Playlist pl, Model model, Song song) {
+		System.out.println("플레이 리스트 id : " + pl.getPlaylist_id());
+		System.out.println("플레이 리스트 좋아요 수 : " + pl.getList_like());
+		ls.updateLike(pl);
 		
 		//리스트에 필요한 정보들 넘겨주기
-		ArrayList<Playlist> banner = ls.listBanner(playlist_id);
-		ArrayList<Playlist> listSong = ls.listSong(playlist_id);
-		Playlist info = ls.listInfo(playlist_id);
+		ArrayList<Playlist> banner = ls.listBanner(pl.getPlaylist_id());
+		ArrayList<Playlist> listSong = ls.listSong(pl.getPlaylist_id());
+		Playlist info = ls.listInfo(pl.getPlaylist_id());
 		Song selectSong = ss.selectAllSong(song);
 								
-		int count = ls.countSong(playlist_id);
-		int countComment = ls.countComment(playlist_id);
-		Playlist like = ls.listLike(playlist_id); 
+		int count = ls.countSong(pl.getPlaylist_id());
+		int countComment = ls.countComment(pl.getPlaylist_id());
+		Playlist like = ls.listLike(pl.getPlaylist_id()); 
 		//댓글 전체 출력 검색
-		ArrayList<ListComment> list = ls.listComment(playlist_id);
+		ArrayList<ListComment> list = ls.listComment(pl.getPlaylist_id());
 								
 		//리스트 정보
 		model.addAttribute("listInfo", info);
@@ -260,12 +264,13 @@ public class ListController {
 		//전체 곡 정보 
 		model.addAttribute("allSong", selectSong);
 		//리스트 아이디
-		model.addAttribute("playlist_id", info.getPlaylist_id());
+		model.addAttribute("playlist_id", pl.getPlaylist_id());
 		//댓글 전체출력
 		model.addAttribute("allList", list);
+		System.out.println("오류가 언제 뜨냐");
+		System.out.println("like 수 : "  + like);
 		
-		
-		return "list/listpage";
+		return like.getList_like();
 	}
 	
 

@@ -59,7 +59,7 @@ public class SongController {
 		
 		System.out.println("유저로그 :" + ul);
 		
-		//as.recordUserLog(ul);
+		//ss.recordUserLog(ul);
 		
 		return "analysis/analysisPage";
 	}
