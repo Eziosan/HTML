@@ -21,6 +21,7 @@ public interface ListMapper {
 	 */
 	public ArrayList<Playlist> selectListId(int song_id);
 	
+	
 	/**
 	 * 리스트 배너 상위 5개 출력
 	 * @return ArrayList<Song>

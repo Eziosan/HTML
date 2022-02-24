@@ -148,7 +148,7 @@
             
         <div class="container" id="container">
         
-			</button>            
+		           
             <div>
             <div id="프로필베너" >
                <c:forEach var="playlist" items="${banner }" begin="0" end="4" varStatus="status">
@@ -158,9 +158,14 @@
                </c:forEach>
             </div>
                 
-                <span id="배너닉네임">
+            <div>
+               <span  id="배너프로필">
+         			<img id="배너프로필1" src="../resources/img/profile2.jpg">
+               </span>
+               <span id="배너닉네임">
                  	${listInfo.user_id }
-                </span>
+               </span>
+            </div>
                 
                 
             </div>
@@ -229,10 +234,10 @@
   </button>
 -->
 	<ul class="dropdown-menu" id="공유드롭다운" aria-labelledby="dropdownMenuButton1">
-    <li><a class="dropdown-item" href="#">페이스북<img src="facebook1.png" height="23px" style="float: right"></a></li>
-    <li><a class="dropdown-item" href="#">카카오톡<img src="kakao1.png" height="23px" style="float: right"></a></li>
-    <li><a class="dropdown-item" href="#">트위터<img src="twitter1.png" height="23px" style="float: right"></a></li>
-    <li><a class="dropdown-item" href="#">링크복사<img src="share2.png" height="23px" style="float: right"></a></li>
+    <li><a class="dropdown-item" href="#">페이스북<img src="../resources/img/facebook1.png" height="23px" style="float: right"></a></li>
+    <li><a class="dropdown-item" href="#">카카오톡<img src="../resources/img/kakao1.png" height="23px" style="float: right"></a></li>
+    <li><a class="dropdown-item" href="#">트위터<img src="../resources/img/twitter1.png" height="23px" style="float: right"></a></li>
+    <li><a class="dropdown-item" href="#">링크복사<img src="../resources/img/share2.png" height="23px" style="float: right"></a></li>
       
   </ul>
 </div>
@@ -321,7 +326,7 @@
                                  <input type="hidden" id="user_id" name="user_id" value="${user_id }">
                                  <input type="hidden" id="playlist_id" name="playlist_id" value="${playlist_id }">
                                  <input type="hidden" id="list_comment_id" name="list_comment_id" value="${listcomment.list_comment_id }">
-                                 <input type="submit" id="댓글입력버튼" value="삭제">
+                                 <input type="submit" id="댓글삭제" value="삭제">
                             	</form>
                             </c:if>
                             </div>

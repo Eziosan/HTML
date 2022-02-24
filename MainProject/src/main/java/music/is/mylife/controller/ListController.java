@@ -56,11 +56,7 @@ public class ListController {
 		//댓글 전체 출력 검색
 		ArrayList<ListComment> list = ls.listComment(playlist_id);
 		
-		logger.info("banner:{}",banner);
-		logger.info("listSong:{}",listSong);
-		logger.info("info:{}", info);
-		
-				
+			
 		//리스트 정보
 		model.addAttribute("listInfo", info);
 		//배너 사진

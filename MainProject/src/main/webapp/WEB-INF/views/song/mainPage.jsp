@@ -80,11 +80,10 @@ function result2(){
 
 
       </script>
-      
-      <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-      
-	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+   <!-- CSS , JS -->
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
       
     <title>곡 화면</title>
     
@@ -236,19 +235,11 @@ function result2(){
     
 <div class="전체화면 text-center overflow-hidden" style="background-color: rgba(248,248,248); height: auto;">
 
-
-      </div>
-
-    
-
-    <div class="banner1" style="background-color: rgba(0,0,0); text-align: center; ">
-
-
-            <img src="../resources/img/banner/${Song.song_banner }" style="margin: 0 auto;" height="420px;">
-
-        
-        <div class="gradient"></div>
-    </div>
+        <div class="banner1" id="송배너">
+			<div id="송배너칸">
+			    <img src="../resources/img/banner/${Song.song_banner }" style="margin: 0 auto;" height="420px;">
+			</div>
+    	</div>
     
   <div class="곡정보 자리 w-100 border" style="height: 232px;  padding: 13px 16px 22px; background-color: white; position: relative; z-index: 10;">
 <!--      background-color: rgba(199,221,253);-->
@@ -544,123 +535,53 @@ ${Song.lyrics }
                     </div>
                 
                 </div>
-                
-                
             
             </div>
 
+<!--            리스트 목록 -->
+         <div class="송리스트목록" id="가수정보칸" style="height: 350px; border-bottom: none;">
+             <div class="태그 fw-bold" style="margin-top: 20px; font-size: 22px; height: 50px; ">
+                리스트
+                 
+             </div>
+              <div class="row" id="리스트작칸">
+                  
+<!--                  리스트 한칸-->
+				<c:forEach var="list" items="${listId }">
+                <div class="col-3">
+                    <div id="송리스트한칸">
+ 
+                        <a href="/mylife/list/listPage?playlist_id=${list.playlist_id}">
+                        <span>
+                        <c:forEach var="bannerimg" items="${banner }" varStatus="status">
+                        	<c:forEach var="img" items="${bannerimg }" begin="0" end="3" >
+                        	<img src="../resources/img/album/${img.album_img }" id="커버${status.count }" width="86px" style="margin: 2px; border-radius: 6px;">
+                        	</c:forEach>
+                        </c:forEach>
+                        </span>
+                        </a>
+                    
+                    </div>
+                    <div id="송리스트타이틀">
+                    <a href="/mylife/list/listPage?playlist_id=${list.playlist_id}">
+                    	${list.list_name}
+                    </a>
+                    </div>
+                     <div id="송리스트좋아요">
+                   		${list.user_id }
+                  </div>
+                    
+                  </div>
+                  </c:forEach>
+              </div>
+            
+            
+          </div>
+
+
+
         </div>
         
-        
-        	<c:forEach var="playlist" items="${listId }">
-           		<a href="/mylife/list/listPage?playlist_id=${playlist.playlist_id}">리스트페이지 테스트</a>
-        	</c:forEach>
-        
-        
-          <div class="오른쪽 보라 border" style="width: 318px; height: auto; border-radius: 10px; float: right; padding-left: 5px; padding-right: 5px; background-color: white; font-family: 'Noto Sans KR', sans-serif; overflow: hidden; padding-bottom: 40px;" >   
-              
-<!--             갤러리 -->
-              <div class="갤러리타이틀"
-                   style="width: 268px; height: 44px; margin: 0px 20px;">
-                  <p class="fw-bold" style="vertical-align: middle; text-align: left; margin-top: 15px; ">
-                    갤러리
-                </p>
-              </div>
-    
-              
-              
-              
-              <div class="사진들" style="width: 328px; height: 121px; ">
-                
-                  <div id="캐러셀사진" class="carousel slide" data-bs-ride="carousel" data-bs-interval="false" style="width: 328px; height: 89px; padding-left: 10px; position: relative;">
-                      
-                <div class="carousel-inner">
-                 <div class="carousel-item active">
-                <div class="사진란" style="width: 132px; height: 89px; margin: 0px 0px 0px 10px; float: left">
-                    <img src="lilac1.jpg" width="132px;">
-                  
-                  
-                  </div>
-                
-               
-                <div class="사진란" style="width: 132px; height: 89px; margin: 0px 0px 0px 10px; float: left;">
-                    <img src="lilac1.jpg" width="132px;">
-                  
-                  
-                  </div> 
-                      </div>
-                      
-                       <div class="carousel-item">
-                <div class="사진란" style="width: 132px; height: 89px; margin: 0px 0px 0px 10px; float: left;">
-                  <img src="lilac1.jpg" width="132px;">
-                  
-                           </div>
-                  </div>
-                </div>
-                 <button class="carousel-control-prev" type="button" data-bs-target="#캐러셀사진" data-bs-slide="prev" style="right:30px; width: 20px; ">
-                     <img src="../resources/img/왼2.png" width="15px">
-
-                  </button>
-                  <button class="carousel-control-next" type="button" data-bs-target="#캐러셀사진" data-bs-slide="next">
-                      <img src="../resources/img/오2.png" width="15px">
-
-                  </button>      
-              </div>
-              </div>
-              
-              <!--            동영상 -->
-              <div class="동영상타이틀"
-                   style="width: 268px; height: 44px; margin: 30px 0px 0px 20px;">
-                  <p class="fw-bold" style="vertical-align: middle; text-align: left; margin-top: 15px; ">
-                    동영상
-                </p>
-              </div>
-    
-              
-              
-              
-              <div class="동영상들" style="width: 328px; height: 121px; ">
-                
-                  <div id="캐러셀동영상" class="carousel slide" data-bs-ride="carousel" data-bs-interval="false" style="width: 328px; height: 89px; padding-left: 10px; position: relative;">
-                      
-                <div class="carousel-inner">
-                 <div class="carousel-item active">
-                <div class="동영상사진" style="width: 132px; height: 89px; margin: 0px 0px 0px 10px; float: left">
-                    <img src="lilac1.jpg" width="132px;">
-                  
-                  
-                  </div>
-                
-               
-                <div class="동영상사진" style="width: 132px; height: 89px; margin: 0px 0px 0px 10px; float: left;">
-                    <img src="lilac1.jpg" width="132px;">
-                  
-                  
-                  </div> 
-                      </div>
-                      
-                       <div class="carousel-item">
-                <div class="동영상사진" style="width: 132px; height: 89px; margin: 0px 0px 0px 10px; float: left;">
-                  <img src="lilac1.jpg" width="132px;">
-                  
-                           </div>
-                  </div>
-                </div>
-                 <button class="carousel-control-prev" type="button" data-bs-target="#캐러셀동영상" data-bs-slide="prev" style="right:30px; width: 20px; ">
-                     <img src="../resources/img/왼2.png" width="15px">
-
-                  </button>
-                  <button class="carousel-control-next" type="button" data-bs-target="#캐러셀동영상" data-bs-slide="next">
-                      <img src="../resources/img/오2.png" width="15px">
-
-                  </button>      
-              </div>
-              </div>
-              
-              
-              
-              
-        </div>
      </div>
  </div>
         
