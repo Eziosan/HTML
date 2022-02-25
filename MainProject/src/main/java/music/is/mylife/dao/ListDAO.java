@@ -28,9 +28,15 @@ public class ListDAO {
 	public double selectListLikesByUser(String user_id) {
 		ListMapper mapper = session.getMapper(ListMapper.class);
 		
-		double listLikeNum = mapper.selectListLikesByUser(user_id);
+		double dou = 0.0;
+		Double count = mapper.selectListLikesByUser(user_id);
+
+		if (count != null) {
+			dou = count;
+		}
+
+		return dou;
 		
-		return listLikeNum;
 	}
 	
 	//해당 유저의 모든 리스트에 지금까지 달린 모든 댓글 수

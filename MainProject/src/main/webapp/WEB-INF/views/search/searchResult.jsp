@@ -217,7 +217,7 @@
 									begin="${status.index }" end="${status.index + 4 }">
 									<div class="col">
 										<div class="card border border-white">
-											<img src="${song.album_img} " alt="img" width="100%"
+											<img src="../resources/img/album/${song.album_img} " alt="img" width="100%"
 												height="225">
 
 											<div class="card1 mt-3 ">
@@ -327,7 +327,7 @@ style="position: absolute; left: 100px; top: 130px"-->
 									begin="${status.index }" end="${status.index + 4 }">
 									<div class="col">
 										<div class="card border border-white">
-											<img src="${song.album_img} " alt="img" width="100%"
+											<img src="../resources/img/album/${song.album_img} " alt="img" width="100%"
 												height="225">
 
 											<div class="card1 mt-3 ">

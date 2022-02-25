@@ -66,18 +66,18 @@ public class AnalysisController {
 	@RequestMapping(value = "main", method = RequestMethod.GET)
 	public String main(Song song, Model model, HttpSession session) {
 		
-		//String user_id = (String)session.getAttribute("user_id");
+		String user_id = (String)session.getAttribute("user_id");
 		//로그인이 안됨
 		//System.out.println("user id : " + user_id);
 		
 		//유저 id가 aaaa인 유저를 가져옴
-		UserInfo u_info = as.selectUser("aaaa");
+		UserInfo u_info = as.selectUser(user_id);
 		
-		HashMap<String, Double> userGradeList = as.userGradeInfo("aaaa");
-		ArrayList<String> tagNameList = as.selectTop10TagByUser("aaaa");
-		ArrayList<Singer> singerList = as.selectTop3SingerByUser("aaaa");
-		ArrayList<UserLog> genreLogList = as.selectTop3GenreByUser("aaaa");
-		ArrayList<UserLog> countryLogList = as.selectTop3CountryByUser("aaaa");
+		HashMap<String, Double> userGradeList = as.userGradeInfo(user_id);
+		ArrayList<String> tagNameList = as.selectTop10TagByUser(user_id);
+		ArrayList<Singer> singerList = as.selectTop3SingerByUser(user_id);
+		ArrayList<UserLog> genreLogList = as.selectTop3GenreByUser(user_id);
+		ArrayList<UserLog> countryLogList = as.selectTop3CountryByUser(user_id);
 		
 
 		model.addAttribute("u_info", u_info);

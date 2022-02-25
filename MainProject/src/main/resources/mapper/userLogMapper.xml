@@ -71,7 +71,7 @@
 			from user_genre_log 
 			where user_id = #{user_id}
 			order by star_avg desc)
-		where rownum <=5 
+		where rownum <=6
 		]]>
 	</select>
 	

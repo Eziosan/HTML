@@ -103,7 +103,7 @@ function addSongtoList(){
 	   
 	   
 	 }
-	 function addPlayListCheck(){
+	function addPlayListCheck(){
 			 var list_name = document.getElementById("list_name").value;
 			
 			alert(document.getElementById("list_name").value);
@@ -319,8 +319,8 @@ function addSongtoList(){
         	<input type="hidden" name="star" id="star" value="">
         	<input type="hidden" name="song_id" value="${song_id }"> 
         	<input type="hidden" name="singer_id" value="${singer_id }"> 
-        	<input type="hidden" name="country" value="${Song.genre }">
-        	<input type="hidden" name="genre" value="${Song.country }">
+        	<input type="hidden" name="country" value="${Song.country }">
+        	<input type="hidden" name="genre" value="${Song.genre }">
         </form>
 	  
              
