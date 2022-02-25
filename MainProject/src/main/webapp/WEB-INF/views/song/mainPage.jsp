@@ -578,10 +578,11 @@ ${Song.lyrics }
                   
 <!--                  리스트 한칸-->
 				<c:forEach var="list" items="${listId }">
-                <div class="col-3">
-                    <div id="송리스트한칸">
- 
-                        <a href="/mylife/list/listPage?playlist_id=${list.playlist_id}">
+				
+                <div class="col-3" >
+                <a href="/mylife/list/listPage?playlist_id=${list.playlist_id}">
+                    <div id="송리스트한칸" >
+ 							
                         <span>
                         <c:forEach var="bannerimg" items="${banner }" varStatus="status">
                         	<c:forEach var="img" items="${bannerimg }" begin="0" end="3" >
@@ -589,19 +590,26 @@ ${Song.lyrics }
                         	</c:forEach>
                         </c:forEach>
                         </span>
-                        </a>
                     
                     </div>
+                    </a>
                     <div id="송리스트타이틀">
-                    <a href="/mylife/list/listPage?playlist_id=${list.playlist_id}">
+                    <a href="/mylife/list/listPage?playlist_id=${list.playlist_id}"
+                    style="text-decoration:none;
+	                        color: rgb(41, 42, 50);
+						    font-size: 15px;
+						    font-weight: 400;
+						    letter-spacing: -0.2px;
+						    white-space: nowrap;">
                     	${list.list_name}
                     </a>
                     </div>
                      <div id="송리스트좋아요">
                    		${list.user_id }
                   </div>
-                    
+                     
                   </div>
+                 
                   </c:forEach>
               </div>
             

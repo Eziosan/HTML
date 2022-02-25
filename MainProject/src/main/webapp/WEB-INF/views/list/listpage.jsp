@@ -35,8 +35,8 @@
   			return false;
   		}
   		//beforeLike에 색칠된 아이콘을 넣을 것
-  		$(".beforeLike").html("<img src='../resources/img/like2.png' id='좋아요버튼' width='15px'> 좋아요");
-  		$(".afterLike").html("<img src='../resources/img/like1.png' id='좋아요버튼' width='15px'> 좋아요");
+  		$(".beforeLike").html("<img src='../resources/img/like4.png' id='좋아요버튼' width='15px'> 좋아요");
+  		$(".afterLike").html("<img src='../resources/img/like3.png' id='좋아요버튼' width='15px'> 좋아요");
   		$(".like").toggleClass("beforeLike afterLike");
   		
   		
@@ -212,7 +212,7 @@
             <div class="dropdown">
                 <button type="button"  id="좋아요박스" onclick="listLike('${user_id}')">
                         <div id="좋아요" class="beforeLike like">
-                            <img src="../resources/img/like1.png" id="좋아요버튼" width="15px" >
+                            <img src="../resources/img/like3.png" id="좋아요버튼" width="15px" >
                             좋아요
                         </div>
                  </button>
@@ -220,19 +220,37 @@
                         <span style="font-size: 20px">
                             I
                         </span>
-                        <button type="button"  id="좋아요박스">
+                        <button type="button"  id="댓글박스">
                         <div id="좋아요">
-                             <img src="../resources/img/comment.JPG" id="좋아요버튼" width="23px">
+                             <img src="../resources/img/comment2.png" id="좋아요버튼" width="23px">
                             댓글
                         </div>
                          </button>
+                         
+                         <script>
+
+			                    $(document).ready(function(){
+			
+			                        $('#댓글박스').click(function(){
+			
+			                            var offset = $('#댓글타이틀').offset(); 
+			
+			
+			                            $('html').animate({scrollTop : offset.top}, 200);
+			
+			                        });
+			
+			                    });
+			
+			                </script>
+                         
                         <span style="font-size: 20px">
                             I
                         </span>
 
                         <button class="btn" type="button" data-bs-toggle="dropdown"  aria-expanded="false" id="좋아요박스">
                         <div id="좋아요" >
-                            <img src="../resources/img/share2.png" id="좋아요버튼" width="23px">
+                            <img src="../resources/img/share2.png" id="좋아요버튼" width="18px">
                             공유
                         </div>
                        
@@ -252,7 +270,7 @@
     <li><a class="dropdown-item" href="#">페이스북<img src="../resources/img/facebook1.png" height="23px" style="float: right"></a></li>
     <li><a class="dropdown-item" href="#">카카오톡<img src="../resources/img/kakao1.png" height="23px" style="float: right"></a></li>
     <li><a class="dropdown-item" href="#">트위터<img src="../resources/img/twitter1.png" height="23px" style="float: right"></a></li>
-    <li><a class="dropdown-item" href="#">링크복사<img src="../resources/img/share2.png" height="23px" style="float: right"></a></li>
+    <li><a class="dropdown-item" href="#">링크복사<img src="../resources/img/share3.png" height="23px" style="float: right"></a></li>
       
   </ul>
 </div>
@@ -268,16 +286,28 @@
                 </div>    
                 
                 
+                <button class="carousel-control-prev" type="button" data-bs-target="#아무거나1" data-bs-slide="prev"  id="좌버튼리스트">
+                        <img src="./resources/img/left.png" width="30px" style=" opacity: 0.5;">
+                    <span class="visually-hidden">Previous</span>
+                </button>
                 
+                
+           <div id="아무거나1" class="carousel slide" data-bs-ride="carousel" data-bs-interval="false">
+<!--                   1페이지 -->
+             <div class="carousel-item active" >
                <div id="작품란">
                     
 <!--리스트에 추가된 곡들 -->
                  <div class="row row-cols-3" id="작품란2">
                      <c:forEach var="playlist" items="${listSong}" begin="0" end="${sta+5 }" varStatus="sta">
                         <div class="col" id="작품카드" >
+                            <a href="/mylife/song/songPage?song_id=${playlist.song_id }&singer_id=${playlist.singer_id}">
                             <img src="../resources/img/album/${playlist.album_img }" id="리스트앨범커버">
+                            </a>
                             <div id="작품명">
-                                <a href="/mylife/song/songPage?song_id=${playlist.song_id }&singer_id=${playlist.singer_id}"> 
+                                <a href="/mylife/song/songPage?song_id=${playlist.song_id }&singer_id=${playlist.singer_id}" 
+                                style="text-decoration:none;
+                                color:black;"> 
                                 <!-- <a href="/mylife/song/songPage?song_id=1&singer_id=1"> -->
                                 ${playlist.song_name }
                                 </a>
@@ -296,17 +326,19 @@
                  </div>
                  
                 </div>
+               </div>
+              </div>
+                <button class="carousel-control-next" type="button" data-bs-target="#아무거나1" data-bs-slide="next"  
+        id="우버튼리스트">
+      
+                <img src="./resources/img/right.png" width="30px" style=" opacity: 0.5;">
+
+            <span class="visually-hidden">Next</span>
+          </button>
             </section>
             
             
-            <div id="버튼란">
-                <button class="더보기" id="더보기">
-                    더보기
-                     <img src="../resources/img/moredown.PNG" width="20px" >
-                 </button>
-            </div>
-            
-            
+
             <section id="댓글란1">
                 <div id="댓글란2">
                     <div id="댓글타이틀">

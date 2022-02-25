@@ -431,6 +431,7 @@
     text-overflow: ellipsis;
     overflow: hidden;
     white-space: nowrap;
+    text-decoration:none;
 }
 
 #리스트평균 {
@@ -439,6 +440,10 @@
     font-size: 13px;
     text-align: center;
     margin-top: 2px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    
 }
 
 #리스트정보 {
@@ -446,6 +451,9 @@
     font-size: 12px;
     margin-top: 3px;
     text-align: center;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
     
 }
 
@@ -1253,6 +1261,9 @@
     font-size: 15px;
     font-weight: 400;
     letter-spacing: -0.2px;
+    text-decoration:none;
+    text-overflow: ellipsis;
+    overflow: hidden;
     white-space: nowrap;
 
 }
