@@ -65,10 +65,6 @@
 							<img src="%EC%B4%88%EC%95%882.png" alt="img" width="" height="40"
 								style="margin-right: 30px">
 						</div></li>
-					<li><a href="#"
-						class="nav-link px-3 mt-3   mb-0 link-secondary">곡</a></li>
-					<li><a href="#" class="nav-link px- mt-3 link-dark">앨범</a></li>
-					<li><a href="#" class="nav-link px-3 mt-3 link-dark">가수</a></li>
 				</ul>
 
 				<form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
@@ -93,10 +89,7 @@
 						aria-labelledby="dropdownUser1">
 						<li><a class="dropdown-item" href="#" data-bs-toggle="modal"
 							data-bs-target="#로그인모달">로그인</a></li>
-						<li><a class="dropdown-item" href="#">프로필</a></li>
-						<li><a class="dropdown-item" id="openModalBtn"
-							data-bs-toggle="modal" data-bs-target="#staticBackdrop">마이
-								리스트</a></li>
+						<li><a class="dropdown-item" id="openModalBtn" href="/mylife/analysis/main">취향분석</a></li>
 						<li><hr class="dropdown-divider"></li>
 						<li><a class="dropdown-item" href="#" data-bs-toggle="modal"
 							data-bs-target="#회원가입모달">Sign in</a></li>

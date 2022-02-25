@@ -93,17 +93,17 @@ function searchCheck(){
 } 
 
 /* 리스트에 곡 추가 */
-/* function addSongtoList(){
+function addSongtoList(){
 	   var list = $(":radio[name='list']:checked");
 	   //$로 묶고 .submit하면 컨트롤러로 감
 	   
-	   alert("선택한 리스트 리스트 ID : " + list.val());
+	   //alert("선택한 리스트 리스트 ID : " + list.val());
 	   $("#playlist_id").val(list.val());
-	   alert("보낼 플레이리스트 ID" +$("#playlist_id").val());
-	   alert("보낼 곡 ID" +$("#song_id").val());
+	   //alert("보낼 플레이리스트 ID" +$("#playlist_id").val());
+	   //alert("보낼 곡 ID" +$("#song_id").val());
 	   
 	   
-	 } */
+	 } 
 	 
 	 
 	 /*
@@ -187,8 +187,7 @@ function searchCheck(){
             </c:if>
 
             <c:if test="${user_id != null }">
-            <li><a class="dropdown-item" href="#">프로필</a></li>
-            <li><a class="dropdown-item" id="openModalBtn" data-bs-toggle="modal" data-bs-target="#staticBackdrop">마이 리스트</a></li>
+            <li><a class="dropdown-item" id="openModalBtn" href="/mylife/analysis/main">취향분석</a></li>
             <li><hr class="dropdown-divider"></li>
             <li><a class="dropdown-item" href="logout?song_id=${song_id }&singer_id=${singer_id}">Sign out</a></li>
             </c:if>
@@ -235,8 +234,7 @@ function searchCheck(){
             </c:if>
 
             <c:if test="${user_id != null }">
-            <li><a class="dropdown-item" href="#">프로필</a></li>
-            <li><a class="dropdown-item" id="openModalBtn" data-bs-toggle="modal" data-bs-target="#staticBackdrop">마이 리스트</a></li>
+            <li><a class="dropdown-item" id="openModalBtn" href="/mylife/analysis/main">취향분석</a></li>
             <li><hr class="dropdown-divider"></li>
             <li><a class="dropdown-item" href="logout?song_id=${song_id }&singer_id=${singer_id}">Sign out</a></li>
             </c:if>
