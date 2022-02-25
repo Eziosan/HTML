@@ -6,7 +6,6 @@
         background: linear-gradient(
             to right,
             rgba(20, 20, 20, 1) 10%,
-
             rgba(20, 20, 20, 0.95) 40%,
             rgba(20, 20, 20, 0) 50%,
             rgba(20, 20, 20, 0.95) 60%,
@@ -20,7 +19,6 @@
      background: linear-gradient(
             to right,
             rgba(20, 20, 20, 1) 10%,
-
             rgba(20, 20, 20, 0.95) 40%,
             rgba(20, 20, 20, 0) 50%,
             rgba(20, 20, 20, 0.95) 60%,
@@ -376,7 +374,7 @@
 
 #작품들란 {
     width: 638px;
-    height: auto;
+    height: 650px;
     padding-top: 8px;
 }
 
@@ -572,7 +570,7 @@
 #평가박스 {
     margin-top: 12px;
     width: 638px;
-    height: 390px;
+    height: 220px;
         background-color: white;
     border: 1px solid;
     border-color: lightgray;
@@ -626,14 +624,14 @@
 }
 
 #분포큰칸 {
-    height: 271px;
+    height: 10px;
     padding: 8px 0px 24px;
     text-align: center;
 }
 
 #분포작은칸 {
     width:  598px;
-    height: 219px;
+    height: 100px;
     margin: 0 auto;
 
 }
@@ -657,10 +655,12 @@
     height: 42px;
     padding: 0 6px;
     float: left;
+    
 }
 
 #분포내용란 {
         height: 42px;
+    text-align: center;
     
 }
 
@@ -1060,18 +1060,19 @@
 }
 
 #태그큰창 {
-    width: 900px; 
+    width: 850px; 
     height: 300px; 
     text-align: left; 
+    margin-left: 20px; 
+    margin-right: 20px; 
+    margin-top: 40px; 
     padding-top: 35px;
     border-top: solid 1px;
     border-top-color: lightgray;
-    margin: 40px auto 0px auto;
 }
 
 #태그큰칸3 {
-        width: 900px;
-        margin : 0 auto;
+        width: 850px;
     height: 197px;
     border-bottom: 1px solid;
     border-bottom-color: lightgray;
@@ -1080,14 +1081,12 @@
 #아티스트이름 {
     
     margin-top: 5px; 
-    font-size: 18px;
+    font-size: 25px;
     text-overflow: ellipsis;
     overflow: hidden;
     white-space: nowrap;
 
 }
-
-
 
 #송리스트추가버튼 {
     background: white;
@@ -1215,7 +1214,7 @@
 
 
 #가수정보칸 {
-    width: 900px; 
+    width: 850px; 
     height: 254px;
     text-align: left; 
     margin-left: 20px; 
@@ -1223,16 +1222,9 @@
     padding-top: 8px; 
     border-bottom: 1px solid; 
     border-color: lightgray;
-    margin: 0 auto;
 }
 
-#정보칸타이틀{
-	margin-top: 5px; 
-	margin-bottom : 20px; 
-	font-size: 21px; 
-	height: 30px; 
-	
-}
+
 
 #송칸타이틀 {
     margin-top: 20px; 
@@ -1280,7 +1272,7 @@
 #송배너이미지1 {
     opacity: 0.4;
     width:800px;
-        height: 800px;
+    height: 800px;
     bottom: 100px;
     position: relative;
     border: 500px;
@@ -1302,10 +1294,10 @@
     margin: 0 auto;
 }
 
-#코노미배너 {
+#코노미배너프로필 {
     width: 400px;
-    margin-top: 185px;
-    margin-left: 30px;
+    margin-top: 90px;
+    margin-left: 28px;
     
 }
 
@@ -1315,7 +1307,7 @@
 }
 
 #코노미닉 {
-        color: #ffffff;
+        color: #494949;
     font-size: 17px;
 }
 
@@ -1342,12 +1334,50 @@
     width: 37px;
     height: 37px;
     position: relative;
-    
     bottom: 60px;
     z-index: 16;
     border-radius: 50%;
     
     
+}
+
+
+#코노미로고 {
+    width: 120px;
+    margin: 20px 30px;
+    
+}
+
+#댓글박스 {
+    width: 180px;
+    margin: 0 auto;
+    height: 38px;
+    background-color: white;
+    border: 0px;
+    color: rgb(103, 104, 106);
+    font-size: 15px;
+    margin: 2px;
+}
+
+#댓글박스:hover{
+    background-color: rgba(41, 42, 50, 0.08);
+    color: black;
+    border-radius: 3px;
+}
+
+#우버튼리스트 {
+     width: 20px; 
+    height: 30px; 
+    position: relative; 
+    top : 210px; 
+    right: 10px;
+    float: right;
+   
+}
+
+#좌버튼리스트 {
+        width: 30px; height: 30px; position: relative; 
+    top:240px;
 }
 
 #메인곡명 {

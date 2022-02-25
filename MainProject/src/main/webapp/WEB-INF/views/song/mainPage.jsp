@@ -585,7 +585,7 @@ ${Song.lyrics }
                         <span>
                         <c:forEach var="bannerimg" items="${banner }" varStatus="status">
                         	<c:forEach var="img" items="${bannerimg }" begin="0" end="3" >
-                        	<img src="../resources/img/album/${img.album_img }" id="커버${status.count }" width="86px" height="86px" style="margin: 2px; border-radius: 6px;">
+                        	<img src="../resources/img/album/${img.album_img }" id="곡커버${status.count }" width="86px" height="86px" style="margin: 2px; border-radius: 6px;">
                         	</c:forEach>
                         </c:forEach>
                         </span>
