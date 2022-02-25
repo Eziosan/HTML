@@ -50,6 +50,8 @@
 		return true;
 			
 	} 
+
+	
     
     </script>
 
@@ -274,6 +276,9 @@ style="position: absolute; left: 100px; top: 130px"-->
 
 			<c:choose>
 				<c:when test="${searchResult2.size() < 1 }">
+					<br>
+					<br>
+					<br>
 					<div class="titles fw-bold mb-4" style="font-size: 25px;">
 						가수명으로 검색 ${songCount }</div>
 					<br>
