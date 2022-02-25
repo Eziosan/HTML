@@ -25,10 +25,7 @@
 
       
     <title>홈 화면</title>
-	<!-- 리스트 해당하는 로그인, 회원가입 모달 불러오기 -->
-	<c:import url="../listmenu.jsp"></c:import>
 	
-  <body style="background-color: #f8f8f8;">
   <script type="text/javascript">
   //좋아요 누르기	
   function listLike(user_id){
@@ -107,6 +104,9 @@
   		return true;
   	}
   </script>
+  
+  	<!-- 리스트 해당하는 로그인, 회원가입 모달 불러오기 -->
+	<c:import url="../listmenu.jsp"></c:import>
   
   <header class="p-2 mb-3 fixed-top align-items-center border-bottom border-info" id="AllusicH" style="font-family: 'Noto Sans KR', sans-serif; background-color: white;">
     <div class="container-fluid w-75">

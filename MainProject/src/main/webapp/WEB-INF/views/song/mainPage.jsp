@@ -22,7 +22,7 @@
       </script>
       
       
-       <script>
+       <script type="text/javascript">
       
   $(window).scroll(function() {
 //	if($(this).scrollTop() < 200) {
@@ -57,6 +57,10 @@
       
       
 $(document).ready(function(){
+	//로고 사진 경로 맞춰줌
+		$(".logoImg").attr("src", "../resources/img/mainLogo.png");
+		//alert($("#logoImg").attr())
+	
 	  $(":radio[name='starpoint']").on('click', function(){
 		  var user_id = $("#ui").val()
 		  alert($("#ui").val());
@@ -88,22 +92,7 @@ function searchCheck(){
 		
 } 
 
-
-
-      </script>
-   <!-- CSS , JS -->
-<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-      
-    <title>곡 화면</title>
-    
-    <c:import url="../menu.jsp"></c:import>
-   
-    
-    <script type="text/javascript">
-    
-   function addSongtoList(){
+function addSongtoList(){
 	   var list = $(":radio[name='list']:checked");
 	   //$로 묶고 .submit하면 컨트롤러로 감
 	   
@@ -133,17 +122,29 @@ function searchCheck(){
 			
 		return true;
 	 }
+
+
+
+      </script>
+   <!-- CSS , JS -->
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+      
+    <title>곡 화면</title>
     
+    <c:import url="../menu.jsp"></c:import>
+   
     
-    </script>
   <style>
      @import url(//fonts.googleapis.com/earlyaccess/jejuhallasan.css);
-    
-      
       
   </style>
+ <!-- 필요 없지 않나
+ 
 </head>
     <body>
+  --> 
          
          
 <!--  200 이상일때 헤더A-->

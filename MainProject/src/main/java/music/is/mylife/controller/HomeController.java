@@ -34,6 +34,13 @@ public class HomeController {
 	@Autowired
 	ListService ls;
 
+	@RequestMapping(value = "/", method = RequestMethod.GET)
+	public String home(Locale locale) {
+		
+		
+		return "redirect:main";
+	}
+	
 	@RequestMapping(value = "backdoor", method = RequestMethod.GET)
 	public String backdoor(Locale locale) {
 		
@@ -48,7 +55,7 @@ public class HomeController {
 	 * @param model
 	 * @return main.jsp
 	 */
-	@RequestMapping(value = "/", method = RequestMethod.GET)
+	@RequestMapping(value = "main", method = RequestMethod.GET)
 	public String topSong(Song song, Model model) {
 		logger.info("노래:{}", song);
 		ArrayList<Song> songList = hs.selectTopSong(song);

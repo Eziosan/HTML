@@ -26,6 +26,7 @@
       
     <title>홈 화면</title>
 	<c:import url="menu.jsp"></c:import>
+	
 	<main style="margin-top: 130px">
 	 
 	 <header class="p-2 mb-3 fixed-top align-items-center border-bottom border-info" id="AllusicH" style="font-family: 'Noto Sans KR', sans-serif; background-color: white;">
@@ -80,7 +81,7 @@
  
         
   </header>
-	    
+	    <h1>에러 메세지</h1>
 	
 	<!-- 메인 페이지 -->
 	    
