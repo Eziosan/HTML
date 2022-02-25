@@ -22,7 +22,7 @@
       </script>
       
       
-       <script>
+       <script type="text/javascript">
       
   $(window).scroll(function() {
 //	if($(this).scrollTop() < 200) {
@@ -57,25 +57,77 @@
       
       
 $(document).ready(function(){
-	  $("#like1").on('click', function(){
-		  $("#likeDiv").html("<img onclick='result();' id='like2' src='../resources/img/like2.png' width='30px'> <span> 좋아요 </span>");
-		  location.href = "plusStar?song_id="+9;	
+	//로고 사진 경로 맞춰줌
+		$(".logoImg").attr("src", "../resources/img/mainLogo.png");
+		//alert($("#logoImg").attr())
+	
+	  $(":radio[name='starpoint']").on('click', function(){
+		  var user_id = $("#ui").val()
+		  alert($("#ui").val());
+		  var star = $(":radio[name='starpoint']:checked").val();
+
+		if(user_id ==  ''){
+			  alert("로그인이 필요한 서비스 입니다");
+
+		}else{
+			alert(star);
+			alert("user id 있어요");
+			$("#star").val(star);
+			$("#starForm").submit();
+			
+		}
+			
 	  });
 	
 	   
 });
-function result(){
-	
-		$("#likeDiv").html("<img onclick='result2();' id='like1' src='../resources/img/like1.png' width='30px'> <span> 좋아요 </span>");
-		 location.href = "minusStar?song_id="+9;
+
+function searchCheck(){
+	if($("#searchText").val().length < 1){
+		alert("글자 수는 1자 이상 입력하셔야 합니다!!")
+		return false;
+	}
+
+	return true;
+		
+} 
+
+/* 리스트에 곡 추가 */
+/* function addSongtoList(){
+	   var list = $(":radio[name='list']:checked");
+	   //$로 묶고 .submit하면 컨트롤러로 감
+	   
+	   alert("선택한 리스트 리스트 ID : " + list.val());
+	   $("#playlist_id").val(list.val());
+	   alert("보낼 플레이리스트 ID" +$("#playlist_id").val());
+	   alert("보낼 곡 ID" +$("#song_id").val());
+	   
+	   
+	 } */
+	 
+	 
+	 /*
+	 	플레이리스트 추가
+	 */
+	function addPlayListCheck(){
+			 var list_name = document.getElementById("list_name").value;
 			
-}
-function result2(){
-	  $("#like1").on('click', function(){
-		  $("#likeDiv").html("<img onclick='result();' id='like2' src='../resources/img/like2.png' width='30px'> <span> 좋아요 </span>");
-		 
-	  });
-}
+			
+			
+			//3. pw 유효성 검사
+			var list_explain = document.getElementById("list_explain").value;
+			
+			
+			
+			
+			if( list_name == '' || list_explain == ''){
+				alert("리스트의 이름, 리스트의 설명은 반드시 입력해주셔야 합니다.");
+				alert("리스트 생성 실패!");
+				return false;
+			}
+			
+		return true;
+	 }
 
 
 
@@ -90,49 +142,15 @@ function result2(){
     <c:import url="../menu.jsp"></c:import>
    
     
-    <script type="text/javascript">
-    
-   function addSongtoList(){
-	   var list = $(":radio[name='list']:checked");
-	   //$로 묶고 .submit하면 컨트롤러로 감
-	   
-	   alert("선택한 리스트 리스트 ID : " + list.val());
-	   $("#playlist_id").val(list.val());
-	   alert("보낼 플레이리스트 ID" +$("#playlist_id").val());
-	   alert("보낼 곡 ID" +$("#song_id").val());
-	   
-	   
-	 }
-	 function addPlayListCheck(){
-			 var list_name = document.getElementById("list_name").value;
-			
-			alert(document.getElementById("list_name").value);
-			
-			//3. pw 유효성 검사
-			var list_explain = document.getElementById("list_explain").value;
-			
-			alert(document.getElementById("list_explain").value);
-			
-			
-			if( list_name == '' || list_explain == ''){
-				alert("3개 다 입력해주셔야 해요");
-				alert("리스트 생성 실패!");
-				return false;
-			}
-			
-		return true;
-	 }
-    
-    
-    </script>
   <style>
      @import url(//fonts.googleapis.com/earlyaccess/jejuhallasan.css);
-    
-      
       
   </style>
+ <!-- 필요 없지 않나
+ 
 </head>
     <body>
+  --> 
          
          
 <!--  200 이상일때 헤더A-->
@@ -149,10 +167,9 @@ function result2(){
         
         </ul>
 
-        <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
-          <input type="search" class="form-control" placeholder="# 태그를 검색해보세요"  aria-label="Search" control-id="ControlID-2" 
-                 style="background: transparent; 
-                        ">
+        <form action="/mylife/search/searchResult" method="get" onsubmit="return searchCheck();" class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
+          <input type="search" id="searchText" name="searchText" class="form-control" placeholder="# 태그를 검색해보세요"  aria-label="Search" control-id="ControlID-2" 
+                 style="background: transparent;">
         </form>
 
           
@@ -296,16 +313,16 @@ function result2(){
             <label for="starpoint_8" class="label_star" title="4"><span class="blind">4점</span></label>
             <label for="starpoint_9" class="label_star" title="4.5"><span class="blind">4.5점</span></label>
             <label for="starpoint_10" class="label_star" title="5"><span class="blind">5점</span></label>
-            <input type="radio" name="starpoint" id="starpoint_1" class="star_radio">
-            <input type="radio" name="starpoint" id="starpoint_2" class="star_radio">
-            <input type="radio" name="starpoint" id="starpoint_3" class="star_radio">
-            <input type="radio" name="starpoint" id="starpoint_4" class="star_radio">
-            <input type="radio" name="starpoint" id="starpoint_5" class="star_radio">
-            <input type="radio" name="starpoint" id="starpoint_6" class="star_radio">
-            <input type="radio" name="starpoint" id="starpoint_7" class="star_radio">
-            <input type="radio" name="starpoint" id="starpoint_8" class="star_radio">
-            <input type="radio" name="starpoint" id="starpoint_9" class="star_radio">
-            <input type="radio" name="starpoint" id="starpoint_10" class="star_radio">
+            <input type="radio" name="starpoint" id="starpoint_1" class="star_radio" value="0.5">
+            <input type="radio" name="starpoint" id="starpoint_2" class="star_radio" value="1.0">
+            <input type="radio" name="starpoint" id="starpoint_3" class="star_radio" value="1.5">
+            <input type="radio" name="starpoint" id="starpoint_4" class="star_radio" value="2.0">
+            <input type="radio" name="starpoint" id="starpoint_5" class="star_radio" value="2.5">
+            <input type="radio" name="starpoint" id="starpoint_6" class="star_radio" value="3.0">
+            <input type="radio" name="starpoint" id="starpoint_7" class="star_radio" value="3.5">
+            <input type="radio" name="starpoint" id="starpoint_8" class="star_radio" value="4.0">
+            <input type="radio" name="starpoint" id="starpoint_9" class="star_radio" value="4.5">
+            <input type="radio" name="starpoint" id="starpoint_10" class="star_radio" value="5.0">
             <span class="starpoint_bg"></span>
           </div>
         </div>
@@ -314,8 +331,15 @@ function result2(){
    				
 
              </div>
-             
-            
+        <form action="starLog" method="post" id="starForm">
+        	<input type="hidden" id="ui"value="${user_id }">
+        	<input type="hidden" name="star" id="star" value="">
+        	<input type="hidden" name="song_id" value="${song_id }"> 
+        	<input type="hidden" name="singer_id" value="${singer_id }"> 
+        	<input type="hidden" name="country" value="${Song.country }">
+        	<input type="hidden" name="genre" value="${Song.genre }">
+        </form>
+	  
              
                
              <div class="col-2" >

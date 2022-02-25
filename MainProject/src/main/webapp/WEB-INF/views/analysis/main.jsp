@@ -235,13 +235,13 @@
 	<main class="배경" id="리스트배경">
 
 		<div class="container" id="konomibanner">
-			<a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
-            	<img src="https://github.com/mdo.png" alt="mdo" width="32" height="32" class="rounded-circle">
-          	</a>
-				<div id="유저 아이디">
-					<div class="fw-bold" id="평가수텍">${user_id }</div>
-
-				</div>
+			<div class="프로필 카드"
+				style="margin-right: auto; margin-left: auto; margin-top: 180px; margin-left: 20px ">
+				<img src="../resources/img/profile/basic_profile.jpg"  height="40"
+					style="border-radius: 50%">
+				<span class="작사가명" id="아티스트이름">${user_id }</span>
+			</div>
+			
 			<!--          
 margin-top: 100px;
     width: 638px;
@@ -301,7 +301,7 @@ margin-top: 100px;
 
 					</div>
 					<div id="분포작은칸">
-						
+
 						<div id="분포도"></div>
 						<div id="분포내용란" style="margin: 0 atuo;">
 							<div id="분포내용">
@@ -386,9 +386,9 @@ margin-top: 100px;
 
 						<div id="아무거나1" class="carousel slide" data-bs-ride="carousel"
 							data-bs-interval="false">
-							<c:forEach var="nomean" items="${singerList }" 
-								step="3"  varStatus="status">
-								
+							<c:forEach var="nomean" items="${singerList }" step="3"
+								varStatus="status">
+
 								<c:choose>
 									<c:when test="${status.index == 0 }">
 										<div class="carousel-item active">
@@ -396,117 +396,120 @@ margin-top: 100px;
 
 									<c:when test="${status.index != 0 }">
 										<div class="carousel-item">
-												<!--          row-cols-1  row-cols-sm-2 row-cols-md-3 g-3 -->
+											<!--          row-cols-1  row-cols-sm-2 row-cols-md-3 g-3 -->
 									</c:when>
 									<c:otherwise>
 									</c:otherwise>
 								</c:choose>
-											
-									<div id="캐러셀한칸">
-										<c:forEach var="singer" items="${singerList }" begin="${status.index }" end="${status.index + 2 }">
-											<div id="가수한칸">
-		
-												<span id="가수프로필칸"> <img src="profile2.jpg" id="선호가수프로필">
-												</span>
-		
-												<div id="가수정보란">
-													<div id="선호가수명">
-														${singer.singer_name } <span id="선호가수점수"> 87점 • 12편 </span>
-														<div id="선호가수앨범">Love Poem</div>
-													</div>
+
+								<div id="캐러셀한칸">
+									<c:forEach var="singer" items="${singerList }"
+										begin="${status.index }" end="${status.index + 2 }">
+										<div id="가수한칸">
+
+											<span id="가수프로필칸"> 
+												<img src="../resources/img/profile/basic_profile.jpg" id="선호가수프로필" width="80px" style="border-radius: 50%">
+											</span>
+
+											<div id="가수정보란">
+												<div id="선호가수명">
+													${singer.singer_name } <span id="선호가수점수"> 87점 • 12편
+													</span>
+													<div id="선호가수앨범">Love Poem</div>
 												</div>
 											</div>
-										</c:forEach>
-									</div>
+										</div>
+									</c:forEach>
 								</div>
+						</div>
+						</c:forEach>
+						<!-- slide 닫는 태그 -->
+					</div>
+					<button class="carousel-control-next" type="button"
+						data-bs-target="#아무거나1" data-bs-slide="next" id="우버튼취향">
+						<img src="../resources/img/오2.png" width="15px"> <span
+							class="visually-hidden">Next</span>
+					</button>
+				</div>
+			</div>
+
+
+			<div id="국가큰칸">
+				<div id="평가수">
+					<div class="fw-bold" id="평가수텍">선호국가</div>
+				</div>
+				<div id="국가큰칸2">
+					<div id="국가칸">
+						<div id="국가탑">
+							<c:forEach var="countryLog" items="${countryLogList}" begin="0"
+								end="2">
+								<div id="국가탑1">
+									<div id="국가탑나라">${countryLog.country }</div>
+									<div id="국가탑정보">${countryLog.all_star }점•
+										${countryLog.grade_count }곡</div>
+								</div>
+
 							</c:forEach>
-							<!-- slide 닫는 태그 -->
-						</div>
-						<button class="carousel-control-next" type="button"
-							data-bs-target="#아무거나1" data-bs-slide="next" id="우버튼취향">
-							<img src="../resources/img/오2.png" width="15px"> <span
-								class="visually-hidden">Next</span>
-						</button>
-					</div>
-				</div>
-
-
-				<div id="국가큰칸">
-					<div id="평가수">
-						<div class="fw-bold" id="평가수텍">선호국가</div>
-					</div>
-					<div id="국가큰칸2">
-						<div id="국가칸">
-							<div id="국가탑">
-								<c:forEach var="countryLog" items="${countryLogList}" begin="0"
-									end="2">
-									<div id="국가탑1">
-										<div id="국가탑나라">${countryLog.country }</div>
-										<div id="국가탑정보">${countryLog.all_star }점•
-											${countryLog.grade_count }곡</div>
-									</div>
-
-								</c:forEach>
-
-							</div>
-							<ul id="국가밑큰">
-								<c:forEach var="countryLog" items="${countryLogList}" begin="3"
-									end="5">
-									<li id="국가밑작">${countryLog.country }<span id="국밑내용">
-											${countryLog.all_star }점 • ${countryLog.grade_count }곡 </span>
-									</li>
-
-								</c:forEach>
-
-							</ul>
-
 
 						</div>
+						<ul id="국가밑큰">
+							<c:forEach var="countryLog" items="${countryLogList}" begin="3"
+								end="5">
+								<li id="국가밑작">${countryLog.country }<span id="국밑내용">
+										${countryLog.all_star }점 • ${countryLog.grade_count }곡 </span>
+								</li>
+
+							</c:forEach>
+
+						</ul>
 
 
 					</div>
+
 
 				</div>
 
+			</div>
 
-				<div id="국가큰칸">
-					<div id="평가수">
-						<div class="fw-bold" id="평가수텍">선호장르</div>
-					</div>
-					<div id="국가큰칸2">
-						<!--  
+
+			<div id="국가큰칸">
+				<div id="평가수">
+					<div class="fw-bold" id="평가수텍">선호장르</div>
+				</div>
+				<div id="국가큰칸2">
+					<!--  
 							<div id="장르코멘트">발라드충이군요</div>
 						
 						-->
-						<div id="국가칸">
-							<div id="국가탑">
-								<c:forEach var="genreLog" items="${genreLogList}" begin="0"
-									end="2">
-									<div id="국가탑1">
-										<div id="국가탑나라">${genreLog.genre }</div>
-										<div id="국가탑정보">${genreLog.all_star }점•
-											${genreLog.grade_count}곡</div>
-									</div>
-								</c:forEach>
-
-							</div>
-							<ul id="국가밑큰">
-								<c:forEach var="genreLog" items="${genreLogList}" begin="3"
-									end="5">
-									<li id="국가밑작">${genreLog.genre }<span id="국밑내용">
-											${genreLog.all_star }점 • ${genreLog.grade_count}곡 </span>
-									</li>
-								</c:forEach>
-							</ul>
-
+					<div id="국가칸">
+						<div id="국가탑">
+							<c:forEach var="genreLog" items="${genreLogList}" begin="0"
+								end="2">
+								<div id="국가탑1">
+									<div id="국가탑나라">${genreLog.genre }</div>
+									<div id="국가탑정보">${genreLog.all_star }점•
+										${genreLog.grade_count}곡</div>
+								</div>
+							</c:forEach>
 
 						</div>
+						<ul id="국가밑큰">
+							<c:forEach var="genreLog" items="${genreLogList}" begin="3"
+								end="5">
+								<li id="국가밑작">${genreLog.genre }<span id="국밑내용">
+										${genreLog.all_star }점 • ${genreLog.grade_count}곡 </span>
+								</li>
+							</c:forEach>
+						</ul>
 
 
 					</div>
 
+
 				</div>
+
 			</div>
+		</div>
 		</div>
 
 	</main>

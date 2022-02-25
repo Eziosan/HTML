@@ -239,12 +239,16 @@ public class SongService {
 	public void recordUserLog(UserLog ul) {
 		//중복된 곡이 있을 때
 		if(uld.songStarCheck(ul) > 0) {
-			//user_song_log 업데이트
-			uld.updateSongLog(ul);
-			
 			//all_star는 신규별점 - 기존 별점 차이만큼, grade_count는 안올라가게
 			double star = ul.getStar() - uld.selectSongStarById(ul);
 			ul.setAll_star(star);
+			
+			System.out.println("별점 : " + star);
+			System.out.println("ul 별점 : " + ul.getStar());
+			System.out.println("기존별점 : " + uld.selectSongStarById(ul));
+			
+			//user_song_log 업데이트
+			uld.updateSongLog(ul);
 			
 			tagLogInsert(ul);
 			singerLogInsert(ul);

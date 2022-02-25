@@ -25,10 +25,7 @@
 
       
     <title>홈 화면</title>
-	<!-- 리스트 해당하는 로그인, 회원가입 모달 불러오기 -->
-	<c:import url="../listmenu.jsp"></c:import>
 	
-  <body style="background-color: #f8f8f8;">
   <script type="text/javascript">
   //좋아요 누르기	
   function listLike(user_id){
@@ -48,7 +45,7 @@
   		
   		if($(".like").hasClass("afterLike")){
   			alert('좋아요를 하셨습니다');
-  			alert($("#playlist_id").val());
+  			//alert($("#playlist_id").val());
   			list_like = 1;
 
   		} else if($(".like").hasClass("beforeLike")){
@@ -64,14 +61,14 @@
 					"list_like" : list_like
 				},
 				success : function(data, textStatus, xhr){
-					alert("ajax 성공");
-					alert(data);
+					//alert("ajax 성공");
+					//alert(data);
 					//별점 갱신
 					$(".likeCount").text(data);
 				},
 
 				error : function(request, status, error){
-					alert("error 발생!")
+					//alert("error 발생!")
 				}
 
   	  		});
@@ -107,6 +104,9 @@
   		return true;
   	}
   </script>
+  
+  	<!-- 리스트 해당하는 로그인, 회원가입 모달 불러오기 -->
+	<c:import url="../listmenu.jsp"></c:import>
   
   <header class="p-2 mb-3 fixed-top align-items-center border-bottom border-info" id="AllusicH" style="font-family: 'Noto Sans KR', sans-serif; background-color: white;">
     <div class="container-fluid w-75">

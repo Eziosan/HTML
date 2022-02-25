@@ -120,8 +120,10 @@
     
       
       </style>
+      
   </head>
-  <body>
+  
+    <body style="background-color: #f8f8f8;">
   
      <!-- 로그인모달  -->
     <div class="modal fade" id="로그인모달" tabindex="-1" aria-labelledby="exampleModalCenterTitle" style="display: none; font-family: 'Noto Sans KR', sans-serif;" aria-hidden="true" >

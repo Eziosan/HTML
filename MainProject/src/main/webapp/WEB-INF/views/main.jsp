@@ -26,6 +26,7 @@
       
     <title>홈 화면</title>
 	<c:import url="menu.jsp"></c:import>
+	
 	<main style="margin-top: 130px">
 	 
 	 <header class="p-2 mb-3 fixed-top align-items-center border-bottom border-info" id="AllusicH" style="font-family: 'Noto Sans KR', sans-serif; background-color: white;">
@@ -69,6 +70,7 @@
             <c:if test="${user_id != null }">
             <li><a class="dropdown-item" href="#">프로필</a></li>
             <li><a class="dropdown-item" id="openModalBtn" data-bs-toggle="modal" data-bs-target="#staticBackdrop">마이 리스트</a></li>
+            <li><a class="dropdown-item" id="openModalBtn" href="/mylife/analysis/main">취향분석</a></li>
             <li><hr class="dropdown-divider"></li>
             <li><a class="dropdown-item" href="logout">Sign out</a></li>
             </c:if>
@@ -80,7 +82,7 @@
  
         
   </header>
-	    
+	    <h1>로그인/회원가입 결과?</h1>
 	
 	<!-- 메인 페이지 -->
 	    
@@ -201,8 +203,8 @@
 	        
 	        
 	    <div class="titles fw-bold mb-4" style="font-size: 25px;">
-	        지금 인기있는 곡
-	        </div>
+	        최근 인기 장르 - 발라드
+	    </div>
 	        
 	  
 	        

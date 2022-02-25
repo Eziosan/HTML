@@ -10,11 +10,11 @@ public interface UserLogMapper {
 	public Double selectAllStarCountByUser(String user_id);
 	
 	//한 유저가 지금까지 별점을 매긴 곡 수
-	public double selectSongCountByUser(String user_id);
+	public Double selectSongCountByUser(String user_id);
 	//한 유저가 지금까지 매긴 별점의 총합
-	public double selectAllStarSumByUser(String user_id);
+	public Double selectAllStarSumByUser(String user_id);
 	//한 유저가 가장 많이 준 별점
-	public double selectTopStarByUser(String user_id);
+	public Double selectTopStarByUser(String user_id);
 	
 	//특정 유저의 Top10 태그를 불러옴
 	public ArrayList<Tag> selectTop10TagByUser(String user_id);
@@ -30,17 +30,17 @@ public interface UserLogMapper {
 	 * 2. 로그 입력
 	 */
 	//원래 해당 곡의 별점을 출력 
-	public double selectSongStarById(UserLog ul);
+	public Double selectSongStarById(UserLog ul);
 	//해당 곡에 별점을 줬는지 확인
-	public int songStarCheck(UserLog ul);
+	public Integer songStarCheck(UserLog ul);
 	//해당 태그에 별점을 줬는지 확인
-	public int tagStarCheck(UserLog ul);
+	public Integer tagStarCheck(UserLog ul);
 	//해당 가수에 별점을 줬는지 확인
-	public int singerStarCheck(UserLog ul);
+	public Integer singerStarCheck(UserLog ul);
 	//해당 국가에 별점을 줬는지 확인
-	public int countryStarCheck(UserLog ul);
+	public Integer countryStarCheck(UserLog ul);
 	//해당 장르에 별점을 줬는지 확인
-	public int genreStarCheck(UserLog ul);
+	public Integer genreStarCheck(UserLog ul);
 	
 	
 	//해당 곡에 별점을 준 적이 없다면 insert
