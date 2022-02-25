@@ -80,7 +80,6 @@
  
         
   </header>
-	    <h1>로그인/회원가입 결과?</h1>
 	
 	<!-- 메인 페이지 -->
 	    
@@ -201,7 +200,7 @@
 	        
 	        
 	    <div class="titles fw-bold mb-4" style="font-size: 25px;">
-	        최근 인기 장르 - 발라드
+	        발라드 인기곡
 	    </div>
 	        
 	  
