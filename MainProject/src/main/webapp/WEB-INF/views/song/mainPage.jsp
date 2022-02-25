@@ -209,7 +209,7 @@ function addSongtoList(){
         </a>
 
         <ul class="nav col-12 col-lg-auto me-lg-auto mlmb-2 justify-content-center mb-md-0">
-          <li><div class="nav-link px-2 w-100" ><img src="../resources/img/초안2.png" alt="img" width="" height="40" style="margin-right: 30px"> </div></li>
+          <li><a href="/mylife/main" ><div class="nav-link px-2 w-100" ><img src="../resources/img/초안2.png" alt="img" width="" height="40" style="margin-right: 30px"> </div></a></li>
 
         </ul>
 
@@ -327,14 +327,6 @@ function addSongtoList(){
    				
 
              </div>
-        <form action="starLog" method="post" id="starForm">
-        	<input type="hidden" id="ui"value="${user_id }">
-        	<input type="hidden" name="star" id="star" value="">
-        	<input type="hidden" name="song_id" value="${song_id }"> 
-        	<input type="hidden" name="singer_id" value="${singer_id }"> 
-        	<input type="hidden" name="country" value="${Song.country }">
-        	<input type="hidden" name="genre" value="${Song.genre }">
-        </form>
 	  
              
                
@@ -355,6 +347,14 @@ function addSongtoList(){
     </div>        
  </div>    
 
+        <form action="starLog" method="post" id="starForm">
+        	<input type="hidden" id="ui"value="${user_id }">
+        	<input type="hidden" name="star" id="star" value="">
+        	<input type="hidden" name="song_id" value="${song_id }"> 
+        	<input type="hidden" name="singer_id" value="${singer_id }"> 
+        	<input type="hidden" name="country" value="${Song.country }">
+        	<input type="hidden" name="genre" value="${Song.genre }">
+        </form>
 
 
 
