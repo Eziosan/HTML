@@ -61,7 +61,53 @@ public class SongController {
 		
 		ss.recordUserLog(ul);
 		
-		return "analysis/analysisPage";
+		
+		
+		
+		Song song = new Song();
+		song.setSinger_id(ul.getSinger_id());
+		song.setSong_id(ul.getSong_id());
+		
+		//전체 곡 검색해 해당 곡 띄우기
+		Song selectSong = ss.selectAllSong(song);
+
+		double avg = ss.selectStars(song.getSong_id());
+		
+		selectSong.setAvg(avg);
+		
+		
+		if(user_id!=null) {
+			ArrayList<Playlist> playlist = ss.selectList(user_id);
+			model.addAttribute("playlist", playlist);
+			
+		}
+		
+		ArrayList<Tag> tag = ss.selectTag(song.getSong_id());
+		
+		 // 해당 곡 리스트 부르기
+		 ArrayList<Playlist> listId = ls.selectListId(song.getSong_id());
+		 ArrayList<ArrayList<Playlist>> banner = new ArrayList<ArrayList<Playlist>>();
+		 
+		 model.addAttribute("singer_id", song.getSinger_id()); 
+		 model.addAttribute("song_id", song.getSong_id()); 
+		 model.addAttribute("Song", selectSong);
+		 model.addAttribute("Tag", tag);
+		 
+		 // 플레이리스트아이디, 배너 사진들
+		 for(Playlist info : listId) {
+			 info.getPlaylist_id();
+			banner.add(ls.listBanner(info.getPlaylist_id()));
+		 }
+		 	//리스트 아이디
+		 	model.addAttribute("listId", listId);
+		 
+			//배너 사진
+			model.addAttribute("banner", banner);
+		
+			//곡 아이디 세션에 담기
+			session.setAttribute("song_id", song.getSong_id());
+		
+		return "song/mainPage";
 	}
 
 	

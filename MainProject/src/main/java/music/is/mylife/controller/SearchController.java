@@ -33,13 +33,14 @@ public class SearchController {
 	public String search(String searchText, Model model) {
 		ArrayList<Song> searchResult1 = sServ.searchSongsBySongName(searchText);
 		ArrayList<Song> searchResult2 = sServ.searchSongsBySingerName(searchText);
-
+		
 		model.addAttribute("searchText", searchText);
 		// 곡명으로 검색 검색 결과
 		model.addAttribute("searchResult1", searchResult1);
 		// 가수명으로 검색
 		model.addAttribute("searchResult2", searchResult2);
 
+		System.out.println(searchText);
 		for (Song s : searchResult1) {
 			System.out.println(s);
 		}
@@ -61,6 +62,8 @@ public class SearchController {
 			session.setAttribute("user_id", user_id);
 		}
 		
+		System.out.println("searchText : " + searchText);
+		
 
 		return "redirect:searchResult?searchText=" + searchText;
 	}
@@ -74,6 +77,7 @@ public class SearchController {
 		}else {
 			result = "redirect:searchResult?searchText=" + searchText;
 		}
+		System.out.println("searchText : " + searchText);
 		
 		return result;
 	}
@@ -82,6 +86,7 @@ public class SearchController {
 	public String logout(HttpSession session, Model model, String searchText) {
 		session.invalidate();
 		
+		System.out.println("searchText : " + searchText);
 		//정보를 넘겨주기만 하면 됨
 
 		return "redirect:searchResult?searchText=" + searchText;

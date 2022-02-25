@@ -68,8 +68,11 @@
             </c:if>
             
             <c:if test="${user_id != null }">
+<<<<<<< HEAD
             <li><a class="dropdown-item" href="#">프로필</a></li>
             <li><a class="dropdown-item" id="openModalBtn" data-bs-toggle="modal" data-bs-target="#staticBackdrop">마이 리스트</a></li>
+=======
+>>>>>>> master2
             <li><a class="dropdown-item" id="openModalBtn" href="/mylife/analysis/main">취향분석</a></li>
             <li><hr class="dropdown-divider"></li>
             <li><a class="dropdown-item" href="logout">Sign out</a></li>
@@ -82,7 +85,10 @@
  
         
   </header>
+<<<<<<< HEAD
 	    <h1>로그인/회원가입 결과?</h1>
+=======
+>>>>>>> master2
 	
 	<!-- 메인 페이지 -->
 	    
@@ -203,7 +209,11 @@
 	        
 	        
 	    <div class="titles fw-bold mb-4" style="font-size: 25px;">
+<<<<<<< HEAD
 	        최근 인기 장르 - 발라드
+=======
+	        발라드 인기곡
+>>>>>>> master2
 	    </div>
 	        
 	  

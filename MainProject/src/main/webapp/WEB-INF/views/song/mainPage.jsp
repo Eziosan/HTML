@@ -63,7 +63,10 @@ $(document).ready(function(){
 	
 	  $(":radio[name='starpoint']").on('click', function(){
 		  var user_id = $("#ui").val()
+<<<<<<< HEAD
 		  alert($("#ui").val());
+=======
+>>>>>>> master2
 		  var star = $(":radio[name='starpoint']:checked").val();
 
 		if(user_id ==  ''){
@@ -71,7 +74,10 @@ $(document).ready(function(){
 
 		}else{
 			alert(star);
+<<<<<<< HEAD
 			alert("user id 있어요");
+=======
+>>>>>>> master2
 			$("#star").val(star);
 			$("#starForm").submit();
 			
@@ -93,17 +99,25 @@ function searchCheck(){
 } 
 
 /* 리스트에 곡 추가 */
+<<<<<<< HEAD
 /* function addSongtoList(){
+=======
+function addSongtoList(){
+>>>>>>> master2
 	   var list = $(":radio[name='list']:checked");
 	   //$로 묶고 .submit하면 컨트롤러로 감
 	   
-	   alert("선택한 리스트 리스트 ID : " + list.val());
+	   //alert("선택한 리스트 리스트 ID : " + list.val());
 	   $("#playlist_id").val(list.val());
-	   alert("보낼 플레이리스트 ID" +$("#playlist_id").val());
-	   alert("보낼 곡 ID" +$("#song_id").val());
+	   //alert("보낼 플레이리스트 ID" +$("#playlist_id").val());
+	   //alert("보낼 곡 ID" +$("#song_id").val());
 	   
 	   
+<<<<<<< HEAD
 	 } */
+=======
+	 } 
+>>>>>>> master2
 	 
 	 
 	 /*
@@ -187,8 +201,7 @@ function searchCheck(){
             </c:if>
 
             <c:if test="${user_id != null }">
-            <li><a class="dropdown-item" href="#">프로필</a></li>
-            <li><a class="dropdown-item" id="openModalBtn" data-bs-toggle="modal" data-bs-target="#staticBackdrop">마이 리스트</a></li>
+            <li><a class="dropdown-item" id="openModalBtn" href="/mylife/analysis/main">취향분석</a></li>
             <li><hr class="dropdown-divider"></li>
             <li><a class="dropdown-item" href="logout?song_id=${song_id }&singer_id=${singer_id}">Sign out</a></li>
             </c:if>
@@ -212,9 +225,14 @@ function searchCheck(){
         </a>
 
         <ul class="nav col-12 col-lg-auto me-lg-auto mlmb-2 justify-content-center mb-md-0">
+<<<<<<< HEAD
         
           <li><a href="/mylife/main" ><div class="nav-link px-2 w-100" ><img src="../resources/img/초안2.png" alt="img" width="" height="40" style="margin-right: 30px"> </div></a></li>
          
+=======
+          <li><a href="/mylife/main" ><div class="nav-link px-2 w-100" ><img src="../resources/img/초안2.png" alt="img" width="" height="40" style="margin-right: 30px"> </div></a></li>
+
+>>>>>>> master2
         </ul>
 
         <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
@@ -236,8 +254,7 @@ function searchCheck(){
             </c:if>
 
             <c:if test="${user_id != null }">
-            <li><a class="dropdown-item" href="#">프로필</a></li>
-            <li><a class="dropdown-item" id="openModalBtn" data-bs-toggle="modal" data-bs-target="#staticBackdrop">마이 리스트</a></li>
+            <li><a class="dropdown-item" id="openModalBtn" href="/mylife/analysis/main">취향분석</a></li>
             <li><hr class="dropdown-divider"></li>
             <li><a class="dropdown-item" href="logout?song_id=${song_id }&singer_id=${singer_id}">Sign out</a></li>
             </c:if>
@@ -320,6 +337,7 @@ function searchCheck(){
    				
 
              </div>
+<<<<<<< HEAD
         <form action="starLog" method="post" id="starForm">
         	<input type="hidden" id="ui"value="${user_id }">
         	<input type="hidden" name="star" id="star" value="">
@@ -328,6 +346,8 @@ function searchCheck(){
         	<input type="hidden" name="country" value="${Song.country }">
         	<input type="hidden" name="genre" value="${Song.genre }">
         </form>
+=======
+>>>>>>> master2
 	  
              
                
@@ -348,6 +368,14 @@ function searchCheck(){
     </div>        
  </div>    
 
+        <form action="starLog" method="post" id="starForm">
+        	<input type="hidden" id="ui"value="${user_id }">
+        	<input type="hidden" name="star" id="star" value="">
+        	<input type="hidden" name="song_id" value="${song_id }"> 
+        	<input type="hidden" name="singer_id" value="${singer_id }"> 
+        	<input type="hidden" name="country" value="${Song.country }">
+        	<input type="hidden" name="genre" value="${Song.genre }">
+        </form>
 
 
 
