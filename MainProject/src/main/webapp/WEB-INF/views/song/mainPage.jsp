@@ -444,12 +444,14 @@ function addSongtoList(){
     
     <div class="main1 mt-3 m-auto" style="width: 960px; height: 1000px; background-color: rgba(248,248,248); ">
 
-        <div class="컨텐츠 핑크 border" style="width: 960px; height: auto; border-radius: 10px; float: left; background-color:  white; font-family: 'Noto Sans KR', sans-serif; font-size: 0px; padding-bottom: 40px;">
+        <div class="컨텐츠 핑크 border" 
+        style="width: 900px; height: auto; border-radius: 10px; float: left; 
+        background-color:  white; font-family: 'Noto Sans KR', sans-serif; font-size: 0px; padding-bottom: 40px;">
             
 <!--            가수 -->
             <div class="가수" id="가수정보칸" style="height: 200px;">
                 
-                <div class="가수 fw-bold"  id="정보칸타이틀">
+                <div class="가수 fw-bold"  id="송칸타이틀">
                     가수
                 </div>
                 <div class="row 가수 프로필 mt-2" style="height: 150px">
@@ -470,7 +472,7 @@ function addSongtoList(){
            <div class="작사" 
                 id="가수정보칸" style="height: 200px;">
                 
-                <div class="작사 fw-bold" id="정보칸타이틀">
+                <div class="작사 fw-bold" id="송칸타이틀">
                     작사
                 </div>
                 <div class="row 작사 프로필" style="height: 150px">
@@ -491,7 +493,7 @@ function addSongtoList(){
             <div class="작곡" 
             id="가수정보칸" style="height: 200px;">
                 
-                <div class="작곡 fw-bold" id="정보칸타이틀">
+                <div class="작곡 fw-bold" id="송칸타이틀">
                     작곡
                 </div>
                 <div class="row 작사 프로필 mt-2" style="height: 150px">
@@ -542,7 +544,7 @@ ${Song.lyrics }
   <!--           태그 -->
             <div id="태그큰창">
                 
-                <div class="태 fw-bold" style="margin-left: margin-top: 20px; font-size: 22px; height: 50px; ">
+                <div class="태 fw-bold" style="margin-left: margin-top: 5px; font-size: 22px; height: 50px; ">
                 태그
                    
                 </div>
@@ -569,8 +571,8 @@ ${Song.lyrics }
             </div>
 
 <!--            리스트 목록 -->
-         <div class="송리스트목록" id="가수정보칸" style="height: 350px; border-bottom: none;">
-             <div class="태그 fw-bold" style="margin-top: 20px; font-size: 22px; height: 50px; ">
+         <div class="송리스트목록" id="가수정보칸" style="height: 300px; border-bottom: none;">
+             <div class="태그 fw-bold" style="margin-top: 5px; font-size: 22px; height: 50px; ">
                 리스트
                  
              </div>

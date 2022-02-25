@@ -1069,14 +1069,13 @@
 
 #태그큰창 {
     width: 850px; 
-    height: 300px; 
+    height: 260px; 
     text-align: left; 
-    margin-left: 20px; 
-    margin-right: 20px; 
-    margin-top: 40px; 
-    padding-top: 35px;
+    margin: 40px auto 0 auto; 
+    padding-top: 10px;
     border-top: solid 1px;
     border-top-color: lightgray;
+    
 }
 
 #태그큰칸3 {
@@ -1223,10 +1222,9 @@
 
 #가수정보칸 {
     width: 850px; 
-    height: 254px;
+    height: 275px;
     text-align: left; 
-    margin-left: 20px; 
-    margin-right: 20px; 
+    margin : 0 auto;
     padding-top: 8px; 
     border-bottom: 1px solid; 
     border-color: lightgray;
@@ -1235,7 +1233,7 @@
 
 
 #송칸타이틀 {
-    margin-top: 20px; 
+    margin-top: 10px; 
     font-size: 22px; 
     height: 50px;
 }
