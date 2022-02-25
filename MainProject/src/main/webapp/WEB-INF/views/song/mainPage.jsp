@@ -63,7 +63,6 @@ $(document).ready(function(){
 	
 	  $(":radio[name='starpoint']").on('click', function(){
 		  var user_id = $("#ui").val()
-		  alert($("#ui").val());
 		  var star = $(":radio[name='starpoint']:checked").val();
 
 		if(user_id ==  ''){
@@ -71,7 +70,6 @@ $(document).ready(function(){
 
 		}else{
 			alert(star);
-			alert("user id 있어요");
 			$("#star").val(star);
 			$("#starForm").submit();
 			
