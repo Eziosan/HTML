@@ -70,6 +70,7 @@
             <c:if test="${user_id != null }">
             <li><a class="dropdown-item" href="#">프로필</a></li>
             <li><a class="dropdown-item" id="openModalBtn" data-bs-toggle="modal" data-bs-target="#staticBackdrop">마이 리스트</a></li>
+            <li><a class="dropdown-item" id="openModalBtn" href="/mylife/analysis/main">취향분석</a></li>
             <li><hr class="dropdown-divider"></li>
             <li><a class="dropdown-item" href="logout">Sign out</a></li>
             </c:if>
@@ -81,7 +82,7 @@
  
         
   </header>
-	    <h1>에러 메세지</h1>
+	    <h1>로그인/회원가입 결과?</h1>
 	
 	<!-- 메인 페이지 -->
 	    
