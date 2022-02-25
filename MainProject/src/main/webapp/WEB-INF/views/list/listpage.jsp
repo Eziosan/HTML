@@ -45,7 +45,7 @@
   		
   		if($(".like").hasClass("afterLike")){
   			alert('좋아요를 하셨습니다');
-  			alert($("#playlist_id").val());
+  			//alert($("#playlist_id").val());
   			list_like = 1;
 
   		} else if($(".like").hasClass("beforeLike")){
@@ -61,14 +61,14 @@
 					"list_like" : list_like
 				},
 				success : function(data, textStatus, xhr){
-					alert("ajax 성공");
-					alert(data);
+					//alert("ajax 성공");
+					//alert(data);
 					//별점 갱신
 					$(".likeCount").text(data);
 				},
 
 				error : function(request, status, error){
-					alert("error 발생!")
+					//alert("error 발생!")
 				}
 
   	  		});

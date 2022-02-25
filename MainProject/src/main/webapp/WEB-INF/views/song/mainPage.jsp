@@ -92,7 +92,8 @@ function searchCheck(){
 		
 } 
 
-function addSongtoList(){
+/* 리스트에 곡 추가 */
+/* function addSongtoList(){
 	   var list = $(":radio[name='list']:checked");
 	   //$로 묶고 .submit하면 컨트롤러로 감
 	   
@@ -102,20 +103,25 @@ function addSongtoList(){
 	   alert("보낼 곡 ID" +$("#song_id").val());
 	   
 	   
-	 }
+	 } */
+	 
+	 
+	 /*
+	 	플레이리스트 추가
+	 */
 	function addPlayListCheck(){
 			 var list_name = document.getElementById("list_name").value;
 			
-			alert(document.getElementById("list_name").value);
+			
 			
 			//3. pw 유효성 검사
 			var list_explain = document.getElementById("list_explain").value;
 			
-			alert(document.getElementById("list_explain").value);
+			
 			
 			
 			if( list_name == '' || list_explain == ''){
-				alert("3개 다 입력해주셔야 해요");
+				alert("리스트의 이름, 리스트의 설명은 반드시 입력해주셔야 합니다.");
 				alert("리스트 생성 실패!");
 				return false;
 			}
