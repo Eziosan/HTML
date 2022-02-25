@@ -51,7 +51,6 @@ function result(){
 	<h1> 리스트 페이지 </h1>
 	
 	<%-- <c:forEach var="song" items="${songList }" begin="0" end="4"> --%>
-	dsfdsf
 	
 	<c:forEach var="plist" items="${playlist }">
 		<h6><a href="insertSong?plist=${plist.list_name}"><h6>${plist.list_name }</h6> </a></h6>

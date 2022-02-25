@@ -128,7 +128,7 @@
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content" style="display: flex; justify-content: center; align-items: center; padding: 32px 0px 48px; width: 375px; height: 545px; border-radius: 3%">
         <header>
-        <img src="./resources/img/mainLogo.png" width="150px" >
+        	<img src="./resources/img/mainLogo.png" width="150px" class="logoImg" >
         </header>
         
         <h2 class="로그인">로그인</h2>
@@ -221,7 +221,7 @@
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content" style="display: flex; justify-content: center; align-items: center; padding: 32px 0px 48px; width: 375px; height: 580px; border-radius: 3%">
         <header>
-        <img src="./resources/img/mainLogo.png" width="150px" >
+        <img src="./resources/img/mainLogo.png" width="150px" class="logoImg" >
         </header>
         
         <div class="회원가입란" style="margin: 30px 0px 0px;">

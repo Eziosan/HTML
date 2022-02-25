@@ -35,9 +35,16 @@ public class HomeController {
 	ListService ls;
 
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String main(Locale locale) {
+	public String home(Locale locale) {
 		
-
+		
+		return "redirect:main";
+	}
+	
+	@RequestMapping(value = "backdoor", method = RequestMethod.GET)
+	public String backdoor(Locale locale) {
+		
+		
 		return "home";
 	}
 
@@ -54,7 +61,7 @@ public class HomeController {
 		ArrayList<Song> songList = hs.selectTopSong(song);
 		logger.info("SongList:{}", songList);
 
-		ArrayList<Song> likeSong = hs.selectSongByGenre("발라드");
+		ArrayList<Song> likeSong = hs.selectSongByGenre("록/메탈");
 		logger.info("SongLike: {}", likeSong);
 
 		model.addAttribute("songList", songList);

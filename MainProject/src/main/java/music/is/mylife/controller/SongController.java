@@ -59,7 +59,7 @@ public class SongController {
 		
 		System.out.println("유저로그 :" + ul);
 		
-		//ss.recordUserLog(ul);
+		ss.recordUserLog(ul);
 		
 		return "analysis/analysisPage";
 	}
@@ -151,7 +151,7 @@ public class SongController {
 		int playlist_id = ss.selectPlayListId(playlist_name);
 		
 		logger.debug("playlist_id : {}", playlist_id);
-		logger.debug("playlist 객체 출력 : {}", playlist_name) ; // nullpointexception 뜹니다.
+		logger.debug("playlist 객체 출력 : {}", playlist_name) ; 
 		logger.debug("user_id 출력 : {}", user_id) ;
 		logger.debug("song_id : {}", Song_id);
 		
@@ -173,7 +173,7 @@ public class SongController {
 		// 모델에 넣어서 보내면 jsp에서 모델에 넣은 객체를 사용할수있음
 		
 		return "song/mainPage";
-		// 이거 수정필요함 아이유 lilac으로 가버림
+		
 		
 	}
 	
@@ -226,9 +226,12 @@ public class SongController {
 	public String addSongList(Playlist pl, Model model,HttpSession session) {
 		
 		
+		// user_id를 세션으로부터 가져와서 값 저장
 		String user_id = (String)session.getAttribute("user_id");
 		
+		// 유저가 가지고 있는 모든 리스트를 가져옴
 		ArrayList<Playlist> playlist = ss.selectList(user_id);
+		
 		Song song = ss.selectSongOne(pl.getSong_id());
 		// 값 받아옴.
 		// 곡 id, playlist_id를 가지고 곡을 넣어야함.
