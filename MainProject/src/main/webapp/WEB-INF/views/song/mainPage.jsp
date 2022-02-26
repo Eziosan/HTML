@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html lang="ko">
   <head>
@@ -300,7 +301,11 @@ function addSongtoList(){
             </span>
          </div>
        <div class="예상" id="예상" >
-           ★ 평균 ${Song.avg }
+       		★ 평균 
+       		<fmt:formatNumber type="number" maxFractionDigits="1"
+				value="${Song.avg }">
+			</fmt:formatNumber>
+            
          </div>
          <div class="row" style="width: 730px; height: 58px; margin-top: 8px; align-content: center; ">
 

@@ -49,7 +49,7 @@
 			from user_singer_log 
 			where user_id = #{user_id}
 			order by star_avg desc)
-		where rownum <=5
+		where rownum <=6
 		]]>
 	</select>
 	<!-- 특정 유저의 Top3 국가를 불러옴 -->
@@ -60,7 +60,7 @@
 			from user_country_log 
 			where user_id = #{user_id}
 			order by star_avg desc)
-		where rownum <=5
+		where rownum <=3
 		]]>
 	</select>
 	<!-- 특정 유저의 Top3 장르를 불러옴 -->
