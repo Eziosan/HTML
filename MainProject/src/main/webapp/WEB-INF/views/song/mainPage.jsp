@@ -98,7 +98,11 @@ function addSongtoList(){
 	   check.each(function(){
 		   //한개라도 리스트가 체크 되었다면 true 리턴(폼 보냄)
 			if(check.is(":checked") == true){
+				var p_id = check.val();
+
+				alert("선택한 플레이리스트 id : " + p_id); 
 				result = true;
+				$("#playlist_id").val(p_id);
 			}
 		   
 		});
@@ -302,7 +306,7 @@ function addSongtoList(){
              <div class="col-4" style="align-content: center; margin-left: ">
                  <div id="별점큰박스">
                      <span id="별점기록" >
-                        <span class="fw-bold" id="별점평균"> 4.26 </span>/  5
+                        <span class="fw-bold" id="별점평균" > ${starPoint}  </span>/  5
                      </span>
      <div class="starpoint_wrap" id="별점박스">
           <div class="starpoint_box">
@@ -339,9 +343,9 @@ function addSongtoList(){
                
              <div class="col-2" >
                  <div type="button" id="송리스트버튼" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#리스트추가"  >
-             <img src="../resources/img/plus.png" width="20px">
+             		<img src="../resources/img/plus.png" width="20px">
                  	
-                 <span> 리스트 </span>
+                 	<span> 리스트 </span>
                  </div>
              </div>
                 
@@ -392,11 +396,11 @@ function addSongtoList(){
 		        	<input type="hidden" id ="song_id" name="song_id" value="${Song.song_id}">
 		        	<input type="hidden" id= "playlist_id" name="playlist_id" >
 		        	
-		      <div class="modal-footer" id="리모달푸터">
-		          <button type="submit" id="곡추가" class="btn">추가</button>
-		        <button type="button" id="새리스트버튼" class="btn" data-bs-toggle="modal" data-bs-target="#리스트추가2">
-		            + 새 리스트</button>
-		      </div>
+			      <div class="modal-footer" id="리모달푸터">
+			          <button type="submit" id="곡추가" class="btn">추가</button>
+			        <button type="button" id="새리스트버튼" class="btn" data-bs-toggle="modal" data-bs-target="#리스트추가2">
+			            + 새 리스트</button>
+			      </div>
 		        </form>
 				
 		    </div>
@@ -586,11 +590,11 @@ ${Song.lyrics }
               <div class="row" id="리스트작칸">
                   
 <!--                  리스트 한칸-->
-				<c:forEach var="list" items="${listId }">
+				<c:forEach var="list" items="${listId }" begin="0" end="3">
 				
                 <div class="col-3" >
                 <a href="/mylife/list/listPage?playlist_id=${list.playlist_id}">
-                    <div id="송리스트한칸" >
+                    <div id="송리스트한칸" style="overflow: hidden;">
  							
                         <span>
                         <c:forEach var="bannerimg" items="${banner }" varStatus="status">

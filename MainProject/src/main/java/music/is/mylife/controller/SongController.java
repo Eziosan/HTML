@@ -103,6 +103,9 @@ public class SongController {
 		 
 			//배너 사진
 			model.addAttribute("banner", banner);
+			
+			//별점 담기
+			model.addAttribute("starPoint", ul.getStar());
 		
 			//곡 아이디 세션에 담기
 			session.setAttribute("song_id", song.getSong_id());
