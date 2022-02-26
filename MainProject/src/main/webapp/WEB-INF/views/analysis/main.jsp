@@ -123,7 +123,6 @@ margin-top: 100px;
 									<fmt:formatNumber type="number" maxFractionDigits="1"
 										value="${userGradeList.allStarSum}">
 									</fmt:formatNumber>
-									123
 								</div>
 								<div id="평가내용">별점 평균</div>
 							</div>
@@ -132,13 +131,11 @@ margin-top: 100px;
 									<fmt:formatNumber type="number" maxFractionDigits="0"
 										value="${userGradeList.allsongCount}">
 									</fmt:formatNumber>
-									123
 								</div>
 								<div id="평가내용">곡 평가 개수</div>
 							</div>
 							<div id="분포내용">
 								<div id="평가숫자">${userGradeList.topStar}</div>
-								<div id="평가숫자">123</div>
 								<div id="평가내용">많이 준 별점</div>
 							</div>
 						</div>
