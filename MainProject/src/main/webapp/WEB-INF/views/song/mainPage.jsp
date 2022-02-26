@@ -92,15 +92,22 @@ function searchCheck(){
 
 /* 리스트에 곡 추가 */
 function addSongtoList(){
-	   var list = $(":radio[name='list']:checked");
-	   //$로 묶고 .submit하면 컨트롤러로 감
+		var check = $(":radio[name='list']:checked");
+		var result = false;
+		
+	   check.each(function(){
+		   //한개라도 리스트가 체크 되었다면 true 리턴(폼 보냄)
+			if(check.is(":checked") == true){
+				result = true;
+			}
+		   
+		});
+
+		if(result == false){
+			alert("리스트를 하나 이상 선택해주세요!!");
+		}
 	   
-	   //alert("선택한 리스트 리스트 ID : " + list.val());
-	   $("#playlist_id").val(list.val());
-	   //alert("보낼 플레이리스트 ID" +$("#playlist_id").val());
-	   //alert("보낼 곡 ID" +$("#song_id").val());
-	   
-	   
+	   return result;
 	 } 
 	 
 	 
@@ -381,12 +388,12 @@ function addSongtoList(){
 		        </div>
 		        
 		        <!-- 리스트에 곡 추가시 보내질 데이터  -->
-		        <form action="addSongList" method="post" id="addSongListForm" >
+		        <form action="addSongList" method="post" id="addSongListForm" onsubmit="return addSongtoList()">
 		        	<input type="hidden" id ="song_id" name="song_id" value="${Song.song_id}">
-		        	<input type="hidden" id="playlist_id" name="playlist_id" >
+		        	<input type="hidden" id= "playlist_id" name="playlist_id" >
 		        	
 		      <div class="modal-footer" id="리모달푸터">
-		          <button type="submit" id="곡추가" class="btn" onclick="addSongtoList()">추가</button>
+		          <button type="submit" id="곡추가" class="btn">추가</button>
 		        <button type="button" id="새리스트버튼" class="btn" data-bs-toggle="modal" data-bs-target="#리스트추가2">
 		            + 새 리스트</button>
 		      </div>

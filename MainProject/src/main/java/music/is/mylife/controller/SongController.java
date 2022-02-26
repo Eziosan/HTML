@@ -237,27 +237,27 @@ public class SongController {
 	@RequestMapping(value="addPlayList",method=RequestMethod.POST)
 	public String addPlayList(Playlist pl, Model model,HttpSession session) {
 		
-		
-		String user_id = (String)session.getAttribute("user_id");
-		ArrayList<Playlist> playlist = ss.selectList(user_id);
-		Song song = ss.selectSongOne(pl.getSong_id());
-		
-		//여기서 할 거 > 리스트 생성하기
-				String url;
-				pl.setUser_id(user_id);
-				
-				
-				Boolean result = ss.insertPlaylist(pl);
-				
-				if(result) {
-					url="redirect:/main";
-					
-				}else {
-					url="song/listPage";
-				}
-				
-				model.addAttribute("Song",song);
-				model.addAttribute("playlist",playlist);
+		System.out.println("리스트 추가 실행");
+//		String user_id = (String)session.getAttribute("user_id");
+//		ArrayList<Playlist> playlist = ss.selectList(user_id);
+//		Song song = ss.selectSongOne(pl.getSong_id());
+//		
+//		//여기서 할 거 > 리스트 생성하기
+//				String url;
+//				pl.setUser_id(user_id);
+//				
+//				
+//				Boolean result = ss.insertPlaylist(pl);
+//				
+//				if(result) {
+//					url="redirect:/main";
+//					
+//				}else {
+//					url="song/listPage";
+//				}
+//				
+//				model.addAttribute("Song",song);
+//				model.addAttribute("playlist",playlist);
 				
 				
 				
