@@ -200,7 +200,7 @@
                 </div>
                 <div class="p-0" id="리스트정보 ">
                     <span id="좋아요수" > 좋아요 <em class="likeCount">${listInfo.list_like }</em> <span> ㅣ </span> </span>
-                    <span id="좋아요수"> 댓글 <em></em> <span> ㅣ </span> </span>
+                    <span id="좋아요수"> 댓글 <em>${countComment }</em> <span> ㅣ </span> </span>
                     <span id="좋아요수">  <em></em>${listInfo.list_date } <span>  </span> </span>
                 
                 </div>
@@ -287,7 +287,7 @@
                 
                 
                 <button class="carousel-control-prev" type="button" data-bs-target="#아무거나1" data-bs-slide="prev"  id="좌버튼리스트">
-                        <img src="./resources/img/left.png" width="30px" style=" opacity: 0.5;">
+                        <img src="../resources/img/left.png" width="30px" style=" opacity: 0.5;">
                     <span class="visually-hidden">Previous</span>
                 </button>
                 
@@ -328,14 +328,14 @@
                 </div>
                </div>
               </div>
-                <button class="carousel-control-next" type="button" data-bs-target="#아무거나1" data-bs-slide="next"  
-        id="우버튼리스트">
+             <button class="carousel-control-next" type="button" data-bs-target="#아무거나1" data-bs-slide="next"  
+        		id="우버튼리스트">
       
-                <img src="./resources/img/right.png" width="30px" style=" opacity: 0.5;">
+                <img src="../resources/img/right.png" width="30px" style=" opacity: 0.5;">
 
             <span class="visually-hidden">Next</span>
           </button>
-            </section>
+        </section>
             
             
 
