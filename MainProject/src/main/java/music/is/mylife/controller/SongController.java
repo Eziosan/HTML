@@ -204,25 +204,52 @@ public class SongController {
 		
 		System.out.println("리스트 추가 실행");
 		String user_id = (String)session.getAttribute("user_id");
-		ArrayList<Playlist> playlist = ss.selectList(user_id);
 		Song song = ss.selectSongOne(pl.getSong_id());
 		
 		//여기서 할 거 > 리스트 생성하기
-				String url;
-				pl.setUser_id(user_id);
+		String url;
+		pl.setUser_id(user_id);
 				
+		ss.insertPlaylist(pl);
 				
-				Boolean result = ss.insertPlaylist(pl);
-				
-				if(result) {
-					url="redirect:/main";
-					
-				}else {
-					url="song/listPage";
-				}
-				
-				model.addAttribute("Song",song);
-				model.addAttribute("playlist",playlist);
+		
+		/////////////
+		
+
+		double avg = ss.selectStars(pl.getSong_id());
+		song.setAvg(avg);
+		
+		
+		if(user_id!=null) {
+			ArrayList<Playlist> playlist = ss.selectList(user_id);
+			model.addAttribute("playlist", playlist);
+			
+		}
+		
+		ArrayList<Tag> tag = ss.selectTag(pl.getSong_id());
+		
+		 // 해당 곡 리스트 부르기
+		 ArrayList<Playlist> listId = ls.selectListId(pl.getSong_id());
+		 ArrayList<ArrayList<Playlist>> banner = new ArrayList<ArrayList<Playlist>>();
+		 
+		 model.addAttribute("singer_id", pl.getSinger_id()); 
+		 model.addAttribute("song_id", pl.getSong_id()); 
+		 model.addAttribute("Song", song);
+		 model.addAttribute("Tag", tag);
+		 model.addAttribute("Song",song);
+		 
+		 // 플레이리스트아이디, 배너 사진들
+		 for(Playlist info : listId) {
+			 info.getPlaylist_id();
+			banner.add(ls.listBanner(info.getPlaylist_id()));
+		 }
+		 	//리스트 아이디
+		 	model.addAttribute("listId", listId);
+		 
+			//배너 사진
+			model.addAttribute("banner", banner);
+		
+			//곡 아이디 세션에 담기
 				
 				
 				
@@ -241,8 +268,6 @@ public class SongController {
 		// user_id를 세션으로부터 가져와서 값 저장
 		String user_id = (String)session.getAttribute("user_id");
 		
-		// 유저가 가지고 있는 모든 리스트를 가져옴
-		ArrayList<Playlist> playlist = ss.selectList(user_id);
 		
 		Song song = ss.selectSongOne(pl.getSong_id());
 		// 값 받아옴.
@@ -254,10 +279,50 @@ public class SongController {
 		ss.insertSong(pl);
 		
 		
+		///////////
 		
-		model.addAttribute("song_id",pl.getSong_id());
-		model.addAttribute("Song",song);
-		model.addAttribute("playlist",playlist);
+		//전체 곡 검색해 해당 곡 띄우기
+		Song selectSong = ss.selectAllSong(song);
+
+		//평균 별점
+		double avg = ss.selectStars(song.getSong_id());
+		
+		selectSong.setAvg(avg);
+		
+		
+		if(user_id!=null) {
+			//유저의 모든 리스트를 가져옴
+			ArrayList<Playlist> playlist = ss.selectList(user_id);
+			model.addAttribute("playlist", playlist);
+			
+		}
+		
+		ArrayList<Tag> tag = ss.selectTag(song.getSong_id());
+		
+		 // 해당 곡 리스트 부르기
+		 ArrayList<Playlist> listId = ls.selectListId(song.getSong_id());
+		 ArrayList<ArrayList<Playlist>> banner = new ArrayList<ArrayList<Playlist>>();
+		 
+		 model.addAttribute("Song", selectSong);
+		 model.addAttribute("Tag", tag);
+		 
+		 // 플레이리스트아이디, 배너 사진들
+		 for(Playlist info : listId) {
+			 info.getPlaylist_id();
+			banner.add(ls.listBanner(info.getPlaylist_id()));
+		 }
+		 	//리스트 아이디
+		 	model.addAttribute("listId", listId);
+		 
+		 	model.addAttribute("singer_id", song.getSinger_id()); 
+			//배너 사진
+			model.addAttribute("banner", banner);
+		
+			//곡 아이디 세션에 담기
+			session.setAttribute("song_id", song.getSong_id());
+		
+			model.addAttribute("song_id",pl.getSong_id());
+			model.addAttribute("Song",song);
 		
 		return "song/mainPage";
 	}

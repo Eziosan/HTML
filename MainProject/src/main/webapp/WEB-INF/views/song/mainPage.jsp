@@ -224,8 +224,9 @@ function addSongtoList(){
 
         </ul>
 
-        <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
-          <input type="search" class="form-control" placeholder="# 태그를 검색해보세요"  aria-label="Search" control-id="ControlID-2" style="background: #F2F2F2">
+        <form action="/mylife/search/searchResult" method="get" onsubmit="return searchCheck();" class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
+          <input type="search" id="searchText" name="searchText" class="form-control" placeholder="# 태그를 검색해보세요"  aria-label="Search" control-id="ControlID-2" 
+                 style="background: transparent;">
         </form>
 
           
@@ -358,8 +359,8 @@ function addSongtoList(){
     </div>        
  </div>    
 
-        <form action="starLog" method="post" id="starForm">
         	<input type="hidden" id="ui"value="${user_id }">
+        <form action="starLog" method="post" id="starForm">
         	<input type="hidden" name="star" id="star" value="">
         	<input type="hidden" name="song_id" value="${song_id }"> 
         	<input type="hidden" name="singer_id" value="${singer_id }"> 
