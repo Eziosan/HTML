@@ -62,7 +62,6 @@ public class SearchController {
 			session.setAttribute("user_id", user_id);
 		}
 		
-		System.out.println("searchText : " + searchText);
 		
 
 		return "redirect:searchResult?searchText=" + searchText;
@@ -70,24 +69,20 @@ public class SearchController {
 
 	@RequestMapping(value = "join", method = RequestMethod.POST)
 	public String join(Model model, String searchText, UserInfo ui) {
-		String result = null;
 		
 		if(us.insertUser(ui)) {
-			result = "redirect:searchResult?searchText=" + searchText;
+			System.out.println("회원가입 성공!!");
 		}else {
-			result = "redirect:searchResult?searchText=" + searchText;
+			System.out.println("회원가입 실패!");
 		}
-		System.out.println("searchText : " + searchText);
 		
-		return result;
+		return "redirect:searchResult?searchText=" + searchText;
 	}
 
 	@RequestMapping(value = "logout", method = RequestMethod.GET)
 	public String logout(HttpSession session, Model model, String searchText) {
 		session.invalidate();
 		
-		System.out.println("searchText : " + searchText);
-		//정보를 넘겨주기만 하면 됨
 
 		return "redirect:searchResult?searchText=" + searchText;
 	}

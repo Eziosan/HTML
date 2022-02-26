@@ -36,7 +36,7 @@
   		}
   		//beforeLike에 색칠된 아이콘을 넣을 것
   		$(".beforeLike").html("<img src='../resources/img/like4.png' id='좋아요버튼' width='15px'> 좋아요");
-  		$(".afterLike").html("<img src='../resources/img/like3.png' id='좋아요버튼' width='15px'> 좋아요");
+  		$(".afterLike").html("<img src='../resources/img/like1.png' id='좋아요버튼' width='15px'> 좋아요");
   		$(".like").toggleClass("beforeLike afterLike");
   		
   		
@@ -212,7 +212,7 @@
             <div class="dropdown">
                 <button type="button"  id="좋아요박스" onclick="listLike('${user_id}')">
                         <div id="좋아요" class="beforeLike like">
-                            <img src="../resources/img/like3.png" id="좋아요버튼" width="15px" >
+                            <img src="../resources/img/like1.png" id="좋아요버튼" width="15px" >
                             좋아요
                         </div>
                  </button>

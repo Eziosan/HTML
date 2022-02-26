@@ -19,5 +19,13 @@ public interface UserMapper {
 		리턴 타임: int
 	*/
 	public int insertUser(UserInfo userinfo);
+	
+	/* 회원중복 체크
+		이름: insertUser
+		파라미터 타입: UserInfo
+		변수 이름: userinfo
+		리턴 타임: int
+	 */
+	public int joinDupleCheck(UserInfo userinfo);
 
 }

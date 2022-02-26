@@ -189,6 +189,7 @@ public class ListController {
 	 */
 	@RequestMapping(value = "join", method = RequestMethod.POST)
 	public String join(@ModelAttribute("userinfo") UserInfo userinfo ,Model model, Song song, int playlist_id) {
+		
 		//리스트에 필요한 정보들 넘겨주기
 		ArrayList<Playlist> banner = ls.listBanner(playlist_id);
 		ArrayList<Playlist> listSong = ls.listSong(playlist_id);
@@ -220,7 +221,14 @@ public class ListController {
 		//댓글 전체출력
 		model.addAttribute("allList", list);
 		
-		return ss.insertListUser(userinfo);
+		if(us.insertUser(userinfo)) {
+			System.out.println("회원가입에 성공!");
+		}else {
+			System.out.println("회원가입에 실패!!");
+			
+		}
+		
+		return "list/listpage";
 	}
 	
 	/**

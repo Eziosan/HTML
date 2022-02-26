@@ -37,9 +37,22 @@ public class UserDAO {
 	public int insertUser(UserInfo userinfo) {
 		UserMapper mapper = session.getMapper(UserMapper.class);
 		
+		if(mapper.joinDupleCheck(userinfo) > 0) {
+			return 0;
+		}
 		//회원가입 데이터 변수 user에 담음
-		int user = mapper.insertUser(userinfo);
+		mapper.insertUser(userinfo);
 		
-		return user;
+		return 1;
+	}
+	
+	public int joinDupleCheck(UserInfo userinfo) {
+		UserMapper mapper = session.getMapper(UserMapper.class);
+		
+		//중복이면 1, 아니면 0
+		int result = mapper.joinDupleCheck(userinfo);
+		
+		return result;
+		
 	}
 }

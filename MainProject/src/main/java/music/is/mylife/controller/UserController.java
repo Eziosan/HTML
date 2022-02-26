@@ -38,13 +38,13 @@ public class UserController {
 		String result = null;
 				
 		if(us.insertUser(userinfo)) {
-			result = "redirect:/main";
+			System.out.println("회원가입 성공!!!!");
 		}else {
-			result = "redirect:/main";
+			System.out.println("회원가입 실패!!!!");
 		}
 			
 		//회원가입 처리
-		return result;
+		return result = "redirect:/main";
 	}
 	
 	

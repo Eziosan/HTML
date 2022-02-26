@@ -28,6 +28,11 @@
 	)
 </insert>
 
+<select id="joinDupleCheck" parameterType="user_info" resultType="int">
+	select count(*) from user_info
+	where user_id = #{user_id}
+</select>
+
 
 
 

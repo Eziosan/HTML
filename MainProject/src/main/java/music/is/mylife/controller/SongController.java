@@ -369,7 +369,16 @@ public class SongController {
 		ArrayList<Playlist> listId = ls.selectListId(song.getSong_id());
 		model.addAttribute("listId", listId);
 		
-		return ss.insertSongUser(userinfo);
+		if(us.insertUser(userinfo)) {
+			System.out.println("회원가입 성공!!!!");
+			
+		}else {
+			System.out.println("회원가입 실패!!!!");
+			
+		}
+		
+		
+		return "song/mainPage";
 	}
 	
 	
