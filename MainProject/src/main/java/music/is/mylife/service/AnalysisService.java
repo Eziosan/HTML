@@ -65,6 +65,10 @@ public class AnalysisService {
 		//한 유저가 가장 많이 준 별점
 		double topStar = uld.selectTopStarByUser(user_id);
 		
+		System.out.println("allSongCount : " + allsongCount);
+		System.out.println("allSongCount : " + allStarSum);
+		System.out.println("allSongCount : " + topStar);
+		
 		userGradeList.put("allStarCount", allStarCount);
 		userGradeList.put("listLikeNum", listLikeNum);
 		userGradeList.put("listCommentNum", listCommentNum);

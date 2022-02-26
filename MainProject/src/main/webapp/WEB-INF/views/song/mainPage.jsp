@@ -590,11 +590,11 @@ ${Song.lyrics }
               <div class="row" id="리스트작칸">
                   
 <!--                  리스트 한칸-->
-				<c:forEach var="list" items="${listId }">
+				<c:forEach var="list" items="${listId }" begin="0" end="3">
 				
                 <div class="col-3" >
                 <a href="/mylife/list/listPage?playlist_id=${list.playlist_id}">
-                    <div id="송리스트한칸" >
+                    <div id="송리스트한칸" style="overflow: hidden;">
  							
                         <span>
                         <c:forEach var="bannerimg" items="${banner }" varStatus="status">
