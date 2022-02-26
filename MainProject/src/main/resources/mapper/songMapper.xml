@@ -5,6 +5,9 @@
   
   <!-- 인터페이스 위치 지정!!!!!! -->
 <mapper namespace="music.is.mylife.dao.SongMapper">
+	<select id="test" resultType="string">
+		select upper('%' || #{text} ||'%') from dual
+	</select>
 	
 		<!--  곡 아이디로 배너 사진 URL을 가져오는 SQL문 -->
 	<select id="selectBanner" parameterType="int" resultType="string">
@@ -163,15 +166,16 @@
 			select singer.singer_id, singer.singer_name, song.song_id, song.song_name, song.album_name,
 				   to_char(song.album_date,'YYYY') as album_date, song.album_img
 			from singer singer, song song
-			where singer.singer_id = song.singer_id and song.song_name like '%' || #{searchText} ||'%'
+			where singer.singer_id = song.singer_id and upper(song.song_name) like upper('%' || #{searchText} ||'%')
 		</select>
 		<select id="selectSongsBySingerName" parameterType="string" resultType="song">
 			select singer.singer_id, singer.singer_name, song.song_id, song.song_name, song.album_name,
 				   to_char(song.album_date,'YYYY') as album_date, song.album_img
 			from singer singer, song song
-			where singer.singer_id = song.singer_id and singer.singer_name like '%' || #{searchText} ||'%'
+			where singer.singer_id = song.singer_id and upper(singer.singer_name) like upper('%' || #{searchText} ||'%')
 			
 		</select>
+		
 		
 	 
 		<!-- 곡 아이디를 입력받아 좋아요 수를 증가 시키는 SQL문 -->

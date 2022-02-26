@@ -189,7 +189,6 @@
 
 							<c:forEach var="nomean" items="${searchResult1 }" begin="0"
 								step="5" end="${searchResult1.size() - 1 }" varStatus="status">
-							현재 인덱스 : ${status.index }
 						<!-- 현재 인덱스 0이면 1번째 곡(1번째 슬라이드)
 							해당 슬라이드는 active가 되어야 함
 							나머지 슬라이드는 active 없이
@@ -216,7 +215,7 @@
 									begin="${status.index }" end="${status.index + 4 }">
 									<div class="col">
 										<div class="card border border-white">
-											<img src="../resources/img/album/${song.album_img} " alt="img" width="100%"
+											<img src="${song.album_img} " alt="img" width="100%"
 												height="225">
 
 											<div class="card1 mt-3 ">
@@ -307,7 +306,6 @@ style="position: absolute; left: 100px; top: 130px"-->
 							<!-- 두번째 카로셀(앨범) 목록 표시 -->
 							<c:forEach var="nomean" items="${searchResult2 }" begin="0"
 								step="5" end="${searchResult2.size() - 1 }" varStatus="status">
-							현재 인덱스 : ${status.index }
 							
 						<c:choose>
 									<c:when test="${status.index == 0 }">
@@ -329,7 +327,7 @@ style="position: absolute; left: 100px; top: 130px"-->
 									begin="${status.index }" end="${status.index + 4 }">
 									<div class="col">
 										<div class="card border border-white">
-											<img src="../resources/img/album/${song.album_img} " alt="img" width="100%"
+											<img src="${song.album_img} " alt="img" width="100%"
 												height="225">
 
 											<div class="card1 mt-3 ">

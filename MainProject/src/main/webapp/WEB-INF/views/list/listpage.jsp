@@ -171,7 +171,7 @@
             <div id="프로필베너" >
                <c:forEach var="playlist" items="${banner }" begin="0" end="4" varStatus="status">
                		<span >
-                    	<img src="../resources/img/album/${playlist.album_img }" id="커버${status.count }">
+                    	<img src="${playlist.album_img }" id="커버${status.count }">
                 	</span>
                </c:forEach>
             </div>
@@ -302,7 +302,7 @@
                      <c:forEach var="playlist" items="${listSong}" begin="0" end="${sta+5 }" varStatus="sta">
                         <div class="col" id="작품카드" >
                             <a href="/mylife/song/songPage?song_id=${playlist.song_id }&singer_id=${playlist.singer_id}">
-                            <img src="../resources/img/album/${playlist.album_img }" id="리스트앨범커버">
+                            <img src="${playlist.album_img }" id="리스트앨범커버">
                             </a>
                             <div id="작품명">
                                 <a href="/mylife/song/songPage?song_id=${playlist.song_id }&singer_id=${playlist.singer_id}" 

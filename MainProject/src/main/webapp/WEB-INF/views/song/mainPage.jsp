@@ -248,9 +248,9 @@ function addSongtoList(){
 		
 		 <div class="banner1" id="송배너">
 			<div id="송배너칸">
-			            <img src="../resources/img/album/${Song.album_img }" style="position:relative;"  id="송배너이미지1">
+			            <img src="${Song.album_img }" style="position:relative;"  id="송배너이미지1">
 			
-			            <img src="../resources/img/album/${Song.album_img }" id="송배너이미지2">
+			            <img src="${Song.album_img }" id="송배너이미지2">
 			                 
 			</div>
         
@@ -267,7 +267,7 @@ function addSongtoList(){
   <div class="곡정보 자리 w-100 border" style="height: 232px;  padding: 13px 16px 22px; background-color: white; position: relative; z-index: 10;">
 <!--      background-color: rgba(199,221,253);-->
     <div class="정보 자리잡기용 m-auto" style="width:  960px">
-    <img src="../resources/img/album/${Song.album_img }" width="250px" style="float: left; margin-left: -70px; margin-top: -52px; vertical-align: top; border:3px solid #eaeaea; border-radius: 2%;" >
+    <img src="${Song.album_img }" width="250px" style="float: left; margin-left: -70px; margin-top: -52px; vertical-align: top; border:3px solid #eaeaea; border-radius: 2%;" >
         
      <div class="곡정보 주황" style="width: 745px; height: 197px; border-radius: 10px;  float: right; font-family: 'Noto Sans KR', sans-serif; text-align: left; margin-top: 5px;">
 <!--         background-color: rgba(255,229,208);-->
@@ -588,7 +588,7 @@ ${Song.lyrics }
                         <span>
                         <c:forEach var="bannerimg" items="${banner }" varStatus="status">
                         	<c:forEach var="img" items="${bannerimg }" begin="0" end="3" >
-                        	<img src="../resources/img/album/${img.album_img }" id="곡커버${status.count }" width="86px" height="86px" style="margin: 2px; border-radius: 6px;">
+                        	<img src="${img.album_img }" id="곡커버${status.count }" width="86px" height="86px" style="margin: 2px; border-radius: 6px;">
                         	</c:forEach>
                         </c:forEach>
                         </span>

@@ -133,7 +133,7 @@
 									<div class="col">
 										<div class="card border border-white">
 										<a href="/mylife/song/songPage?song_id=${song.song_id }&singer_id=${song.singer_id}">
-											<img src="./resources/img/album/${song.album_img} " alt="img" width="100%"
+											<img src="${song.album_img} " alt="img" width="100%"
 												height="225"></a>
 	
 											<div class="card1 " style="text-overflow: ellipsis;
@@ -230,7 +230,7 @@
 									<div class="col">
 										<div class="card border border-white">
 											<a href="/mylife/song/songPage?song_id=${song.song_id }&singer_id=${song.singer_id}">
-												<img src="./resources/img/album/${song.album_img} " alt="img" width="100%"
+												<img src="${song.album_img} " alt="img" width="100%"
 													height="225"></a>
 		
 												<div class="card1 " style="text-overflow: ellipsis;
