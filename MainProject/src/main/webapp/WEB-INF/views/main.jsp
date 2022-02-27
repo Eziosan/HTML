@@ -53,16 +53,22 @@
           <input type="search" id="searchText" name="searchText" class="form-control" placeholder="# 태그를 검색해보세요"  aria-label="Search" control-id="ControlID-2" style="background: #F2F2F2">
         </form>
           
-                          <button id="로그인보탄" data-bs-toggle="modal" data-bs-target="#로그인모달">
-                        <div id="좋아요" >
+                          
+        <div class="dropdown text-end">
+        
+      	  <c:if test="${user_id == null }">
+            <button id="로그인보탄" data-bs-toggle="modal" data-bs-target="#로그인모달">
+                        <div id="좋아요1" >
                                 로그인
                         </div>
                 </button>
-        <div class="dropdown text-end">
+            </c:if>
+        
+         <c:if test="${user_id != null }">
           <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
-            <img src="https://github.com/mdo.png" alt="mdo" width="32" height="32" class="rounded-circle">
+            <img src="./resources/img/profile2.jpg" alt="mdo" width="32" height="32" class="rounded-circle">
           </a>
-                 
+         </c:if>        
             
             
           <ul class="dropdown-menu text-small" aria-labelledby="dropdownUser1">

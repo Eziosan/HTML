@@ -49,13 +49,19 @@
 	<main class="배경" id="리스트배경">
 
 		<div class="container" id="konomibanner">
-			<div class="프로필 카드"
-				style="margin-right: auto; margin-left: auto; margin-top: 180px; margin-left: 20px ">
-				<img src="../resources/img/profile/basic_profile.jpg"  height="40"
-					style="border-radius: 50%">
-				<span class="작사가명" id="아티스트이름">${user_id }</span>
-			</div>
-			
+			<!-- <div id="프로필베너"> -->
+			<div >
+                <img src="../resources/img/곡용.png" id="코노미로고">
+            </div>
+        <div id="코노미배너프로필">
+        	<span id="코노미프로필">
+					<img src="../resources/img/profile/basic_profile.jpg" width="37px;" style="border-radius: 50%; margin-right: 10px;">
+					
+					<span id="코노미닉">${user_id }</span>
+				
+			</span>
+		</div>
+		</div>
 			<!--          
 margin-top: 100px;
     width: 638px;
@@ -67,7 +73,7 @@ margin-top: 100px;
     padding: 0px;
     overflow: hidden;
 -->
-		</div>
+<!-- 		</div> -->
 		<div class="container" id="평가박스">
 			<div id="평가">
 				<div id="평가수">
@@ -110,13 +116,10 @@ margin-top: 100px;
 					</div>
 				</div>
 				<div id="분포큰칸">
-					<div id="평가수">
-						<div class="fw-bold" id="평가수텍">평점 분포</div>
 
 					</div>
 					<div id="분포작은칸">
 
-						<div id="분포도"></div>
 						<div id="분포내용란" style="margin: 0 atuo;">
 							<div id="분포내용">
 								<div id="평가숫자">
@@ -184,7 +187,7 @@ margin-top: 100px;
 				<div id="가수큰칸">
 
 					<button class="carousel-control-prev" style="" type="button"
-						data-bs-target="#아무거나1" data-bs-slide="prev" id="좌버튼취향">
+						data-bs-target="#선호가수캐러셀" data-bs-slide="prev" id="좌버튼취향">
 						<img src="../resources/img/왼2.png" width="15px"> <span
 							class="visually-hidden">Previous</span>
 					</button>
@@ -198,7 +201,7 @@ margin-top: 100px;
 
 					<div id="가수큰칸2">
 
-						<div id="아무거나1" class="carousel slide" data-bs-ride="carousel"
+						<div id="선호가수캐러셀" class="carousel slide" data-bs-ride="carousel"
 							data-bs-interval="false">
 							<c:forEach var="nomean" items="${singerList }" step="3"
 								varStatus="status">
@@ -240,7 +243,7 @@ margin-top: 100px;
 						<!-- slide 닫는 태그 -->
 					</div>
 					<button class="carousel-control-next" type="button"
-						data-bs-target="#아무거나1" data-bs-slide="next" id="우버튼취향">
+						data-bs-target="#선호가수캐러셀" data-bs-slide="next" id="우버튼취향">
 						<img src="../resources/img/오2.png" width="15px"> <span
 							class="visually-hidden">Next</span>
 					</button>
@@ -286,16 +289,16 @@ margin-top: 100px;
 			</div>
 
 
-			<div id="국가큰칸">
+			<div id="장르큰칸">
 				<div id="평가수">
 					<div class="fw-bold" id="평가수텍">선호장르</div>
 				</div>
-				<div id="국가큰칸2">
+				<div id="장르큰칸2">
 					<!--  
 							<div id="장르코멘트">발라드충이군요</div>
 						
 						-->
-					<div id="국가칸">
+					<div id="장르칸">
 						<div id="국가탑">
 							<c:forEach var="genreLog" items="${genreLogList}" begin="0"
 								end="2">

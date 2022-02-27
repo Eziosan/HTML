@@ -561,7 +561,7 @@
 }
 
 #konomibanner {
-    margin-top: 100px;
+    margin-top: 30px;
     width: 638px;
     height: 244.75px;
     background-color: white;
@@ -675,12 +675,12 @@
 #분석큰칸 {
     margin-top: 12px;
     width: 638px;
-    height: 1500px;
-        background-color: white;
+    height: auto;
+    background-color: white;
     border: 1px solid;
     border-color: lightgray;
     border-radius: 6px;
-    padding: 0px;
+    padding: 0 0 40px 0;
     overflow: hidden;
 }
 
@@ -705,49 +705,50 @@
 
 #큰태그1 {
     position: absolute; font-size: 17px; font-weight: bold; line-height: 23px; color: rgb(255, 47, 110); 
-    transform: translate(0px, 100px) rotate(0deg); 
+    transform: translate(160px, 70px) rotate(0deg); 
     font-family: "Noto Sans KR", sans-serif; font-style: normal; text-align: center; transform-origin: center bottom; white-space: nowrap; width: 96px;
 }
 
 #큰태그2 {
-    position: absolute; font-size: 17px; font-weight: bold; line-height: 23px; color: rgb(255, 47, 110); transform: translate(95px, 50px) rotate(0deg); font-family: "Noto Sans KR", sans-serif; font-style: normal; text-align: center; transform-origin: center bottom; white-space: nowrap; width: 96px;
+    position: absolute; font-size: 17px; font-weight: bold; line-height: 23px; color: rgb(255, 47, 110); transform: translate(30px, 20px) rotate(0deg); font-family: "Noto Sans KR", sans-serif; font-style: normal; text-align: center; transform-origin: center bottom; white-space: nowrap; width: 96px;
 }
 
 #큰태그3 {
-    position: absolute; font-size: 17px; font-weight: bold; line-height: 23px; color: rgb(255, 47, 110); transform: translate(160px, 28px) rotate(0deg); font-family: "Noto Sans KR", sans-serif; font-style: normal; text-align: center; transform-origin: center bottom; white-space: nowrap; width: 64px;
+    position: absolute; font-size: 17px; font-weight: bold; line-height: 23px; color: rgb(255, 47, 110); transform: translate(90px, 120px) rotate(0deg); font-family: "Noto Sans KR", sans-serif; font-style: normal; text-align: center; transform-origin: center bottom; white-space: nowrap; width: 64px;
 }
 
 #작은태그1 {
-    position: absolute; font-size: 13px; line-height: 19px; color: rgb(255, 47, 110); transform: translate(50px, 80px) rotate(0deg); font-family: "Noto Sans KR", sans-serif; font-style: normal; font-weight: normal; text-align: center; transform-origin: center bottom; white-space: nowrap; width: 96px;
+    position: absolute; font-size: 13px; line-height: 19px; color: rgb(255, 47, 110); transform: translate(220px, 40px) rotate(0deg); font-family: "Noto Sans KR", sans-serif; font-style: normal; font-weight: normal; text-align: center; transform-origin: center bottom; white-space: nowrap; width: 96px;
 }
 
 #작은태그2 {
-    position: absolute; font-size: 13px; line-height: 19px; color: rgb(255, 47, 110); transform: translate(75px, 27px) rotate(0deg); font-family: "Noto Sans KR", sans-serif; font-style: normal; font-weight: normal; text-align: center; transform-origin: center bottom; white-space: nowrap; width: 64px;
+    position: absolute; font-size: 13px; line-height: 19px; color: rgb(255, 47, 110); transform: translate(270px, 100px) rotate(0deg); font-family: "Noto Sans KR", sans-serif; font-style: normal; font-weight: normal; text-align: center; transform-origin: center bottom; white-space: nowrap; width: 64px;
 }
 
 #작은태그3 {
-    position: absolute; font-size: 13px; line-height: 19px; color: rgb(255, 47, 110); transform: translate(155px, 85px) rotate(0deg); font-family: "Noto Sans KR", sans-serif; font-style: normal; font-weight: normal; text-align: center; transform-origin: center bottom; white-space: nowrap; width: 64px;
+    position: absolute; font-size: 13px; line-height: 19px; color: rgb(255, 47, 110); transform: translate(20px, 95px) rotate(0deg); font-family: "Noto Sans KR", sans-serif; font-style: normal; font-weight: normal; text-align: center; transform-origin: center bottom; white-space: nowrap; width: 64px;
 }
 
 #작은태그4 {
-    position: absolute; font-size: 13px; line-height: 19px; color: rgb(255, 47, 110); transform: translate(53px, 3px) rotate(0deg); font-family: "Noto Sans KR", sans-serif; font-style: normal; font-weight: normal; text-align: center; transform-origin: center bottom; white-space: nowrap; width: 64px;
+    position: absolute; font-size: 13px; line-height: 19px; color: rgb(255, 47, 110); transform: translate(220px, 150px) rotate(0deg); font-family: "Noto Sans KR", sans-serif; font-style: normal; font-weight: normal; text-align: center; transform-origin: center bottom; white-space: nowrap; width: 64px;
 }
 
 #작은태그5 {
-    position: absolute; font-size: 13px; line-height: 19px; color: rgb(255, 47, 110); transform: translate(100px, 115px) rotate(0deg); font-family: "Noto Sans KR", sans-serif; font-style: normal; font-weight: normal; text-align: center; transform-origin: center bottom; white-space: nowrap; width: 64px;
+    position: absolute; font-size: 13px; line-height: 19px; color: rgb(255, 47, 110); transform: translate(20px, 150px) rotate(0deg); font-family: "Noto Sans KR", sans-serif; font-style: normal; font-weight: normal; text-align: center; transform-origin: center bottom; white-space: nowrap; width: 64px;
 }
 
 #작은태그6 {
-    position: absolute; font-size: 13px; line-height: 19px; color: rgb(255, 47, 110); transform: translate(29px, 57px) rotate(0deg); font-family: "Noto Sans KR", sans-serif; font-style: normal; font-weight: normal; text-align: center; transform-origin: center bottom; white-space: nowrap; width: 64px;
+    position: absolute; font-size: 13px; line-height: 19px; color: rgb(255, 47, 110); transform: translate(29px, 53px) rotate(0deg); font-family: "Noto Sans KR", sans-serif; font-style: normal; font-weight: normal; text-align: center; transform-origin: center bottom; white-space: nowrap; width: 64px;
 }
 
 #작은태그7 {
-    position: absolute; font-size: 13px; line-height: 19px; color: rgb(255, 47, 110); transform: translate(111px, 2px) rotate(0deg); font-family: "Noto Sans KR", sans-serif; font-style: normal; font-weight: normal; text-align: center; transform-origin: center bottom; white-space: nowrap; width: 64px;
+    position: absolute; font-size: 13px; line-height: 19px; color: rgb(255, 47, 110); transform: translate(250px, 2px) rotate(0deg); font-family: "Noto Sans KR", sans-serif; font-style: normal; font-weight: normal; text-align: center; transform-origin: center bottom; white-space: nowrap; width: 64px;
 }
 
 #가수큰칸 {
-    height: 297px;
+    height: 355px;
     padding-top: 8px;
+    padding-bottom: 20px;
 }
 
 #가수큰칸2 {
@@ -756,10 +757,12 @@
 
 #캐러셀한칸 {
     width: 598px;
-    height: 228px;
+    height: 260px;
     margin: 0 auto;
     border-bottom: solid 1px;
     border-bottom-color: lightgray;
+
+
 }
 
 #가수한칸 {
@@ -785,18 +788,36 @@
     position: relative;
     
 }
-
 #국가큰칸 {
+    width: 638px;
+    height: 200px;
+    padding-top: 8px;
+}
+
+#국가큰칸2 {
+    height: 135px;
+}
+
+#국가칸 {
+    width: 598px;
+    height: 125px;
+    margin: 0 auto;
+    border-bottom: solid 1px;
+    border-bottom-color: lightgray;
+}
+
+
+#장르큰칸 {
     width: 638px;
     height: 324px;
     padding-top: 8px;
 }
 
-#국가큰칸2 {
+#장르큰칸2 {
     height: 280px;
 }
 
-#국가칸 {
+#장르칸 {
     width: 598px;
     height: 240px;
     margin: 0 auto;
@@ -1412,4 +1433,12 @@
 #로그인보탄:hover {
     background-color: rgba(41, 42, 50, 0.08);
     color: black;
+}
+
+#좋아요1 {
+	color: #8c8c8c;
+    font-size: 14px;
+    font-weight: 400;
+    list-style:none;
+    margin: 0 auto;
 }
