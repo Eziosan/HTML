@@ -20,6 +20,8 @@ public class UserLog {
 	
 	private int tag_id;
 	
+	private double star_avg;
+	
 	
 	
 }

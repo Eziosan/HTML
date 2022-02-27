@@ -86,14 +86,7 @@ margin-top: 100px;
 				<!--                평가 칸-->
 				<div class="row" id="평가수내용">
 					<div class="col-3" id="평가한칸">
-						<c:choose>
-							<c:when test="${user_id == 'spring12' }">
-								<div class="fw-bold" id="평가숫자">415.5</div>
-							</c:when>
-							<c:otherwise>
 								<div class="fw-bold" id="평가숫자">${userGradeList.allStarCount }</div>
-							</c:otherwise>
-						</c:choose>
 						<div id="평가내용">총 별점 수</div>
 
 					</div>
@@ -140,16 +133,9 @@ margin-top: 100px;
 							</div>
 							<div id="분포내용">
 								<div id="평가숫자">
-									<c:choose>
-										<c:when test="${user_id == 'spring12' }">
-											100
-										</c:when>
-										<c:otherwise>
 											<fmt:formatNumber type="number" maxFractionDigits="0"
 												value="${userGradeList.allsongCount}">
 											</fmt:formatNumber>
-										</c:otherwise>
-									</c:choose>
 								</div>
 								<div id="평가내용">곡 평가 개수</div>
 							</div>
@@ -276,8 +262,14 @@ margin-top: 100px;
 								end="2">
 								<div id="국가탑1">
 									<div id="국가탑나라">${countryLog.country }</div>
-									<div id="국가탑정보">${countryLog.all_star }점•
-										${countryLog.grade_count }곡</div>
+									
+									<div id="국가탑정보">
+										<fmt:formatNumber type="number" maxFractionDigits="2"
+											value="${countryLog.star_avg }">
+										</fmt:formatNumber>
+										점•
+										${countryLog.grade_count }곡
+									</div>
 								</div>
 
 							</c:forEach>
@@ -318,7 +310,11 @@ margin-top: 100px;
 								end="2">
 								<div id="국가탑1">
 									<div id="국가탑나라">${genreLog.genre }</div>
-									<div id="국가탑정보">${genreLog.all_star }점•
+									<div id="국가탑정보">
+										<fmt:formatNumber type="number" maxFractionDigits="2"
+											value="${genreLog.star_avg }">
+										</fmt:formatNumber>
+										점•
 										${genreLog.grade_count}곡</div>
 								</div>
 							</c:forEach>
@@ -327,8 +323,13 @@ margin-top: 100px;
 						<ul id="국가밑큰">
 							<c:forEach var="genreLog" items="${genreLogList}" begin="3"
 								end="5">
-								<li id="국가밑작">${genreLog.genre }<span id="국밑내용">
-										${genreLog.all_star }점 • ${genreLog.grade_count}곡 </span>
+								<li id="국가밑작">${genreLog.genre }
+									<span id="국밑내용">
+										<fmt:formatNumber type="number" maxFractionDigits="2"
+											value="${genreLog.star_avg }">
+										</fmt:formatNumber>
+										점 • 
+										${genreLog.grade_count}곡 </span>
 								</li>
 							</c:forEach>
 						</ul>
