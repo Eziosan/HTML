@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import music.is.mylife.service.AnalysisService;
+import music.is.mylife.service.HomeService;
 import music.is.mylife.service.ListService;
 import music.is.mylife.service.SongService;
 import music.is.mylife.service.UserService;
@@ -32,6 +33,9 @@ public class SongController {
 	
 	@Autowired
 	SongService ss;
+	
+	@Autowired
+	HomeService hs;
 	
 	@Autowired
 	UserService us;
@@ -115,27 +119,27 @@ public class SongController {
 
 	
 	
-	@RequestMapping(value="plusStar",method=RequestMethod.GET)
-	public String plusStar(int song_id) {
-		logger.debug("플러스 스타 실행");
-		ss.plusSongLike(song_id);
-	
-		return "redirect:/song/mainPage";
-	
-		
-	}
-	
-	
-	@RequestMapping(value="minusStar",method=RequestMethod.GET)
-	public String minusStar(int song_id) {
-		
-		logger.debug("마이너스 스타 실행");
-		ss.minusSongLike(song_id);
-		
-		return "redirect:/song/mainPage";
-	
-		
-	}
+//	@RequestMapping(value="plusStar",method=RequestMethod.GET)
+//	public String plusStar(int song_id) {
+//		logger.debug("플러스 스타 실행");
+//		ss.plusSongLike(song_id);
+//	
+//		return "redirect:/song/mainPage";
+//	
+//		
+//	}
+//	
+//	
+//	@RequestMapping(value="minusStar",method=RequestMethod.GET)
+//	public String minusStar(int song_id) {
+//		
+//		logger.debug("마이너스 스타 실행");
+//		ss.minusSongLike(song_id);
+//		
+//		return "redirect:/song/mainPage";
+//	
+//		
+//	}
 	
 	@RequestMapping(value="selectList", method=RequestMethod.GET)
 	public String selectList(Model model,HttpSession session) {
@@ -223,6 +227,8 @@ public class SongController {
 		if(user_id!=null) {
 			ArrayList<Playlist> playlist = ss.selectList(user_id);
 			model.addAttribute("playlist", playlist);
+			double starPoint = hs.selectUserStar(pl.getSong_id(), user_id);
+			model.addAttribute("starPoint", starPoint);
 			
 		}
 		
@@ -294,6 +300,8 @@ public class SongController {
 			//유저의 모든 리스트를 가져옴
 			ArrayList<Playlist> playlist = ss.selectList(user_id);
 			model.addAttribute("playlist", playlist);
+			double starPoint = hs.selectUserStar(pl.getSong_id(), user_id);
+			model.addAttribute("starPoint", starPoint);
 			
 		}
 		
@@ -347,6 +355,8 @@ public class SongController {
 	
 		  if(user_info != null && user_info.getUser_pw().equals(user_pw)) {
 			  session.setAttribute("user_id", user_id);
+			  double starPoint = hs.selectUserStar(song.getSong_id(), user_id);
+			  model.addAttribute("starPoint", starPoint);
 		  } 
 		  //여기서 user_id에 값을 넣어줬기 때문에 밑에서 확인가능.
 		  

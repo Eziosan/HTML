@@ -6,6 +6,9 @@ import music.is.mylife.vo.Tag;
 import music.is.mylife.vo.UserLog;
 
 public interface UserLogMapper {
+	//한 유저가 해당 곡에 매긴 별점 출력
+	public double selectUserStar(UserLog ul);
+	
 	//한 유저가 지금까지 평가한 곡들의 별점 총합
 	public Double selectAllStarCountByUser(String user_id);
 	

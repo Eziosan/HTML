@@ -5,6 +5,10 @@
   
   <!-- 인터페이스 위치 지정!!!!!! -->
 <mapper namespace="music.is.mylife.dao.UserLogMapper">
+	
+	<select id="selectUserStar" parameterType="user_log" resultType="double">
+		select star from user_song_log where user_id = #{user_id} and song_id = #{song_id}
+	</select>
 
 	<!-- 한 유저가 지금까지 평가한 곡들의 별점 총합 -->
 	<select id="selectAllStarCountByUser" parameterType="string" resultType="double">

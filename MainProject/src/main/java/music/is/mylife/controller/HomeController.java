@@ -119,18 +119,19 @@ public class HomeController {
 	 */
 	@RequestMapping(value = "song/songPage", method = RequestMethod.GET)
 	public String songPage(Model model, int singer_id, int song_id, Song song, HttpSession session) {
-		String user_id;
+		String user_id = (String)session.getAttribute("user_id");
 		//전체 곡 검색해 해당 곡 띄우기
 		Song selectSong = ss.selectAllSong(song);
-
+		//평균 별점
 		double avg = ss.selectStars(song_id);
-		
 		selectSong.setAvg(avg);
+		//해당 유저가 해당 곡에 매긴 별점
 		
 		
-		user_id = (String)session.getAttribute("user_id");
 		if(user_id!=null) {
+			double starPoint = hs.selectUserStar(song_id, user_id);
 			ArrayList<Playlist> playlist = ss.selectList(user_id);
+			model.addAttribute("starPoint", starPoint);
 			model.addAttribute("playlist", playlist);
 			
 		}
