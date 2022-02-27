@@ -215,13 +215,14 @@
 									begin="${status.index }" end="${status.index + 4 }">
 									<div class="col">
 										<div class="card border border-white">
-											<img src="${song.album_img} " alt="img" width="100%"
+											<a href="/mylife/song/songPage?song_id=${song.song_id }&singer_id=${song.singer_id}">
+												<img src="${song.album_img} " alt="img" width="100%"
 												height="225">
+											</a>
 
 											<div class="card1 mt-3 ">
 												<p class="card-text mb-1 fw-bold" style="font-size: 23px;">
-													<a
-														href="/mylife/song/songPage?song_id=${song.song_id }&singer_id=${song.singer_id}">${song.song_name}</a>
+													<a	href="/mylife/song/songPage?song_id=${song.song_id }&singer_id=${song.singer_id}">${song.song_name}</a>
 												</p>
 												<p class="card-text mb-0" style="font-size: 15px;">${song.singer_name }</p>
 												<span class="card-text mb-0"
@@ -327,8 +328,10 @@ style="position: absolute; left: 100px; top: 130px"-->
 									begin="${status.index }" end="${status.index + 4 }">
 									<div class="col">
 										<div class="card border border-white">
-											<img src="${song.album_img} " alt="img" width="100%"
+											<a href="/mylife/song/songPage?song_id=${song.song_id }&singer_id=${song.singer_id}">
+												<img src="${song.album_img} " alt="img" width="100%"
 												height="225">
+											</a>
 
 											<div class="card1 mt-3 ">
 												<p class="card-text mb-1 fw-bold" style="font-size: 23px;">
