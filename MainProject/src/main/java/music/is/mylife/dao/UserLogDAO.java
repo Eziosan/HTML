@@ -19,7 +19,14 @@ public class UserLogDAO {
 	public double selectUserStar(UserLog ul) {
 		UserLogMapper mapper = session.getMapper(UserLogMapper.class);
 		
-		return mapper.selectUserStar(ul);
+		double dou = 0.0;
+		Double count = mapper.selectUserStar(ul);
+		
+		if (count != null) {
+			dou = count;
+		}
+		
+		return dou;
 	}
 	
 	/*
