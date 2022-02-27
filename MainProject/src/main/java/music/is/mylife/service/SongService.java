@@ -78,30 +78,42 @@ public class SongService {
 
 		// 어레이 리스트로 리스트 전체를 받아서 for each문을 돌려 현재 존재하는 리스트의 이름과 새로 받은 리스트의 이름과 비교해서 있으면
 		// 종료 없으면 리스트 생성하면서 곡까지 넣어줌.
+		//결국에는 유저 id로 해당 유저의 모든 리스트를 가져옴
 		ArrayList<Playlist> ps = sdao.selectList(playlist.getUser_id());
-
-		Boolean result = false;
-
-		for (Playlist p : ps) {
-			if (p.getList_name().equals(playlist.getList_name())) {
-
-				System.out.println(p.getList_name());
-				System.out.println(playlist.getList_name());
-
-				result = false;
-				break;
-			}
-
-			else {
-				result = true;
-			}
-
+		
+		if(sdao.listDupleCheck(playlist) > 0) {
+			return false;
 		}
-		if (result) {
-			sdao.insertList(playlist);
-
-		}
-		return result;
+		
+		int result = sdao.insertList(playlist);
+		
+		System.out.println("새 리스트 추가 결과 : " + result);
+		
+//
+//		Boolean result = false;
+//
+//		for (Playlist p : ps) {
+//			if (p.getList_name().equals(playlist.getList_name())) {
+//
+//				System.out.println(p.getList_name());
+//				System.out.println(playlist.getList_name());
+//
+//				result = false;
+//				break;
+//			}
+//
+//			else {
+//				result = true;
+//			}
+//
+//		}
+//		if (result) {
+//			sdao.insertList(playlist);
+//
+//		}
+		
+//		return result;
+		return true;
 
 	}
 

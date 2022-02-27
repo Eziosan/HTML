@@ -70,7 +70,7 @@ $(document).ready(function(){
 			  alert("로그인이 필요한 서비스 입니다");
 
 		}else{
-			alert(star);
+			//alert(star);
 			$("#star").val(star);
 			$("#starForm").submit();
 			
@@ -112,7 +112,7 @@ function addSongtoList(){
 			if(check.is(":checked") == true){
 				var p_id = check.val();
 
-				alert("선택한 플레이리스트 id : " + p_id); 
+				//alert("선택한 플레이리스트 id : " + p_id); 
 				result = true;
 				$("#playlist_id").val(p_id);
 			}
@@ -132,14 +132,8 @@ function addSongtoList(){
 	 */
 	function addPlayListCheck(){
 			 var list_name = document.getElementById("list_name").value;
-			
-			
-			
 			//3. pw 유효성 검사
 			var list_explain = document.getElementById("list_explain").value;
-			
-			
-			
 			
 			if( list_name == '' || list_explain == ''){
 				alert("리스트의 이름, 리스트의 설명은 반드시 입력해주셔야 합니다.");
@@ -457,6 +451,7 @@ function addSongtoList(){
 		        	<input type="text" placeholder="리스트 이름 입력.." name= "list_name" id="list_name">
 		        	<input type="text" placeholder="리스트 설명 입력" name= "list_explain" id ="list_explain">
 		        	<input type="hidden" id ="song_id" name="song_id" value="${Song.song_id}">
+		        	<input type="hidden" id ="singer_id" name="singer_id" value="${singer_id}">
 		        
 		        </div>
 		     

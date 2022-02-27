@@ -75,6 +75,12 @@ public class SongDAO {
 		return song;
 	}
 	
+	//유저와 리스트이름이 중복되는 리스트가 있는지 확인
+	public int listDupleCheck(Playlist pl) {
+		SongMapper mapper = session.getMapper(SongMapper.class);
+		
+		return mapper.listDupleCheck(pl);
+	}
 	
 	public ArrayList<Playlist> selectList(String user_id){
 		
@@ -88,7 +94,7 @@ public class SongDAO {
 	
 	
 	
-	public void insertList(Playlist playlist) {
+	public int insertList(Playlist playlist) {
 		
 		SongMapper mapper = session.getMapper(SongMapper.class);
 		
@@ -100,7 +106,7 @@ public class SongDAO {
 		
 		
 		
-		mapper.insertList(playlist);
+		return mapper.insertList(playlist);
 		//mapper.insertList_Detail(playlist);
 		
 	}

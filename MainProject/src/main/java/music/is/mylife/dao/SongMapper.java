@@ -19,14 +19,18 @@ public interface SongMapper {
 	public int plusSongLike(int song_id);
 	//곡 아이디를 입력받아 좋아요 수를 감소시키는 SQL문//
 	public int minusSongLike(int song_id);
+	
 	//곡 아이디를 받아 곡명, 가수 이름, 국적, 앨범 이름, 앨범 날짜, 장르 가져오는 SQL문//
 	public Song selectSongOne(int song_id);
+	
+	//유저와 리스트이름이 중복되는 리스트가 있는지 확인
+	public int listDupleCheck(Playlist pl);
 	// 유저 아이디를 받아 유저가 가지고 있는 모든 리스트를 반환함
 	public ArrayList<Playlist> selectList(String user_id);
 	// 시퀀스 하나 증가시키는 sql문
 	public int selectListSeq();
 	// 리스트 추가하는 sql문
-	public void insertList(Playlist playlist);
+	public int insertList(Playlist playlist);
 	// 리스트 디테일 추가하는 sql문
 	public void insertList_Detail(Playlist playlist);
 	// 플레이리스트 날짜를 최신날짜로 업데이트하는 sql문

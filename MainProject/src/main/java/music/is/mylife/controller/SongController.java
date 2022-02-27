@@ -119,7 +119,7 @@ public class SongController {
 
 	
 	
-	
+	//name, explain, song_id
 	// 새로운 플레이리스트 생성
 	@RequestMapping(value="addPlayList",method=RequestMethod.POST)
 	public String addPlayList(Playlist pl, Model model,HttpSession session) {
@@ -127,8 +127,6 @@ public class SongController {
 		System.out.println("리스트 추가 실행");
 		String user_id = (String)session.getAttribute("user_id");
 		Song song = ss.selectSongOne(pl.getSong_id());
-		
-		
 		
 		pl.setUser_id(user_id);
 				
@@ -160,7 +158,6 @@ public class SongController {
 		 model.addAttribute("song_id", pl.getSong_id()); 
 		 model.addAttribute("Song", song);
 		 model.addAttribute("Tag", tag);
-		 model.addAttribute("Song",song);
 		 
 		 // 플레이리스트아이디, 배너 사진들
 		 for(Playlist info : listId) {
@@ -182,17 +179,11 @@ public class SongController {
 	// 리스트에 곡 추가하기
 	@RequestMapping(value="addSongList",method=RequestMethod.POST)
 	public String addSongList(Playlist pl, Model model,HttpSession session) {
-		
-		
 		// user_id를 세션으로부터 가져와서 값 저장
 		String user_id = (String)session.getAttribute("user_id");
 		
-		
 		Song song = ss.selectSongOne(pl.getSong_id());
-
-		
 		pl.setUser_id(user_id);
-		
 		
 		ss.insertSong(pl);
 		
@@ -239,7 +230,7 @@ public class SongController {
 			model.addAttribute("banner", banner);
 		
 			//곡 아이디 세션에 담기
-			session.setAttribute("song_id", song.getSong_id());
+			//session.setAttribute("song_id", song.getSong_id());
 		
 			model.addAttribute("song_id",pl.getSong_id());
 			model.addAttribute("Song",song);
