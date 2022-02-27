@@ -158,33 +158,33 @@
 
 
 
-			<div class="dropdown text-end">
-				<a href="#"
-					class="d-block link-dark text-decoration-none dropdown-toggle"
-					id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
-					<img src="https://github.com/mdo.png" alt="mdo" width="32"
-					height="32" class="rounded-circle">
-				</a>
-
-
-
-				<ul class="dropdown-menu text-small" aria-labelledby="dropdownUser1">
-					<c:if test="${user_id == null }">
-						<li><a class="dropdown-item" href="#" data-bs-toggle="modal"
-							data-bs-target="#로그인모달" id="#로그인모달버튼">로그인</a></li>
-						<li><a class="dropdown-item" href="#" data-bs-toggle="modal"
-							data-bs-target="#회원가입모달">회원가입</a></li>
-					</c:if>
-
-					<c:if test="${user_id != null }">
-						<li><a class="dropdown-item" id="openModalBtn"
-							href="/mylife/analysis/main">취향분석</a></li>
-						<li><hr class="dropdown-divider"></li>
-						<li><a class="dropdown-item"
-							href="logout?playlist_id=${playlist_id }">Sign out</a></li>
-					</c:if>
-				</ul>
-			</div>
+						        <!-- 로그인 안 되어있을때 -->
+			       	  <c:if test="${user_id == null }">
+			            <button id="로그인보탄" data-bs-toggle="modal" data-bs-target="#로그인모달">
+			                        <div id="좋아요1" >
+			                                로그인
+			                        </div>
+			                </button>
+			            </c:if>
+			            
+			            <!-- 로긘 되어있을때 -->
+			      <c:if test="${user_id != null }">      
+			        <div class="dropdown text-end">
+			
+			          <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
+			            <img src="../resources/img/profile2.jpg" alt="mdo" width="32" height="32" class="rounded-circle">
+			          </a>
+			            
+			          <ul class="dropdown-menu text-small" aria-labelledby="dropdownUser1">
+			            <li><a class="dropdown-item" id="openModalBtn" href="/mylife/analysis/main">취향분석</a></li>
+			            <li><hr class="dropdown-divider"></li>
+			            <li><a class="dropdown-item" href="logout?playlist_id=${playlist_id }">Sign out</a></li>
+			           
+			          </ul>
+			        </div>
+		         </c:if>
+			
+			
 		</div>
 	</div>
 
@@ -203,8 +203,8 @@
 			<div id="프로필베너">
 				<c:forEach var="playlist" items="${banner }" begin="0" end="4"
 					varStatus="status">
-					<span> <img src="${playlist.album_img }"
-						id="커버${status.count }">
+					<span> 
+							<img src="${playlist.album_img }"	id="커버${status.count }">
 					</span>
 				</c:forEach>
 			</div>
@@ -212,7 +212,10 @@
 			<div>
 				<span id="배너프로필"> <img id="배너프로필1"
 					src="../resources/img/profile2.jpg">
-				</span> <span id="배너닉네임"> ${listInfo.user_id } </span>
+				</span> 
+				<a href="/mylife/analysis/main">
+					<span id="배너닉네임"> ${listInfo.user_id } </span>
+				</a>
 			</div>
 
 

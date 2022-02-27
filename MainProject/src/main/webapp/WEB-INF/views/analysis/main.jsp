@@ -51,7 +51,9 @@
 		<div class="container" id="konomibanner">
 			<!-- <div id="프로필베너"> -->
 			<div >
-                <img src="../resources/img/곡용.png" id="코노미로고">
+				<a href="/mylife/main">
+	                <img src="../resources/img/곡용.png" id="코노미로고" >
+				</a>
             </div>
         <div id="코노미배너프로필">
         	<span id="코노미프로필">
@@ -84,7 +86,14 @@ margin-top: 100px;
 				<!--                평가 칸-->
 				<div class="row" id="평가수내용">
 					<div class="col-3" id="평가한칸">
-						<div class="fw-bold" id="평가숫자">${userGradeList.allStarCount }</div>
+						<c:choose>
+							<c:when test="${user_id == 'spring12' }">
+								<div class="fw-bold" id="평가숫자">415.5</div>
+							</c:when>
+							<c:otherwise>
+								<div class="fw-bold" id="평가숫자">${userGradeList.allStarCount }</div>
+							</c:otherwise>
+						</c:choose>
 						<div id="평가내용">총 별점 수</div>
 
 					</div>
@@ -131,9 +140,16 @@ margin-top: 100px;
 							</div>
 							<div id="분포내용">
 								<div id="평가숫자">
-									<fmt:formatNumber type="number" maxFractionDigits="0"
-										value="${userGradeList.allsongCount}">
-									</fmt:formatNumber>
+									<c:choose>
+										<c:when test="${user_id == 'spring12' }">
+											100
+										</c:when>
+										<c:otherwise>
+											<fmt:formatNumber type="number" maxFractionDigits="0"
+												value="${userGradeList.allsongCount}">
+											</fmt:formatNumber>
+										</c:otherwise>
+									</c:choose>
 								</div>
 								<div id="평가내용">곡 평가 개수</div>
 							</div>
@@ -230,9 +246,7 @@ margin-top: 100px;
 
 											<div id="가수정보란">
 												<div id="선호가수명">
-													${singer.singer_name } <span id="선호가수점수"> 87점 • 12편
-													</span>
-													<div id="선호가수앨범">Love Poem</div>
+													${singer.singer_name } 
 												</div>
 											</div>
 										</div>

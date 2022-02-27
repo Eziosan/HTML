@@ -262,44 +262,44 @@ public class SongController {
 	public String login(String user_id, String user_pw, Model model, HttpSession session, Song song) {
 		
 		UserInfo user_info = us.selectUser(user_id);
+		ArrayList<Playlist> listId = ls.selectListId(song.getSong_id());
+		ArrayList<Tag> tag = ss.selectTag(song.getSong_id());
 		
 		double avg = ss.selectStars(song.getSong_id());
 		
+		
+
+		ArrayList<ArrayList<Playlist>> banner = new ArrayList<ArrayList<Playlist>>();
+
+		
+		// 플레이리스트아이디, 배너 사진들
+		for(Playlist info : listId) {
+			info.getPlaylist_id();
+			banner.add(ls.listBanner(info.getPlaylist_id()));
+		}
 		
 	
 		  if(user_info != null && user_info.getUser_pw().equals(user_pw)) {
 			  session.setAttribute("user_id", user_id);
 			  double starPoint = hs.selectUserStar(song.getSong_id(), user_id);
 			  model.addAttribute("starPoint", starPoint);
+			  ArrayList<Playlist> playlist = ss.selectList(user_id);
+			  model.addAttribute("playlist",playlist);
 		  } 
 		  //여기서 user_id에 값을 넣어줬기 때문에 밑에서 확인가능.
 		  
-		 
-		
 		 Song selectSong = ss.selectAllSong(song);
 		
 		 selectSong.setAvg(avg);
-		
-		ArrayList<Playlist> listId = ls.selectListId(song.getSong_id());
-		ArrayList<Tag> tag = ss.selectTag(song.getSong_id());
-		ArrayList<Playlist> playlist = ss.selectList(user_id);
-		
-		
-		
-		
-		
 		
 		  model.addAttribute("singer_id", song.getSinger_id());
 		  model.addAttribute("song_id", song.getSong_id()); 
 		  model.addAttribute("Song",  selectSong);
 		  model.addAttribute("listId", listId);
 		  model.addAttribute("Tag", tag);
-		  model.addAttribute("playlist",playlist);
+		  model.addAttribute("banner", banner);
+
 	
-		
-		
-		
-		
 		return "song/mainPage";
 	}
 	
@@ -321,12 +321,18 @@ public class SongController {
 		
 		selectSong.setAvg(avg);
 		
-		model.addAttribute("singer_id", selectSong.getSinger_id());
-		model.addAttribute("song_id", selectSong.getSong_id());
-		model.addAttribute("Song", selectSong);
 		
 		ArrayList<Playlist> listId = ls.selectListId(song.getSong_id());
-		model.addAttribute("listId", listId);
+		ArrayList<ArrayList<Playlist>> banner = new ArrayList<ArrayList<Playlist>>();
+		ArrayList<Tag> tag = ss.selectTag(song.getSong_id());
+
+
+		
+		// 플레이리스트아이디, 배너 사진들
+		for(Playlist info : listId) {
+			info.getPlaylist_id();
+			banner.add(ls.listBanner(info.getPlaylist_id()));
+		}
 		
 		if(us.insertUser(userinfo)) {
 			System.out.println("회원가입 성공!!!!");
@@ -336,6 +342,13 @@ public class SongController {
 			
 		}
 		
+		model.addAttribute("singer_id", selectSong.getSinger_id());
+		model.addAttribute("song_id", selectSong.getSong_id());
+		model.addAttribute("Song", selectSong);
+		  model.addAttribute("listId", listId);
+		  model.addAttribute("Tag", tag);
+		  model.addAttribute("banner", banner);
+
 		
 		return "song/mainPage";
 	}
@@ -362,12 +375,23 @@ public class SongController {
 		selectSong.setAvg(avg);
 		ArrayList<Playlist> listId = ls.selectListId(song.getSong_id());
 		ArrayList<Tag> tag = ss.selectTag(song.getSong_id());
+		ArrayList<ArrayList<Playlist>> banner = new ArrayList<ArrayList<Playlist>>();
+		
+		
+		// 플레이리스트아이디, 배너 사진들
+		for(Playlist info : listId) {
+			info.getPlaylist_id();
+			banner.add(ls.listBanner(info.getPlaylist_id()));
+		}
+
 		
 		
 		model.addAttribute("singer_id", song.getSinger_id());
 		model.addAttribute("song_id", song.getSong_id());
 		model.addAttribute("Song", selectSong);
 		model.addAttribute("listId", listId);
+		model.addAttribute("banner", banner);
+
 		
 		
 		

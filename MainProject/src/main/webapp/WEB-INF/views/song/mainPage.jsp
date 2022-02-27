@@ -82,7 +82,18 @@ $(document).ready(function(){
 });
 
 function searchCheck(){
+	
 	if($("#searchText").val().length < 1){
+		alert("글자 수는 1자 이상 입력하셔야 합니다!!")
+		return false;
+	}
+
+	return true;
+		
+} 
+function searchCheck2(){
+	
+	if($("#searchText1").val().length < 1){
 		alert("글자 수는 1자 이상 입력하셔야 합니다!!")
 		return false;
 	}
@@ -177,7 +188,7 @@ function addSongtoList(){
         
         </ul>
 
-        <form action="/mylife/search/searchResult" method="get" onsubmit="return searchCheck();" class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
+        <form action="/mylife/search/searchResult" method="get" onsubmit="return searchCheck2();" class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
           <input type="search" id="searchText1" name="searchText" class="form-control" placeholder="# 태그를 검색해보세요"  aria-label="Search" control-id="ControlID-2" 
                  style="background: transparent;" >
         </form>
@@ -190,7 +201,7 @@ function addSongtoList(){
                                 로그인
                         </div>
                 </button>
-            </c:if>
+           </c:if>
             
             <!-- 로긘 되어있을때 -->
       <c:if test="${user_id != null }">      
@@ -203,7 +214,7 @@ function addSongtoList(){
           <ul class="dropdown-menu text-small" aria-labelledby="dropdownUser1">
             <li><a class="dropdown-item" id="openModalBtn" href="/mylife/analysis/main">취향분석</a></li>
             <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="logout">Sign out</a></li>
+            <li><a class="dropdown-item" href="logout?song_id=${song.song_id }&singer_id=${song.singer_id}">Sign out</a></li>
            
           </ul>
         </div>
@@ -256,11 +267,11 @@ function addSongtoList(){
           <ul class="dropdown-menu text-small" aria-labelledby="dropdownUser1">
             <li><a class="dropdown-item" id="openModalBtn" href="/mylife/analysis/main">취향분석</a></li>
             <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="logout">Sign out</a></li>
+            <li><a class="dropdown-item" href="logout?song_id=${song.song_id }&singer_id=${song.singer_id}">Sign out</a></li>
            
           </ul>
         </div>
-         </c:if>
+       </c:if>
         
       </div>
     </div>
@@ -323,7 +334,14 @@ function addSongtoList(){
              <div class="col-4" style="align-content: center; margin-left: ">
                  <div id="별점큰박스">
                      <span id="별점기록" >
-                        <span class="fw-bold" id="별점평균" > ${starPoint}  </span>/  5
+                     	<c:choose>
+                     		<c:when test="${user_id == null }">
+		                        <span class="fw-bold" id="별점평균" > 0.0  </span>/  5
+                     		</c:when>
+                     		<c:otherwise>
+		                        <span class="fw-bold" id="별점평균" > ${starPoint}  </span>/  5
+                     		</c:otherwise>
+                     	</c:choose>
                      </span>
      <div class="starpoint_wrap" id="별점박스">
           <div class="starpoint_box">

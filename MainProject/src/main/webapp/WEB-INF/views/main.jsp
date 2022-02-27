@@ -56,7 +56,7 @@
         
         <!-- 로그인 안 되어있을때 -->
        	  <c:if test="${user_id == null }">
-            <button id="로그인보탄" data-bs-toggle="modal" data-bs-target="#로그인모달">
+            	<button id="로그인보탄" data-bs-toggle="modal" data-bs-target="#로그인모달">
                         <div id="좋아요1" >
                                 로그인
                         </div>
