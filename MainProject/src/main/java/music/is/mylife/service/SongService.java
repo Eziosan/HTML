@@ -29,7 +29,8 @@ public class SongService {
 	UserLogDAO uld;
 	@Autowired
 	TagDAO td;
-
+	
+	
 	// 해당 곡의 배너를 가져오는 메소드
 	public String selectBanner(int song_id) {
 

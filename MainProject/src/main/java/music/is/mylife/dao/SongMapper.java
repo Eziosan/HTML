@@ -6,6 +6,8 @@ import music.is.mylife.vo.Playlist;
 import music.is.mylife.vo.Song;
 
 public interface SongMapper {
+	//곡 아이디로 곡 정보 가져오기
+	public Song selectSongsById(int song_id);
 	
 	//곡 아이디로 배너 사진 URL을 가져오는 SQL문//
 	public String selectBanner(int song_id);

@@ -5,8 +5,16 @@
   
   <!-- 인터페이스 위치 지정!!!!!! -->
 <mapper namespace="music.is.mylife.dao.SongMapper">
-	<select id="test" resultType="string">
-		select upper('%' || #{text} ||'%') from dual
+	
+	<select id="selectSongsById" parameterType="song" resultType="song">
+		<![CDATA[
+	    	select * from (select singer.singer_id, singer.singer_name,
+				song.song_id, song.song_name, song.album_name, to_char(song.album_date,'YYYY') as album_date, song.hit, song.album_img
+			from singer singer, song song
+			where singer.singer_id = song.singer_id and song_id = #{song_id}
+			order by song.hit desc) where rownum <= 10
+    	]]>
+
 	</select>
 	
 		<!--  곡 아이디로 배너 사진 URL을 가져오는 SQL문 -->

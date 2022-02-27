@@ -42,10 +42,50 @@ public class HomeController {
 	}
 	
 	@RequestMapping(value = "backdoor", method = RequestMethod.GET)
-	public String backdoor(Locale locale) {
+	public String backdoor(Song song, Model model) {
+		int[] korea = {10, 24, 27, 33, 39, 42, 69, 73, 99, 100, 130, 131, 133, 134, 159, 167, 169,
+				170, 177, 181, 193, 212, 220, 221, 229, 253, 256, 287, 296, 309, 310, 341, 344, 346,
+				350, 373, 372, 381, 378, 399, 400, 407, 408, 429, 999};
+		int[] japan = {459, 461, 462, 465, 467, 493, 494, 512, 515, 519, 520, 521, 527, 536, 542, 552,
+				553, 556, 579, 581, 584, 611, 621, 616, 622, 629, 642};
+		int[] USA = {669, 676, 672, 705, 717, 707, 706, 740, 741, 790, 791, 793, 839, 820, 821, 855, 852,
+				854, 858, 940, 946, 951, 969, 972, 974};
+		ArrayList<Song> korean = new ArrayList<Song>();
+		ArrayList<Song> japanese = new ArrayList<Song>();
+		ArrayList<Song> american = new ArrayList<Song>();
 		
+		//한국 곡의 song_id를 차례대로 넣어서 가져온 곡들을 arrayList에 차곡차곡 쌓음
+		for(int song_id : korea) {
+			Song song2 = hs.selectSongsById(song_id);
+			korean.add(song2);
+			
+		}
+		//일본 곡의 song_id를 차례대로 넣어서 가져온 곡들을 arrayList에 차곡차곡 쌓음
+		for(int song_id : japan) {
+			Song song2 = hs.selectSongsById(song_id);
+			japanese.add(song2);
+		}
+		//미국 곡의 song_id를 차례대로 넣어서 가져온 곡들을 arrayList에 차곡차곡 쌓음
+		for(int song_id : USA) {
+			Song song2 = hs.selectSongsById(song_id);
+			american.add(song2);
+		}
 		
-		return "home";
+		logger.info("노래:{}", song);
+		ArrayList<Song> songList = hs.selectTopSong(song);
+		logger.info("SongList:{}", songList);
+		
+		ArrayList<Song> likeSong = hs.selectSongByGenre("발라드");
+		logger.info("SongLike: {}", likeSong);
+		
+		model.addAttribute("songList", songList);
+		model.addAttribute("likeSong", likeSong);
+		model.addAttribute("korean", korean);
+		model.addAttribute("japanese", japanese);
+		model.addAttribute("american", american);
+		
+		return "testingPage";
+		//return "home";
 	}
 
 	/**

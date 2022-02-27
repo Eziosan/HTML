@@ -15,6 +15,11 @@ public class HomeService {
 	@Autowired
 	SongDAO songDao;
 	
+	//곡 아이디로 곡 정보 가져오기
+	public Song selectSongsById(int song_id){
+		return songDao.selectSongsById(song_id);
+	}
+	
 	/**
 	 * 조회수가 높은 순으로 상위 5개의 곡 출력
 	 * @param song

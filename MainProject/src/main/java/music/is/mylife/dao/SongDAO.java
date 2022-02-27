@@ -16,6 +16,15 @@ public class SongDAO {
 	@Autowired
 	private SqlSession session;
 	
+	//곡 아이디로 곡 정보 가져오기
+	public Song selectSongsById(int song_id){
+		SongMapper mapper = session.getMapper(SongMapper.class);
+		
+		return mapper.selectSongsById(song_id);
+		
+	}
+
+	
 	// 가장 추천수가 높은 배너를 가져오는 메소드
 	public String selectBanner(int song_id){
 		SongMapper mapper = session.getMapper(SongMapper.class);
