@@ -68,6 +68,7 @@ public class AnalysisService {
 		System.out.println("allSongCount : " + allsongCount);
 		System.out.println("allSongCount : " + allStarSum);
 		System.out.println("allSongCount : " + topStar);
+		System.out.println("listCommentNum : " + listCommentNum);
 		
 		userGradeList.put("allStarCount", allStarCount);
 		userGradeList.put("listLikeNum", listLikeNum);

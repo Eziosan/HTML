@@ -18,7 +18,8 @@
 
 	<!-- 해당 유저의 모든 리스트에 지금까지 달린 모든 댓글 수 -->
 	<select id="selectListCommentsNumByUser" parameterType="string" resultType="double">
-		select count(*) from list_comment where user_id = #{user_id}
+		select count(*) from list_comment lc, playlist p
+		where lc.playlist_id = p.playlist_id and  p.user_id = #{user_id}
 	</select>
 	
 	
