@@ -119,88 +119,6 @@ public class SongController {
 
 	
 	
-//	@RequestMapping(value="plusStar",method=RequestMethod.GET)
-//	public String plusStar(int song_id) {
-//		logger.debug("플러스 스타 실행");
-//		ss.plusSongLike(song_id);
-//	
-//		return "redirect:/song/mainPage";
-//	
-//		
-//	}
-//	
-//	
-//	@RequestMapping(value="minusStar",method=RequestMethod.GET)
-//	public String minusStar(int song_id) {
-//		
-//		logger.debug("마이너스 스타 실행");
-//		ss.minusSongLike(song_id);
-//		
-//		return "redirect:/song/mainPage";
-//	
-//		
-//	}
-	
-	@RequestMapping(value="selectList", method=RequestMethod.GET)
-	public String selectList(Model model,HttpSession session) {
-		
-		String user_id;
-		
-		
-		
-		user_id = (String)session.getAttribute("user_id");
-		
-		
-		ArrayList<Playlist> playlist = ss.selectList(user_id);
-		
-		
-		
-		
-		model.addAttribute("playlist", playlist);
-	
-		
-		return "song/listPage";
-	}
-	
-
-	
-	
-	@RequestMapping(value="insertList", method=RequestMethod.POST)
-	public String insertList(Model model, Playlist playlist) {
-		
-		//여기서 할 거 > 리스트 생성하기
-		String url;
-		
-		Boolean result = ss.insertPlaylist(playlist);
-		
-		if(result) {
-			url="redirect:/main";
-			
-		}else {
-			url="song/listPage";
-		}
-		
-		// 트루면 메인으로
-		// 펄스면 listpage로 감
-		
-		logger.debug("Result : {}", result);
-		// 추가 됐으면 true 안됐으면 false.
-		// listPage에서 true냐, false냐에 따라 리스트 추가됐는지 안됐는지 코드짜면 될거같음.
-		
-		return url;
-	}
-	
-	
-	
-
-	
-	
-	
-	
-	
-	
-	
-	
 	
 	// 새로운 플레이리스트 생성
 	@RequestMapping(value="addPlayList",method=RequestMethod.POST)
@@ -210,8 +128,8 @@ public class SongController {
 		String user_id = (String)session.getAttribute("user_id");
 		Song song = ss.selectSongOne(pl.getSong_id());
 		
-		//여기서 할 거 > 리스트 생성하기
-		String url;
+		
+		
 		pl.setUser_id(user_id);
 				
 		ss.insertPlaylist(pl);
@@ -254,19 +172,14 @@ public class SongController {
 		 
 			//배너 사진
 			model.addAttribute("banner", banner);
-		
-			//곡 아이디 세션에 담기
-				
-				
-				
-		
-		
+
+			
 		return "song/mainPage";
 	}
 	
 	
 	
-	// 곡을 리스트에 추가하는 method
+	// 리스트에 곡 추가하기
 	@RequestMapping(value="addSongList",method=RequestMethod.POST)
 	public String addSongList(Playlist pl, Model model,HttpSession session) {
 		
@@ -276,8 +189,7 @@ public class SongController {
 		
 		
 		Song song = ss.selectSongOne(pl.getSong_id());
-		// 값 받아옴.
-		// 곡 id, playlist_id를 가지고 곡을 넣어야함.
+
 		
 		pl.setUser_id(user_id);
 		
@@ -287,13 +199,13 @@ public class SongController {
 		
 		///////////
 		
-		//전체 곡 검색해 해당 곡 띄우기
-		Song selectSong = ss.selectAllSong(song);
+		
 
 		//평균 별점
 		double avg = ss.selectStars(song.getSong_id());
 		
-		selectSong.setAvg(avg);
+		song.setAvg(avg);
+		
 		
 		
 		if(user_id!=null) {
@@ -311,7 +223,7 @@ public class SongController {
 		 ArrayList<Playlist> listId = ls.selectListId(song.getSong_id());
 		 ArrayList<ArrayList<Playlist>> banner = new ArrayList<ArrayList<Playlist>>();
 		 
-		 model.addAttribute("Song", selectSong);
+		 
 		 model.addAttribute("Tag", tag);
 		 
 		 // 플레이리스트아이디, 배너 사진들
@@ -351,6 +263,8 @@ public class SongController {
 		
 		UserInfo user_info = us.selectUser(user_id);
 		
+		double avg = ss.selectStars(song.getSong_id());
+		
 		
 	
 		  if(user_info != null && user_info.getUser_pw().equals(user_pw)) {
@@ -364,7 +278,7 @@ public class SongController {
 		
 		 Song selectSong = ss.selectAllSong(song);
 		
-		
+		 selectSong.setAvg(avg);
 		
 		ArrayList<Playlist> listId = ls.selectListId(song.getSong_id());
 		ArrayList<Tag> tag = ss.selectTag(song.getSong_id());
@@ -401,7 +315,11 @@ public class SongController {
 	@RequestMapping(value = "join", method = RequestMethod.POST)
 	public String join(@ModelAttribute("userinfo") UserInfo userinfo ,Model model, Song song) {
 		
+		double avg = ss.selectStars(song.getSong_id());
+		
 		Song selectSong = ss.selectAllSong(song);
+		
+		selectSong.setAvg(avg);
 		
 		model.addAttribute("singer_id", selectSong.getSinger_id());
 		model.addAttribute("song_id", selectSong.getSong_id());
@@ -436,7 +354,12 @@ public class SongController {
 		
 		session.invalidate();
 		
+		double avg = ss.selectStars(song.getSong_id());
+		
+		
+		
 		Song selectSong = ss.selectAllSong(song);
+		selectSong.setAvg(avg);
 		ArrayList<Playlist> listId = ls.selectListId(song.getSong_id());
 		ArrayList<Tag> tag = ss.selectTag(song.getSong_id());
 		
