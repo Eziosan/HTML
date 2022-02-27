@@ -67,7 +67,7 @@
 		class="p-2 fixed-top align-items-center border-bottom border-info"
 		id="AllusicH"
 		style="font-family: 'Noto Sans KR', sans-serif; background-color: white;">
-		<div class="container-fluid w-75">
+		<div class="container-fluid"  style="width: 93%">
 			<div
 				class="d-flex flex-wrap align-items-center justify-content-start ">
 				<!--          justify-content-lg-start-->
@@ -96,31 +96,33 @@
 				</form>
 
 
-
-				<div class="dropdown text-end">
-					<a href="#"
-						class="d-block link-dark text-decoration-none dropdown-toggle"
-						id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
-						<img src="https://github.com/mdo.png" alt="mdo" width="32"
-						height="32" class="rounded-circle">
-					</a>
-
-					<ul class="dropdown-menu text-small"
-						aria-labelledby="dropdownUser1">
-						<c:if test="${user_id == null }">
-							<li><a class="dropdown-item" href="#" data-bs-toggle="modal"
-								data-bs-target="#로그인모달" id="#로그인모달버튼">로그인</a></li>
-							<li><a class="dropdown-item" href="#" data-bs-toggle="modal"
-								data-bs-target="#회원가입모달">회원가입</a></li>
-						</c:if>
-
-						<c:if test="${user_id != null }">
-							<li><a class="dropdown-item" id="openModalBtn" href="/mylife/analysis/main">취향분석</a></li>
-							<li><hr class="dropdown-divider"></li>
-							<li><a class="dropdown-item" href="logout?searchText=${searchText }">Sign out</a></li>
-						</c:if>
-					</ul>
-				</div>
+          
+			        <!-- 로그인 안 되어있을때 -->
+			       	  <c:if test="${user_id == null }">
+			            <button id="로그인보탄" data-bs-toggle="modal" data-bs-target="#로그인모달">
+			                        <div id="좋아요1" >
+			                                로그인
+			                        </div>
+			                </button>
+			            </c:if>
+			            
+			            <!-- 로긘 되어있을때 -->
+			      <c:if test="${user_id != null }">      
+			        <div class="dropdown text-end">
+			
+			          <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
+			            <img src="../resources/img/profile2.jpg" alt="mdo" width="32" height="32" class="rounded-circle">
+			          </a>
+			            
+			          <ul class="dropdown-menu text-small" aria-labelledby="dropdownUser1">
+			            <li><a class="dropdown-item" id="openModalBtn" href="/mylife/analysis/main">취향분석</a></li>
+			            <li><hr class="dropdown-divider"></li>
+			            <li><a class="dropdown-item" href="logout">Sign out</a></li>
+			           
+			          </ul>
+			        </div>
+		         </c:if>
+         
 			</div>
 		</div>
 
@@ -143,6 +145,8 @@
 			</div>
 
 		</div>
+		
+		<!-- 곡결과 -->
 		<section id="결과창">
 			<!-- 		<div id="종류">
 				<div class="가수" id="컨텐츠종류"
@@ -156,10 +160,12 @@
 
 			<c:choose>
 				<c:when test="${searchResult1.size() < 1 }">
+				<div id="곡결과">
 					<div class="titles fw-bold mb-4" style="font-size: 25px;">
 						곡명으로 검색 ${songCount }</div>
 					<br>
-					<h1>검색 결과가 없습니다</h1>
+					<h1 style=" margin-top: 120px; color: #1E90FF;">"검색 결과가 없습니다"</h1>
+					</div>
 				</c:when>
 				<c:otherwise>
 
@@ -182,7 +188,7 @@
 
 						<!-- 카로셀 슬라이드들 감싸는 태그 -->
 						<div id="곡결과s" class="carousel slide" data-bs-ride="carousel"
-							style="height: 400px;" data-bs-interval="false">
+							style="height: 350px; margin-top:50px;" data-bs-interval="false">
 
 
 							<!-- 첫번째 카로셀 모든 곡을 5개씩 여러개의 슬라이드로 나눠서 출력 -->
@@ -222,9 +228,10 @@
 
 											<div class="card1 mt-3 ">
 												<p class="card-text mb-1 fw-bold" style="font-size: 23px;">
-													<a	href="/mylife/song/songPage?song_id=${song.song_id }&singer_id=${song.singer_id}">${song.song_name}</a>
+													<a	href="/mylife/song/songPage?song_id=${song.song_id }&singer_id=${song.singer_id}"  id="메인곡명">${song.song_name}</a>
 												</p>
-												<p class="card-text mb-0" style="font-size: 15px;">${song.singer_name }</p>
+												<p class="card-text mb-0" style="
+												font-size: 15px;" >${song.singer_name }</p>
 												<span class="card-text mb-0"
 													style="font-size: 13px; margin-left: 1px">
 													${song.album_date } </span> <span class="card-text mb-0 fw-bold"
@@ -269,39 +276,52 @@ style="position: absolute; left: 100px; top: 130px"-->
 
 				</c:otherwise>
 			</c:choose>
-
-
+	</section>
+	
+	<!-- 가수결과 -->
+	<section id="결과창">
 			<c:choose>
 				<c:when test="${searchResult2.size() < 1 }">
-					<br>
-					<br>
-					<br>
+				<div id="곡결과">
 					<div class="titles fw-bold mb-4" style="font-size: 25px;">
+					
 						가수명으로 검색 ${songCount }</div>
 					<br>
-					<h1>검색 결과가 없습니다</h1>
+					<h1 style="margin-top: 120px; color: #1E90FF;">"검색 결과가 없습니다"</h1>
+				</div>	
 				</c:when>
 				<c:otherwise>
 
 
 					<!--        앨범결과-->
-					<div class="앨범결과 " id="앨범결과">
+					<div class="앨범결과 " id="곡결과" style="border-bottom: none;">
 
 						<!--            좌버튼-->
 						<button class="carousel-control-prev" id="앨범결과좌" type="button"
-							data-bs-target="#앨범결과s" data-bs-slide="prev" style="">
-							<!--    <span class="왼쪽" aria-hidden="true" style="position: absolute; top: 130px" >-->
-							<img src="../resources/img/왼2.png" width="30px">
-							<!--        </span>-->
+							data-bs-target="#앨범결과s" data-bs-slide="prev"
+							style="position: relative;
+							top: 270px;
+							left: 0px;
+							right : 0px;">
+							<img src="../resources/img/왼2.png" style="	
+							width:30px;
+							position: relative;
+							right: 113px;">
 							<span class="visually-hidden">Previous</span>
 						</button>
+<!-- 						<button class="carousel-control-prev" type="button"
+							data-bs-target="#곡결과s" data-bs-slide="prev"
+							style="width: 30px; height: 30px; position: absolute; top: 380px; left: 180px;">
+							<img src="../resources/img/왼2.png" width="30px">
+							<span class="visually-hidden">Previous</span>
+						</button> -->
 
 						<div class="titles fw-bold mb-4" style="font-size: 25px;">
 							가수명으로 검색</div>
 
 						<!-- 카로셀 슬라이드 목록들을 감싸는 태그 -->
 						<div id="앨범결과s" class="carousel slide" data-bs-ride="carousel"
-							style="height: 400px;" data-bs-interval="false">
+							style="height: 350px; margin-top:50px;" data-bs-interval="false">
 
 
 							<!-- 두번째 카로셀(앨범) 목록 표시 -->
@@ -336,7 +356,7 @@ style="position: absolute; left: 100px; top: 130px"-->
 											<div class="card1 mt-3 ">
 												<p class="card-text mb-1 fw-bold" style="font-size: 23px;">
 													<a
-														href="/mylife/song/songPage?song_id=${song.song_id }&singer_id=${song.singer_id}">${song.song_name}</a>
+														href="/mylife/song/songPage?song_id=${song.song_id }&singer_id=${song.singer_id}" id="메인곡명">${song.song_name}</a>
 												</p>
 												<p class="card-text mb-0" style="font-size: 15px;">${song.singer_name }</p>
 												<span class="card-text mb-0"
@@ -361,6 +381,16 @@ style="position: absolute; left: 100px; top: 130px"-->
 									</div>
 								</c:forEach>
 						</div>
+						<button class="carousel-control-next" id="앨범결과좌" type="button"
+						data-bs-target="#앨범결과s" data-bs-slide="next" style="float: right;
+						position: relative;
+						top: -160px;
+						left: 80px;">
+						<img src="../resources/img/오2.png" width="30px">
+						<!--    
+						<!--      </span>-->
+						<span class="visually-hidden">Next</span>
+					</button>
 					</div>
 					</c:forEach>
 
@@ -369,16 +399,18 @@ style="position: absolute; left: 100px; top: 130px"-->
 
 					</div>
 
-					<!--         우버튼-->
-					<button class="carousel-control-next" id="앨범결과좌" type="button"
-						data-bs-target="#앨범결과s" data-bs-slide="next" style="float: right;">
-						<!--    <span class="오른쪽" aria-hidden="true" style="position: absolute; left: 200px; top: 130px">-->
-						<img src="../resources/img/오2.png" width="30px">
-						<!--    
-style="position: absolute; left: 100px; top: 130px"-->
-						<!--      </span>-->
+					<!-- <!--         우버튼-->
+<!-- 					<button class="carousel-control-next" id="앨범결과좌" type="button"
+						data-bs-target="#앨범결과s" data-bs-slide="next" style="float: right;
+						position: relative;
+						top: 270px;
+						left: 0px;
+						right : 0px;">
+						<img src="../resources/img/오2.png" width="30px"> -->
+						   
+						<!--      </span>
 						<span class="visually-hidden">Next</span>
-					</button>
+					</button> -->
 
 
 					</div>

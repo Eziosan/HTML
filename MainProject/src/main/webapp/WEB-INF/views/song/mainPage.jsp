@@ -163,7 +163,7 @@ function addSongtoList(){
   --> 
          
          
-<!--  200 이상일때 헤더A-->
+<!--헤더A-->
     <header class="p-2 mb-3 fixed-top align-items-center" id="AllusicH" style="font-family: 'Noto Sans KR', sans-serif; ">
     <div class="container-fluid" style="width: 93%">
       <div class="d-flex flex-wrap align-items-center justify-content-start ">
@@ -178,37 +178,42 @@ function addSongtoList(){
         </ul>
 
         <form action="/mylife/search/searchResult" method="get" onsubmit="return searchCheck();" class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
-          <input type="search" id="searchText" name="searchText" class="form-control" placeholder="# 태그를 검색해보세요"  aria-label="Search" control-id="ControlID-2" 
-                 style="background: transparent;">
+          <input type="search" id="searchText1" name="searchText" class="form-control" placeholder="# 태그를 검색해보세요"  aria-label="Search" control-id="ControlID-2" 
+                 style="background: transparent;" >
         </form>
 
-          
-          
+              
+        <!-- 로그인 안 되어있을때 -->
+       	  <c:if test="${user_id == null }">
+            <button id="로그인보탄" style="opacity: 0.6" data-bs-toggle="modal" data-bs-target="#로그인모달">
+                        <div id="좋아요1"  >
+                                로그인
+                        </div>
+                </button>
+            </c:if>
+            
+            <!-- 로긘 되어있을때 -->
+      <c:if test="${user_id != null }">      
         <div class="dropdown text-end">
-          <a href="#" class="d-block link-white text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
-            <img src="https://github.com/mdo.png" alt="mdo" width="32" height="32" class="rounded-circle">
+
+          <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
+            <img src="../resources/img/profile2.jpg" alt="mdo" width="32" height="32" class="rounded-circle">
           </a>
-                 
             
           <ul class="dropdown-menu text-small" aria-labelledby="dropdownUser1">
-           <c:if test="${user_id == null }">
-            <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#로그인모달" id="#로그인모달버튼">로그인</a></li>
-            <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#회원가입모달">회원가입</a></li>
-            </c:if>
-
-            <c:if test="${user_id != null }">
             <li><a class="dropdown-item" id="openModalBtn" href="/mylife/analysis/main">취향분석</a></li>
             <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="logout?song_id=${song_id }&singer_id=${singer_id}">Sign out</a></li>
-            </c:if>
+            <li><a class="dropdown-item" href="logout">Sign out</a></li>
+           
           </ul>
         </div>
+         </c:if>
       </div>
     </div>
   </header>
   
   
-<!-- 200 미만일때 헤더B-->
+<!--헤더B-->
     
     <header class="p-2 mb-3 fixed-top align-items-center border-bottom border-info" id="AllusicH2" 
             style="font-family: 'Noto Sans KR', sans-serif; visibility: hidden; 
@@ -231,26 +236,32 @@ function addSongtoList(){
         </form>
 
           
-          
-      <div class="dropdown text-end">
-          <a href="#" class="d-block link-white text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
-            <img src="https://github.com/mdo.png" alt="mdo" width="32" height="32" class="rounded-circle">
+        <!-- 로그인 안 되어있을때 -->
+       	  <c:if test="${user_id == null }">
+            <button id="로그인보탄" data-bs-toggle="modal" data-bs-target="#로그인모달">
+                        <div id="좋아요1" >
+                                로그인
+                        </div>
+                </button>
+            </c:if>
+            
+            <!-- 로긘 되어있을때 -->
+      <c:if test="${user_id != null }">      
+        <div class="dropdown text-end">
+
+          <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
+            <img src="../resources/img/profile2.jpg" alt="mdo" width="32" height="32" class="rounded-circle">
           </a>
-                 
             
           <ul class="dropdown-menu text-small" aria-labelledby="dropdownUser1">
-           <c:if test="${user_id == null }">
-            <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#로그인모달" id="#로그인모달버튼">로그인</a></li>
-            <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#회원가입모달">회원가입</a></li>
-            </c:if>
-
-            <c:if test="${user_id != null }">
             <li><a class="dropdown-item" id="openModalBtn" href="/mylife/analysis/main">취향분석</a></li>
             <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="logout?song_id=${song_id }&singer_id=${singer_id}">Sign out</a></li>
-            </c:if>
+            <li><a class="dropdown-item" href="logout">Sign out</a></li>
+           
           </ul>
         </div>
+         </c:if>
+        
       </div>
     </div>
   </header>
@@ -466,7 +477,7 @@ function addSongtoList(){
         background-color:  white; font-family: 'Noto Sans KR', sans-serif; font-size: 0px; padding-bottom: 40px;">
             
 <!--            가수 -->
-            <div class="가수" id="가수정보칸" style="height: 200px;">
+            <div class="가수" id="가수정보칸">
                 
                 <div class="가수 fw-bold"  id="송칸타이틀">
                     가수
@@ -487,7 +498,7 @@ function addSongtoList(){
             
 <!--           작사  -->
            <div class="작사" 
-                id="가수정보칸" style="height: 200px;">
+                id="가수정보칸">
                 
                 <div class="작사 fw-bold" id="송칸타이틀">
                     작사
@@ -508,7 +519,7 @@ function addSongtoList(){
             
 <!--           작곡 -->
             <div class="작곡" 
-            id="가수정보칸" style="height: 200px;">
+            id="가수정보칸" >
                 
                 <div class="작곡 fw-bold" id="송칸타이틀">
                     작곡
@@ -532,7 +543,7 @@ function addSongtoList(){
 <!--            가사 -->
             <div class="가사 text-left" id="가수정보칸" style="height: auto; border-bottom: none;">
                
-                <div class="가사 fw-bold" style="margin-top: 5px; font-size: 22px; height: 50px; ">
+                <div class="가사 fw-bold" style="margin-top: 5px; font-size: 22px; height: 100px; ">
                     가사
                     <span >
                         <a class="더보기" data-bs-toggle="collapse" data-bs-target="#가사란" aria-expanded="false" aria-controls="collapseExample" 

@@ -76,8 +76,8 @@ margin-top: 100px;
 <!-- 		</div> -->
 		<div class="container" id="평가박스">
 			<div id="평가">
-				<div id="평가수">
-					<div class="fw-bold" id="평가수텍">평가수</div>
+				<div id="평가수" style="margin-top: 10px;">
+					<div class="fw-bold" id="평가수텍" >평가수</div>
 
 				</div>
 

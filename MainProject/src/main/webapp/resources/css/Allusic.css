@@ -139,7 +139,9 @@
 #결과창 {
     margin-right: auto;
     margin-left: auto;
+    margin-top :30px;
     max-width: 1320px;
+    height: 500px;
 }
 
 #종류 {
@@ -158,26 +160,34 @@
 }
 
 #곡결과 {
-    height: 430px;
-    padding-top: 30px;
-    border-bottom: 1px solid;
+    height: 500px;
+	border-bottom: 1px solid;
     border-bottom-color: lightgray;
 }
 
 #앨범결과좌 {
     width: 15px; 
     height: 15px; 
-    position: relative; 
-    opacity: 0.2;
     top: 200px;
 }
+
 
 #앨범결과좌:hover {
     width: 15px; 
     height: 15px; 
-    position: relative; 
     opacity: 1.0;
     top:200px;
+}
+
+#앨범결과좌버튼{
+	width:30px;
+	position: relativ;
+	right:20px;
+	top:30px;	
+	left:30px;
+	bottom:0px;
+	
+
 }
 
 #container {
@@ -197,6 +207,7 @@
     width: 100vw; height: auto; font-family: 'Noto Sans KR', sans-serif; 
     overflow: hidden;
 }
+
 
 #프로필베너 {
     width: 3000px;
@@ -578,7 +589,7 @@
 #평가박스 {
     margin-top: 12px;
     width: 638px;
-    height: 220px;
+    height: 240px;
         background-color: white;
     border: 1px solid;
     border-color: lightgray;
@@ -682,6 +693,7 @@
     border-radius: 6px;
     padding: 0 0 40px 0;
     overflow: hidden;
+    margin-bottom: 30px;
 }
 
 #태그큰칸 {
@@ -746,7 +758,7 @@
 }
 
 #가수큰칸 {
-    height: 355px;
+    height: 335px;
     padding-top: 8px;
     padding-bottom: 20px;
 }
@@ -790,7 +802,7 @@
 }
 #국가큰칸 {
     width: 638px;
-    height: 200px;
+    height: 185px;
     padding-top: 8px;
 }
 
@@ -1243,7 +1255,7 @@
 
 #가수정보칸 {
     width: 850px; 
-    height: 275px;
+    height: 215px;
     text-align: left; 
     margin : 0 auto;
     padding-top: 8px; 
@@ -1422,6 +1434,14 @@
 	
 }
 
+#메인가수명{
+	text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+	
+}
+
+
 #로그인보탄 {
     width: 70px; 
     height: 35px;
@@ -1441,4 +1461,12 @@
     font-weight: 400;
     list-style:none;
     margin: 0 auto;
+}
+
+#searchText1 {
+    color: white;
+}
+
+#searchText1:focus {
+    color: white;
 }

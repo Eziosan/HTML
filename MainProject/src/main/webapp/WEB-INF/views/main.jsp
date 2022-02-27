@@ -52,38 +52,36 @@
         			class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
           <input type="search" id="searchText" name="searchText" class="form-control" placeholder="# 태그를 검색해보세요"  aria-label="Search" control-id="ControlID-2" style="background: #F2F2F2">
         </form>
-          
-                          
-        <div class="dropdown text-end">
         
-      	  <c:if test="${user_id == null }">
+        
+        <!-- 로그인 안 되어있을때 -->
+       	  <c:if test="${user_id == null }">
             <button id="로그인보탄" data-bs-toggle="modal" data-bs-target="#로그인모달">
                         <div id="좋아요1" >
                                 로그인
                         </div>
                 </button>
             </c:if>
-        
-         <c:if test="${user_id != null }">
+            
+            <!-- 로긘 되어있을때 -->
+      <c:if test="${user_id != null }">      
+        <div class="dropdown text-end">
+
           <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
             <img src="./resources/img/profile2.jpg" alt="mdo" width="32" height="32" class="rounded-circle">
           </a>
-         </c:if>        
-            
             
           <ul class="dropdown-menu text-small" aria-labelledby="dropdownUser1">
-           <c:if test="${user_id == null }">
-            <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#로그인모달" id="#로그인모달버튼">로그인</a></li>
-            <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#회원가입모달">회원가입</a></li>
-            </c:if>
-            
-            <c:if test="${user_id != null }">
             <li><a class="dropdown-item" id="openModalBtn" href="/mylife/analysis/main">취향분석</a></li>
             <li><hr class="dropdown-divider"></li>
             <li><a class="dropdown-item" href="logout">Sign out</a></li>
-            </c:if>
+           
           </ul>
         </div>
+         </c:if>
+         
+         
+         
       </div>
     </div>
         
@@ -152,7 +150,7 @@
 												    margin-top: 12px;">
 												<a href="/mylife/song/songPage?song_id=${song.song_id }&singer_id=${song.singer_id}" 
 												class="card-text mb-1 fw-bold" id="메인곡명">${song.song_name}</a>
-												<p class="card-text mb-0" style="font-size: 15px;">${song.singer_name }</p>
+												<p class="card-text mb-0" style="font-size: 15px;" id="메인가수명">${song.singer_name }</p>
 												<span class="card-text mb-0"
 													style="font-size: 13px; margin-left: 1px; color: #74747b;">
 													${song.album_date } </span> <span class="card-text mb-0 fw-bold"
