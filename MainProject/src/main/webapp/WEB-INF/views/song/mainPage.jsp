@@ -183,7 +183,7 @@ function addSongtoList(){
         </ul>
 
         <form action="/mylife/search/searchResult" method="get" onsubmit="return searchCheck2();" class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
-          <input type="search" id="searchText1" name="searchText" class="form-control" placeholder="# 태그를 검색해보세요"  aria-label="Search" control-id="ControlID-2" 
+          <input type="search" id="searchText1" name="searchText" class="form-control" placeholder="검색어를 입력하세요"  aria-label="Search" control-id="ControlID-2" 
                  style="background: transparent;" >
         </form>
 
@@ -207,8 +207,9 @@ function addSongtoList(){
             
           <ul class="dropdown-menu text-small" aria-labelledby="dropdownUser1">
             <li><a class="dropdown-item" id="openModalBtn" href="/mylife/analysis/main">취향분석</a></li>
+            <li><a class="dropdown-item" id="openModalBtn" href="/mylife/backdoor">테스트 페이지</a></li>
             <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="logout?song_id=${song.song_id }&singer_id=${song.singer_id}">Sign out</a></li>
+            <li><a class="dropdown-item" href="logout?song_id=${Song.song_id }&singer_id=${Song.singer_id}">Sign out</a></li>
            
           </ul>
         </div>
@@ -236,7 +237,7 @@ function addSongtoList(){
         </ul>
 
         <form action="/mylife/search/searchResult" method="get" onsubmit="return searchCheck();" class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
-          <input type="search" id="searchText" name="searchText" class="form-control" placeholder="# 태그를 검색해보세요"  aria-label="Search" control-id="ControlID-2" 
+          <input type="search" id="searchText" name="searchText" class="form-control" placeholder="검색어를 입력하세요"  aria-label="Search" control-id="ControlID-2" 
                  style="background: transparent;">
         </form>
 
@@ -566,7 +567,8 @@ function addSongtoList(){
                                color: dodgerblue;
                                font-size: 15px;
                                float: right;
-                               margin-top: 15px;">
+                               margin-top: 15px;
+                               cursor : pointer;">
 
                             더보기
 

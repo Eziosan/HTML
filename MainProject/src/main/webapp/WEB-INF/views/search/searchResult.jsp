@@ -90,7 +90,7 @@
 					onsubmit="return searchCheck();"
 					class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
 					<input type="search" id="searchText" name="searchText"
-						class="form-control" placeholder="# 태그를 검색해보세요"
+						class="form-control" placeholder="검색어를 입력하세요"
 						aria-label="Search" control-id="ControlID-2"
 						style="background: #F2F2F2">
 				</form>
