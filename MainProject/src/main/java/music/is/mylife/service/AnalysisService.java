@@ -2,6 +2,7 @@ package music.is.mylife.service;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -117,6 +118,41 @@ public class AnalysisService {
 	//선호 장르 수 3개 가져오기
 	public ArrayList<UserLog> selectTop3GenreByUser(String user_id){
 		ArrayList<UserLog> genreLogList = uld.selectTop3GenreByUser(user_id);
+		int max = 10;
+		int[] less10 = null;
+		int[] topTo10 = null;
+		int[] elseInt = null;
+		int i = 0;
+		int j = 0;
+		int k = 0;
+		
+		
+		
+		for(UserLog ul : genreLogList) {
+			//빈도수
+			int grade_count = ul.getGrade_count();
+			//빈도수가 10이하-> 정렬
+			if(grade_count < 10) {
+				//여기서도 크기 비교 해야 됨
+				less10[i++] = grade_count;
+			}else if(grade_count >  (max - 10) ) {
+				topTo10[j++] = grade_count;
+				
+			}else {
+				elseInt[k++] = grade_count;
+			}
+			
+			
+		}
+		
+		Arrays.sort(less10);
+		Arrays.sort(topTo10);
+		Arrays.sort(elseInt);
+		
+	//	System.arraycopy(less10, srcPos, dest, destPos, length);
+		//System.arraycopy(topTo10, srcPos, dest, destPos, length);
+		//System.arraycopy(elseInt, srcPos, dest, destPos, length);
+		
 		
 		return genreLogList;
 	}
