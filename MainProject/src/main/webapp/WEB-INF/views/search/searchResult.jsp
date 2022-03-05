@@ -61,7 +61,7 @@
  -->
 
   	<!-- 리스트 해당하는 로그인, 회원가입 모달 불러오기 -->
-	<c:import url="../searchmenu.jsp"></c:import>
+	<c:import url="../menu/searchmenu.jsp"></c:import>
 
 	<header
 		class="p-2 fixed-top align-items-center border-bottom border-info"
@@ -226,8 +226,13 @@
 												height="225">
 											</a>
 
-											<div class="card1 mt-3 ">
-												<p class="card-text mb-1 fw-bold" style="font-size: 23px;">
+											<div class="card1 mt-3 " style="text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;">
+												<p class="card-text mb-1 fw-bold" style="font-size: 23px;
+												text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;">
 													<a	href="/mylife/song/songPage?song_id=${song.song_id }&singer_id=${song.singer_id}"  id="메인곡명">${song.song_name}</a>
 												</p>
 												<p class="card-text mb-0" style="
@@ -237,7 +242,7 @@
 													${song.album_date } </span> <span class="card-text mb-0 fw-bold"
 													style="font-size: 13px; margin-left: 2px"> • </span> <span
 													class="card-text mb-0"
-													style="font-size: 13px; margin-left: 2px">
+													style="font-size: 13px; margin-left: 2px; ">
 													${song.album_name } </span>
 												<!-- 
 												
@@ -353,8 +358,14 @@ style="position: absolute; left: 100px; top: 130px"-->
 												height="225">
 											</a>
 
-											<div class="card1 mt-3 ">
-												<p class="card-text mb-1 fw-bold" style="font-size: 23px;">
+											<div class="card1 mt-3 " style="
+											text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;">
+												<p class="card-text mb-1 fw-bold" style="font-size: 23px;
+												text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;">
 													<a
 														href="/mylife/song/songPage?song_id=${song.song_id }&singer_id=${song.singer_id}" id="메인곡명">${song.song_name}</a>
 												</p>
@@ -364,7 +375,9 @@ style="position: absolute; left: 100px; top: 130px"-->
 													${song.album_date } </span> <span class="card-text mb-0 fw-bold"
 													style="font-size: 13px; margin-left: 2px"> • </span> <span
 													class="card-text mb-0"
-													style="font-size: 13px; margin-left: 2px">
+													style="font-size: 13px; margin-left: 2px; text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;">
 													${song.album_name } </span>
 												<!-- 
 												<p class="card-text mb-0 text-danger"

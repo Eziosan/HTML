@@ -17,12 +17,6 @@
 
 	</select>
 	
-		<!--  곡 아이디로 배너 사진 URL을 가져오는 SQL문 -->
-	<select id="selectBanner" parameterType="int" resultType="string">
-		select song_banner
-		from song
-		where song_id=#{song_id}
-	</select> 
 	
 		<!--  곡 아이디로 앨범 사진 URL을 가져오는 SQL문  이것들 지워야함-->
 	<select id="selectAlbumImg" parameterType="int" resultType="string">
@@ -32,17 +26,12 @@
 	</select> 
 	
 	
-		 <!--	좋아요 수를 가져오는 SQL문 곡 명으로 가져올 생각임.-->
-	 <select id="selectSongLike" parameterType="int" resultType="int">
-		select song_like 
-		from song 
-		where song_id = #{song_id}
-	</select>
+
 	
  		<!-- 곡 아이디를 받아 곡명, 가수 이름, 국적, 앨범 이름, 앨범 날짜, 장르 가져오는 SQL문 -->
  		 <select id="selectSongOne" parameterType="int" resultType="song">
- 			select so.song_id, so.singer_id, so.song_name, so.genre, so.song_like,so.hit,so.lyrics,so.song_banner, so.album_name,so.album_img
-  				  , to_char(so.album_date, 'YYYY-MM-DD') as album_date ,so.writer,so.composer , si.singer_name, si.country, si.singer_like
+ 			select so.song_id, so.singer_id, so.song_name, so.genre, so.hit,so.lyrics, so.album_name,so.album_img
+  				  , to_char(so.album_date, 'YYYY-MM-DD') as album_date ,so.writer,so.composer , si.singer_name, si.country
             from song so, singer si
             where so.singer_id = si.singer_id and so.song_id=#{song_id} 	 
  		 </select>
@@ -162,8 +151,8 @@
 		파라미터 타입: song
 		리턴 타입: Song-->
 	<select id="selectAllSong" parameterType="song" resultType="song">
-	select singer.singer_id, singer.singer_name, singer.country, singer.singer_like,
-    	   song.song_id, song.song_name, song.song_like, song.hit, song.lyrics, song.song_banner, song.album_name, song.album_img,
+	select singer.singer_id, singer.singer_name, singer.country, 
+    	   song.song_id, song.song_name, song.hit, song.lyrics, song.album_name, song.album_img,
     	   to_char(song.album_date, 'YYYYMMDD') as album_date, song.writer, song.composer, song.genre
 	from singer singer, song song
 	where singer.singer_id = song.singer_id
@@ -191,20 +180,6 @@
 		
 		
 	 
-		<!-- 곡 아이디를 입력받아 좋아요 수를 증가 시키는 SQL문 -->
-		<update id="plusSongLike" parameterType="int" >
-			update song 
-			set song_like = song_like +1 
-			where song_id=#{song_id}
-		</update>
-		
-		<!-- 곡 아이디를 입력받아 좋아요 수를 감소 시키는 SQL문 -->
-		<update id="minusSongLike" parameterType="int" >
-			update song 
-			set song_like = song_like - 1 
-			where song_id=#{song_id}
-		</update>
- 	
  	
  	
 

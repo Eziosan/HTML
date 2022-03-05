@@ -59,12 +59,12 @@
 		var list_like = 0;
 
 		if ($(".like").hasClass("afterLike")) {
-			alert('좋아요를 하셨습니다');
+		/* 	alert('좋아요를 하셨습니다'); */
 			//alert($("#playlist_id").val());
 			list_like = 1;
 
 		} else if ($(".like").hasClass("beforeLike")) {
-			alert('좋아요를 취소하셨습니다.');
+		/* 	alert('좋아요를 취소하셨습니다.'); */
 			list_like = -1;
 		}
 
@@ -116,10 +116,14 @@
 		}
 		return true;
 	}
+
+	
+
+
 </script>
 
 <!-- 리스트 해당하는 로그인, 회원가입 모달 불러오기 -->
-<c:import url="../listmenu.jsp"></c:import>
+<c:import url="../menu/listmenu.jsp"></c:import>
 
 <header
 	class="p-2 mb-3 fixed-top align-items-center border-bottom border-info"

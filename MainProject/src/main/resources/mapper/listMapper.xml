@@ -164,8 +164,8 @@
 		아이디: insertListCommnet
 		파라미터 타입: ListComment -->
 	 <insert id="insertListCommnet" parameterType="list_comment">
-	 	insert into list_comment (list_comment_id, user_id, playlist_id, user_comment, comment_like, comment_date)
-		values (list_comment_seq.nextval, #{user_id}, #{playlist_id}, #{user_comment}, 0 ,sysdate)
+	 	insert into list_comment (list_comment_id, user_id, playlist_id, user_comment, comment_date)
+		values (list_comment_seq.nextval, #{user_id}, #{playlist_id}, #{user_comment}, sysdate)
 	 </insert>
 	 
 	 

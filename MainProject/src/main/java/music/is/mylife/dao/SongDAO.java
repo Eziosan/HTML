@@ -25,15 +25,6 @@ public class SongDAO {
 	}
 
 	
-	// 가장 추천수가 높은 배너를 가져오는 메소드
-	public String selectBanner(int song_id){
-		SongMapper mapper = session.getMapper(SongMapper.class);
-		
-		
-		String banner = mapper.selectBanner(song_id);
-		
-		return banner;
-	}
 	
 	public String selectAlbumImg(int song_id) {
 		SongMapper mapper = session.getMapper(SongMapper.class);
@@ -43,29 +34,6 @@ public class SongDAO {
 		return aimg;
 	}
 	
-	public Integer selectSongLike(int song_id) {
-		SongMapper mapper = session.getMapper(SongMapper.class);
-		
-		Integer slike = mapper.selectSongLike(song_id);
-		
-		return slike;
-	}
-	
-	public int plusSongLike(int song_id) {
-		SongMapper mapper = session.getMapper(SongMapper.class);
-		
-		int psl = mapper.plusSongLike(song_id);
-		
-		return psl;
-	}
-	
-	public int minusSongLike(int song_id) {
-		SongMapper mapper = session.getMapper(SongMapper.class);
-		
-		int msl = mapper.minusSongLike(song_id);
-		
-		return msl;
-	}
 	
 	public Song selectSongOne(int song_id) {
 		SongMapper mapper = session.getMapper(SongMapper.class);

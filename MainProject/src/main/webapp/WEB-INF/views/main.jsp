@@ -25,7 +25,7 @@
 
       
     <title>홈 화면</title>
-	<c:import url="menu.jsp"></c:import>
+	<c:import url="./menu/menu.jsp"></c:import>
 	
 	<main style="margin-top: 130px">
 	 

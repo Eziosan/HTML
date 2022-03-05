@@ -165,11 +165,11 @@ margin-top: 100px;
 							varStatus="status">
 							<c:choose>
 								<c:when test="${status.count <= 3}">
-									<span id="큰태그${status.count}">${tagName} ${status.count}</span>
+									<span id="큰태그${status.count}">${tagName}</span>
 								</c:when>
 								<c:when test="${status.count > 3}">
 									<span id="작은태그${status.count-3 }">${tagName}
-										${status.count-3 }</span>
+										</span>
 								</c:when>
 								<c:otherwise>
 								</c:otherwise>

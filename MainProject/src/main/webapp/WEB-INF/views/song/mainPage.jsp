@@ -154,7 +154,7 @@ function addSongtoList(){
       
     <title>곡 화면</title>
     
-    <c:import url="../menu.jsp"></c:import>
+    <c:import url="../menu/menu.jsp"></c:import>
    
     
   <style>
@@ -302,7 +302,10 @@ function addSongtoList(){
      <div class="곡정보 주황" style="width: 745px; height: 197px; border-radius: 10px;  float: right; font-family: 'Noto Sans KR', sans-serif; text-align: left; margin-top: 5px;">
 <!--         background-color: rgba(255,229,208);-->
          
-        <div class="곡 제목 fw-bold" style="width: 520px; height: 41px; text-align: left; font-size: 33px;">
+        <div class="곡 제목 fw-bold" style="width: 520px; height: 41px; text-align: left; font-size: 33px;
+            text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;">
             ${Song.song_name }
         </div>
          
@@ -422,8 +425,9 @@ function addSongtoList(){
 		        </div>
 		        
 		        <!-- 리스트에 곡 추가시 보내질 데이터  -->
-		        <form action="addSongList" method="post" id="addSongListForm" onsubmit="return addSongtoList()">
-		        	<input type="hidden" id ="song_id" name="song_id" value="${Song.song_id}">
+		        <form action="addSongList" method="post" id="addSongListForm" onsubmit="return addSongtoList()" >
+		        	<input type="hidden" id ="song_id" name="song_id" value="${Song.song_id}"
+		        	style="margin-bottom: 15px;">
 		        	<input type="hidden" id= "playlist_id" name="playlist_id" >
 		        	
 			      <div class="modal-footer" id="리모달푸터">
@@ -441,16 +445,28 @@ function addSongtoList(){
 		<!--    리스트 추가 모달2-->
 		    <div class="modal fade" id="리스트추가2" tabindex="-1" aria-labelledby="exampleModalCenterTitle" style="display: none;" aria-hidden="true">
 		  <div class="modal-dialog modal-dialog-centered">
-		    <div class="modal-content" id="리모달창2">
+		    <div class="modal-content" id="리모달창2"
+		    style="
+		    width: 280px;
+    		height: 270px;">
 		      <div class="modal-header" id="리모달헤더">
 		        <h5 class="modal-title" id="exampleModalCenterTitle">리스트 추가</h5>
 		        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 		      </div>
 		      <div class="modal-body" id="리모달바디">
 		      <!-- 리스트 추가 부분 -->
-		      <form action="addPlayList" method="post" id="addPlayListForm" onsubmit="return addPlayListCheck()">
-		        	<input type="text" placeholder="리스트 이름 입력.." name= "list_name" id="list_name">
-		        	<input type="text" placeholder="리스트 설명 입력" name= "list_explain" id ="list_explain">
+		      <form action="addPlayList" method="post" id="addPlayListForm" onsubmit="return addPlayListCheck()"
+		      style="margin-top: 10px;">
+		        	<input type="text" placeholder="리스트 이름 입력.." name= "list_name" id="list_name"
+		        	style="   
+		        	margin-bottom: 15px;
+				    border: 0;
+				    border-bottom: 1px solid;">
+		        	<input type="text" placeholder="리스트 설명 입력.." name= "list_explain" id ="list_explain"
+		        	style="   
+		        	margin-bottom: 15px;
+				    border: 0;
+				    border-bottom: 1px solid;">
 		        	<input type="hidden" id ="song_id" name="song_id" value="${Song.song_id}">
 		        	<input type="hidden" id ="singer_id" name="singer_id" value="${singer_id}">
 		        
@@ -499,8 +515,10 @@ function addSongtoList(){
                 <div class="row 가수 프로필 mt-2" style="height: 150px">
                     <div class="col-2 text-center">
                         <div class="프로필 카드" style="margin-right: auto; margin-left: auto; margin-top: 5px">
-                        <img src="../resources/img/profile/basic_profile.jpg" width="60px" style="border-radius: 50%">
-                        <div class="가수명" id="아티스트이름">
+                        <img src="../resources/img/profile/basic_profile.jpg" width="60px" style="border-radius: 50%
+                        ">
+                        <div class="가수명" id="아티스트이름"
+                        style="    font-size: 15px;   margin-top: 15px;">
                             ${Song.singer_name }
                         </div>
                     </div>
@@ -521,7 +539,8 @@ function addSongtoList(){
                     <div class="col-2 text-center">
                         <div class="프로필 카드" style="margin-right: auto; margin-left: auto; margin-top: 5px">
                         <img src="../resources/img/profile/basic_profile.jpg" width="60px" style="border-radius: 50%">
-                        <div class="작사가명" id="아티스트이름">
+                        <div class="작사가명" id="아티스트이름"
+                        style="    font-size: 15px;   margin-top: 15px;">
                             ${Song.writer }
                         </div>
                     </div>
@@ -542,7 +561,8 @@ function addSongtoList(){
                     <div class="col-2 text-center">
                         <div class="프로필 카드" style="margin-right: auto; margin-left: auto; margin-top: 5px">
                         <img src="../resources/img/profile/basic_profile.jpg" width="60px" style="border-radius: 50%">
-                        <div class="작곡가명" id="아티스트이름">
+                        <div class="작곡가명" id="아티스트이름"
+                        style="    font-size: 15px;   margin-top: 15px;">
                             ${Song.composer }
                         </div>
                             
@@ -587,7 +607,7 @@ ${Song.lyrics }
   <!--           태그 -->
             <div id="태그큰창">
                 
-                <div class="태 fw-bold" style="margin-left: margin-top: 5px; font-size: 22px; height: 50px; ">
+                <div class="태 fw-bold" style="margin-left: margin-top: 5px; font-size: 22px; height: 40px; ">
                 태그
                    
                 </div>

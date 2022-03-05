@@ -31,11 +31,6 @@ public class SongService {
 	TagDAO td;
 	
 	
-	// 해당 곡의 배너를 가져오는 메소드
-	public String selectBanner(int song_id) {
-
-		return sdao.selectBanner(song_id);
-	}
 
 	public String selectAlbumImg(int song_id) {
 
@@ -43,23 +38,6 @@ public class SongService {
 		return sdao.selectAlbumImg(song_id);
 	}
 
-	public Integer selectSongLike(int song_id) {
-
-		return sdao.selectSongLike(song_id);
-
-	}
-
-	public void plusSongLike(int song_id) {
-
-		sdao.plusSongLike(song_id);
-
-	}
-
-	public void minusSongLike(int song_id) {
-
-		sdao.minusSongLike(song_id);
-
-	}
 
 	public Song selectSongOne(int song_id) {
 

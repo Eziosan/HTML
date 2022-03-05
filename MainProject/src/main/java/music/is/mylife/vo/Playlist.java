@@ -9,8 +9,11 @@ public class Playlist {
 	private int playlist_id;
 	private String user_id;
 	private String list_name;
+	//리스트 설명
 	private String list_explain;
+	//리스트 좋아요 수
 	private int list_like;
+	//리스트 갱신 일시
 	private String list_date;
 	
 	private int list_detail_id;
