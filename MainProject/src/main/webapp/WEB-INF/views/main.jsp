@@ -118,7 +118,7 @@
 	<div id="아무거나1" class="carousel slide" data-bs-ride="carousel" data-bs-interval="false">
 		
 		<!-- 간단 요약 : active 슬라이드는 한개만 만들고 나머지는 carousel-item으로 슬라이드 만듬  -->
-		<c:forEach var="nomean" items="${songList }" begin="0" step="5" end="${songList.size() - 1 }" varStatus="status">
+		<c:forEach var="nomean" items="${songList }" step="5"  varStatus="status">
 						<c:choose>
 							<c:when test="${status.index == 0 }">
 								<div class="carousel-item active">
@@ -217,7 +217,7 @@
 	<div id="아무거나2" class="carousel slide" data-bs-ride="carousel" data-bs-interval="false">
 		
 		<!-- searchResult 첫번째 창 곡 리스트 -->
-		<c:forEach var="nomean" items="${likeSong }" begin="0" step="5" end="${likeSong.size() - 1 }" varStatus="status">
+		<c:forEach var="nomean" items="${songList2 }" step="5"  varStatus="status">
 						<c:choose>
 							<c:when test="${status.index == 0 }">
 								<div class="carousel-item active">
@@ -234,7 +234,7 @@
 						</c:choose>
 						
 						<!-- 곡 프로필  begin : 현재 인덱스 위치(각 슬라이드의 첫번째 곡의 인덱스), end : 각 슬라이드의 마지막 곡의 인덱스 -->
-								<c:forEach var="song" items="${likeSong }" begin="${status.index }" end="${status.index + 4 }">
+								<c:forEach var="song" items="${songList2 }" begin="${status.index }" end="${status.index + 4 }">
 									<div class="col">
 										<div class="card border border-white">
 											<a href="/mylife/song/songPage?song_id=${song.song_id }&singer_id=${song.singer_id}">

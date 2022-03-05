@@ -7,6 +7,16 @@ import music.is.mylife.vo.Playlist;
 import music.is.mylife.vo.Song;
 
 public interface ListMapper {
+	
+	//해당 곡이 들어있는 리스트 부르기(곡)
+	public ArrayList<Playlist> selectListId(int song_id);
+	//플레이리스트의 리스트 배너 상위 5개 출력(곡)
+	public ArrayList<Playlist> selectListBanner(int playlist_id);
+	
+	
+	
+	
+	
 	//해당 유저의 모든 리스트 좋아요 수 
 	public Double selectListLikesByUser(String user_id);
 	
@@ -14,19 +24,8 @@ public interface ListMapper {
 	public double selectListCommentsNumByUser(String user_id);
 	
 	public double selectListCountByUser(String user_id);
-	//리스트 페이지_화원
-	/**
-	 * 플레이리스트를 가진 유저 아이디
-	 * @return ArrayList<string>
-	 */
-	public ArrayList<Playlist> selectListId(int song_id);
 	
 	
-	/**
-	 * 리스트 배너 상위 5개 출력
-	 * @return ArrayList<Song>
-	 */
-	public ArrayList<Playlist> selectListBanner(int playlist_id);
 	
 	/**
 	 * 리스트 곡 정보 출력

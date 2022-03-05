@@ -5,7 +5,7 @@
   
   <!-- 인터페이스 위치 지정!!!!!! -->
 <mapper namespace="music.is.mylife.dao.UserLogMapper">
-	
+	<!-- 한 유저가 해당 곡에 매긴 별점 출력 -->
 	<select id="selectUserStar" parameterType="user_log" resultType="double">
 		select star from user_song_log where user_id = #{user_id} and song_id = #{song_id}
 	</select>

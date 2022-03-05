@@ -24,19 +24,9 @@
       
       
        <script type="text/javascript">
-      
+
+//스크롤을 내려도 헤더 유지    
   $(window).scroll(function() {
-//	if($(this).scrollTop() < 200) {
-//        $("#AllusicH").show();
-//		$("#AllusicH2").hide();
-//		$("#AllusicH").css('background','rgba(255,255,255,0)');
-//        
-//	}
-//	else {
-//		$("#AllusicH2").show();
-//        $("#AllusicH").hide();
-//		$("#AllusicH2").css('background','#FFFFFF');
-//	}
       
       if($(this).scrollTop() > 200) {
         $("#AllusicH2").show();
@@ -60,8 +50,8 @@
 $(document).ready(function(){
 	//로고 사진 경로 맞춰줌
 		$(".logoImg").attr("src", "../resources/img/mainLogo.png");
-		//alert($("#logoImg").attr())
-	
+
+		//별점을 클릭할 시 starForm을 submit시켜서 별점 관련 정보를 컨트롤러에 넘겨줌
 	  $(":radio[name='starpoint']").on('click', function(){
 		  var user_id = $("#ui").val()
 		  var star = $(":radio[name='starpoint']:checked").val();
@@ -70,7 +60,6 @@ $(document).ready(function(){
 			  alert("로그인이 필요한 서비스 입니다");
 
 		}else{
-			//alert(star);
 			$("#star").val(star);
 			$("#starForm").submit();
 			
@@ -81,6 +70,7 @@ $(document).ready(function(){
 	   
 });
 
+//검색 글자 수 체크(함수가 2개인 이유는 헤더가 두개기 때문)
 function searchCheck(){
 	
 	if($("#searchText").val().length < 1){
@@ -373,7 +363,7 @@ function addSongtoList(){
              </div>
 	  
              
-               
+               <!-- 리스트 버튼. target에 지정한 id가 "리스트추가"인 쪽으로 이동(밑 참조) -->
              <div class="col-2" >
                  <div type="button" id="송리스트버튼" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#리스트추가"  >
              		<img src="../resources/img/plus.png" width="20px">

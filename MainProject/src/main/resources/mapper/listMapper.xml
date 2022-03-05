@@ -6,6 +6,43 @@
   <!-- 인터페이스 위치 지정!!!!!! -->
 <mapper namespace="music.is.mylife.dao.ListMapper">
 
+	<!-- [리스트 페이지]_화원 
+		해당 곡이 들어있는 리스트 부르기(곡)
+				
+		아이디: selectListId
+		리턴 타입: ArrayList<string>
+	 -->
+	<select id="selectListId" resultType="playlist" parameterType="int">
+		select p.playlist_id, p.list_name, p.user_id ,pd.song_id,
+        s.album_img
+		from playlist p, playlist_detail pd, song s
+		where p.playlist_id = pd.playlist_id
+        and s.song_id = pd.song_id
+		and pd.song_id = #{song_id}
+	</select>
+	
+	<!--[리스트 페이지]
+		플레이리스트의 리스트 배너 상위 5개 출력(곡)
+		
+		아이디: selectListBanner
+		파라미터 타입: playlist
+		리턴 타입: ArrayList<Playlist>
+	  -->
+	 <select id="selectListBanner" resultType="playlist" parameterType="int">
+	 	<![CDATA[
+	    	select pd.playlist_id, song.song_id, song.album_img
+			from playlist_detail pd, song song
+			where pd.song_id = song.song_id
+			and rownum <= 5
+			and pd.playlist_id = #{playlist_id}
+    	]]>
+	 </select>
+	
+	
+	
+	
+	
+
 	<!-- 취향 분석 페이지 : 윤영 -->
 	<!-- 해당 유저의 모든 리스트 수 -->
 	<select id="selectListCountByUser" parameterType="string" resultType="double">
@@ -25,38 +62,8 @@
 	
 	
 	
-	<!-- [리스트 페이지]_화원 
-		플레이 리스트 아이디 들고오기
-		
-		아이디: selectListId
-		리턴 타입: ArrayList<string>
-	 -->
-	<select id="selectListId" resultType="playlist" parameterType="int">
-		select p.playlist_id, p.list_name, p.user_id ,pd.song_id,
-        s.album_img
-		from playlist p, playlist_detail pd, song s
-		where p.playlist_id = pd.playlist_id
-        and s.song_id = pd.song_id
-		and pd.song_id = #{song_id}
-	</select>
 	
 	
-	<!--[리스트 페이지]
-		리스트 배너사진 상위 5개 불러오기
-		
-		아이디: selectListBanner
-		파라미터 타입: playlist
-		리턴 타입: ArrayList<Playlist>
-	  -->
-	 <select id="selectListBanner" resultType="playlist" parameterType="int">
-	 	<![CDATA[
-	    	select pd.playlist_id, song.song_id, song.album_img
-			from playlist_detail pd, song song
-			where pd.song_id = song.song_id
-			and rownum <= 5
-			and pd.playlist_id = #{playlist_id}
-    	]]>
-	 </select>
 	 
 	 <!--[리스트 페이지]
 	   리스트 곡 정보 출력

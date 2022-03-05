@@ -46,127 +46,196 @@ public class SongController {
 	@Autowired
 	AnalysisService as;
 	
-	// 별점 입력시 처리
-	/*
-	 * 모델로 넘길 정보
-	 * 1. 유저
-	 * 2. 리스트
-	 * 3. 유저 로그 정보
+	/**
+	 * 곡 이름누르면 해당 곡 페이지로 이동
+	 * 1. 해당 곡과 해당 곡의 가수 id를 받아옴
+	 * @param session
+	 * @param model
+	 * @return
 	 */
-	@RequestMapping(value = "starLog", method = RequestMethod.POST)
-	public String analysisPage(UserLog ul, Model model, HttpSession session) {
-		System.out.println("별점 입력 했습니다!!");
+	@RequestMapping(value = "songPage", method = RequestMethod.GET)
+	public String songPage(Model model, Song song, HttpSession session) {
+		//현재 로그인한 유저 id 가져오기
 		String user_id = (String)session.getAttribute("user_id");
-		
-		//
-		ul.setUser_id(user_id);
-		
-		System.out.println("유저로그 :" + ul);
-		
-		ss.recordUserLog(ul);
-		
-		
-		
-		
-		Song song = new Song();
-		song.setSinger_id(ul.getSinger_id());
-		song.setSong_id(ul.getSong_id());
-		
-		//전체 곡 검색해 해당 곡 띄우기
+		//특정 곡 객체 가져오기
 		Song selectSong = ss.selectAllSong(song);
-
+		//해당 곡의 평균 별점
 		double avg = ss.selectStars(song.getSong_id());
-		
 		selectSong.setAvg(avg);
 		
 		
+		//해당 곡의 상위 10개 태그 목록 가져오기
+		ArrayList<Tag> tag = ss.selectTag(song.getSong_id());
+		// 해당 곡이 들어있는 리스트 부르기
+		ArrayList<Playlist> listId = ls.selectListId(song.getSong_id());
+		//플레이리스트들을 저장(곡 페이지에서 배너사진 출력때문에 필요)
+		ArrayList<ArrayList<Playlist>> banner = new ArrayList<ArrayList<Playlist>>();
+		
+		/*
+		 * 플레이리스트들의 배너 사진을 가져오기 위해 반복문 수행.
+		 * 
+		 */
+		for(Playlist info : listId) {
+			//플레이리스트 id를 조건으로 줘서 해당 플레이리스트들의 배너 사진을 가져올 수 있음
+			banner.add(ls.listBanner(info.getPlaylist_id()));
+		}
+		
+		//유저가 있을 때만 아래 코드 수행
 		if(user_id!=null) {
+			//해당 유저가 해당 곡에 매긴 별점
+			double starPoint = ss.selectUserStar(song.getSong_id(), user_id);
+			//로그인한 사용자의 마이 리스트 목록 불러오기
 			ArrayList<Playlist> playlist = ss.selectList(user_id);
+			model.addAttribute("starPoint", starPoint);
 			model.addAttribute("playlist", playlist);
 			
 		}
 		
-		ArrayList<Tag> tag = ss.selectTag(song.getSong_id());
 		
-		 // 해당 곡 리스트 부르기
-		 ArrayList<Playlist> listId = ls.selectListId(song.getSong_id());
-		 ArrayList<ArrayList<Playlist>> banner = new ArrayList<ArrayList<Playlist>>();
-		 
-		 model.addAttribute("singer_id", song.getSinger_id()); 
-		 model.addAttribute("song_id", song.getSong_id()); 
-		 model.addAttribute("Song", selectSong);
-		 model.addAttribute("Tag", tag);
-		 
-		 // 플레이리스트아이디, 배너 사진들
-		 for(Playlist info : listId) {
-			 info.getPlaylist_id();
-			banner.add(ls.listBanner(info.getPlaylist_id()));
-		 }
-		 	//리스트 아이디
-		 	model.addAttribute("listId", listId);
-		 
-			//배너 사진
-			model.addAttribute("banner", banner);
-			
-			//별점 담기
-			model.addAttribute("starPoint", ul.getStar());
 		
-			//곡 아이디 세션에 담기
-			session.setAttribute("song_id", song.getSong_id());
+		model.addAttribute("singer_id", song.getSinger_id()); 
+		model.addAttribute("song_id", song.getSong_id()); 
+		model.addAttribute("Song", selectSong);
+		model.addAttribute("Tag", tag);
+		//리스트 아이디
+		model.addAttribute("listId", listId);
+		//리스트 배너 사진
+		model.addAttribute("banner", banner);
+		
+		//곡 아이디 세션에 담기
+		//session.setAttribute("song_id", song_id);
+		
 		
 		return "song/mainPage";
 	}
 
 	
-	
-	//name, explain, song_id
-	// 새로운 플레이리스트 생성
-	@RequestMapping(value="addPlayList",method=RequestMethod.POST)
-	public String addPlayList(Playlist pl, Model model,HttpSession session) {
-		
-		System.out.println("리스트 추가 실행");
+	// 별점 입력시 처리
+	@RequestMapping(value = "starLog", method = RequestMethod.POST)
+	public String analysisPage(UserLog ul, Model model, HttpSession session) {
 		String user_id = (String)session.getAttribute("user_id");
-		Song song = ss.selectSongOne(pl.getSong_id());
 		
-		pl.setUser_id(user_id);
-				
-		ss.insertPlaylist(pl);
-				
+		ul.setUser_id(user_id);
 		
-		/////////////
+		//곡과 곡과 관련된 정보에 별점 기록을 남김
+		ss.recordUserLog(ul);
 		
+		//여기서부턴 곡 페이지를 띄우기 위해 필요한 정보들을 넘겨줌
+		Song song = new Song();
+		song.setSinger_id(ul.getSinger_id());
+		song.setSong_id(ul.getSong_id());
+		
+		//특정 곡 객체 가져오기
+		Song selectSong = ss.selectAllSong(song);
+		//해당 곡의 평균 별점
+		double avg = ss.selectStars(song.getSong_id());
+		selectSong.setAvg(avg);
+		//해당 곡의 상위 10개 태그 목록 가져오기
+		ArrayList<Tag> tag = ss.selectTag(song.getSong_id());
+		// 해당 곡이 들어있는 리스트 부르기
+		ArrayList<Playlist> listId = ls.selectListId(song.getSong_id());
+		//플레이리스트들을 저장(곡 페이지에서 배너사진 출력때문에 필요)
+		ArrayList<ArrayList<Playlist>> banner = new ArrayList<ArrayList<Playlist>>();
 
-		double avg = ss.selectStars(pl.getSong_id());
-		song.setAvg(avg);
+		/*
+		 * 플레이리스트들의 배너 사진을 가져오기 위해 반복문 수행.
+		 * 
+		 */
+		for(Playlist info : listId) {
+			//플레이리스트 id를 조건으로 줘서 해당 플레이리스트들의 배너 사진을 가져올 수 있음
+			banner.add(ls.listBanner(info.getPlaylist_id()));
+		}
 		
+		//유저가 있을 때만 아래 코드 수행
+		if(user_id!=null) {
+			//해당 유저가 해당 곡에 매긴 별점
+			double starPoint = ss.selectUserStar(song.getSong_id(), user_id);
+			//로그인한 사용자의 마이 리스트 목록 불러오기
+			ArrayList<Playlist> playlist = ss.selectList(user_id);
+			model.addAttribute("starPoint", starPoint);
+			model.addAttribute("playlist", playlist);
+			
+		}
 		
 		if(user_id!=null) {
 			ArrayList<Playlist> playlist = ss.selectList(user_id);
 			model.addAttribute("playlist", playlist);
-			double starPoint = hs.selectUserStar(pl.getSong_id(), user_id);
-			model.addAttribute("starPoint", starPoint);
 			
 		}
-		
-		ArrayList<Tag> tag = ss.selectTag(pl.getSong_id());
-		
-		 // 해당 곡 리스트 부르기
-		 ArrayList<Playlist> listId = ls.selectListId(pl.getSong_id());
-		 ArrayList<ArrayList<Playlist>> banner = new ArrayList<ArrayList<Playlist>>();
 		 
-		 model.addAttribute("singer_id", pl.getSinger_id()); 
-		 model.addAttribute("song_id", pl.getSong_id()); 
-		 model.addAttribute("Song", song);
-		 model.addAttribute("Tag", tag);
-		 
-		 // 플레이리스트아이디, 배너 사진들
-		 for(Playlist info : listId) {
-			 info.getPlaylist_id();
-			banner.add(ls.listBanner(info.getPlaylist_id()));
-		 }
+			 model.addAttribute("singer_id", song.getSinger_id()); 
+			 model.addAttribute("song_id", song.getSong_id()); 
+			 model.addAttribute("Song", selectSong);
+			 model.addAttribute("Tag", tag);
 		 	//리스트 아이디
 		 	model.addAttribute("listId", listId);
-		 
+			//배너 사진
+			model.addAttribute("banner", banner);
+			//유저가 매긴 별점 담기. 유저가 몇점을 줬는지 맨 처음에 ul에서 받아옴
+			model.addAttribute("starPoint", ul.getStar());
+		
+			
+		
+		return "song/mainPage";
+	}
+
+	
+	//여기서부터
+	//name, explain, song_id, singer_id 받아옴 -> pl로
+	// 새로운 플레이리스트 생성
+	@RequestMapping(value="addPlayList",method=RequestMethod.POST)
+	public String addPlayList(Playlist pl, Model model,HttpSession session) {
+		
+		String user_id = (String)session.getAttribute("user_id");
+		pl.setUser_id(user_id);
+		
+		//새 플레이리스트 추가		
+		ss.insertPlaylist(pl);
+				
+		
+		//여기서부턴 곡 페이지를 띄우기 위해 필요한 정보들을 넘겨줌
+		Song song = new Song();
+		song.setSinger_id(pl.getSinger_id());
+		song.setSong_id(pl.getSong_id());
+		
+		//특정 곡 객체 가져오기
+		Song selectSong = ss.selectAllSong(song);
+		//해당 곡의 평균 별점
+		double avg = ss.selectStars(song.getSong_id());
+		selectSong.setAvg(avg);
+		//해당 곡의 상위 10개 태그 목록 가져오기
+		ArrayList<Tag> tag = ss.selectTag(song.getSong_id());
+		// 해당 곡이 들어있는 리스트 부르기
+		ArrayList<Playlist> listId = ls.selectListId(song.getSong_id());
+		//플레이리스트들을 저장(곡 페이지에서 배너사진 출력때문에 필요)
+		ArrayList<ArrayList<Playlist>> banner = new ArrayList<ArrayList<Playlist>>();
+		
+		/*
+		 * 플레이리스트들의 배너 사진을 가져오기 위해 반복문 수행.
+		 * 
+		 */
+		for(Playlist info : listId) {
+			//플레이리스트 id를 조건으로 줘서 해당 플레이리스트들의 배너 사진을 가져올 수 있음
+			banner.add(ls.listBanner(info.getPlaylist_id()));
+		}
+		
+		//유저가 있을 때만 아래 코드 수행
+		if(user_id!=null) {
+			//해당 유저가 해당 곡에 매긴 별점
+			double starPoint = ss.selectUserStar(song.getSong_id(), user_id);
+			//로그인한 사용자의 마이 리스트 목록 불러오기
+			ArrayList<Playlist> playlist = ss.selectList(user_id);
+			model.addAttribute("starPoint", starPoint);
+			model.addAttribute("playlist", playlist);
+			
+		}
+			
+			 model.addAttribute("singer_id", song.getSinger_id()); 
+			 model.addAttribute("song_id", song.getSong_id()); 
+			 model.addAttribute("Song", selectSong);
+			 model.addAttribute("Tag", tag);
+		 	//리스트 아이디
+		 	model.addAttribute("listId", listId);
 			//배너 사진
 			model.addAttribute("banner", banner);
 
@@ -181,11 +250,19 @@ public class SongController {
 	public String addSongList(Playlist pl, Model model,HttpSession session) {
 		// user_id를 세션으로부터 가져와서 값 저장
 		String user_id = (String)session.getAttribute("user_id");
-		
-		Song song = ss.selectSongOne(pl.getSong_id());
 		pl.setUser_id(user_id);
 		
+		//리스트에 곡 추가하기
 		ss.insertSong(pl);
+		
+		
+		//여기서부턴 곡 페이지를 띄우기 위해 필요한 정보들을 넘겨줌
+		Song song = new Song();
+		song.setSinger_id(pl.getSinger_id());
+		song.setSong_id(pl.getSong_id());
+		//특정 곡 객체 가져오기
+		Song selectSong = ss.selectAllSong(song);
+		
 		
 		
 		///////////
@@ -203,7 +280,7 @@ public class SongController {
 			//유저의 모든 리스트를 가져옴
 			ArrayList<Playlist> playlist = ss.selectList(user_id);
 			model.addAttribute("playlist", playlist);
-			double starPoint = hs.selectUserStar(pl.getSong_id(), user_id);
+			double starPoint = ss.selectUserStar(pl.getSong_id(), user_id);
 			model.addAttribute("starPoint", starPoint);
 			
 		}
@@ -272,7 +349,7 @@ public class SongController {
 	
 		  if(user_info != null && user_info.getUser_pw().equals(user_pw)) {
 			  session.setAttribute("user_id", user_id);
-			  double starPoint = hs.selectUserStar(song.getSong_id(), user_id);
+			  double starPoint = ss.selectUserStar(song.getSong_id(), user_id);
 			  model.addAttribute("starPoint", starPoint);
 			  ArrayList<Playlist> playlist = ss.selectList(user_id);
 			  model.addAttribute("playlist",playlist);

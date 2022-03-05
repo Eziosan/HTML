@@ -6,14 +6,24 @@ import music.is.mylife.vo.Playlist;
 import music.is.mylife.vo.Song;
 
 public interface SongMapper {
+	
+	// 조회수가 높은 순으로 상위 10개의 곡 출력(메인)
+	public ArrayList<Song> selectTopSong(Song song);
+	//선택한 장르의 곡들을 조회수 순으로 출력(메인)
+	public ArrayList<Song> selectSongByGenre(String genre);
+	//곡id, 가수 id를 입력받아 곡 객체 하나가져오기(곡)
+	public Song selectAllSong(Song song);
+	// 특정 곡의 평균 별점을 가져옴(곡)
+	public double selectStars(int song_id);
+	
+	
+
 	//곡 아이디로 곡 정보 가져오기
 	public Song selectSongsById(int song_id);
 	
 	//앨범 아이디로 앨범 사진 URL을 가져오는 SQL문 //
 	public String selectAlbumImg(int song_id);
 	
-	//곡 아이디를 받아 곡명, 가수 이름, 국적, 앨범 이름, 앨범 날짜, 장르 가져오는 SQL문//
-	public Song selectSongOne(int song_id);
 	
 	//유저와 리스트이름이 중복되는 리스트가 있는지 확인
 	public int listDupleCheck(Playlist pl);
@@ -31,36 +41,14 @@ public interface SongMapper {
 	public int selectPlayListId(String list_name);
 	// playlist_id 로 playlist_detail의 곡 id들을 가져오는 sql문
 	public int selectSongCount(Playlist playlist);
-	// 특정 곡의 별점을 가져오는 sql문
-	public double selectStars(int song_id);
 	// 곡에 별점이 있는지 확인하는 sql문
 	public int selectIsStars(int song_id);
 	// 곡 id로 상위 4개의 리스트를 반환받는 sql문
 	public ArrayList<Playlist> selectTop4ListBySongId(int song_id);
 	
 	
-	// 메인 페이지(화원)
-	
-		/**
-		 * 조회수가 높은 순으로 상위 5개의 곡 출력
-		 * @param song
-		 * @return ArrayList<Song>
-		 */
-		public ArrayList<Song> selectTopSong(Song song);
 		
-		/**
-		 * 좋아요가 높은 순으로 상위 5개 곡 출력
-		 * @param song
-		 * @return ArrayList<Song>
-		 */
-		public ArrayList<Song> selectSongByGenre(String genre);
-		
-		/**
-		 * 전체 곡 검색
-		 * @param song
-		 * @return song
-		 */
-		public Song selectAllSong(Song song);
+
 		
 		
 		// 검색 페이지(윤영)

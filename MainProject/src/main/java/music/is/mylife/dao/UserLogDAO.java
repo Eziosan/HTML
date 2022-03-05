@@ -15,7 +15,7 @@ public class UserLogDAO {
 	@Autowired
 	private SqlSession session;
 
-	//한 유저가 해당 곡에 매긴 별점 출력
+	//한 유저가 해당 곡에 매긴 별점 출력(곡)
 	public double selectUserStar(UserLog ul) {
 		UserLogMapper mapper = session.getMapper(UserLogMapper.class);
 		

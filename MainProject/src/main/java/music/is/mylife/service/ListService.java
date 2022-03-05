@@ -17,19 +17,15 @@ public class ListService {
 	@Autowired
 	ListDAO ldao;
 	
-	/**
-	 * 플레이리스트를 가진 유저 아이디
-	 * @return ArrayList<string>
-	 */
+	// 해당 곡이 들어있는 리스트 부르기(곡)
 	public ArrayList<Playlist> selectListId(int song_id){
 		ArrayList<Playlist> listId = ldao.selectListId(song_id);
 		
 		return listId;
 	}
 	
-	
 	/**
-	 * 리스트 배너 상위 5개 출력
+	 * 플레이리스트의 배너 사진 가져오기(곡)
 	 * @param song
 	 * @return ArrayList<Song>
 	 */
@@ -38,6 +34,7 @@ public class ListService {
 		
 		return banner;
 	}
+	
 	/**
 	 * 리스트 곡 정보 출력
 	 * @return ArrayList<Playlist>

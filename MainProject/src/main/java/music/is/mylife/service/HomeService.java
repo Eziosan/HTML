@@ -25,7 +25,7 @@ public class HomeService {
 	}
 	
 	/**
-	 * 조회수가 높은 순으로 상위 5개의 곡 출력
+	 * 조회수가 높은 순으로 상위 10개의 곡 출력(메인)
 	 * @param song
 	 * @return ArrayList<Song>
 	 */
@@ -36,25 +36,16 @@ public class HomeService {
 	}
 	
 	/**
-	 * 좋아요가 높은 순으로 상위 5개 곡 출력
+	 * 선택한 장르의 곡들을 조회수 순으로 출력(메인)
 	 * @param song
 	 * @return ArrayList<Song>
 	 */
 	public ArrayList<Song> selectSongByGenre(String genre){
-		ArrayList<Song> likeSong = songDao.selectSongByGenre(genre);
+		ArrayList<Song> songList = songDao.selectSongByGenre(genre);
 		
-		return likeSong;
+		return songList;
 	}
 	
-	//해당 유저가 해당 곡에 매긴 별점을 가져옴
-	public double selectUserStar(int song_id, String user_id) {
-		
-		UserLog ul = new UserLog();
-		ul.setSong_id(song_id);
-		ul.setUser_id(user_id);
-		
-		return uld.selectUserStar(ul);
-	}
 	
 	
 }

@@ -16,6 +16,29 @@ public class ListDAO {
 	@Autowired
 	private SqlSession session;
 	
+	//해당 곡이 들어있는 리스트 부르기(곡)
+	public ArrayList<Playlist> selectListId(int song_id){
+		ListMapper mapper = session.getMapper(ListMapper.class);
+		ArrayList<Playlist> listId = mapper.selectListId(song_id);
+		
+		return listId;
+	}
+	
+	/** 
+	 * 플레이리스트의 리스트 배너 상위 5개 출력(곡)
+	 * @return ArrayList<Song>
+	 */
+	public ArrayList<Playlist> selectListBanner(int playlist_id){
+		ListMapper mapper = session.getMapper(ListMapper.class);
+		
+		ArrayList<Playlist> banner = mapper.selectListBanner(playlist_id);
+		
+		return banner;
+	}
+	
+	
+	
+	
 	//해당 유저의 모든 리스트 수
 	public double selectListCountByUser(String user_id) {
 		ListMapper mapper = session.getMapper(ListMapper.class);
@@ -49,29 +72,9 @@ public class ListDAO {
 	}
 	
 	
-	//리스트 페이지_화원
-	/** [리스트 페이지]
-	 * 플레이리스트를 가진 유저 아이디
-	 * @return ArrayList<string>
-	 */
-	public ArrayList<Playlist> selectListId(int song_id){
-		ListMapper mapper = session.getMapper(ListMapper.class);
-		ArrayList<Playlist> listId = mapper.selectListId(song_id);
-		
-		return listId;
-	}
+
 	
-	/** 
-	 * 리스트 배너 상위 5개 출력
-	 * @return ArrayList<Song>
-	 */
-	public ArrayList<Playlist> selectListBanner(int playlist_id){
-		ListMapper mapper = session.getMapper(ListMapper.class);
-		
-		ArrayList<Playlist> banner = mapper.selectListBanner(playlist_id);
-		
-		return banner;
-	}
+
 	
 	/**
 	 * 리스트 곡 정보 출력
