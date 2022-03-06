@@ -21,8 +21,6 @@ public class Song {
 	
 	private String country;
 	private String singer_name;
-	
-	//???
 	private double avg;
 	
 }

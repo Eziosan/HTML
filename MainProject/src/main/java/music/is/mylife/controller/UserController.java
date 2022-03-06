@@ -33,9 +33,6 @@ public class UserController {
 	 */
 	@RequestMapping(value = "join", method = RequestMethod.POST)
 	public String join(@ModelAttribute("userinfo") UserInfo userinfo ,Model model) {
-		logger.debug("userinfo : {}", userinfo);
-		
-		String result = null;
 				
 		if(us.insertUser(userinfo)) {
 			System.out.println("회원가입 성공!!!!");
@@ -44,7 +41,7 @@ public class UserController {
 		}
 			
 		//회원가입 처리
-		return result = "redirect:/main";
+		return "redirect:/";
 	}
 	
 	
@@ -58,16 +55,14 @@ public class UserController {
 	 */
 	@RequestMapping(value = "login", method = RequestMethod.POST)
 	public String login(String user_id, String user_pw, Model model, HttpSession session) {
-		logger.debug("user_id:{}", user_id);
-		logger.debug("user_pw:{}", user_pw);
 		
 		UserInfo user_info = us.selectUser(user_id);
 		
-		//아이디와 패스워드가 존재할 때 user_id를 넘긴다.
+		//아이디와 패스워드가 존재할 때 user_id를 세션에 설정
 		if(user_info != null && user_info.getUser_pw().equals(user_pw)) {
 			session.setAttribute("user_id", user_id);
 		}
-		return "redirect:/main";
+		return "redirect:/";
 	}
 	
 	/**
@@ -78,10 +73,10 @@ public class UserController {
 	@RequestMapping(value = "logout", method = RequestMethod.GET)
 	public String logout(HttpSession session) {
 		
-		//session.invalidate();
-		session.removeAttribute("user_id");
+		session.invalidate();
+		//session.removeAttribute("user_id");
 		
-		return "redirect:/main";
+		return "redirect:/";
 	}
 	
 	

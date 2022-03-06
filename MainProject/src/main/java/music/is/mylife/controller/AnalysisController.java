@@ -34,49 +34,23 @@ public class AnalysisController {
 	@Autowired
 	SongService ss;
 
-	/*
-	 * 모델로 넘길 정보
-	 * 1. 유저
-	 * 2. 리스트
-	 * 3. 유저 로그 정보
-	 */
-	@RequestMapping(value = "analysisPage", method = RequestMethod.GET)
-	public String analysisPage(Model model, HttpSession session) {
-		System.out.println("별점 입력 했습니다!!");
-		String user_id = (String)session.getAttribute("user_id");
-		int song_id = 4;
-		double star = 3.5; 
-		String genre = "댄스";
-		int singer_id = 3;
-		String country ="대한민국";
-		
-		//
-		UserLog ul = new UserLog();
-		ul.setUser_id(user_id);
-		ul.setSong_id(song_id);
-		ul.setStar(star);
-		ul.setGenre(genre);
-		ul.setSinger_id(singer_id);
-		ul.setCountry(country);
-		
-		ss.recordUserLog(ul);
-		
-		return "analysis/analysisPage";
-	}
 	@RequestMapping(value = "main", method = RequestMethod.GET)
 	public String main(Song song, Model model, HttpSession session) {
 		
 		String user_id = (String)session.getAttribute("user_id");
-		//로그인이 안됨
-		//System.out.println("user id : " + user_id);
 		
-		//유저 id가 aaaa인 유저를 가져옴
+		//유저 id가 xxxx인(현재 로그인한 사용자) 유저를 가져옴
 		UserInfo u_info = as.selectUser(user_id);
 		
+		//유저의 평점 수/별점 부분에 들어갈 데이터들을 담고있는 변수
 		HashMap<String, Double> userGradeList = as.userGradeInfo(user_id);
+		//해당 유저 선호 태그 수 10개 가져오기
 		ArrayList<String> tagNameList = as.selectTop10TagByUser(user_id);
+		//선호 가수 6명 가져오기
 		ArrayList<Singer> singerList = as.selectTop3SingerByUser(user_id);
+		//선호 장르 6개 가져오기
 		ArrayList<UserLog> genreLogList = as.selectTop3GenreByUser(user_id);
+		//선호 국가 3개 가져오기
 		ArrayList<UserLog> countryLogList = as.selectTop3CountryByUser(user_id);
 		
 

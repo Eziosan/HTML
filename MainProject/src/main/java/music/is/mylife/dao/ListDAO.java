@@ -23,7 +23,7 @@ public class ListDAO {
 		
 		return listId;
 	}
-	
+
 	/** 
 	 * 플레이리스트의 리스트 배너 상위 5개 출력(곡)
 	 * @return ArrayList<Song>
@@ -36,28 +36,17 @@ public class ListDAO {
 		return banner;
 	}
 	
-	
-	
-	
-	//해당 유저의 모든 리스트 수
-	public double selectListCountByUser(String user_id) {
-		ListMapper mapper = session.getMapper(ListMapper.class);
-		
-		double listCount = mapper.selectListCountByUser(user_id);
-		
-		return listCount;
-	}
 	//해당 유저의 모든 리스트 좋아요 수 
 	public double selectListLikesByUser(String user_id) {
 		ListMapper mapper = session.getMapper(ListMapper.class);
 		
 		double dou = 0.0;
 		Double count = mapper.selectListLikesByUser(user_id);
-
+		
 		if (count != null) {
 			dou = count;
 		}
-
+		
 		return dou;
 		
 	}
@@ -71,15 +60,16 @@ public class ListDAO {
 		return listCommentNum;
 	}
 	
-	
-
-	
-
-	
-	/**
-	 * 리스트 곡 정보 출력
-	 * @return ArrayList<Song>
-	 */
+	//해당 유저의 총 리스트 수
+	public double selectListCountByUser(String user_id) {
+		ListMapper mapper = session.getMapper(ListMapper.class);
+		
+		double listCount = mapper.selectListCountByUser(user_id);
+		
+		return listCount;
+	}
+		
+	//리스트 곡 정보 출력
 	public ArrayList<Playlist> selectListSong(int playlist_id){
 		ListMapper mapper = session.getMapper(ListMapper.class);
 		
@@ -88,11 +78,7 @@ public class ListDAO {
 		return listSong;
 	}
 	
-	/**
-	 * 리스트 정보 출력
-	 * @param listInfo
-	 * @return Playlist
-	 */
+	//리스트 정보 출력
 	public Playlist selectListInfo(int playlist_id) {
 		ListMapper mapper = session.getMapper(ListMapper.class);
 		
@@ -126,17 +112,6 @@ public class ListDAO {
 		return commentNum;
 	}
 	
-	/**
-	 * 리스트 검색
-	 * @param playlist_id
-	 * @return ArrayList<Playlist>
-	 */
-	public ArrayList<Playlist> selectList(int playlist_id){
-		ListMapper mapper = session.getMapper(ListMapper.class);
-		ArrayList<Playlist> onelist = mapper.selectList(playlist_id);
-		
-		return onelist;
-	}
 	
 	/**
 	 * 리스트 좋아요 검색
@@ -187,7 +162,7 @@ public class ListDAO {
 	}
 	
 	/**
-	 * 리스트 좋아요수 올리기
+	 * 리스트 좋아요수 올리기 /내리기
 	 * @param playlist_id
 	 * @return int
 	 */
@@ -198,15 +173,4 @@ public class ListDAO {
 		return plusLike;
 	}
 	
-	/**
-	 * 리스트 좋아요수 내리기
-	 * @param playlist_id
-	 * @return int
-	 */
-	public int updateMinuLike(int playlist_id) {
-		ListMapper mapper = session.getMapper(ListMapper.class);
-		int minusLike = mapper.updateMinuLike(playlist_id);
-		
-		return minusLike;
-	}
 }

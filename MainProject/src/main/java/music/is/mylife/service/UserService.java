@@ -9,7 +9,7 @@ import music.is.mylife.vo.UserInfo;
 @Service
 public class UserService {
 	@Autowired
-	UserDAO userDao;
+	UserDAO ud;
 
 	
 	/**
@@ -20,15 +20,11 @@ public class UserService {
 	public boolean insertUser(UserInfo userinfo) {
 		
 		//회원가입 처리
-		int join = userDao.insertUser(userinfo);
+		int join = ud.insertUser(userinfo);
 		
 		if(join > 0) {
 			return true;
 		}else {return false;}
-//		if(join != 1) {
-//			return "redirect:/main";
-//		}
-//		return "redirect:/main";
 	}
 	
 	/**
@@ -38,7 +34,7 @@ public class UserService {
 	 */
 	public UserInfo selectUser(String user_id) {
 		
-		UserInfo user_info = userDao.selectUser(user_id);
+		UserInfo user_info = ud.selectUser(user_id);
 		
 		return user_info;
 	}

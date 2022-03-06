@@ -40,7 +40,7 @@
         <ul class="nav col-12 col-lg-auto me-lg-auto mlmb-2 justify-content-center mb-md-0">
           <li><div  class="nav-link px-2 w-100" >
           
-          <a href="main">
+          <a href="/mylife">
           <img src="./resources/img/mainLogo.png" alt="img" width="" height="40" style="margin-right: 30px">
           </a>
           </div></li>

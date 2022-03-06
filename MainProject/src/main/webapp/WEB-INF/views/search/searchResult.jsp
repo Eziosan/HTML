@@ -39,21 +39,6 @@
 
 <title>홈 화면</title>
 
-   <script type="text/javascript">
-
-	function searchCheck(){
-		if($("#searchText").val().length < 1){
-			alert("글자 수는 1자 이상 입력하셔야 합니다!!")
-			return false;
-		}
-
-		return true;
-			
-	} 
-
-	
-    
-    </script>
 
 <!-- 
 </head>
@@ -80,7 +65,7 @@
 
 				<ul
 					class="nav col-12 col-lg-auto me-lg-auto mlmb-2 justify-content-center mb-md-0">
-					<li><a href="/mylife/main" ><div class="nav-link px-2 w-100">
+					<li><a href="/mylife" ><div class="nav-link px-2 w-100">
 							<img src="../resources/img/mainLogo.png" alt="img" width=""
 								height="40" style="margin-right: 30px">
 						</div></a></li>

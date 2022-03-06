@@ -36,7 +36,7 @@ public class UserDAO {
 	 */
 	public int insertUser(UserInfo userinfo) {
 		UserMapper mapper = session.getMapper(UserMapper.class);
-		
+		//중복 유저 처리
 		if(mapper.joinDupleCheck(userinfo) > 0) {
 			return 0;
 		}

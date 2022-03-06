@@ -49,6 +49,8 @@
       
 $(document).ready(function(){
 	//로고 사진 경로 맞춰줌
+	//여기서 로고 사진 경로를 맞춰줘서 그런가 이유를 모르게 밑의 에러가 뜨지만 로고 사진은 정상적으로 불러옵니다...
+	//No mapping found for HTTP request with URI [/mylife/song/resources/img/mainLogo.png] 에러가 뜨지만
 		$(".logoImg").attr("src", "../resources/img/mainLogo.png");
 
 		//별점을 클릭할 시 starForm을 submit시켜서 별점 관련 정보를 컨트롤러에 넘겨줌
@@ -102,13 +104,13 @@ function addSongtoList(){
 			if(check.is(":checked") == true){
 				var p_id = check.val();
 
-				//alert("선택한 플레이리스트 id : " + p_id); 
 				result = true;
 				$("#playlist_id").val(p_id);
 			}
 		   
 		});
 
+		//리스트를 한개라도 선택하지 않았을 경우 알림 띄움
 		if(result == false){
 			alert("리스트를 하나 이상 선택해주세요!!");
 		}
@@ -168,7 +170,7 @@ function addSongtoList(){
         </a>
 
         <ul class="nav col-12 col-lg-auto me-lg-auto mlmb-2 justify-content-center mb-md-0 text-white">
-          <li><a href="/mylife/main" ><div  class="nav-link px-2 w-100" ><img src="../resources/img/곡용.png" alt="img" width="" height="40" style="margin-right: 30px"> </div></a></li>
+          <li><a href="/mylife" ><div  class="nav-link px-2 w-100" ><img src="../resources/img/곡용.png" alt="img" width="" height="40" style="margin-right: 30px"> </div></a></li>
         
         </ul>
 
@@ -197,7 +199,6 @@ function addSongtoList(){
             
           <ul class="dropdown-menu text-small" aria-labelledby="dropdownUser1">
             <li><a class="dropdown-item" id="openModalBtn" href="/mylife/analysis/main">취향분석</a></li>
-            <li><a class="dropdown-item" id="openModalBtn" href="/mylife/backdoor">테스트 페이지</a></li>
             <li><hr class="dropdown-divider"></li>
             <li><a class="dropdown-item" href="logout?song_id=${Song.song_id }&singer_id=${Song.singer_id}">Sign out</a></li>
            
@@ -418,6 +419,7 @@ function addSongtoList(){
 		        <form action="addSongList" method="post" id="addSongListForm" onsubmit="return addSongtoList()" >
 		        	<input type="hidden" id ="song_id" name="song_id" value="${Song.song_id}"
 		        	style="margin-bottom: 15px;">
+		        	<input type="hidden" id ="singer_id" name="singer_id" value="${singer_id}">
 		        	<input type="hidden" id= "playlist_id" name="playlist_id" >
 		        	
 			      <div class="modal-footer" id="리모달푸터">

@@ -38,31 +38,20 @@
     	]]>
 	 </select>
 	
-	
-	
-	
-	
-
 	<!-- 취향 분석 페이지 : 윤영 -->
-	<!-- 해당 유저의 모든 리스트 수 -->
-	<select id="selectListCountByUser" parameterType="string" resultType="double">
-		select count(*) from playlist where user_id = #{user_id}
-	</select>
 	<!-- 해당 유저의 모든 리스트 좋아요 수 -->
 	<select id="selectListLikesByUser" parameterType="string" resultType="double">
 		select sum(list_like) from playlist where user_id = #{user_id}
 	</select>
-
 	<!-- 해당 유저의 모든 리스트에 지금까지 달린 모든 댓글 수 -->
 	<select id="selectListCommentsNumByUser" parameterType="string" resultType="double">
 		select count(*) from list_comment lc, playlist p
 		where lc.playlist_id = p.playlist_id and  p.user_id = #{user_id}
 	</select>
-	
-	
-	
-	
-	
+	<!-- 해당 유저의 총 리스트 수 -->
+	<select id="selectListCountByUser" parameterType="string" resultType="double">
+		select count(*) from playlist where user_id = #{user_id}
+	</select>
 	
 	 
 	 <!--[리스트 페이지]
@@ -123,23 +112,6 @@
         and p.playlist_id = #{playlist_id}
 	 </select>
 	 
-	 <!--[리스트 페이지]
-	 	리스트 검색
-	 	
-		아이디: selectList
-		리턴 타입: ArrayList<PlayList>
-		파라미터 타입: int
-	   -->
-	 <select id="selectList" parameterType="int" resultType="playlist">
-	 	select p.playlist_id, p.user_id, p.list_name, p.list_explain, p.list_like, p.list_date,
-		    s.song_id, s.song_name, s.album_img, s.genre, 
-		    singer.singer_id, singer.singer_name, singer.country
-		from playlist p, playlist_detail pd, song s, singer singer
-		where p.playlist_id = pd.playlist_id
-		and pd.song_id = s.song_id
-		and s.singer_id = singer.singer_id
-		and p.playlist_id = #{playlist_id}
-	 </select>
 	 
 	 <!--[리스트 페이지]
 	 	리스트 좋아요 검색
@@ -195,7 +167,7 @@
 	 <!-- update문 -->
 	 
 	 <!-- [리스트 페이지] 
-	  	리스트 좋아요수 올리기
+	  	리스트 좋아요수 올리기/내리기
 	  	
 		아이디: updatePluseLike
 		파라미터 타입: int -->
@@ -203,12 +175,4 @@
 	 	update playlist set list_like = list_like + #{list_like} where playlist_id = #{playlist_id}
 	 </update>
 	 
-	 <!-- [리스트 페이지] 
-	  	리스트 좋아요수 내리기
-	  	
-		아이디: updateMinuLike
-		파라미터 타입: int -->
-	 <update id="updateMinuLike" parameterType="int">
-	 	update playlist set list_like = list_like - 1 where playlist_id = #{playlist_id}
-	 </update>
 </mapper>

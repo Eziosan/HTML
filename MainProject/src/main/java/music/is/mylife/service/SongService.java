@@ -64,66 +64,44 @@ public class SongService {
 		ArrayList<Tag> tag = tdao.selectTop10TagBySongId(song_id);
 		return tag;
 	}
-
 	
-	
-	
-	
-
-	public String selectAlbumImg(int song_id) {
-
-		// 앨범 id 값을 리턴해줌.
-		return sdao.selectAlbumImg(song_id);
-	}
-
-
-
+	//유저 아이디를 받아 유저가 가지고 있는 리스트를 가져옴(곡)
 	public ArrayList<Playlist> selectList(String user_id) {
 
 		ArrayList<Playlist> playlist = sdao.selectList(user_id);
 
 		return playlist;
 	}
-
+	
+	//새 플레이리스트 추가
 	public Boolean insertPlaylist(Playlist playlist) {
-
-		// 어레이 리스트로 리스트 전체를 받아서 for each문을 돌려 현재 존재하는 리스트의 이름과 새로 받은 리스트의 이름과 비교해서 있으면
-		// 종료 없으면 리스트 생성하면서 곡까지 넣어줌.
-		//결국에는 유저 id로 해당 유저의 모든 리스트를 가져옴
-		ArrayList<Playlist> ps = sdao.selectList(playlist.getUser_id());
 		
+		//추가하려고 하는 리스트가 중복되어있는지 확인
 		if(sdao.listDupleCheck(playlist) > 0) {
+			//중복되어 있다면 아무것도 하지 않음
 			return false;
 		}
 		
+		//중복되어 있지 않다면 새 리스트 추가
 		int result = sdao.insertList(playlist);
-		
-		System.out.println("새 리스트 추가 결과 : " + result);
 		
 		return true;
 
 	}
-
-	// 여기서 해야할게 곡아이디를 받아서 특정 유저의 특정 playlist에 곡을 담는걸 구현해야함.
-	// ? 굳이 당초에 playlist name을 보여주고 특정 playlist를 클릭해서 곡 담는다고 했는데 여기서 유효성 검사할 필요는
-	// 없을거같음(?)
-	// 성공적으로 됐으면 redirect 실패면 다른걸로
+	
+	//플레이리스트에 곡 추가
 	public void insertSong(Playlist playlist) {
-		
-		
-		
-		
+		//해당 playlist에 해당 곡이 있는지 없는지 확인(플레이리스트 id, song_id를 조건으로)
 		int count = sdao.selectSongCount(playlist);
 		
-		
+		//중복이 되어있지 않다면 곡을 플레이리스트에 추가
 		if(count==0) {
-				
 				sdao.insertSong(playlist);
-			}
+		}
 		else {
 			return;
 		}
-		}
+	}
 		
 
 		
@@ -187,6 +165,7 @@ public class SongService {
 		//중복된 곡이 있을 때
 		if(uld.songStarCheck(ul) > 0) {
 			//all_star는 신규별점 - 기존 별점 차이만큼, grade_count는 안올라가게
+			//**user_song_log 테이블에서 한 유저가 한 곡에 별점을 준 기록은 한행만 있기 때문(새로 insert 하는게 아니라 update하는 식)
 			double star = ul.getStar() - uld.selectSongStarById(ul);
 			ul.setAll_star(star);
 			
@@ -203,7 +182,7 @@ public class SongService {
 			genreLogInsert(ul);
 			
 		}else{
-			//중복된 곡이 없을 때. 별점 : 새로 추가한 별점, 카운트 : 1 증가
+			//중복된 곡이 없을 때. 별점 : 새로 추가한 별점 값이 그대로 증가, 카운트 : 1 증가
 			ul.setAll_star(ul.getStar());
 			ul.setGrade_count(1);
 			

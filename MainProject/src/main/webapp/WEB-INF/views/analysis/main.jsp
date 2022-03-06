@@ -51,7 +51,7 @@
 		<div class="container" id="konomibanner">
 			<!-- <div id="프로필베너"> -->
 			<div >
-				<a href="/mylife/main">
+				<a href="/mylife">
 	                <img src="../resources/img/곡용.png" id="코노미로고" >
 				</a>
             </div>

@@ -1,6 +1,5 @@
 package music.is.mylife.service;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,7 +8,6 @@ import org.springframework.stereotype.Service;
 import music.is.mylife.dao.ListDAO;
 import music.is.mylife.vo.ListComment;
 import music.is.mylife.vo.Playlist;
-import music.is.mylife.vo.Song;
 
 @Service
 public class ListService {
@@ -24,32 +22,21 @@ public class ListService {
 		return listId;
 	}
 	
-	/**
-	 * 플레이리스트의 배너 사진 가져오기(곡)
-	 * @param song
-	 * @return ArrayList<Song>
-	 */
+	//플레이리스트의 배너 사진 가져오기(곡)
 	public ArrayList<Playlist> listBanner(int playlist_id){
 		ArrayList<Playlist> banner = ldao.selectListBanner(playlist_id);
 		
 		return banner;
 	}
 	
-	/**
-	 * 리스트 곡 정보 출력
-	 * @return ArrayList<Playlist>
-	 */
+	//리스트 곡 정보 출력
 	public ArrayList<Playlist> listSong(int playlist_id){
 		ArrayList<Playlist> listSong = ldao.selectListSong(playlist_id);
 		
 		return listSong;
 	}
 	
-	/**
-	 * 리스트 정보 출력
-	 * @param listInfo
-	 * @return Playlist
-	 */
+	//리스트 정보 출력
 	public Playlist listInfo(int playlist_id) {
 		Playlist info = ldao.selectListInfo(playlist_id);
 		
@@ -78,16 +65,6 @@ public class ListService {
 		return countComment;
 	}
 	
-	/**
-	 * 리스트 검색
-	 * @param playlist_id
-	 * @return ArrayList<Playlist>
-	 */
-	public ArrayList<Playlist> oneList(int playlist_id){
-		ArrayList<Playlist> onelist = ldao.selectList(playlist_id);
-		
-		return onelist;
-	}
 	
 	/**
 	 * 리스트 좋아요 검색
@@ -112,17 +89,6 @@ public class ListService {
 	}
 	
 	/**
-	 * 댓글 삭제하기
-	 * @param delComment
-	 * @return
-	 */
-	public int deleteComment(ListComment delComment) {
-		int commentDel = ldao.deleteComment(delComment);
-		
-		return commentDel;
-	}
-	
-	/**
 	 * 리스트 댓글 입력
 	 * @param comment
 	 * @return int
@@ -134,7 +100,19 @@ public class ListService {
 	}
 	
 	/**
-	 * 리스트 좋아요수 올리기
+	 * 댓글 삭제하기
+	 * @param delComment
+	 * @return
+	 */
+	public int deleteComment(ListComment delComment) {
+		int commentDel = ldao.deleteComment(delComment);
+		
+		return commentDel;
+	}
+	
+	
+	/**
+	 * 리스트 좋아요수 올리기/내리기
 	 * @param playlist_id
 	 * @return int
 	 */
@@ -144,14 +122,4 @@ public class ListService {
 		return plusLike;
 	}
 	
-	/**
-	 * 리스트 좋아요수 내리기
-	 * @param playlist_id
-	 * @return int
-	 */
-	public int minusListLike(int playlist_id) {
-		int minusLike = ldao.updateMinuLike(playlist_id);
-		
-		return minusLike;
-	}
 }

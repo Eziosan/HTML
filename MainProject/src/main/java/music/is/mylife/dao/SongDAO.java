@@ -71,33 +71,7 @@ public class SongDAO {
 		
 	}
 	
-	//곡 아이디로 곡 정보 가져오기
-	public Song selectSongsById(int song_id){
-		SongMapper mapper = session.getMapper(SongMapper.class);
-		
-		return mapper.selectSongsById(song_id);
-		
-	}
-
-	
-	
-	public String selectAlbumImg(int song_id) {
-		SongMapper mapper = session.getMapper(SongMapper.class);
-		
-		String aimg = mapper.selectAlbumImg(song_id);
-		
-		return aimg;
-	}
-	
-	
-	
-	//유저와 리스트이름이 중복되는 리스트가 있는지 확인
-	public int listDupleCheck(Playlist pl) {
-		SongMapper mapper = session.getMapper(SongMapper.class);
-		
-		return mapper.listDupleCheck(pl);
-	}
-	
+	//유저 아이디를 받아 유저가 가지고 있는 리스트를 가져옴(곡)
 	public ArrayList<Playlist> selectList(String user_id){
 		
 		SongMapper mapper = session.getMapper(SongMapper.class);
@@ -107,44 +81,14 @@ public class SongDAO {
 		return playlist;
 	}
 	
-	
-	
-	
-	public int insertList(Playlist playlist) {
-		
+	//유저와 리스트이름이 중복되는 리스트가 있는지 확인(곡)
+	public int listDupleCheck(Playlist pl) {
 		SongMapper mapper = session.getMapper(SongMapper.class);
 		
-		int num = mapper.selectListSeq();
-		System.out.println("num = "+num);
-		
-		
-		playlist.setPlaylist_id(num);
-		
-		
-		
-		return mapper.insertList(playlist);
-		//mapper.insertList_Detail(playlist);
-		
+		return mapper.listDupleCheck(pl);
 	}
 	
-	
-	
-	public void insertSong(Playlist playlist) {
-		
-		SongMapper mapper = session.getMapper(SongMapper.class);
-		
-		int playlist_id = playlist.getPlaylist_id();
-		
-		// 플레이리스트 디테일에 곡 넣기
-		mapper.insertList_Detail(playlist);  
-		// 플레이리스트에 날짜 업데이트
-		mapper.updateList_Date(playlist_id);
-		
-		
-		
-	
-	}
-	
+	//해당 playlist에 해당 곡이 있는지 없는지 확인(곡)
 	public int selectSongCount(Playlist playlist) {
 		
 		SongMapper mapper = session.getMapper(SongMapper.class);
@@ -155,6 +99,85 @@ public class SongDAO {
 		
 		return count;
 	}
+	
+	
+	// 검색 페이지(윤영)
+	//곡명으로 검색
+	public ArrayList<Song> selectSongsBySongName(String searchText){
+		SongMapper mapper = session.getMapper(SongMapper.class);
+		ArrayList<Song> searchList1 = mapper.selectSongsBySongName(searchText);
+		
+		return searchList1;
+	}
+	//가수명으로 검색
+	public ArrayList<Song> selectSongsBySingerName(String searchText){
+		SongMapper mapper = session.getMapper(SongMapper.class);
+		ArrayList<Song> searchList2 = mapper.selectSongsBySingerName(searchText);
+		
+		return searchList2;
+	}	
+	
+	
+	
+	
+	//새 리스트 추가(곡)
+	public int insertList(Playlist playlist) {
+		
+		SongMapper mapper = session.getMapper(SongMapper.class);
+		
+		//플레이 리스트의 다음 시퀀스를 가져옴(곡)
+		int num = mapper.selectListSeq();
+		playlist.setPlaylist_id(num);
+		
+		return mapper.insertList(playlist);
+	}
+
+	//곡을 리스트에 추가
+	public void insertSong(Playlist playlist) {
+		
+		SongMapper mapper = session.getMapper(SongMapper.class);
+		
+		int playlist_id = playlist.getPlaylist_id();
+		
+		// 곡을 리스트에 추가
+		mapper.insertList_Detail(playlist);  
+		// 플레이리스트의 날짜 업데이트
+		mapper.updateList_Date(playlist_id);
+		
+	
+	}
+	
+	
+	
+	
+	
+	
+	
+	//곡 아이디로 곡 정보 가져오기
+	public Song selectSongsById(int song_id){
+		SongMapper mapper = session.getMapper(SongMapper.class);
+		
+		return mapper.selectSongsById(song_id);
+		
+	}
+
+	
+	
+	
+	
+
+	
+
+	
+	
+	
+	
+
+	
+	
+	
+	
+
 	
 	
 	
@@ -187,21 +210,5 @@ public class SongDAO {
 		
 		
 		
-		
-		// 검색 페이지(윤영)
-		//곡명으로 검색
-		public ArrayList<Song> selectSongsBySongName(String searchText){
-			SongMapper mapper = session.getMapper(SongMapper.class);
-			ArrayList<Song> searchList1 = mapper.selectSongsBySongName(searchText);
-			
-			return searchList1;
-		}
-		//가수명으로 검색
-		public ArrayList<Song> selectSongsBySingerName(String searchText){
-			SongMapper mapper = session.getMapper(SongMapper.class);
-			ArrayList<Song> searchList2 = mapper.selectSongsBySingerName(searchText);
-			
-			return searchList2;
-		}
 		
 }

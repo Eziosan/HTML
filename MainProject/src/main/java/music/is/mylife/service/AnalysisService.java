@@ -1,23 +1,16 @@
 package music.is.mylife.service;
 
-import java.text.DecimalFormat;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.ui.Model;
 
 import music.is.mylife.dao.ListDAO;
 import music.is.mylife.dao.SingerDAO;
-import music.is.mylife.dao.SongDAO;
 import music.is.mylife.dao.TagDAO;
-import music.is.mylife.dao.UserDAO;
 import music.is.mylife.dao.UserLogDAO;
-import music.is.mylife.dao.UserLogMapper;
 import music.is.mylife.vo.Singer;
-import music.is.mylife.vo.Song;
 import music.is.mylife.vo.Tag;
 import music.is.mylife.vo.UserInfo;
 import music.is.mylife.vo.UserLog;
@@ -51,25 +44,18 @@ public class AnalysisService {
 		//한 유저가 지금까지 평가한 곡들의 별점 총합
 		double allStarCount = uld.selectAllStarCountByUser(user_id);
 		
-		System.out.println(allStarCount);
-		
-		//리스트 좋아요 수
+		//총 리스트 좋아요 수
 		double listLikeNum = ld.selectListLikesByUser(user_id);
-		//리스트 코멘트 수
+		//총 리스트 코멘트 수
 		double listCommentNum = ld.selectListCommentsNumByUser(user_id);
-		//해당 유저의 리스트 수
+		//해당 유저의 총 리스트 수
 		double listCount = ld.selectListCountByUser(user_id);
 		//유저가 별점을 매긴 곡의 개수
 		double allsongCount = uld.selectSongCountByUser(user_id);
-		//한 유저가 지금까지 매긴 별점의 총합
+		//한 유저가 지금까지 매긴 별점의 평균
 		double allStarSum = uld.selectAllStarSumByUser(user_id);
 		//한 유저가 가장 많이 준 별점
 		double topStar = uld.selectTopStarByUser(user_id);
-		
-		System.out.println("allSongCount : " + allsongCount);
-		System.out.println("allSongCount : " + allStarSum);
-		System.out.println("allSongCount : " + topStar);
-		System.out.println("listCommentNum : " + listCommentNum);
 		
 		userGradeList.put("allStarCount", allStarCount);
 		userGradeList.put("listLikeNum", listLikeNum);
@@ -99,7 +85,7 @@ public class AnalysisService {
 		return tagNameList;
 	}
 	
-	//선호 가수 수 3개 가져오기
+	//선호 가수 6명 가져오기
 	public ArrayList<Singer> selectTop3SingerByUser(String user_id){
 		ArrayList<UserLog> singerLogList = uld.selectTop3SingerByUser(user_id);
 		ArrayList<Singer> singerList = new ArrayList<Singer>();
@@ -118,53 +104,6 @@ public class AnalysisService {
 	//선호 장르 수 3개 가져오기
 	public ArrayList<UserLog> selectTop3GenreByUser(String user_id){
 		ArrayList<UserLog> genreLogList = uld.selectTop3GenreByUser(user_id);
-//		int max = 10;
-//		int[] less10 = {0};
-//		int[] topTo10 = {0};
-//		int[] elseInt = {0};
-//		int[] result_arr = {0};
-//		int i = 0;
-//		int j = 0;
-//		int k = 0;
-//		//최소 20이상
-//		int top_grade = 0;
-//		
-//		//1. 빈도수 최대값을 구함
-//		for(UserLog ul1 : genreLogList) {
-//			int current_gc = ul1.getGrade_count();
-//			
-//			if(top_grade < current_gc) {
-//				top_grade = current_gc;
-//			}
-//		}
-//		
-//		
-//		//
-//		for(UserLog ul2 : genreLogList) {
-//			//현재 빈도수
-//			int grade_count = ul2.getGrade_count();
-//			//빈도수가 10이하-> 정렬
-//			if(grade_count < 10) {
-//				//여기서도 크기 비교 해야 됨
-//				less10[i++] = grade_count;
-//			}else if(grade_count >  (top_grade - 10) ) {
-//				topTo10[j++] = grade_count;
-//				
-//			}else {
-//				elseInt[k++] = grade_count;
-//			}
-//			
-//			
-//		}
-//		
-//		Arrays.sort(less10);
-//		Arrays.sort(topTo10);
-//		Arrays.sort(elseInt);
-		
-//		System.arraycopy(result_arr, srcPos, dest, destPos, length);
-//		System.arraycopy(result_arr, srcPos, dest, destPos, length);
-//		System.arraycopy(result_arr, srcPos, dest, destPos, length);
-		
 		
 		return genreLogList;
 	}

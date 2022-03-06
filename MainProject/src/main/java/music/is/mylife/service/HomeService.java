@@ -8,20 +8,19 @@ import org.springframework.stereotype.Service;
 import music.is.mylife.dao.SongDAO;
 import music.is.mylife.dao.UserLogDAO;
 import music.is.mylife.vo.Song;
-import music.is.mylife.vo.UserLog;
 
 
 @Service
 public class HomeService {
 
 	@Autowired
-	SongDAO songDao;
+	SongDAO sd;
 	@Autowired
 	UserLogDAO uld;
 	
 	//곡 아이디로 곡 정보 가져오기
 	public Song selectSongsById(int song_id){
-		return songDao.selectSongsById(song_id);
+		return sd.selectSongsById(song_id);
 	}
 	
 	/**
@@ -30,7 +29,7 @@ public class HomeService {
 	 * @return ArrayList<Song>
 	 */
 	public ArrayList<Song> selectTopSong(Song song){
-		ArrayList<Song> songList = songDao.selectTopSong(song);
+		ArrayList<Song> songList = sd.selectTopSong(song);
 		
 		return songList;
 	}
@@ -41,7 +40,7 @@ public class HomeService {
 	 * @return ArrayList<Song>
 	 */
 	public ArrayList<Song> selectSongByGenre(String genre){
-		ArrayList<Song> songList = songDao.selectSongByGenre(genre);
+		ArrayList<Song> songList = sd.selectSongByGenre(genre);
 		
 		return songList;
 	}

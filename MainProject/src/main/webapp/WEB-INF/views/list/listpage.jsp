@@ -46,28 +46,27 @@
 			alert('로그인이 필요한 서비스 입니다');
 			return false;
 		}
-		//beforeLike에 색칠된 아이콘을 넣을 것
+		//beforeLike(좋아요가 색칠되기 전) 에 색칠된 아이콘을 넣을 것
 		$(".beforeLike")
 				.html(
 						"<img src='../resources/img/like4.png' id='좋아요버튼' width='15px'> 좋아요");
 		$(".afterLike")
 				.html(
 						"<img src='../resources/img/like1.png' id='좋아요버튼' width='15px'> 좋아요");
+		//있는 클래스는 없애고 없는 클래스는 만듬(좋아요 색칠됐다가 안됐다가 가능)
 		$(".like").toggleClass("beforeLike afterLike");
 
 		var playlist_id = $("#playlist_id").val();
 		var list_like = 0;
 
 		if ($(".like").hasClass("afterLike")) {
-		/* 	alert('좋아요를 하셨습니다'); */
-			//alert($("#playlist_id").val());
 			list_like = 1;
 
 		} else if ($(".like").hasClass("beforeLike")) {
-		/* 	alert('좋아요를 취소하셨습니다.'); */
 			list_like = -1;
 		}
-
+		
+		//좋아요 수를 1 증가시키거나 감소
 		$.ajax({
 			type : "POST",
 			url : "like",
@@ -76,14 +75,12 @@
 				"list_like" : list_like
 			},
 			success : function(data, textStatus, xhr) {
-				//alert("ajax 성공");
-				//alert(data);
 				//별점 갱신
 				$(".likeCount").text(data);
 			},
 
 			error : function(request, status, error) {
-				//alert("error 발생!")
+				alert("error 발생!")
 			}
 
 		});
@@ -109,12 +106,15 @@
 			return false;
 		}
 
-		//댓글 삭제 확인 알람
-		function deleteComment(user_id) {
-			alert('댓글을 삭제하시겠습니까?');
-			return false;
+
+	return true;
+}
+	//댓글 삭제 확인 알람
+	function deleteComment(user_id) {
+		if(confirm('댓글을 삭제하시겠습니까?')){
+			return true;
 		}
-		return true;
+			return false;
 	}
 
 	
@@ -143,7 +143,7 @@
 			<ul
 				class="nav col-12 col-lg-auto me-lg-auto mlmb-2 justify-content-center mb-md-0">
 				<li><div class="nav-link px-2 w-100">
-						<a href="/mylife/main"> <img
+						<a href="/mylife"> <img
 							src="../resources/img/mainLogo.png" alt="img" width=""
 							height="40" style="margin-right: 30px">
 						</a>
@@ -447,11 +447,13 @@
 					<form action="comment" method="post" id="comment"
 						onsubmit="return loginCheck('${user_id}')">
 						<input type="hidden" id="playlist_id" name="playlist_id"
-							value="${playlist_id }"> <input type="hidden"
-							id="user_id" name="user_id" value="${user_id }"> <input
+							value="${playlist_id }"> 
+						<input type="hidden"
+							id="user_id" name="user_id" value="${user_id }">
+						<input
 							type="text" name="user_comment" id="댓글입력"
-							placeholder="컬렉션에 댓글을 남겨보세요."> <input type="submit"
-							id="댓글입력버튼" value="등록">
+							placeholder="컬렉션에 댓글을 남겨보세요.">
+						<input type="submit" id="댓글입력버튼" value="등록">
 					</form>
 				</div>
 			</div>

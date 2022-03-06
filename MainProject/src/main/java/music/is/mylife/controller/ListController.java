@@ -39,16 +39,16 @@ public class ListController {
 	UserService us;
 	/**
 	 * song/mainPage에서 리스트 페이지로 화면이동
+	 * 플레이 리스트 id만 받음
 	 * @return
 	 */
 	@RequestMapping(value = "listPage", method = RequestMethod.GET)
-	public String listPage(Song song, Model model, int playlist_id, ListComment listReply) {
+	public String listPage(Model model, int playlist_id, ListComment listReply) {
 		
 		//리스트에 필요한 정보들 넘겨주기
 		ArrayList<Playlist> banner = ls.listBanner(playlist_id);
 		ArrayList<Playlist> listSong = ls.listSong(playlist_id);
 		Playlist info = ls.listInfo(playlist_id);
-		Song selectSong = ss.selectAllSong(song);
 		
 		//좋아요수, 댓글수, 곡 수 카운팅 정보
 		int count = ls.countSong(playlist_id);
@@ -70,8 +70,6 @@ public class ListController {
 		model.addAttribute("countComment", countComment);
 		//리스트 좋아요 수
 		model.addAttribute("listLike", like);
-		//전체 곡 정보 
-		model.addAttribute("allSong", selectSong);
 		//리스트 아이디
 		model.addAttribute("playlist_id", info.getPlaylist_id());
 		//댓글 전체출력
@@ -91,7 +89,7 @@ public class ListController {
 	 * @return
 	 */
 	@RequestMapping(value = "login", method = RequestMethod.POST)
-	public String login(String user_id, String user_pw, Model model, HttpSession session, int playlist_id, Song song) {
+	public String login(String user_id, String user_pw, Model model, HttpSession session, int playlist_id) {
 		UserInfo user_info = us.selectUser(user_id);
 		
 		if(user_info != null && user_info.getUser_pw().equals(user_pw)) {
@@ -102,7 +100,6 @@ public class ListController {
 		ArrayList<Playlist> banner = ls.listBanner(playlist_id);
 		ArrayList<Playlist> listSong = ls.listSong(playlist_id);
 		Playlist info = ls.listInfo(playlist_id);
-		Song selectSong = ss.selectAllSong(song);
 		
 		int count = ls.countSong(playlist_id);
 		int countComment = ls.countComment(playlist_id);
@@ -122,8 +119,6 @@ public class ListController {
 		model.addAttribute("countComment", countComment);
 		//리스트 좋아요 수
 		model.addAttribute("listLike", like);
-		//전체 곡 정보 
-		model.addAttribute("allSong", selectSong);
 		//리스트 아이디
 		model.addAttribute("playlist_id", info.getPlaylist_id());
 		//댓글 전체출력
@@ -141,14 +136,13 @@ public class ListController {
 	 * @return
 	 */
 	@RequestMapping(value = "logout", method = RequestMethod.GET)
-	public String logout(HttpSession session, Song song, Model model, int playlist_id) {
+	public String logout(HttpSession session, Model model, int playlist_id) {
 		session.invalidate();
 		
 		//리스트에 필요한 정보들 넘겨주기
 		ArrayList<Playlist> banner = ls.listBanner(playlist_id);
 		ArrayList<Playlist> listSong = ls.listSong(playlist_id);
 		Playlist info = ls.listInfo(playlist_id);
-		Song selectSong = ss.selectAllSong(song);
 		
 		int count = ls.countSong(playlist_id);
 		int countComment = ls.countComment(playlist_id);
@@ -168,8 +162,6 @@ public class ListController {
 		model.addAttribute("countComment", countComment);
 		//리스트 좋아요 수
 		model.addAttribute("listLike", like);
-		//전체 곡 정보 
-		model.addAttribute("allSong", selectSong);
 		//리스트 아이디
 		model.addAttribute("playlist_id", info.getPlaylist_id());
 		//댓글 전체출력
@@ -188,13 +180,12 @@ public class ListController {
 	 * @return
 	 */
 	@RequestMapping(value = "join", method = RequestMethod.POST)
-	public String join(@ModelAttribute("userinfo") UserInfo userinfo ,Model model, Song song, int playlist_id) {
+	public String join(@ModelAttribute("userinfo") UserInfo userinfo ,Model model, int playlist_id) {
 		
 		//리스트에 필요한 정보들 넘겨주기
 		ArrayList<Playlist> banner = ls.listBanner(playlist_id);
 		ArrayList<Playlist> listSong = ls.listSong(playlist_id);
 		Playlist info = ls.listInfo(playlist_id);
-		Song selectSong = ss.selectAllSong(song);
 						
 		int count = ls.countSong(playlist_id);
 		int countComment = ls.countComment(playlist_id);
@@ -214,8 +205,6 @@ public class ListController {
 		model.addAttribute("countComment", countComment);
 		//리스트 좋아요 수
 		model.addAttribute("listLike", like);
-		//전체 곡 정보 
-		model.addAttribute("allSong", selectSong);
 		//리스트 아이디
 		model.addAttribute("playlist_id", info.getPlaylist_id());
 		//댓글 전체출력
@@ -240,16 +229,14 @@ public class ListController {
 	 */
 	@ResponseBody
 	@RequestMapping(value = "like", method = RequestMethod.POST)
-	public int listLike(Playlist pl, Model model, Song song) {
-		System.out.println("플레이 리스트 id : " + pl.getPlaylist_id());
-		System.out.println("플레이 리스트 좋아요 수 : " + pl.getList_like());
+	public int listLike(Playlist pl, Model model) {
+		//리스트 좋아요 수 업데이트
 		ls.updateLike(pl);
 		
 		//리스트에 필요한 정보들 넘겨주기
 		ArrayList<Playlist> banner = ls.listBanner(pl.getPlaylist_id());
 		ArrayList<Playlist> listSong = ls.listSong(pl.getPlaylist_id());
 		Playlist info = ls.listInfo(pl.getPlaylist_id());
-		Song selectSong = ss.selectAllSong(song);
 								
 		int count = ls.countSong(pl.getPlaylist_id());
 		int countComment = ls.countComment(pl.getPlaylist_id());
@@ -269,14 +256,10 @@ public class ListController {
 		model.addAttribute("countComment", countComment);
 		//리스트 좋아요 수
 		model.addAttribute("listLike", like);
-		//전체 곡 정보 
-		model.addAttribute("allSong", selectSong);
 		//리스트 아이디
 		model.addAttribute("playlist_id", pl.getPlaylist_id());
 		//댓글 전체출력
 		model.addAttribute("allList", list);
-		System.out.println("오류가 언제 뜨냐");
-		System.out.println("like 수 : "  + like);
 		
 		return like.getList_like();
 	}
@@ -291,8 +274,7 @@ public class ListController {
 	 * @return
 	 */
 	@RequestMapping(value = "comment", method = RequestMethod.POST)
-	public String insetComment(int playlist_id ,String comment, Model model, Song song , ListComment reply, HttpSession session,
-			ListComment listReply) {
+	public String insetComment(int playlist_id ,String comment, Model model, ListComment reply, HttpSession session) {
 	
 		// 세션에서 로그인한 사용자 아이디 받아 저장
 		String loginId = (String)session.getAttribute("user_id");
@@ -305,7 +287,6 @@ public class ListController {
 		ArrayList<Playlist> banner = ls.listBanner(playlist_id);
 		ArrayList<Playlist> listSong = ls.listSong(playlist_id);
 		Playlist info = ls.listInfo(playlist_id);
-		Song selectSong = ss.selectAllSong(song);
 										
 		int count = ls.countSong(playlist_id);
 		int countComment = ls.countComment(playlist_id);
@@ -326,25 +307,19 @@ public class ListController {
 		model.addAttribute("countComment", countComment);
 		//리스트 좋아요 수
 		model.addAttribute("listLike", like);
-		//전체 곡 정보 
-		model.addAttribute("allSong", selectSong);
 		//리스트 아이디
 		model.addAttribute("playlist_id", info.getPlaylist_id());		
 		//댓글 전체출력
 		model.addAttribute("allList", list);
 		
 		
-		
-		
-		//return "redirect:/list/listpage?playlist_id=" + reply.getPlaylist_id();
 		return "list/listpage";
 	}
 	
 	@RequestMapping(value = "delComment", method = RequestMethod.POST)
-	public String deleteComment(HttpSession session, ListComment delComment, Song song, int playlist_id, Model model) {
+	public String deleteComment(HttpSession session, ListComment delComment, int playlist_id, Model model) {
 		String loginId = (String)session.getAttribute("user_id");
 		delComment.setUser_id(loginId);
-		logger.info("delComment:{}",delComment);
 		//댓글 삭제
 		int commentDel = ls.deleteComment(delComment);
 		
@@ -352,7 +327,6 @@ public class ListController {
 		ArrayList<Playlist> banner = ls.listBanner(playlist_id);
 		ArrayList<Playlist> listSong = ls.listSong(playlist_id);
 		Playlist info = ls.listInfo(playlist_id);
-		Song selectSong = ss.selectAllSong(song);
 												
 		int count = ls.countSong(playlist_id);
 		int countComment = ls.countComment(playlist_id);
@@ -372,8 +346,6 @@ public class ListController {
 		model.addAttribute("countComment", countComment);
 		//리스트 좋아요 수
 		model.addAttribute("listLike", like);
-		//전체 곡 정보 
-		model.addAttribute("allSong", selectSong);
 		//리스트 아이디
 		model.addAttribute("playlist_id", info.getPlaylist_id());		
 		//댓글 전체출력

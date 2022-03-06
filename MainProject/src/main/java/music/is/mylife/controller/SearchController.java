@@ -31,24 +31,15 @@ public class SearchController {
 
 	@RequestMapping(value = "searchResult", method = RequestMethod.GET)
 	public String search(String searchText, Model model) {
+		// 곡명으로 검색 검색 결과
 		ArrayList<Song> searchResult1 = sServ.searchSongsBySongName(searchText);
+		// 가수명으로 검색
 		ArrayList<Song> searchResult2 = sServ.searchSongsBySingerName(searchText);
 		
+		//검색어
 		model.addAttribute("searchText", searchText);
-		// 곡명으로 검색 검색 결과
 		model.addAttribute("searchResult1", searchResult1);
-		// 가수명으로 검색
 		model.addAttribute("searchResult2", searchResult2);
-
-		System.out.println(searchText);
-		for (Song s : searchResult1) {
-			System.out.println(s);
-		}
-		System.out.println("======================");
-
-		for (Song s : searchResult2) {
-			System.out.println(s);
-		}
 
 		return "search/searchResult";
 	}
@@ -68,9 +59,9 @@ public class SearchController {
 	}
 
 	@RequestMapping(value = "join", method = RequestMethod.POST)
-	public String join(Model model, String searchText, UserInfo ui) {
+	public String join(Model model, String searchText, @ModelAttribute("userinfo") UserInfo userinfo) {
 		
-		if(us.insertUser(ui)) {
+		if(us.insertUser(userinfo)) {
 			System.out.println("회원가입 성공!!");
 		}else {
 			System.out.println("회원가입 실패!");
@@ -87,11 +78,5 @@ public class SearchController {
 		return "redirect:searchResult?searchText=" + searchText;
 	}
 
-	@RequestMapping(value = "main", method = RequestMethod.GET)
-	public String search() {
-		//정보를 넘겨주기만 하면 됨
-
-		return "search/searchResult";
-	}
 
 }
