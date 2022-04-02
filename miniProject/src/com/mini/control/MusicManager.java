@@ -35,6 +35,14 @@ public class MusicManager {
 		return md.getSingersByName(singer);
 	}
 	
+	//가수id로 가수 찾기
+	public Singer selectSingerBySid(int sid) {
+		
+		return md.selectSingerBySid(sid);
+	}
+	
+	
+	
 	//가수 등록
 	public int addSinger(Singer singer) {
 		
@@ -47,6 +55,11 @@ public class MusicManager {
 		return md.enroll(song);
 	}
 	
+	//새 list 시퀀스 번호
+	public int getListSeq() {
+		return md.getListSeq();
+	}
+	
 	//현재 로그인한 유저의 전체 리스트 출력
 	public ArrayList<PlayList> getUserList(String loginId){
 		
@@ -57,6 +70,16 @@ public class MusicManager {
 	public ArrayList<PlayList> getUserListSongs(int listId){
 		
 		return md.getUserListSongs(listId);
+	}
+	
+	// 리스트 생성
+	public int addList(PlayList list ) {
+		return md.addList(list);
+	}
+	
+	//리스트에 곡 추가
+	public int addListDetail(PlayList list) {
+		return md.addListDetail(list);
 	}
 	
 	//list_id로 리스트 삭제

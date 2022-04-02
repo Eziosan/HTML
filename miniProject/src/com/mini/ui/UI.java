@@ -465,15 +465,19 @@ public class UI {
 			sc.nextLine();
 			String lName = sc.nextLine();
 			
-			//새 list 시퀀스 번호
+			//새 list 시퀀스 번호   -> 시퀀스 번호가 0이면 등록을 하지 말아야지
 			int list_id = mm.getListSeq();
 			System.out.println("현재 시퀀스 번호 : " + list_id);
-			PlayList list = new PlayList(list_id, lName, loginId, song.getSong_id());
-			//리스트에 곡 추가 
-			//같은 유저가 같은 이름의 리스트 만들 수 없고, 한 리스트 안에선 곡 중복 안됨.(DAO에서 처리)
-			if(mm.addList(list) > 0) {
+			
+			if(list_id == 0) {
+				PlayList list = new PlayList(list_id, lName, loginId, song.getSong_id());
+				//리스트에 곡 추가 
+				//같은 유저가 같은 이름의 리스트 만들 수 없고, 한 리스트 안에선 곡 중복 안됨.(DAO에서 처리)
+				if(mm.addList(list) > 0) {
+					
+					mm.addListDetail(list);
+				}
 				
-				mm.addListDetail(list);
 			}
 	}
 	
