@@ -7,6 +7,5 @@ public class Singer {
 	private int singer_id;
 	private String singer_name;
 	private String country;
-	private int singer_like;
 
 }

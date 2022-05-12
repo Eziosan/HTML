@@ -3,6 +3,7 @@ package music.is.mylife.controller;
 import java.util.ArrayList;
 import java.util.Locale;
 
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -13,47 +14,46 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import music.is.mylife.service.HomeService;
+import music.is.mylife.service.ListService;
+import music.is.mylife.service.SongService;
+import music.is.mylife.vo.Playlist;
 import music.is.mylife.vo.Song;
-
+import music.is.mylife.vo.Tag;
 
 @Controller
 public class HomeController {
 
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
-	
+
+	@Autowired
+	SongService ss;
+
 	@Autowired
 	HomeService hs;
+	
+	@Autowired
+	ListService ls;
 
 	
-	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String main(Locale locale) {
-		logger.info("Welcome home! The client locale is {}.", locale);
-		
-		return "home";
-	}
-	
 	/**
-	 * 1. 조회수 상위 5개의 곡 값을 main.jsp에 넘기기
-	 * 2. 좋아요 상위 5개의 곡 값을 main.jsp에 넘기기
+	 * 1. 조회수 상위 5개의 곡 값을 main.jsp에 넘기기 2. 발라드 곡 값을 main.jsp에 넘기기
+	 * 
 	 * @param song
 	 * @param model
 	 * @return main.jsp
 	 */
-	@RequestMapping(value = "main", method = RequestMethod.GET)
+	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String topSong(Song song, Model model) {
+		//조회수가 높은 순으로 상위 10개의 곡 출력(메인)
 		ArrayList<Song> songList = hs.selectTopSong(song);
-		logger.info("Song:{}", songList);
-		
-		ArrayList<Song> likeSong = hs.selectLikeSong(song);
-		logger.info("SongLike: {}", likeSong);
-		
+		//선택한 장르의 곡들을 조회수 순으로 출력(메인)
+		ArrayList<Song> songList2 = hs.selectSongByGenre("발라드");
+
 		model.addAttribute("songList", songList);
-		model.addAttribute("likeSong", likeSong);
-		
+		model.addAttribute("songList2", songList2);
+
 		return "main";
 	}
 
 
-
-	
 }

@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import music.is.mylife.dao.SongDAO;
+import music.is.mylife.dao.UserLogDAO;
 import music.is.mylife.vo.Song;
 
 
@@ -13,27 +14,37 @@ import music.is.mylife.vo.Song;
 public class HomeService {
 
 	@Autowired
-	SongDAO songDao;
+	SongDAO sd;
+	@Autowired
+	UserLogDAO uld;
+	
+	//곡 아이디로 곡 정보 가져오기
+	public Song selectSongsById(int song_id){
+		return sd.selectSongsById(song_id);
+	}
 	
 	/**
-	 * 조회수가 높은 순으로 상위 5개의 곡 출력
+	 * 조회수가 높은 순으로 상위 10개의 곡 출력(메인)
 	 * @param song
 	 * @return ArrayList<Song>
 	 */
 	public ArrayList<Song> selectTopSong(Song song){
-		ArrayList<Song> songList = songDao.selectTopSong(song);
+		ArrayList<Song> songList = sd.selectTopSong(song);
 		
 		return songList;
 	}
 	
 	/**
-	 * 좋아요가 높은 순으로 상위 5개 곡 출력
+	 * 선택한 장르의 곡들을 조회수 순으로 출력(메인)
 	 * @param song
 	 * @return ArrayList<Song>
 	 */
-	public ArrayList<Song> selectLikeSong(Song song){
-		ArrayList<Song> likeSong = songDao.selectLikeSong(song);
+	public ArrayList<Song> selectSongByGenre(String genre){
+		ArrayList<Song> songList = sd.selectSongByGenre(genre);
 		
-		return likeSong;
+		return songList;
 	}
+	
+	
+	
 }

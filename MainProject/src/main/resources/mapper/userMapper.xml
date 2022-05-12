@@ -6,7 +6,7 @@
 <!-- 인터페이스 위치 지정!!!!!! -->
 <mapper namespace="music.is.mylife.dao.UserMapper">
 
-<!-- 아이디 중복검사하기 & 로그인 하기
+<!--  로그인 하기
 	아이디: selectUser
 	파라미터 타입: string
 	리턴 타입: user_info
@@ -27,6 +27,11 @@
 		#{user_id}, #{user_pw},#{user_name}
 	)
 </insert>
+
+<select id="joinDupleCheck" parameterType="user_info" resultType="int">
+	select count(*) from user_info
+	where user_id = #{user_id}
+</select>
 
 
 

@@ -8,18 +8,19 @@ public class Song {
 	private int singer_id;
 	private String song_name;
 	private String genre;
-	private int song_like;
+	//조회수
 	private int hit;
+	//가사
 	private String lyrics;
-	private String song_banner;
 	private String album_name;
 	private String album_img;
 	private String album_date;
+	//작곡, 작사가
 	private String writer;
 	private String composer;
 	
 	private String country;
 	private String singer_name;
-	
+	private double avg;
 	
 }
