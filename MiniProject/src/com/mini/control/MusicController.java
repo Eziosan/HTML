@@ -29,6 +29,12 @@ public class MusicController {
 		//해당 곡 가져오기(곡 id로)
 		return songList;
 		}
+		
+		
+		//조회수 증가
+		public void addHits(Song song) {
+			md.addHits(song);
+		}
 	
 		// 별점 입력
 		public void insertStar(Song song) {

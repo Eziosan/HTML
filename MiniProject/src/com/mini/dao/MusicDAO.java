@@ -25,6 +25,41 @@ SqlSessionFactory factory = MybatisConfig.getSqlSessionFactory();
 		return null;
 		
 	}
+	
+	//가수id로 가수 찾기
+	public Singer selectSingerBySid(int sid) {
+		try (SqlSession session = factory.openSession()) {
+			MusicMapper mapper = session.getMapper(MusicMapper.class);
+			
+			//노래로 노래 리스트 가져오기
+			return mapper.selectSingerBySid(sid);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+		
+	}
+	
+	//조회수 증가
+	public void addHits(Song song) {
+		try (SqlSession session = factory.openSession()) {
+			MusicMapper mapper = session.getMapper(MusicMapper.class);
+			
+			int result = mapper.addHits(song);
+			
+			if(result > 0) {
+				System.out.println("조회수 증가 성공!");
+				session.commit();
+				
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+	}
+	
 
 	//만약에 hashmap으로 <int, Song>???
 	//사용자가 입력한 노래가 포함된 노래 리스트 가져오기
@@ -136,6 +171,22 @@ SqlSessionFactory factory = MybatisConfig.getSqlSessionFactory();
 		return false;
 	}
 	
+	//새 list 시퀀스 번호
+	public int getListSeq(){
+		
+		try (SqlSession session = factory.openSession()) {
+			MusicMapper mapper = session.getMapper(MusicMapper.class);
+			
+			return mapper.getListSeq();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		
+		return 0;
+	}
+	
 	//현재 로그인한 유저의 전체 리스트 출력
 		public ArrayList<PlayList> getUserList(String loginId){
 			
@@ -165,6 +216,35 @@ SqlSessionFactory factory = MybatisConfig.getSqlSessionFactory();
 			
 			return null;
 		}
+		
+		// 리스트 생성
+		public int addList(PlayList list ){
+			try (SqlSession session = factory.openSession()) {
+				MusicMapper mapper = session.getMapper(MusicMapper.class);
+				
+				return mapper.addList(list);
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			
+			return 0;
+		}
+		
+		//리스트에 곡 추가
+		public int addListDetail(PlayList list){
+			try (SqlSession session = factory.openSession()) {
+				MusicMapper mapper = session.getMapper(MusicMapper.class);
+				
+				return mapper.addListDetail(list);
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			
+			return 0;
+		}
+		
 		
 		//list_id로 리스트 삭제
 		public int  deleteList(int list_id) {
