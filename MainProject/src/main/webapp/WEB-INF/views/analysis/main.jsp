@@ -64,18 +64,7 @@
 			</span>
 		</div>
 		</div>
-			<!--          
-margin-top: 100px;
-    width: 638px;
-    height: 244.75px;
-        background-color: white;
-    border: 1px solid;
-    border-color: lightgray;
-    border-radius: 6px;
-    padding: 0px;
-    overflow: hidden;
--->
-<!-- 		</div> -->
+		
 		<div class="container" id="평가박스">
 			<div id="평가">
 				<div id="평가수" style="margin-top: 10px;">
@@ -181,10 +170,6 @@ margin-top: 100px;
 				</div>
 
 
-				<!--
-                <div id="겨울" class="carousel slide" data-bs-ride="carousel" data-bs-interval="false">
-    <div class="carousel-item active" >
--->
 				<!-- 좌, 우 슬라이드 감쌈 -->
 				<div id="가수큰칸">
 
@@ -300,10 +285,6 @@ margin-top: 100px;
 					<div class="fw-bold" id="평가수텍">선호장르</div>
 				</div>
 				<div id="장르큰칸2">
-					<!--  
-							<div id="장르코멘트">발라드충이군요</div>
-						
-						-->
 					<div id="장르칸">
 						<div id="국가탑">
 							<c:forEach var="genreLog" items="${genreLogList}" begin="0"

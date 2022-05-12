@@ -91,7 +91,6 @@
 	
 	<!-- 메인 페이지 -->
 	    
-	<!--  <div class="album py-5 bg-white" style="font-family: 'Noto Sans KR', sans-serif; margin-top: 80px"></div>-->
 	      
 	<!-- 위쪽 슬라이드(1번째 슬라이드) 영역
 		*** 좌버튼 target, 우버튼 target, 카로셀 id 가 같아야됨. 밑 참조 ex)아무거나1
@@ -183,11 +182,7 @@
 	        
 	        <button class="carousel-control-next" type="button" data-bs-target="#아무거나1" data-bs-slide="next"  
 	        id="우버튼메인">
-	<!--    <span class="오른쪽" aria-hidden="true" style="position: absolute; left: 200px; top: 130px">-->
 	        <img src="./resources/img/right.png" width="30px">
-	<!--    
-	style="position: absolute; left: 100px; top: 130px"-->
-	<!--      </span>-->
 	    <span class="visually-hidden">Next</span>
 	  </button>
 	       
@@ -266,39 +261,6 @@
 													</div>
 												</div>
 											</div>
-										<%-- <div class="card border border-white">
-											<img src="./resources/img/album/${song.album_img} " alt="img" width="100%"
-												height="225">
-	
-											<div class="card1 mt-3 " style="
-													text-overflow: ellipsis;
-												    overflow: hidden;
-												    white-space: nowrap;">
-												<a href="/mylife/song/songPage?song_id=${song.song_id }&singer_id=${song.singer_id}" class="card-text mb-1 fw-bold" style="font-size: 23px;">${song.song_name}</a>
-												<p class="card-text mb-0" style="font-size: 15px;">${song.singer_name }</p>
-												
-												
-												<span class="card-text mb-0"
-													style="font-size: 13px; margin-left: 1px">
-													${song.album_date } </span> <span class="card-text mb-0 fw-bold"
-													style="font-size: 13px; margin-left: 2px"> • </span> 
-													<span
-													class="card-text mb-0"
-													style="font-size: 13px; 
-													margin-left: 2px;
-													text-overflow: ellipsis;
-												    overflow: hidden;
-												    white-space: nowrap; 
-													">
-													${song.album_name } </span>
-
-												<div
-													class="d-flex justify-content-between align-items-center">
-	
-													<small class="text-muted"></small>
-												</div>
-											</div>
-										</div> --%>
 									</div>
 								</c:forEach>
 								
